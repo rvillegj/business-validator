@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
     },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 4000,
+      max_tokens: 6000,
       messages: [{ role: "user", content: buildPrompt(idea) }]
     })
   });
@@ -39,7 +39,7 @@ function buildPrompt(idea) {
 
 A user has this business idea: "${idea}"
 
-Generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to all other sections. The pain points inform the value proposition. The value proposition shapes the customer relationships and channels. The key activities, resources, and partners all exist to deliver the value proposition to the identified segments.
+Generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to all other sections. The cost structure must reflect the key resources and activities. The revenue streams must map to the segments and value proposition. The competitive landscape must explain why this model wins.
 
 Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON object.
 
@@ -145,7 +145,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       {
         "name": "Partner name",
         "type": "Supplier | Strategic Alliance | Joint Venture",
-        "description": "2 sentences: what this partner provides, why this business cannot efficiently handle it alone, and how it enables scaling or reduces risk."
+        "description": "2 sentences: what this partner provides and how it enables scaling or reduces risk."
       },
       {
         "name": "Partner name",
@@ -165,7 +165,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       {
         "name": "Activity name",
         "category": "Production | Problem Solving | Platform/Network",
-        "description": "2 sentences: why this is essential to delivering the value proposition and maintaining customer relationships."
+        "description": "2 sentences: why this is essential to delivering the value proposition."
       },
       {
         "name": "Activity name",
@@ -185,7 +185,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       {
         "name": "Resource name",
         "type": "Physical | Financial | Intellectual | Human",
-        "description": "2 sentences: why this resource is essential, how it enables the value proposition, and what makes it unique or hard to replicate."
+        "description": "2 sentences: why this resource is essential and what makes it unique or hard to replicate."
       },
       {
         "name": "Resource name",
@@ -198,6 +198,73 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
         "description": "2 sentences."
       }
     ]
+  },
+  "costStructure": {
+    "summary": "One sentence describing the overall cost philosophy of this business (cost-driven vs value-driven).",
+    "costs": [
+      {
+        "name": "Cost item name",
+        "type": "Fixed | Variable | Semi-variable",
+        "description": "2 sentences: what this cost covers, why it is significant, and how it connects to the key activities or resources."
+      },
+      {
+        "name": "Cost item name",
+        "type": "Fixed | Variable | Semi-variable",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Cost item name",
+        "type": "Fixed | Variable | Semi-variable",
+        "description": "2 sentences."
+      }
+    ]
+  },
+  "revenueStreams": {
+    "summary": "One sentence describing how this business captures value financially from its segments.",
+    "streams": [
+      {
+        "name": "Revenue stream name",
+        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
+        "pricing": "Fixed | Dynamic",
+        "segment": "Which customer segment this targets",
+        "description": "2 sentences: how this stream generates revenue, what triggers payment, and why this pricing model fits this segment in Costa Rica."
+      },
+      {
+        "name": "Revenue stream name",
+        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
+        "pricing": "Fixed | Dynamic",
+        "segment": "Which customer segment this targets",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Revenue stream name",
+        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
+        "pricing": "Fixed | Dynamic",
+        "segment": "Which customer segment this targets",
+        "description": "2 sentences."
+      }
+    ]
+  },
+  "competitiveLandscape": {
+    "summary": "One sentence describing the overall competitive position of this business in Costa Rica.",
+    "competitors": [
+      {
+        "name": "Competitor name",
+        "type": "Direct | Indirect",
+        "description": "2 sentences: what this competitor offers, who they serve, and their key weakness that this business exploits."
+      },
+      {
+        "name": "Competitor name",
+        "type": "Direct | Indirect",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Competitor name",
+        "type": "Direct | Indirect",
+        "description": "2 sentences."
+      }
+    ],
+    "advantage": "2 sentences: the unique competitive advantage this business has over all identified competitors, and why it is defensible in the Costa Rican market."
   }
 }`;
 }
