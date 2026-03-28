@@ -18,7 +18,7 @@ module.exports = async function handler(req, res) {
     },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 2500,
+      max_tokens: 4000,
       messages: [{ role: "user", content: buildPrompt(idea) }]
     })
   });
@@ -39,7 +39,7 @@ function buildPrompt(idea) {
 
 A user has this business idea: "${idea}"
 
-Your job is to generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to the other sections. The pain points must inform the value proposition. The value proposition must shape the customer relationships.
+Generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to all other sections. The pain points inform the value proposition. The value proposition shapes the customer relationships and channels. The key activities, resources, and partners all exist to deliver the value proposition to the identified segments.
 
 Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON object.
 
@@ -51,9 +51,9 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       "profile": "2-3 sentences: age range, location in CR, income level, lifestyle, and why they need this specific business idea.",
       "tags": ["tag1", "tag2", "tag3"],
       "painPoints": [
-        "A deep, specific struggle this segment faces with existing solutions in the Costa Rican market for this type of business. Not generic — rooted in real local experience.",
-        "A second real struggle specific to this segment's daily life or work related to this business idea.",
-        "A third significant frustration with how the market currently fails this segment for this type of business."
+        "A deep, specific struggle this segment faces with existing solutions in the Costa Rican market.",
+        "A second real struggle specific to this segment.",
+        "A third significant frustration with how the market currently fails this segment."
       ]
     },
     {
@@ -74,7 +74,7 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
     "offerings": [
       {
         "name": "Product or service name",
-        "description": "2 sentences: what it is, which specific pain point from the segments it solves, and how it beats existing alternatives.",
+        "description": "2 sentences: what it is, which pain point it solves, and how it beats existing alternatives.",
         "advantage": "One of: better design, better price, better performance, or more convenient"
       },
       {
@@ -90,22 +90,112 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
     ]
   },
   "customerRelationships": {
-    "summary": "One sentence describing the overall relationship philosophy that connects this business to its segments.",
+    "summary": "One sentence describing the overall relationship philosophy.",
     "strategies": [
       {
         "name": "Strategy name",
         "type": "Acquire",
-        "description": "2 sentences: how this strategy attracts the target segments, why it works for this specific business idea in Costa Rica."
+        "description": "2 sentences: how this attracts the target segments in Costa Rica."
       },
       {
         "name": "Strategy name",
         "type": "Retain",
-        "description": "2 sentences: how this strategy keeps customers coming back, how it builds trust and loyalty specific to this value proposition."
+        "description": "2 sentences: how this keeps customers coming back."
       },
       {
         "name": "Strategy name",
         "type": "Grow",
-        "description": "2 sentences: how this strategy increases customer lifetime value, reduces churn, and expands revenue from existing customers."
+        "description": "2 sentences: how this increases customer lifetime value."
+      }
+    ]
+  },
+  "channels": {
+    "summary": "One sentence describing how this business reaches and delivers value to its segments.",
+    "touchpoints": [
+      {
+        "phase": "Awareness",
+        "name": "Channel name",
+        "description": "2 sentences: how this channel raises awareness among the target segments in Costa Rica."
+      },
+      {
+        "phase": "Evaluation",
+        "name": "Channel name",
+        "description": "2 sentences: how this helps customers evaluate the offering."
+      },
+      {
+        "phase": "Purchase",
+        "name": "Channel name",
+        "description": "2 sentences: how customers buy or access the product/service."
+      },
+      {
+        "phase": "Delivery",
+        "name": "Channel name",
+        "description": "2 sentences: how the value proposition is delivered to the customer."
+      },
+      {
+        "phase": "Post-Purchase",
+        "name": "Channel name",
+        "description": "2 sentences: how the business supports customers after purchase."
+      }
+    ]
+  },
+  "keyPartners": {
+    "summary": "One sentence describing the overall partnership strategy for this business.",
+    "partners": [
+      {
+        "name": "Partner name",
+        "type": "Supplier | Strategic Alliance | Joint Venture",
+        "description": "2 sentences: what this partner provides, why this business cannot efficiently handle it alone, and how it enables scaling or reduces risk."
+      },
+      {
+        "name": "Partner name",
+        "type": "Supplier | Strategic Alliance | Joint Venture",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Partner name",
+        "type": "Supplier | Strategic Alliance | Joint Venture",
+        "description": "2 sentences."
+      }
+    ]
+  },
+  "keyActivities": {
+    "summary": "One sentence describing the most critical operational focus of this business.",
+    "activities": [
+      {
+        "name": "Activity name",
+        "category": "Production | Problem Solving | Platform/Network",
+        "description": "2 sentences: why this is essential to delivering the value proposition and maintaining customer relationships."
+      },
+      {
+        "name": "Activity name",
+        "category": "Production | Problem Solving | Platform/Network",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Activity name",
+        "category": "Production | Problem Solving | Platform/Network",
+        "description": "2 sentences."
+      }
+    ]
+  },
+  "keyResources": {
+    "summary": "One sentence describing the core assets that make this business possible.",
+    "resources": [
+      {
+        "name": "Resource name",
+        "type": "Physical | Financial | Intellectual | Human",
+        "description": "2 sentences: why this resource is essential, how it enables the value proposition, and what makes it unique or hard to replicate."
+      },
+      {
+        "name": "Resource name",
+        "type": "Physical | Financial | Intellectual | Human",
+        "description": "2 sentences."
+      },
+      {
+        "name": "Resource name",
+        "type": "Physical | Financial | Intellectual | Human",
+        "description": "2 sentences."
       }
     ]
   }

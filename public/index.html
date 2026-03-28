@@ -24,15 +24,13 @@
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    /* Canvas */
     .canvas { margin-top: 52px; display: none; }
     .canvas-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
     .canvas-badge { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #3D6B4F; background: rgba(61,107,79,0.1); padding: 4px 10px; border-radius: 20px; margin-bottom: 32px; }
     .rationale { background: white; border: 1.5px solid #E2D9CE; border-left: 4px solid #E8C547; border-radius: 12px; padding: 18px 20px; margin-bottom: 40px; font-size: 14.5px; color: #444; line-height: 1.65; }
     .rationale-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
 
-    /* Section headers */
-    .section { margin-bottom: 48px; }
+    .section { margin-bottom: 52px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
     .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
 
@@ -52,8 +50,6 @@
     .card:nth-child(1) .tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .card:nth-child(2) .tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .card:nth-child(3) .tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-
-    /* Pain points */
     .pain-points { border-top: 1px solid #F0E8DC; padding-top: 14px; margin-top: 4px; }
     .pain-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
     .pain-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12.5px; color: #555; line-height: 1.55; }
@@ -61,7 +57,7 @@
     .card:nth-child(2) .pain-dot { background: #3D6B4F; }
     .card:nth-child(3) .pain-dot { background: #E8C547; }
 
-    /* Value proposition cards */
+    /* Value proposition */
     .vp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
     .vp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
     .vp-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
@@ -69,9 +65,9 @@
     .vp-card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 14px; }
     .advantage-badge { display: inline-block; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; }
 
-    /* Customer relationship cards */
+    /* Customer relationships */
     .cr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .cr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+    .cr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
     .cr-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
     .cr-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
     .cr-type.acquire { color: #FF6B4A; }
@@ -79,6 +75,42 @@
     .cr-type.grow { color: #A8851A; }
     .cr-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
     .cr-card-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+    /* Channels */
+    .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .ch-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 20px 18px; transition: box-shadow 0.2s, transform 0.2s; }
+    .ch-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .ch-phase { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #FF6B4A; }
+    .ch-card:nth-child(2) .ch-phase { color: #3D6B4F; }
+    .ch-card:nth-child(3) .ch-phase { color: #A8851A; }
+    .ch-card:nth-child(4) .ch-phase { color: #1A1A2E; }
+    .ch-card:nth-child(5) .ch-phase { color: #7B5EA7; }
+    .ch-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #1A1A2E; }
+    .ch-desc { font-size: 12.5px; color: #777; line-height: 1.6; }
+
+    /* Key partners */
+    .kp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .kp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .kp-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .kp-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #7B5EA7; }
+    .kp-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
+    .kp-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+    /* Key activities */
+    .ka-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .ka-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .ka-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .ka-category { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #3D6B4F; }
+    .ka-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
+    .ka-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+    /* Key resources */
+    .kr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .kr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .kr-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .kr-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #E8A838; }
+    .kr-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
+    .kr-desc { font-size: 13px; color: #777; line-height: 1.6; }
 
     /* Loading */
     .loading { text-align: center; padding: 40px 0; display: none; }
@@ -98,7 +130,7 @@
     <div class="eyebrow">Costa Rica Market Intelligence</div>
     <h1>Business Idea<br><span>Validator</span></h1>
     <div class="deco-line"></div>
-    <p class="sub">Describe your idea and discover your business model canvas — grounded in real Costa Rican market data.</p>
+    <p class="sub">Describe your idea and discover your full business model canvas — grounded in real Costa Rican market data.</p>
 
     <div class="field-label">Business Idea <span>*</span></div>
     <textarea id="idea" placeholder="e.g. A mobile app that connects local Costa Rican artisans with international buyers..."></textarea>
@@ -111,33 +143,53 @@
 
     <div class="loading" id="loading">
       <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <div class="loading-text">Building your business model canvas…</div>
+      <div class="loading-text">Building your full business model canvas…</div>
     </div>
 
     <div class="canvas" id="canvas">
       <div class="canvas-title">Business Model Canvas</div>
       <div class="canvas-badge">Live Analysis</div>
-
       <div class="rationale animate" id="rationale"></div>
 
-      <!-- Customer Segments -->
       <div class="section">
         <div class="section-label">Customer Segments</div>
         <div class="cards" id="cards"></div>
       </div>
 
-      <!-- Value Proposition -->
       <div class="section">
         <div class="section-label">Value Proposition</div>
         <div class="section-summary" id="vpSummary"></div>
         <div class="vp-cards" id="vpCards"></div>
       </div>
 
-      <!-- Customer Relationships -->
       <div class="section">
         <div class="section-label">Customer Relationships</div>
         <div class="section-summary" id="crSummary"></div>
         <div class="cr-cards" id="crCards"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Channels</div>
+        <div class="section-summary" id="chSummary"></div>
+        <div class="ch-cards" id="chCards"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Key Partners</div>
+        <div class="section-summary" id="kpSummary"></div>
+        <div class="kp-cards" id="kpCards"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Key Activities</div>
+        <div class="section-summary" id="kaSummary"></div>
+        <div class="ka-cards" id="kaCards"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Key Resources</div>
+        <div class="section-summary" id="krSummary"></div>
+        <div class="kr-cards" id="krCards"></div>
       </div>
     </div>
   </div>
@@ -188,10 +240,7 @@
             <div class="pain-points">
               <div class="pain-label">Top Pain Points</div>
               ${seg.painPoints.map(p => `
-                <div class="pain-item">
-                  <div class="pain-dot"></div>
-                  <span>${p}</span>
-                </div>
+                <div class="pain-item"><div class="pain-dot"></div><span>${p}</span></div>
               `).join('')}
             </div>
           </div>
@@ -215,6 +264,46 @@
             <div class="cr-type ${s.type.toLowerCase()}">${s.type}</div>
             <div class="cr-card-name">${s.name}</div>
             <div class="cr-card-desc">${s.description}</div>
+          </div>
+        `).join('');
+
+        // Channels
+        document.getElementById('chSummary').textContent = data.channels.summary;
+        document.getElementById('chCards').innerHTML = data.channels.touchpoints.map((t, i) => `
+          <div class="ch-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="ch-phase">${t.phase}</div>
+            <div class="ch-name">${t.name}</div>
+            <div class="ch-desc">${t.description}</div>
+          </div>
+        `).join('');
+
+        // Key Partners
+        document.getElementById('kpSummary').textContent = data.keyPartners.summary;
+        document.getElementById('kpCards').innerHTML = data.keyPartners.partners.map((p, i) => `
+          <div class="kp-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="kp-type">${p.type}</div>
+            <div class="kp-name">${p.name}</div>
+            <div class="kp-desc">${p.description}</div>
+          </div>
+        `).join('');
+
+        // Key Activities
+        document.getElementById('kaSummary').textContent = data.keyActivities.summary;
+        document.getElementById('kaCards').innerHTML = data.keyActivities.activities.map((a, i) => `
+          <div class="ka-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="ka-category">${a.category}</div>
+            <div class="ka-name">${a.name}</div>
+            <div class="ka-desc">${a.description}</div>
+          </div>
+        `).join('');
+
+        // Key Resources
+        document.getElementById('krSummary').textContent = data.keyResources.summary;
+        document.getElementById('krCards').innerHTML = data.keyResources.resources.map((r, i) => `
+          <div class="kr-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="kr-type">${r.type}</div>
+            <div class="kr-name">${r.name}</div>
+            <div class="kr-desc">${r.description}</div>
           </div>
         `).join('');
 
