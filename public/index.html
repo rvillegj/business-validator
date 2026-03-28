@@ -8,7 +8,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; background: #FDF6EC; color: #1A1A2E; min-height: 100vh; }
-    .app { max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+    .app { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
     .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 12px; }
     h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 58px); font-weight: 900; line-height: 1.05; }
     h1 span { color: #FF6B4A; }
@@ -23,13 +23,21 @@
     .btn { margin-top: 28px; width: 100%; padding: 18px 32px; background: #1A1A2E; color: white; border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 10px; }
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* Canvas */
     .canvas { margin-top: 52px; display: none; }
     .canvas-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
-    .canvas-badge { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #3D6B4F; background: rgba(61,107,79,0.1); padding: 4px 10px; border-radius: 20px; margin-bottom: 24px; }
-    .segment-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 18px; }
-    .rationale { background: white; border: 1.5px solid #E2D9CE; border-left: 4px solid #E8C547; border-radius: 12px; padding: 18px 20px; margin-bottom: 28px; font-size: 14.5px; color: #444; line-height: 1.65; }
+    .canvas-badge { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #3D6B4F; background: rgba(61,107,79,0.1); padding: 4px 10px; border-radius: 20px; margin-bottom: 32px; }
+    .rationale { background: white; border: 1.5px solid #E2D9CE; border-left: 4px solid #E8C547; border-radius: 12px; padding: 18px 20px; margin-bottom: 40px; font-size: 14.5px; color: #444; line-height: 1.65; }
     .rationale-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+
+    /* Section headers */
+    .section { margin-bottom: 48px; }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
+    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
+
+    /* Segment cards */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
     .card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; position: relative; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
     .card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
     .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
@@ -39,11 +47,40 @@
     .card-num { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #C8BDB2; font-weight: 500; margin-bottom: 10px; }
     .card-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
     .card-profile { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 14px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
     .card:nth-child(1) .tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .card:nth-child(2) .tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .card:nth-child(3) .tag { background: rgba(232,197,71,0.15); color: #A8851A; }
+
+    /* Pain points */
+    .pain-points { border-top: 1px solid #F0E8DC; padding-top: 14px; margin-top: 4px; }
+    .pain-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
+    .pain-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12.5px; color: #555; line-height: 1.55; }
+    .pain-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF6B4A; margin-top: 5px; flex-shrink: 0; }
+    .card:nth-child(2) .pain-dot { background: #3D6B4F; }
+    .card:nth-child(3) .pain-dot { background: #E8C547; }
+
+    /* Value proposition cards */
+    .vp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .vp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .vp-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .vp-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
+    .vp-card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 14px; }
+    .advantage-badge { display: inline-block; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; }
+
+    /* Customer relationship cards */
+    .cr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .cr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden; }
+    .cr-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .cr-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+    .cr-type.acquire { color: #FF6B4A; }
+    .cr-type.retain { color: #3D6B4F; }
+    .cr-type.grow { color: #A8851A; }
+    .cr-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
+    .cr-card-desc { font-size: 13px; color: #777; line-height: 1.6; }
+
+    /* Loading */
     .loading { text-align: center; padding: 40px 0; display: none; }
     .dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
     .dot { width: 10px; height: 10px; border-radius: 50%; animation: bounce 1.2s infinite ease-in-out; }
@@ -61,7 +98,7 @@
     <div class="eyebrow">Costa Rica Market Intelligence</div>
     <h1>Business Idea<br><span>Validator</span></h1>
     <div class="deco-line"></div>
-    <p class="sub">Describe your idea and discover your ideal customer segments — grounded in real Costa Rican market data.</p>
+    <p class="sub">Describe your idea and discover your business model canvas — grounded in real Costa Rican market data.</p>
 
     <div class="field-label">Business Idea <span>*</span></div>
     <textarea id="idea" placeholder="e.g. A mobile app that connects local Costa Rican artisans with international buyers..."></textarea>
@@ -73,20 +110,35 @@
     </button>
 
     <div class="loading" id="loading">
-      <div class="dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-      <div class="loading-text">Researching Costa Rican market segments…</div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="loading-text">Building your business model canvas…</div>
     </div>
 
     <div class="canvas" id="canvas">
       <div class="canvas-title">Business Model Canvas</div>
       <div class="canvas-badge">Live Analysis</div>
-      <div class="segment-label">Customer Segments</div>
+
       <div class="rationale animate" id="rationale"></div>
-      <div class="cards" id="cards"></div>
+
+      <!-- Customer Segments -->
+      <div class="section">
+        <div class="section-label">Customer Segments</div>
+        <div class="cards" id="cards"></div>
+      </div>
+
+      <!-- Value Proposition -->
+      <div class="section">
+        <div class="section-label">Value Proposition</div>
+        <div class="section-summary" id="vpSummary"></div>
+        <div class="vp-cards" id="vpCards"></div>
+      </div>
+
+      <!-- Customer Relationships -->
+      <div class="section">
+        <div class="section-label">Customer Relationships</div>
+        <div class="section-summary" id="crSummary"></div>
+        <div class="cr-cards" id="crCards"></div>
+      </div>
     </div>
   </div>
 
@@ -107,7 +159,7 @@
       errorMsg.style.display = 'none';
       document.getElementById('idea').classList.remove('error');
       btn.disabled = true;
-      btn.innerHTML = 'Analyzing market segments...';
+      btn.innerHTML = 'Building your canvas...';
       loading.style.display = 'block';
       canvas.style.display = 'none';
 
@@ -120,17 +172,49 @@
 
         const data = await response.json();
 
+        // Rationale
         document.getElementById('rationale').innerHTML = `
           <div class="rationale-eyebrow">Why these segments</div>
           ${data.rationale}
         `;
 
+        // Customer Segments
         document.getElementById('cards').innerHTML = data.segments.map((seg, i) => `
           <div class="card animate" style="animation-delay:${i * 0.1}s">
             <div class="card-num">Segment ${String(i + 1).padStart(2, '0')}</div>
             <div class="card-name">${seg.name}</div>
             <div class="card-profile">${seg.profile}</div>
             <div class="tags">${seg.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+            <div class="pain-points">
+              <div class="pain-label">Top Pain Points</div>
+              ${seg.painPoints.map(p => `
+                <div class="pain-item">
+                  <div class="pain-dot"></div>
+                  <span>${p}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+
+        // Value Proposition
+        document.getElementById('vpSummary').textContent = data.valueProposition.summary;
+        document.getElementById('vpCards').innerHTML = data.valueProposition.offerings.map((o, i) => `
+          <div class="vp-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="card-num">Offering ${String(i + 1).padStart(2, '0')}</div>
+            <div class="vp-card-name">${o.name}</div>
+            <div class="vp-card-desc">${o.description}</div>
+            <span class="advantage-badge">✦ ${o.advantage}</span>
+          </div>
+        `).join('');
+
+        // Customer Relationships
+        document.getElementById('crSummary').textContent = data.customerRelationships.summary;
+        document.getElementById('crCards').innerHTML = data.customerRelationships.strategies.map((s, i) => `
+          <div class="cr-card animate" style="animation-delay:${i * 0.1}s">
+            <div class="cr-type ${s.type.toLowerCase()}">${s.type}</div>
+            <div class="cr-card-name">${s.name}</div>
+            <div class="cr-card-desc">${s.description}</div>
           </div>
         `).join('');
 
