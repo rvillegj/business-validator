@@ -30,7 +30,27 @@
     .rationale { background: white; border: 1.5px solid #E2D9CE; border-left: 4px solid #E8C547; border-radius: 12px; padding: 18px 20px; margin-bottom: 40px; font-size: 14.5px; color: #444; line-height: 1.65; }
     .rationale-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
 
-    .section { margin-bottom: 52px; }
+    /* Revenue Potential */
+    .revenue-section { margin-bottom: 48px; }
+    .revenue-intro { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
+    .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 13.5px; line-height: 1.5; }
+    .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
+    .revenue-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    @media (max-width: 700px) { .revenue-cards { grid-template-columns: repeat(2, 1fr); } }
+    .revenue-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 20px 16px; transition: box-shadow 0.2s, transform 0.2s; position: relative; }
+    .revenue-card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.1); transform: translateY(-2px); }
+    .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
+    .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+    .revenue-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+    .revenue-card:nth-child(1) .revenue-label { color: #C0392B; }
+    .revenue-card:nth-child(2) .revenue-label { color: #3D6B4F; }
+    .revenue-card:nth-child(3) .revenue-label { color: #A8851A; }
+    .revenue-card:nth-child(4) .revenue-label { color: #7B5EA7; }
+    .revenue-amount { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1A1A2E; margin-bottom: 4px; line-height: 1.1; }
+    .revenue-currency { font-size: 11px; color: #B5A99A; margin-bottom: 12px; }
+    .revenue-assumption { font-size: 12px; color: #666; line-height: 1.55; border-top: 1px solid #F0E8DC; padding-top: 10px; margin-top: 4px; }
+
+    .section { margin-bottom: 48px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
     .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
 
@@ -152,7 +172,7 @@
     <p class="sub">Describe your idea and discover your full business model canvas — grounded in real Costa Rican market data.</p>
 
     <div class="field-label">Business Idea <span>*</span></div>
-    <textarea id="idea" placeholder="e.g. A mobile app that connects local Costa Rican artisans with international buyers..."></textarea>
+    <textarea id="idea" placeholder="e.g. Executive English coaching for mid-senior professionals at transnational companies in Costa Rica..."></textarea>
     <div class="error-msg" id="errorMsg">Oh snap! The business idea is missing. Please let us know what you are working on so we can suggest your business model.</div>
 
     <button class="btn" id="generateBtn" onclick="generate()">
@@ -170,59 +190,77 @@
       <div class="canvas-badge">Live Analysis</div>
       <div class="rationale animate" id="rationale"></div>
 
+      <!-- Revenue Potential -->
+      <div class="section revenue-section">
+        <div class="section-label">Revenue Potential</div>
+        <div class="revenue-intro" id="revenueIntro"></div>
+        <div class="revenue-likely" id="revenueLikely"></div>
+        <div class="revenue-cards" id="revenueCards"></div>
+      </div>
+
+      <!-- Customer Segments -->
       <div class="section">
         <div class="section-label">Customer Segments</div>
         <div class="cards" id="cards"></div>
       </div>
 
+      <!-- Value Proposition -->
       <div class="section">
         <div class="section-label">Value Proposition</div>
         <div class="section-summary" id="vpSummary"></div>
         <div class="vp-cards" id="vpCards"></div>
       </div>
 
+      <!-- Customer Relationships -->
       <div class="section">
         <div class="section-label">Customer Relationships</div>
         <div class="section-summary" id="crSummary"></div>
         <div class="cr-cards" id="crCards"></div>
       </div>
 
+      <!-- Channels -->
       <div class="section">
         <div class="section-label">Channels</div>
         <div class="section-summary" id="chSummary"></div>
         <div class="ch-cards" id="chCards"></div>
       </div>
 
+      <!-- Key Partners -->
       <div class="section">
         <div class="section-label">Key Partners</div>
         <div class="section-summary" id="kpSummary"></div>
         <div class="kp-cards" id="kpCards"></div>
       </div>
 
+      <!-- Key Activities -->
       <div class="section">
         <div class="section-label">Key Activities</div>
         <div class="section-summary" id="kaSummary"></div>
         <div class="ka-cards" id="kaCards"></div>
       </div>
 
+      <!-- Key Resources -->
       <div class="section">
         <div class="section-label">Key Resources</div>
         <div class="section-summary" id="krSummary"></div>
         <div class="kr-cards" id="krCards"></div>
       </div>
 
+      <!-- Cost Structure -->
       <div class="section">
         <div class="section-label">Cost Structure</div>
         <div class="section-summary" id="csSummary"></div>
         <div class="cs-cards" id="csCards"></div>
       </div>
 
+      <!-- Revenue Streams -->
       <div class="section">
         <div class="section-label">Revenue Streams</div>
         <div class="section-summary" id="rsSummary"></div>
         <div class="rs-cards" id="rsCards"></div>
       </div>
 
+      <!-- Competitive Landscape -->
       <div class="section">
         <div class="section-label">Competitive Landscape</div>
         <div class="section-summary" id="clSummary"></div>
@@ -233,6 +271,10 @@
   </div>
 
   <script>
+    function formatCRC(amount) {
+      return '₡' + Math.round(amount).toLocaleString('es-CR');
+    }
+
     async function generate() {
       const idea = document.getElementById('idea').value.trim();
       const errorMsg = document.getElementById('errorMsg');
@@ -267,6 +309,22 @@
           <div class="rationale-eyebrow">Why these segments</div>
           ${data.rationale}
         `;
+
+        // Revenue Potential
+        const rp = data.revenuePotential;
+        document.getElementById('revenueIntro').textContent = rp.intro;
+        document.getElementById('revenueLikely').innerHTML = `
+          <div class="revenue-likely-label">Most Likely Scenario</div>
+          ${rp.mostLikelyReason}
+        `;
+        document.getElementById('revenueCards').innerHTML = rp.scenarios.map(s => `
+          <div class="revenue-card animate ${s.label.toLowerCase() === rp.mostLikelyScenario ? 'highlighted' : ''}">
+            <div class="revenue-label">${s.label}</div>
+            <div class="revenue-amount">${formatCRC(s.monthlyRevenue)}</div>
+            <div class="revenue-currency">colones / month</div>
+            <div class="revenue-assumption">${s.assumption}</div>
+          </div>
+        `).join('');
 
         // Customer Segments
         document.getElementById('cards').innerHTML = data.segments.map((seg, i) => `

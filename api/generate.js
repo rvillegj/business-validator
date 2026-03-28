@@ -35,16 +35,54 @@ module.exports = async function handler(req, res) {
 };
 
 function buildPrompt(idea) {
-  return `You are an expert business model strategist specializing in Costa Rica. You have deep knowledge of consumer trends, demographics, shopping habits, cultural nuances, and the competitive landscape in Costa Rica.
+  return `You are an expert business model strategist specializing in Costa Rica. You have deep knowledge of consumer trends, demographics, shopping habits, cultural nuances, the competitive landscape, and labor economics in Costa Rica.
 
 A user has this business idea: "${idea}"
 
-Generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to all other sections. The cost structure must reflect the key resources and activities. The revenue streams must map to the segments and value proposition. The competitive landscape must explain why this model wins.
+Generate a coherent, interconnected business model canvas where every section responds directly to the business idea and connects logically to all other sections.
+
+The current minimum wage in Costa Rica is approximately 383,386 colones per month (2024 official figure). Use this as the baseline for revenue potential scenarios.
 
 Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON object.
 
 {
   "rationale": "2-3 sentences explaining why these three segments collectively represent a strong target market in Costa Rica for this specific business idea.",
+  "revenuePotential": {
+    "intro": "One sentence explaining the revenue potential assessment basis for this specific business idea.",
+    "minimumWage": 383386,
+    "mostLikelyScenario": "pessimistic | standard | optimistic | outstanding",
+    "mostLikelyReason": "One sentence explaining why this scenario is the most realistic for this specific business idea in Costa Rica.",
+    "scenarios": [
+      {
+        "label": "Pessimistic",
+        "multiplier": 0.8,
+        "monthlyRevenue": 306709,
+        "currency": "CRC",
+        "assumption": "One sentence: the key assumption that drives this lower-bound scenario, specific to this business idea and the Costa Rican market."
+      },
+      {
+        "label": "Standard",
+        "multiplier": 1,
+        "monthlyRevenue": 383386,
+        "currency": "CRC",
+        "assumption": "One sentence: the key assumption that drives the standard scenario, specific to this business idea."
+      },
+      {
+        "label": "Optimistic",
+        "multiplier": 3,
+        "monthlyRevenue": 1150158,
+        "currency": "CRC",
+        "assumption": "One sentence: the key assumption that drives the optimistic scenario, specific to this business idea."
+      },
+      {
+        "label": "Outstanding",
+        "multiplier": 6,
+        "monthlyRevenue": 2300316,
+        "currency": "CRC",
+        "assumption": "One sentence: the key assumption that drives the outstanding scenario, specific to this business idea."
+      }
+    ]
+  },
   "segments": [
     {
       "name": "Short segment name",
@@ -77,194 +115,76 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
         "description": "2 sentences: what it is, which pain point it solves, and how it beats existing alternatives.",
         "advantage": "One of: better design, better price, better performance, or more convenient"
       },
-      {
-        "name": "Product or service name",
-        "description": "2 sentences.",
-        "advantage": "One of: better design, better price, better performance, or more convenient"
-      },
-      {
-        "name": "Product or service name",
-        "description": "2 sentences.",
-        "advantage": "One of: better design, better price, better performance, or more convenient"
-      }
+      {"name": "", "description": "", "advantage": ""},
+      {"name": "", "description": "", "advantage": ""}
     ]
   },
   "customerRelationships": {
     "summary": "One sentence describing the overall relationship philosophy.",
     "strategies": [
-      {
-        "name": "Strategy name",
-        "type": "Acquire",
-        "description": "2 sentences: how this attracts the target segments in Costa Rica."
-      },
-      {
-        "name": "Strategy name",
-        "type": "Retain",
-        "description": "2 sentences: how this keeps customers coming back."
-      },
-      {
-        "name": "Strategy name",
-        "type": "Grow",
-        "description": "2 sentences: how this increases customer lifetime value."
-      }
+      {"name": "", "type": "Acquire", "description": "2 sentences."},
+      {"name": "", "type": "Retain", "description": "2 sentences."},
+      {"name": "", "type": "Grow", "description": "2 sentences."}
     ]
   },
   "channels": {
-    "summary": "One sentence describing how this business reaches and delivers value to its segments.",
+    "summary": "One sentence describing how this business reaches its segments.",
     "touchpoints": [
-      {
-        "phase": "Awareness",
-        "name": "Channel name",
-        "description": "2 sentences: how this channel raises awareness among the target segments in Costa Rica."
-      },
-      {
-        "phase": "Evaluation",
-        "name": "Channel name",
-        "description": "2 sentences: how this helps customers evaluate the offering."
-      },
-      {
-        "phase": "Purchase",
-        "name": "Channel name",
-        "description": "2 sentences: how customers buy or access the product/service."
-      },
-      {
-        "phase": "Delivery",
-        "name": "Channel name",
-        "description": "2 sentences: how the value proposition is delivered to the customer."
-      },
-      {
-        "phase": "Post-Purchase",
-        "name": "Channel name",
-        "description": "2 sentences: how the business supports customers after purchase."
-      }
+      {"phase": "Awareness", "name": "", "description": "2 sentences."},
+      {"phase": "Evaluation", "name": "", "description": "2 sentences."},
+      {"phase": "Purchase", "name": "", "description": "2 sentences."},
+      {"phase": "Delivery", "name": "", "description": "2 sentences."},
+      {"phase": "Post-Purchase", "name": "", "description": "2 sentences."}
     ]
   },
   "keyPartners": {
-    "summary": "One sentence describing the overall partnership strategy for this business.",
+    "summary": "One sentence describing the overall partnership strategy.",
     "partners": [
-      {
-        "name": "Partner name",
-        "type": "Supplier | Strategic Alliance | Joint Venture",
-        "description": "2 sentences: what this partner provides and how it enables scaling or reduces risk."
-      },
-      {
-        "name": "Partner name",
-        "type": "Supplier | Strategic Alliance | Joint Venture",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Partner name",
-        "type": "Supplier | Strategic Alliance | Joint Venture",
-        "description": "2 sentences."
-      }
+      {"name": "", "type": "Supplier | Strategic Alliance | Joint Venture", "description": "2 sentences."},
+      {"name": "", "type": "Supplier | Strategic Alliance | Joint Venture", "description": "2 sentences."},
+      {"name": "", "type": "Supplier | Strategic Alliance | Joint Venture", "description": "2 sentences."}
     ]
   },
   "keyActivities": {
-    "summary": "One sentence describing the most critical operational focus of this business.",
+    "summary": "One sentence describing the most critical operational focus.",
     "activities": [
-      {
-        "name": "Activity name",
-        "category": "Production | Problem Solving | Platform/Network",
-        "description": "2 sentences: why this is essential to delivering the value proposition."
-      },
-      {
-        "name": "Activity name",
-        "category": "Production | Problem Solving | Platform/Network",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Activity name",
-        "category": "Production | Problem Solving | Platform/Network",
-        "description": "2 sentences."
-      }
+      {"name": "", "category": "Production | Problem Solving | Platform/Network", "description": "2 sentences."},
+      {"name": "", "category": "Production | Problem Solving | Platform/Network", "description": "2 sentences."},
+      {"name": "", "category": "Production | Problem Solving | Platform/Network", "description": "2 sentences."}
     ]
   },
   "keyResources": {
-    "summary": "One sentence describing the core assets that make this business possible.",
+    "summary": "One sentence describing the core assets.",
     "resources": [
-      {
-        "name": "Resource name",
-        "type": "Physical | Financial | Intellectual | Human",
-        "description": "2 sentences: why this resource is essential and what makes it unique or hard to replicate."
-      },
-      {
-        "name": "Resource name",
-        "type": "Physical | Financial | Intellectual | Human",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Resource name",
-        "type": "Physical | Financial | Intellectual | Human",
-        "description": "2 sentences."
-      }
+      {"name": "", "type": "Physical | Financial | Intellectual | Human", "description": "2 sentences."},
+      {"name": "", "type": "Physical | Financial | Intellectual | Human", "description": "2 sentences."},
+      {"name": "", "type": "Physical | Financial | Intellectual | Human", "description": "2 sentences."}
     ]
   },
   "costStructure": {
-    "summary": "One sentence describing the overall cost philosophy of this business (cost-driven vs value-driven).",
+    "summary": "One sentence describing the overall cost philosophy.",
     "costs": [
-      {
-        "name": "Cost item name",
-        "type": "Fixed | Variable | Semi-variable",
-        "description": "2 sentences: what this cost covers, why it is significant, and how it connects to the key activities or resources."
-      },
-      {
-        "name": "Cost item name",
-        "type": "Fixed | Variable | Semi-variable",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Cost item name",
-        "type": "Fixed | Variable | Semi-variable",
-        "description": "2 sentences."
-      }
+      {"name": "", "type": "Fixed | Variable | Semi-variable", "description": "2 sentences."},
+      {"name": "", "type": "Fixed | Variable | Semi-variable", "description": "2 sentences."},
+      {"name": "", "type": "Fixed | Variable | Semi-variable", "description": "2 sentences."}
     ]
   },
   "revenueStreams": {
-    "summary": "One sentence describing how this business captures value financially from its segments.",
+    "summary": "One sentence describing how this business captures value financially.",
     "streams": [
-      {
-        "name": "Revenue stream name",
-        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
-        "pricing": "Fixed | Dynamic",
-        "segment": "Which customer segment this targets",
-        "description": "2 sentences: how this stream generates revenue, what triggers payment, and why this pricing model fits this segment in Costa Rica."
-      },
-      {
-        "name": "Revenue stream name",
-        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
-        "pricing": "Fixed | Dynamic",
-        "segment": "Which customer segment this targets",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Revenue stream name",
-        "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other",
-        "pricing": "Fixed | Dynamic",
-        "segment": "Which customer segment this targets",
-        "description": "2 sentences."
-      }
+      {"name": "", "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other", "pricing": "Fixed | Dynamic", "segment": "Which segment", "description": "2 sentences."},
+      {"name": "", "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other", "pricing": "Fixed | Dynamic", "segment": "Which segment", "description": "2 sentences."},
+      {"name": "", "type": "Asset Sale | Usage Fee | Subscription | Licensing | Other", "pricing": "Fixed | Dynamic", "segment": "Which segment", "description": "2 sentences."}
     ]
   },
   "competitiveLandscape": {
-    "summary": "One sentence describing the overall competitive position of this business in Costa Rica.",
+    "summary": "One sentence describing the overall competitive position.",
     "competitors": [
-      {
-        "name": "Competitor name",
-        "type": "Direct | Indirect",
-        "description": "2 sentences: what this competitor offers, who they serve, and their key weakness that this business exploits."
-      },
-      {
-        "name": "Competitor name",
-        "type": "Direct | Indirect",
-        "description": "2 sentences."
-      },
-      {
-        "name": "Competitor name",
-        "type": "Direct | Indirect",
-        "description": "2 sentences."
-      }
+      {"name": "", "type": "Direct | Indirect", "description": "2 sentences."},
+      {"name": "", "type": "Direct | Indirect", "description": "2 sentences."},
+      {"name": "", "type": "Direct | Indirect", "description": "2 sentences."}
     ],
-    "advantage": "2 sentences: the unique competitive advantage this business has over all identified competitors, and why it is defensible in the Costa Rican market."
+    "advantage": "2 sentences: the unique competitive advantage and why it is defensible in Costa Rica."
   }
 }`;
 }
