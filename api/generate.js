@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -26,15 +26,13 @@ export default async function handler(req, res) {
   const data = await response.json();
 
   if (!response.ok || !data.content) {
-    console.error("Anthropic error:", JSON.stringify(data));
     return res.status(500).json({ error: "Anthropic API error", detail: data });
-  };console.log("API key present:", !!process.env.ANTHROPIC_API_KEY);
   }
 
   const text = data.content.map(b => b.text || "").join("");
   const clean = text.replace(/```json|```/g, "").trim();
   res.status(200).json(JSON.parse(clean));
-}
+};
 
 function buildPrompt(idea) {
   return `You are an expert market research analyst specializing in Costa Rica. You have deep knowledge of:
