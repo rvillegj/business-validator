@@ -6,7 +6,8 @@ export default async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).end();
 
-  const { idea } = req.body;
+  const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+  const { idea } = body;
 
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
@@ -23,6 +24,13 @@ export default async function handler(req, res) {
   });
 
   const data = await response.json();
+
+  if (!response.ok || !data.content) {
+    console.error("Anthropic error:", JSON.stringify(data));
+    return res.status(500).json({ error: "Anthropic API error", detail: data });
+  };console.log("API key present:", !!process.env.ANTHROPIC_API_KEY);
+  }
+
   const text = data.content.map(b => b.text || "").join("");
   const clean = text.replace(/```json|```/g, "").trim();
   res.status(200).json(JSON.parse(clean));
@@ -44,7 +52,7 @@ Format:
   "rationale": "A 2-3 sentence statement explaining why these three segments collectively represent a strong target market for this idea in Costa Rica.",
   "segments": [
     {
-      "name": "Short segment name (e.g. Urban Millennial Professionals)",
+      "name": "Short segment name",
       "profile": "2-3 sentences describing who they are: age range, location in CR, income level, lifestyle, and why they need this product/service.",
       "tags": ["tag1", "tag2", "tag3"]
     },
