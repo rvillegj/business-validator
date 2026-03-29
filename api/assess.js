@@ -7,9 +7,10 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
   const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-  const { idea, canvasData } = body;
+  const { idea } = body;
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  // Pass 1: Research and reasoning with web search
+  const pass1Response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,70 +19,80 @@ module.exports = async function handler(req, res) {
     },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 2000,
-      messages: [{ role: "user", content: buildPrompt(idea, canvasData) }]
+      max_tokens: 3000,
+      tools: [{ type: "web_search_20250305", name: "web_search" }],
+      messages: [{
+        role: "user",
+        content: `You are an expert startup evaluator. A user has this business idea for the Costa Rican market: "${idea}"
+
+Use web search to find current, real evidence about:
+1. The size and growth of this market in Costa Rica and Latin America
+2. Existing competitors or similar businesses operating in Costa Rica
+3. Recent consumer trends relevant to this idea in Costa Rica
+4. Any evidence of willingness to pay or validated demand for this type of solution
+5. Barriers to entry or execution risks specific to Costa Rica
+
+After researching, write a structured analysis covering these 5 pillars. Be candid and evidence-based. Clearly distinguish between what you found from real sources versus what you are inferring.
+
+For each pillar write 2-3 sentences of honest reasoning:
+
+PROBLEM STRENGTH & URGENCY:
+[your evidence-based reasoning]
+
+MARKET ATTRACTIVENESS:
+[your evidence-based reasoning]
+
+VALUE PROPOSITION & DIFFERENTIATION:
+[your evidence-based reasoning]
+
+BUSINESS MODEL VIABILITY:
+[your evidence-based reasoning]
+
+EXECUTION FEASIBILITY:
+[your evidence-based reasoning]
+
+OVERALL CONFIDENCE NOTE:
+[state honestly how much real evidence exists vs assumptions, and rate confidence 1-5]`
+      }]
     })
   });
 
-  const data = await response.json();
+  const pass1Data = await pass1Response.json();
+  const reasoning = pass1Data.content
+    .filter(b => b.type === "text")
+    .map(b => b.text)
+    .join("\n");
 
-  if (!response.ok || !data.content) {
-    return res.status(500).json({ error: "Anthropic API error", detail: data });
-  }
+  // Pass 2: Score strictly based on the reasoning from Pass 1
+  const pass2Response = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01"
+    },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1500,
+      messages: [{
+        role: "user",
+        content: `You are a startup evaluator. Based STRICTLY on the following research and reasoning — do not add new information or change the analysis — assign scores and produce the final assessment.
 
-  const text = data.content.map(b => b.text || "").join("");
-  const clean = text.replace(/```json|```/g, "").trim();
-  res.status(200).json(JSON.parse(clean));
-};
+RESEARCH AND REASONING:
+${reasoning}
 
-function buildPrompt(idea, canvasData) {
-  return `You are an expert startup evaluator used by founders, investors, and venture studios.
+SCORING RULES:
+- Score each pillar 1-5 based ONLY on the reasoning above
+- Do not give high scores without evidence from the reasoning
+- If confidence is 1 or 2, the interpretation must be "Unclear / Moderate Risk" or "Weak / High Risk" regardless of raw score
 
-Your task is to evaluate a business idea based on its Business Model Canvas and produce a structured "Likelihood of Success" assessment.
+WEIGHTS:
+- Problem Strength: 25%
+- Market Attractiveness: 20%
+- Value Proposition: 20%
+- Business Model: 20%
+- Execution Feasibility: 15%
 
-Be analytical, objective, and concise. Avoid hype. Base your reasoning on market dynamics, problem strength, and business fundamentals. Be candid and realistic — this assessment helps people make informed investment decisions.
-
-BUSINESS IDEA: "${idea}"
-
-BUSINESS MODEL CANVAS DATA:
-${JSON.stringify(canvasData, null, 2)}
-
-EVALUATION FRAMEWORK
-
-Score the idea across 5 pillars using a scale from 1 to 5:
-
-1) Problem Strength & Urgency (Weight: 25%)
-- How frequently the problem occurs
-- How painful or costly it is
-- How dissatisfied users are with current solutions
-- Evidence of willingness to pay
-1 = weak or infrequent problem | 3 = meaningful problem, moderate urgency | 5 = critical, frequent, expensive problem
-
-2) Market Attractiveness (Weight: 20%)
-- Realistic market size in Costa Rica
-- Growth rate and timing
-- Competition intensity
-1 = small, stagnant, unfavorable | 3 = moderate niche with some growth | 5 = large, fast-growing, attractive
-
-3) Value Proposition & Differentiation (Weight: 20%)
-- Clarity and uniqueness vs competitors
-- Switching advantage and defensibility
-1 = unclear or undifferentiated | 3 = somewhat differentiated | 5 = clear, compelling, meaningfully differentiated
-
-4) Business Model Viability (Weight: 20%)
-- Revenue model strength and scalability
-- Cost vs revenue logic and monetization feasibility
-1 = weak or unclear monetization | 3 = plausible but uncertain | 5 = strong, scalable, well-structured
-
-5) Execution Feasibility (Weight: 15%)
-- Operational complexity and dependencies
-- Level of validation and speed of iteration
-1 = very hard to execute, no validation | 3 = feasible with some risks | 5 = highly feasible with strong validation
-
-CONFIDENCE SCORE (1-5):
-1 = mostly assumptions | 3 = some validation | 5 = strong evidence
-
-CALCULATION:
 Final Score = ((Problem * 25) + (Market * 20) + (ValueProp * 20) + (BusinessModel * 20) + (Execution * 15)) / 5
 
 INTERPRETATION:
@@ -94,11 +105,11 @@ Return ONLY valid JSON — no markdown fences, no explanation:
 
 {
   "scores": {
-    "problem": { "score": X, "reason": "One concise sentence." },
-    "market": { "score": X, "reason": "One concise sentence." },
-    "valueProposition": { "score": X, "reason": "One concise sentence." },
-    "businessModel": { "score": X, "reason": "One concise sentence." },
-    "execution": { "score": X, "reason": "One concise sentence." }
+    "problem": { "score": X, "reason": "One concise sentence from the reasoning." },
+    "market": { "score": X, "reason": "One concise sentence from the reasoning." },
+    "valueProposition": { "score": X, "reason": "One concise sentence from the reasoning." },
+    "businessModel": { "score": X, "reason": "One concise sentence from the reasoning." },
+    "execution": { "score": X, "reason": "One concise sentence from the reasoning." }
   },
   "finalScore": X,
   "confidenceScore": X,
@@ -109,6 +120,14 @@ Return ONLY valid JSON — no markdown fences, no explanation:
     "keyAssumption": "One concise sentence.",
     "nextBestAction": "One concise sentence."
   },
-  "warnings": ["One warning sentence if relevant.", "Second warning if needed."]
-}`;
-}
+  "warnings": ["One warning if confidence is low or scores are contradictory.", "Second warning if relevant."]
+}`
+      }]
+    })
+  });
+
+  const pass2Data = await pass2Response.json();
+  const text = pass2Data.content.map(b => b.text || "").join("");
+  const clean = text.replace(/```json|```/g, "").trim();
+  res.status(200).json(JSON.parse(clean));
+};
