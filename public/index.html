@@ -552,10 +552,13 @@
         tabsWrapper.style.display = 'block';
         switchTab(0);
 
-        const [seg1Result] = await Promise.all([
-          fetchSegment(idea, null, 0),
-          fetchAssessment(idea, { idea })
-        ]);
+     const seg1Result = await fetchSegment(idea, null, 0);
+fetchAssessment(idea, { idea }).catch(() => {
+  document.getElementById('assessmentBox').innerHTML = `
+    <div style="padding:20px;font-size:13px;color:#888;">
+      Assessment unavailable at this time.
+    </div>`;
+});
 
         const seg1Name = seg1Result.name;
 
