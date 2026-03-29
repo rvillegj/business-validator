@@ -43,9 +43,20 @@
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
 
-    .section { margin-bottom: 40px; }
+    /* Always-expanded sections */
+    .section { margin-bottom: 24px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
     .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
+
+    /* Collapsible sections */
+    .collapsible { margin-bottom: 10px; border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; }
+    .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; background: #FDF6EC; transition: background 0.2s; user-select: none; }
+    .collapsible-header:hover { background: #F0EAE0; }
+    .collapsible-title { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; }
+    .collapsible-chevron { font-size: 16px; color: #B5A99A; transition: transform 0.2s; }
+    .collapsible-chevron.open { transform: rotate(180deg); }
+    .collapsible-body { display: none; padding: 20px 20px 24px; border-top: 1.5px solid #E2D9CE; }
+    .collapsible-body.open { display: block; }
 
     .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
@@ -91,8 +102,7 @@
     .type-semi-variable { color: #A8851A; }
 
     .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; transition: box-shadow 0.2s; }
-    .ch-card:hover { box-shadow: 0 6px 18px rgba(26,26,46,0.08); }
+    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; }
     .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
     .phase-awareness { color: #FF6B4A; }
     .phase-evaluation { color: #3D6B4F; }
@@ -106,21 +116,20 @@
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
 
     /* Implementation plan */
-    .impl-block { border: 1.5px solid #E2D9CE; border-radius: 12px; margin-bottom: 16px; overflow: hidden; scroll-margin-top: 80px; }
-    .impl-header { padding: 20px 24px; background: #FDF6EC; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; cursor: pointer; transition: background 0.2s; }
+    .impl-block { border: 1.5px solid #E2D9CE; border-radius: 12px; margin-bottom: 10px; overflow: hidden; scroll-margin-top: 80px; }
+    .impl-header { padding: 18px 20px; background: #FDF6EC; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; cursor: pointer; transition: background 0.2s; }
     .impl-header:hover { background: #F0EAE0; }
-    .impl-num { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #B5A99A; margin-bottom: 4px; }
-    .impl-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: #1A1A2E; margin-bottom: 4px; }
-    .impl-desc { font-size: 13px; color: #666; line-height: 1.5; }
-    .impl-chevron { font-size: 20px; color: #B5A99A; flex-shrink: 0; margin-top: 2px; transition: transform 0.2s; }
+    .impl-num { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #B5A99A; margin-bottom: 3px; }
+    .impl-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #1A1A2E; }
+    .impl-chevron { font-size: 18px; color: #B5A99A; flex-shrink: 0; margin-top: 2px; transition: transform 0.2s; }
     .impl-chevron.open { transform: rotate(180deg); }
-    .impl-body { display: none; padding: 24px; border-top: 1.5px solid #E2D9CE; }
+    .impl-body { display: none; padding: 20px; border-top: 1.5px solid #E2D9CE; }
     .impl-body.open { display: block; }
-    .impl-task-count { font-size: 12px; color: #888; margin-bottom: 20px; }
+    .impl-task-count { font-size: 12px; color: #888; margin-bottom: 16px; }
     .impl-task-count span { font-weight: 500; color: #1A1A2E; }
 
-    .portfolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
-    .portfolio { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 16px; }
+    .portfolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .portfolio { background: white; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 16px; }
     .portfolio-name { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
     .tab-panel.seg1 .portfolio-name { color: #FF6B4A; }
     .tab-panel.seg2 .portfolio-name { color: #3D6B4F; }
@@ -134,7 +143,7 @@
     .task-text { font-size: 12.5px; color: #555; line-height: 1.55; flex: 1; }
     .task-text.checked { text-decoration: line-through; color: #B5A99A; }
 
-    .progress-wrap { height: 3px; background: #E2D9CE; border-radius: 2px; margin-top: 14px; }
+    .progress-wrap { height: 3px; background: #E2D9CE; border-radius: 2px; margin-top: 12px; }
     .progress-bar { height: 3px; background: #FF6B4A; border-radius: 2px; width: 0%; transition: width 0.3s; }
     .tab-panel.seg2 .progress-bar { background: #3D6B4F; }
     .tab-panel.seg3 .progress-bar { background: #E8C547; }
@@ -165,9 +174,7 @@
     </button>
 
     <div class="loading" id="loading">
-      <div class="loading-dots">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      </div>
+      <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
       <div class="loading-text">Identifying your customer segments…</div>
     </div>
 
@@ -203,6 +210,13 @@
       return 'type-' + type.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
 
+    function toggleCollapsible(id) {
+      const body = document.getElementById(id + '-body');
+      const chevron = document.getElementById(id + '-chev');
+      body.classList.toggle('open');
+      chevron.classList.toggle('open');
+    }
+
     function scrollToImpl(implId) {
       const el = document.getElementById(implId);
       if (!el) return;
@@ -212,23 +226,18 @@
         body.classList.add('open');
         chevron.classList.add('open');
       }
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
 
     function toggleImpl(implId) {
       const el = document.getElementById(implId);
-      const body = el.querySelector('.impl-body');
-      const chevron = el.querySelector('.impl-chevron');
-      body.classList.toggle('open');
-      chevron.classList.toggle('open');
+      el.querySelector('.impl-body').classList.toggle('open');
+      el.querySelector('.impl-chevron').classList.toggle('open');
     }
 
     function toggleCheck(checkbox) {
       checkbox.classList.toggle('checked');
-      const text = checkbox.nextElementSibling;
-      text.classList.toggle('checked');
+      checkbox.nextElementSibling.classList.toggle('checked');
       const portfolio = checkbox.closest('.portfolio');
       const all = portfolio.querySelectorAll('.task-check');
       const done = portfolio.querySelectorAll('.task-check.checked');
@@ -237,12 +246,24 @@
       portfolio.querySelector('.progress-label').textContent = done.length + ' of ' + all.length + ' done';
     }
 
+    function collapsibleSection(id, label, contentHtml) {
+      return `
+        <div class="collapsible">
+          <div class="collapsible-header" onclick="toggleCollapsible('${id}')">
+            <div class="collapsible-title">${label}</div>
+            <div class="collapsible-chevron" id="${id}-chev">&#8964;</div>
+          </div>
+          <div class="collapsible-body" id="${id}-body">
+            ${contentHtml}
+          </div>
+        </div>`;
+    }
+
     function renderImplementationPlan(offerings, panelIndex) {
       return offerings.map((o, i) => {
         const implId = `impl-${panelIndex}-${i}`;
         const plan = o.implementationPlan || { portfolios: [] };
         const totalTasks = plan.portfolios.reduce((sum, p) => sum + (p.tasks || []).length, 0);
-
         const portfoliosHtml = plan.portfolios.map(p => `
           <div class="portfolio">
             <div class="portfolio-name">${p.name}</div>
@@ -254,14 +275,12 @@
             <div class="progress-wrap"><div class="progress-bar"></div></div>
             <div class="progress-label">0 of ${(p.tasks || []).length} done</div>
           </div>`).join('');
-
         return `
           <div class="impl-block" id="${implId}">
             <div class="impl-header" onclick="toggleImpl('${implId}')">
               <div>
                 <div class="impl-num">Offering ${String(i+1).padStart(2,'0')}</div>
                 <div class="impl-title">${o.name}</div>
-                <div class="impl-desc">${o.description}</div>
               </div>
               <div class="impl-chevron">&#8964;</div>
             </div>
@@ -276,6 +295,7 @@
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const offerings = data.valueProposition.offerings;
+      const p = panelIndex;
 
       const html = `
         <div class="animate">
@@ -290,7 +310,7 @@
             </div>
             <div class="seg-block">
               <div class="seg-block-label">Top Pain Points</div>
-              ${seg.painPoints.map(p => `<div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>`).join('')}
+              ${seg.painPoints.map(pt => `<div class="seg-item"><div class="seg-dot"></div><span>${pt}</span></div>`).join('')}
             </div>
             <div class="seg-block">
               <div class="seg-block-label">Gains</div>
@@ -308,14 +328,13 @@
                   <div class="card-name">${o.name}</div>
                   <div class="card-desc">${o.description}</div>
                   <span class="card-badge">✦ ${o.advantage}</span>
-                  <a class="card-link" onclick="scrollToImpl('impl-${panelIndex}-${i}')">↓ See implementation plan</a>
+                  <a class="card-link" onclick="scrollToImpl('impl-${p}-${i}')">↓ See where to start</a>
                 </div>`).join('')}
             </div>
           </div>
 
-          <div class="section">
-            <div class="section-label">Customer Relationships</div>
-            <div class="section-summary">${data.customerRelationships.summary}</div>
+          ${collapsibleSection(`cr-${p}`, 'Customer Relationships',
+            `<div class="section-summary">${data.customerRelationships.summary}</div>
             <div class="cards-grid">
               ${data.customerRelationships.strategies.map(s => `
                 <div class="card">
@@ -323,38 +342,35 @@
                   <div class="card-name">${s.name}</div>
                   <div class="card-desc">${s.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Channels</div>
-            <div class="section-summary">${data.channels.summary}</div>
+          ${collapsibleSection(`ch-${p}`, 'Channels',
+            `<div class="section-summary">${data.channels.summary}</div>
             <div class="ch-cards">
               ${data.channels.touchpoints.map(t => `
                 <div class="ch-card">
-                  <div class="ch-phase phase-${t.phase.toLowerCase().replace('-','').replace(' ','-')}">${t.phase}</div>
+                  <div class="ch-phase phase-${t.phase.toLowerCase().replace(/[^a-z]/g,'')}">${t.phase}</div>
                   <div class="ch-name">${t.name}</div>
                   <div class="ch-desc">${t.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Key Partners</div>
-            <div class="section-summary">${data.keyPartners.summary}</div>
+          ${collapsibleSection(`kp-${p}`, 'Key Partners',
+            `<div class="section-summary">${data.keyPartners.summary}</div>
             <div class="cards-grid">
-              ${data.keyPartners.partners.map(p => `
+              ${data.keyPartners.partners.map(pt => `
                 <div class="card">
-                  <div class="card-type ${typeClass(p.type)}">${p.type}</div>
-                  <div class="card-name">${p.name}</div>
-                  <div class="card-desc">${p.description}</div>
+                  <div class="card-type ${typeClass(pt.type)}">${pt.type}</div>
+                  <div class="card-name">${pt.name}</div>
+                  <div class="card-desc">${pt.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Key Activities</div>
-            <div class="section-summary">${data.keyActivities.summary}</div>
+          ${collapsibleSection(`ka-${p}`, 'Key Activities',
+            `<div class="section-summary">${data.keyActivities.summary}</div>
             <div class="cards-grid">
               ${data.keyActivities.activities.map(a => `
                 <div class="card">
@@ -362,12 +378,11 @@
                   <div class="card-name">${a.name}</div>
                   <div class="card-desc">${a.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Key Resources</div>
-            <div class="section-summary">${data.keyResources.summary}</div>
+          ${collapsibleSection(`kr-${p}`, 'Key Resources',
+            `<div class="section-summary">${data.keyResources.summary}</div>
             <div class="cards-grid">
               ${data.keyResources.resources.map(r => `
                 <div class="card">
@@ -375,12 +390,11 @@
                   <div class="card-name">${r.name}</div>
                   <div class="card-desc">${r.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Cost Structure</div>
-            <div class="section-summary">${data.costStructure.summary}</div>
+          ${collapsibleSection(`cost-${p}`, 'Cost Structure',
+            `<div class="section-summary">${data.costStructure.summary}</div>
             <div class="cards-grid">
               ${data.costStructure.costs.map(c => `
                 <div class="card">
@@ -388,12 +402,11 @@
                   <div class="card-name">${c.name}</div>
                   <div class="card-desc">${c.description}</div>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Revenue Streams</div>
-            <div class="section-summary">${data.revenueStreams.summary}</div>
+          ${collapsibleSection(`rev-${p}`, 'Revenue Streams',
+            `<div class="section-summary">${data.revenueStreams.summary}</div>
             <div class="cards-grid">
               ${data.revenueStreams.streams.map(s => `
                 <div class="card">
@@ -402,12 +415,11 @@
                   <div class="card-desc">${s.description}</div>
                   <span class="card-badge">${s.pricing} pricing</span>
                 </div>`).join('')}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Competitive Landscape</div>
-            <div class="section-summary">${data.competitiveLandscape.summary}</div>
+          ${collapsibleSection(`cl-${p}`, 'Competitive Landscape',
+            `<div class="section-summary">${data.competitiveLandscape.summary}</div>
             <div class="cards-grid">
               ${data.competitiveLandscape.competitors.map(c => `
                 <div class="card">
@@ -419,13 +431,12 @@
             <div class="advantage-block">
               <div class="advantage-label">Our Competitive Advantage</div>
               ${data.competitiveLandscape.advantage}
-            </div>
-          </div>
+            </div>`
+          )}
 
-          <div class="section">
-            <div class="section-label">Recommended Implementation Plan</div>
-            ${renderImplementationPlan(offerings, panelIndex)}
-          </div>
+          ${collapsibleSection(`impl-section-${p}`, 'Suggested tasks to get you started',
+            renderImplementationPlan(offerings, p)
+          )}
 
         </div>`;
 
