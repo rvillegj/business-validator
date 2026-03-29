@@ -24,12 +24,10 @@
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    /* Assessment */
     .assessment-wrapper { margin-top: 52px; display: none; }
     .assessment-box { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 28px; margin-bottom: 24px; }
     .assessment-loading { text-align: center; padding: 40px 20px; }
     .assessment-loading-msg { font-size: 14px; color: #888; font-weight: 300; margin-bottom: 16px; }
-
     .assessment-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
     .assessment-intro-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
     .assessment-intro-title { font-size: 16px; font-weight: 500; color: #1A1A2E; margin-bottom: 8px; }
@@ -42,18 +40,15 @@
     .badge-promising { background: #FAEEDA; color: #633806; }
     .badge-unclear { background: #FCEBEB; color: #A32D2D; }
     .badge-weak { background: #FCEBEB; color: #791F1F; }
-
     .score-bar-track { background: #EDE8DF; border-radius: 4px; height: 8px; margin-bottom: 4px; overflow: hidden; }
-    .score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+    .score-bar-fill { height: 100%; border-radius: 4px; }
     .score-bar-labels { display: flex; justify-content: space-between; font-size: 10px; color: #B5A99A; margin-bottom: 24px; }
-
     .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
     .pillar { background: #FDF6EC; border-radius: 10px; padding: 12px 8px; text-align: center; }
     .pillar-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.3; }
     .pillar-score { font-size: 22px; font-weight: 700; color: #1A1A2E; font-family: 'Playfair Display', serif; }
     .pillar-score span { font-size: 12px; color: #B5A99A; font-family: 'DM Sans', sans-serif; font-weight: 400; }
     .pillar-reason { font-size: 10px; color: #666; margin-top: 6px; line-height: 1.4; }
-
     .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
     .insight-card { border-radius: 10px; padding: 14px 16px; }
     .insight-card.strength { background: #E1F5EE; }
@@ -70,13 +65,10 @@
     .insight-card.risk .insight-text { color: #791F1F; }
     .insight-card.assumption .insight-text { color: #633806; }
     .insight-card.action .insight-text { color: #3C3489; }
-
     .warnings-box { background: #FCEBEB; border-radius: 10px; padding: 12px 16px; }
     .warnings-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A32D2D; font-weight: 500; margin-bottom: 6px; }
     .warning-item { font-size: 12.5px; color: #791F1F; line-height: 1.6; margin-bottom: 4px; display: flex; gap: 8px; }
-    .warning-item:last-child { margin-bottom: 0; }
 
-    /* Tabs */
     .tabs-wrapper { display: none; }
     .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
     .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; }
@@ -87,7 +79,6 @@
     .tab-btn:hover:not(.active) { background: #E2D9CE; color: #555; }
     .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 12px 12px 12px; padding: 32px; display: none; }
     .tab-panel.active { display: block; }
-
     .loading-tab { text-align: center; padding: 60px 20px; }
     .loading-tab-msg { font-size: 15px; color: #888; font-weight: 300; margin-bottom: 20px; }
     .dots { display: flex; justify-content: center; gap: 8px; }
@@ -180,7 +171,7 @@
 
     <div class="assessment-wrapper" id="assessmentWrapper">
       <div class="assessment-box" id="assessmentBox">
-        <div class="assessment-loading" id="assessmentLoading">
+        <div class="assessment-loading">
           <div class="assessment-loading-msg">Assessing your business idea…</div>
           <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
         </div>
@@ -237,6 +228,7 @@
     }
 
     function badgeClass(interpretation) {
+      if (!interpretation) return 'badge-promising';
       if (interpretation.includes('Very Strong')) return 'badge-strong';
       if (interpretation.includes('Promising')) return 'badge-promising';
       if (interpretation.includes('Unclear')) return 'badge-unclear';
@@ -244,74 +236,77 @@
     }
 
     function renderAssessment(data) {
-      const box = document.getElementById('assessmentBox');
-      const warnings = data.warnings && data.warnings.length > 0
-        ? `<div class="warnings-box">
-            <div class="warnings-label">Warnings</div>
-            ${data.warnings.map(w => `<div class="warning-item"><span>—</span><span>${w}</span></div>`).join('')}
-          </div>` : '';
+      try {
+        const box = document.getElementById('assessmentBox');
+        const warnings = data.warnings && data.warnings.length > 0
+          ? `<div class="warnings-box">
+              <div class="warnings-label">Warnings</div>
+              ${data.warnings.map(w => `<div class="warning-item"><span>—</span><span>${w}</span></div>`).join('')}
+            </div>` : '';
 
-      box.innerHTML = `
-        <div class="animate">
-          <div class="assessment-header">
-            <div>
-              <div class="assessment-intro-eyebrow">Business Idea Assessment</div>
-              <div class="assessment-intro-title">Strong businesses are built on strong problems.</div>
-              <div class="assessment-intro-text">This assessment evaluates how compelling your idea is across five critical dimensions — before you invest time or capital. Scores are grounded in market dynamics, problem strength, and business fundamentals.</div>
+        box.innerHTML = `
+          <div class="animate">
+            <div class="assessment-header">
+              <div>
+                <div class="assessment-intro-eyebrow">Business Idea Assessment</div>
+                <div class="assessment-intro-title">Strong businesses are built on strong problems.</div>
+                <div class="assessment-intro-text">This assessment evaluates how compelling your idea is across five critical dimensions — before you invest time or capital. Scores are grounded in market dynamics, problem strength, and business fundamentals.</div>
+              </div>
+              <div class="score-display">
+                <div style="font-size:11px;color:#B5A99A;margin-bottom:4px;">Final Score</div>
+                <div class="score-number">${Math.round(data.finalScore)}</div>
+                <div class="score-outof">out of 100</div>
+                <span class="score-badge ${badgeClass(data.interpretation)}">${data.interpretation}</span>
+              </div>
             </div>
-            <div class="score-display">
-              <div style="font-size:11px;color:#B5A99A;margin-bottom:4px;">Final Score</div>
-              <div class="score-number">${Math.round(data.finalScore)}</div>
-              <div class="score-outof">out of 100</div>
-              <span class="score-badge ${badgeClass(data.interpretation)}">${data.interpretation}</span>
+            <div class="score-bar-track">
+              <div class="score-bar-fill" style="width:${Math.round(data.finalScore)}%;background:${scoreBarColor(data.finalScore)};"></div>
             </div>
+            <div class="score-bar-labels">
+              <span>Weak / High Risk</span>
+              <span>Very Strong Opportunity</span>
+            </div>
+            <div class="pillars">
+              ${[
+                { key: 'problem', label: 'Problem Strength' },
+                { key: 'market', label: 'Market Attractiveness' },
+                { key: 'valueProposition', label: 'Value Proposition' },
+                { key: 'businessModel', label: 'Business Model' },
+                { key: 'execution', label: 'Execution Feasibility' }
+              ].map(p => `
+                <div class="pillar">
+                  <div class="pillar-label">${p.label}</div>
+                  <div class="pillar-score">${data.scores[p.key].score}<span>/5</span></div>
+                  <div class="pillar-reason">${data.scores[p.key].reason}</div>
+                </div>`).join('')}
+            </div>
+            <div class="insights">
+              <div class="insight-card strength">
+                <div class="insight-label">Top Strength</div>
+                <div class="insight-text">${data.insights.topStrength}</div>
+              </div>
+              <div class="insight-card risk">
+                <div class="insight-label">Biggest Risk</div>
+                <div class="insight-text">${data.insights.biggestRisk}</div>
+              </div>
+              <div class="insight-card assumption">
+                <div class="insight-label">Key Assumption</div>
+                <div class="insight-text">${data.insights.keyAssumption}</div>
+              </div>
+              <div class="insight-card action">
+                <div class="insight-label">Next Best Action</div>
+                <div class="insight-text">${data.insights.nextBestAction}</div>
+              </div>
+            </div>
+            ${warnings}
           </div>
-
-          <div class="score-bar-track">
-            <div class="score-bar-fill" style="width:${Math.round(data.finalScore)}%;background:${scoreBarColor(data.finalScore)};"></div>
-          </div>
-          <div class="score-bar-labels">
-            <span>Weak / High Risk</span>
-            <span>Very Strong Opportunity</span>
-          </div>
-
-          <div class="pillars">
-            ${[
-              { key: 'problem', label: 'Problem Strength' },
-              { key: 'market', label: 'Market Attractiveness' },
-              { key: 'valueProposition', label: 'Value Proposition' },
-              { key: 'businessModel', label: 'Business Model' },
-              { key: 'execution', label: 'Execution Feasibility' }
-            ].map(p => `
-              <div class="pillar">
-                <div class="pillar-label">${p.label}</div>
-                <div class="pillar-score">${data.scores[p.key].score}<span>/5</span></div>
-                <div class="pillar-reason">${data.scores[p.key].reason}</div>
-              </div>`).join('')}
-          </div>
-
-          <div class="insights">
-            <div class="insight-card strength">
-              <div class="insight-label">Top Strength</div>
-              <div class="insight-text">${data.insights.topStrength}</div>
-            </div>
-            <div class="insight-card risk">
-              <div class="insight-label">Biggest Risk</div>
-              <div class="insight-text">${data.insights.biggestRisk}</div>
-            </div>
-            <div class="insight-card assumption">
-              <div class="insight-label">Key Assumption</div>
-              <div class="insight-text">${data.insights.keyAssumption}</div>
-            </div>
-            <div class="insight-card action">
-              <div class="insight-label">Next Best Action</div>
-              <div class="insight-text">${data.insights.nextBestAction}</div>
-            </div>
-          </div>
-
-          ${warnings}
-        </div>
-      `;
+        `;
+      } catch (err) {
+        document.getElementById('assessmentBox').innerHTML = `
+          <div style="padding:20px;font-size:13px;color:#888;">
+            Assessment unavailable at this time.
+          </div>`;
+      }
     }
 
     function renderCanvas(data, panelIndex) {
@@ -484,6 +479,24 @@
       document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
     }
 
+    async function fetchAssessment(idea) {
+      try {
+        const response = await fetch('/api/assess', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idea })
+        });
+        if (!response.ok) throw new Error('Assessment API error');
+        const data = await response.json();
+        renderAssessment(data);
+      } catch (err) {
+        document.getElementById('assessmentBox').innerHTML = `
+          <div style="padding:20px;font-size:13px;color:#888;">
+            Assessment unavailable at this time.
+          </div>`;
+      }
+    }
+
     async function fetchSegment(idea, segmentContext, panelIndex) {
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -493,16 +506,6 @@
       const data = await response.json();
       renderCanvas(data, panelIndex);
       return { name: data.segment.name, data };
-    }
-
-    async function fetchAssessment(idea, canvasData) {
-      const response = await fetch('/api/assess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idea, canvasData })
-      });
-      const data = await response.json();
-      renderAssessment(data);
     }
 
     async function generate() {
@@ -552,14 +555,9 @@
         tabsWrapper.style.display = 'block';
         switchTab(0);
 
-     const seg1Result = await fetchSegment(idea, null, 0);
-fetchAssessment(idea, { idea }).catch(() => {
-  document.getElementById('assessmentBox').innerHTML = `
-    <div style="padding:20px;font-size:13px;color:#888;">
-      Assessment unavailable at this time.
-    </div>`;
-});
+        fetchAssessment(idea);
 
+        const seg1Result = await fetchSegment(idea, null, 0);
         const seg1Name = seg1Result.name;
 
         document.getElementById('panel-1').innerHTML = `
