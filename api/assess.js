@@ -10,7 +10,7 @@ module.exports = async function handler(req, res) {
   const { idea } = body;
 
   try {
-    // Pass 1: Research and reasoning with web search
+    // Pass 1: Research and reasoning (no web search)
     const pass1Response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -20,62 +20,48 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-20250514",
-        max_tokens: 3000,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        max_tokens: 2000,
         messages: [{
           role: "user",
-          content: `You are an expert startup evaluator. A user has this business idea for the Costa Rican market: "${idea}"
+          content: `You are an expert startup evaluator with deep knowledge of the Costa Rican market.
 
-Search the web to find current, real evidence about:
-1. The size and growth of this market in Costa Rica and Latin America
-2. Existing competitors or similar businesses operating in Costa Rica
-3. Recent consumer trends relevant to this idea in Costa Rica
-4. Any evidence of willingness to pay or validated demand for this type of solution
-5. Barriers to entry or execution risks specific to Costa Rica
+A user has this business idea: "${idea}"
 
-After researching, write a structured analysis covering these 5 pillars. Be candid and evidence-based. Clearly distinguish between what you found from real sources versus what you are inferring.
-
-For each pillar write 2-3 sentences of honest reasoning:
+Write a structured analysis covering these 5 pillars. Be candid, critical, and realistic. Base your reasoning on your knowledge of Costa Rica's market dynamics, consumer behavior, competition, and business fundamentals. Clearly note where you are uncertain.
 
 PROBLEM STRENGTH & URGENCY:
-[your evidence-based reasoning]
+[2-3 sentences: how frequent, painful, and costly is this problem? Is there evidence of willingness to pay?]
 
 MARKET ATTRACTIVENESS:
-[your evidence-based reasoning]
+[2-3 sentences: what is the realistic market size in Costa Rica? Is it growing? How competitive is it?]
 
 VALUE PROPOSITION & DIFFERENTIATION:
-[your evidence-based reasoning]
+[2-3 sentences: how unique is this? What makes it better than existing alternatives in Costa Rica?]
 
 BUSINESS MODEL VIABILITY:
-[your evidence-based reasoning]
+[2-3 sentences: how strong is the monetization logic? Is it scalable? Do costs and revenues align?]
 
 EXECUTION FEASIBILITY:
-[your evidence-based reasoning]
+[2-3 sentences: how hard is this to execute? What are the key dependencies and risks?]
 
-OVERALL CONFIDENCE NOTE:
-[state honestly how much real evidence exists vs assumptions, and rate confidence 1-5]`
+CONFIDENCE NOTE:
+[1 sentence: rate your confidence 1-5 and explain why]`
         }]
       })
     });
 
     const pass1Data = await pass1Response.json();
 
-    if (!pass1Response.ok) {
-      return res.status(500).json({ error: "Pass 1 API error", detail: pass1Data });
+    if (!pass1Response.ok || !pass1Data.content) {
+      return res.status(500).json({ error: "Pass 1 failed", detail: pass1Data });
     }
 
-    const content = pass1Data.content || [];
-    const reasoning = content
-      .filter(b => b && b.type === "text")
+    const reasoning = pass1Data.content
       .map(b => b.text || "")
       .join("\n")
       .trim();
 
-    const finalReasoning = reasoning.length > 50
-      ? reasoning
-      : "Limited research available. Assessment based on general market knowledge.";
-
-    // Pass 2: Score strictly based on reasoning from Pass 1
+    // Pass 2: Score based strictly on Pass 1 reasoning
     const pass2Response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -88,16 +74,16 @@ OVERALL CONFIDENCE NOTE:
         max_tokens: 1500,
         messages: [{
           role: "user",
-          content: `You are a startup evaluator. Based STRICTLY on the following research and reasoning — do not add new information — assign scores and produce the final assessment.
+          content: `You are a startup evaluator. Based STRICTLY on the following reasoning — do not add new information — assign scores and produce the final assessment.
 
 BUSINESS IDEA: "${idea}"
 
 RESEARCH AND REASONING:
-${finalReasoning}
+${reasoning}
 
 SCORING RULES:
 - Score each pillar 1-5 based ONLY on the reasoning above
-- Do not give high scores without evidence
+- Do not give high scores without clear justification in the reasoning
 - If confidence is 1 or 2, interpretation must be "Unclear / Moderate Risk" or "Weak / High Risk"
 
 WEIGHTS:
@@ -142,7 +128,7 @@ Return ONLY valid JSON — no markdown fences, no explanation:
 
     if (!pass2Response.ok) {
       const errData = await pass2Response.json();
-      return res.status(500).json({ error: "Pass 2 API error", detail: errData });
+      return res.status(500).json({ error: "Pass 2 failed", detail: errData });
     }
 
     const pass2Data = await pass2Response.json();
