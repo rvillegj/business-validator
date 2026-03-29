@@ -58,10 +58,10 @@ OVERALL CONFIDENCE NOTE:
   });
 
   const pass1Data = await pass1Response.json();
-  const reasoning = pass1Data.content
-    .filter(b => b.type === "text")
-    .map(b => b.text)
-    .join("\n");
+  const reasoning = (pass1Data.content || [])
+    .filter(b => b && b.type === "text")
+    .map(b => b.text || "")
+    .join("\n") || "No reasoning available from research pass.";
 
   // Pass 2: Score strictly based on the reasoning from Pass 1
   const pass2Response = await fetch("https://api.anthropic.com/v1/messages", {
