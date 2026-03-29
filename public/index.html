@@ -24,10 +24,63 @@
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .tabs-wrapper { margin-top: 52px; display: none; }
+    /* Assessment */
+    .assessment-wrapper { margin-top: 52px; display: none; }
+    .assessment-box { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 28px; margin-bottom: 24px; }
+    .assessment-loading { text-align: center; padding: 40px 20px; }
+    .assessment-loading-msg { font-size: 14px; color: #888; font-weight: 300; margin-bottom: 16px; }
+
+    .assessment-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+    .assessment-intro-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
+    .assessment-intro-title { font-size: 16px; font-weight: 500; color: #1A1A2E; margin-bottom: 8px; }
+    .assessment-intro-text { font-size: 13px; color: #666; line-height: 1.6; max-width: 520px; }
+    .score-display { text-align: center; flex-shrink: 0; }
+    .score-number { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #1A1A2E; line-height: 1; }
+    .score-outof { font-size: 11px; color: #B5A99A; margin-bottom: 8px; }
+    .score-badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+    .badge-strong { background: #E1F5EE; color: #0F6E56; }
+    .badge-promising { background: #FAEEDA; color: #633806; }
+    .badge-unclear { background: #FCEBEB; color: #A32D2D; }
+    .badge-weak { background: #FCEBEB; color: #791F1F; }
+
+    .score-bar-track { background: #EDE8DF; border-radius: 4px; height: 8px; margin-bottom: 4px; overflow: hidden; }
+    .score-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+    .score-bar-labels { display: flex; justify-content: space-between; font-size: 10px; color: #B5A99A; margin-bottom: 24px; }
+
+    .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+    .pillar { background: #FDF6EC; border-radius: 10px; padding: 12px 8px; text-align: center; }
+    .pillar-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; line-height: 1.3; }
+    .pillar-score { font-size: 22px; font-weight: 700; color: #1A1A2E; font-family: 'Playfair Display', serif; }
+    .pillar-score span { font-size: 12px; color: #B5A99A; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .pillar-reason { font-size: 10px; color: #666; margin-top: 6px; line-height: 1.4; }
+
+    .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .insight-card { border-radius: 10px; padding: 14px 16px; }
+    .insight-card.strength { background: #E1F5EE; }
+    .insight-card.risk { background: #FCEBEB; }
+    .insight-card.assumption { background: #FAEEDA; }
+    .insight-card.action { background: #EEEDFE; }
+    .insight-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; margin-bottom: 5px; }
+    .insight-card.strength .insight-label { color: #0F6E56; }
+    .insight-card.risk .insight-label { color: #A32D2D; }
+    .insight-card.assumption .insight-label { color: #854F0B; }
+    .insight-card.action .insight-label { color: #534AB7; }
+    .insight-text { font-size: 13px; line-height: 1.5; }
+    .insight-card.strength .insight-text { color: #085041; }
+    .insight-card.risk .insight-text { color: #791F1F; }
+    .insight-card.assumption .insight-text { color: #633806; }
+    .insight-card.action .insight-text { color: #3C3489; }
+
+    .warnings-box { background: #FCEBEB; border-radius: 10px; padding: 12px 16px; }
+    .warnings-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A32D2D; font-weight: 500; margin-bottom: 6px; }
+    .warning-item { font-size: 12.5px; color: #791F1F; line-height: 1.6; margin-bottom: 4px; display: flex; gap: 8px; }
+    .warning-item:last-child { margin-bottom: 0; }
+
+    /* Tabs */
+    .tabs-wrapper { display: none; }
     .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
-    .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
-    .tab-btn.active { background: white; color: #1A1A2E; border-bottom: 2px solid white; }
+    .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: white; color: #1A1A2E; }
     .tab-btn.active.seg1 { border-top: 3px solid #FF6B4A; }
     .tab-btn.active.seg2 { border-top: 3px solid #3D6B4F; }
     .tab-btn.active.seg3 { border-top: 3px solid #E8C547; }
@@ -46,28 +99,22 @@
     .section { margin-bottom: 40px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
     .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
-
     .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-
+    .seg-block { margin-bottom: 18px; padding: 16px; background: #FDF6EC; border-radius: 10px; }
     .seg-block-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
     .tab-panel.seg1 .seg-block-label { color: #FF6B4A; }
     .tab-panel.seg2 .seg-block-label { color: #3D6B4F; }
     .tab-panel.seg3 .seg-block-label { color: #A8851A; }
-
     .seg-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.55; }
     .seg-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
     .tab-panel.seg1 .seg-dot { background: #FF6B4A; }
     .tab-panel.seg2 .seg-dot { background: #3D6B4F; }
     .tab-panel.seg3 .seg-dot { background: #E8C547; }
-
-    .seg-block { margin-bottom: 18px; padding: 16px; background: #FDF6EC; border-radius: 10px; }
-    .seg-block:last-child { margin-bottom: 0; }
-
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
     .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
     .card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.08); transform: translateY(-2px); }
@@ -75,38 +122,22 @@
     .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; line-height: 1.2; }
     .card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
     .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
-
-    .type-acquire { color: #FF6B4A; }
-    .type-retain { color: #3D6B4F; }
-    .type-grow { color: #A8851A; }
-    .type-direct { color: #C0392B; }
-    .type-indirect { color: #7B5EA7; }
-    .type-supplier, .type-strategic-alliance, .type-joint-venture { color: #7B5EA7; }
-    .type-production, .type-problem-solving, .type-platform { color: #3D6B4F; }
-    .type-physical, .type-financial, .type-intellectual, .type-human { color: #E8A838; }
-    .type-fixed { color: #C0392B; }
-    .type-variable { color: #27AE60; }
-    .type-semi-variable { color: #A8851A; }
-
+    .type-acquire { color: #FF6B4A; } .type-retain { color: #3D6B4F; } .type-grow { color: #A8851A; }
+    .type-direct { color: #C0392B; } .type-indirect { color: #7B5EA7; }
+    .type-fixed { color: #C0392B; } .type-variable { color: #27AE60; } .type-semi-variable { color: #A8851A; }
     .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; transition: box-shadow 0.2s; }
-    .ch-card:hover { box-shadow: 0 6px 18px rgba(26,26,46,0.08); }
+    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; }
     .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
-    .phase-awareness { color: #FF6B4A; }
-    .phase-evaluation { color: #3D6B4F; }
-    .phase-purchase { color: #A8851A; }
-    .phase-delivery { color: #1A1A2E; }
-    .phase-post-purchase { color: #7B5EA7; }
+    .phase-awareness { color: #FF6B4A; } .phase-evaluation { color: #3D6B4F; } .phase-purchase { color: #A8851A; }
+    .phase-delivery { color: #1A1A2E; } .phase-post-purchase { color: #7B5EA7; }
     .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
     .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
-
     .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
-
     .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
     .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
     .revenue-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 560px; }
-    .revenue-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; position: relative; transition: box-shadow 0.2s; }
+    .revenue-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; position: relative; }
     .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
     .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
     .revenue-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
@@ -143,44 +174,48 @@
     </button>
 
     <div class="loading" id="loading">
-      <div class="loading-dots">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      </div>
-      <div class="loading-text" id="loadingText">Identifying your customer segments…</div>
+      <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="loading-text">Analyzing your business idea…</div>
     </div>
 
-    <div class="tabs-wrapper" id="tabsWrapper">
-      <div class="tab-nav">
-        <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
-        <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
-        <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
-      </div>
-      <div class="tab-panel seg1 active" id="panel-0">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
+    <div class="assessment-wrapper" id="assessmentWrapper">
+      <div class="assessment-box" id="assessmentBox">
+        <div class="assessment-loading" id="assessmentLoading">
+          <div class="assessment-loading-msg">Assessing your business idea…</div>
           <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
         </div>
       </div>
-      <div class="tab-panel seg2" id="panel-1">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+
+      <div class="tabs-wrapper" id="tabsWrapper">
+        <div class="tab-nav">
+          <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
+          <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
+          <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
         </div>
-      </div>
-      <div class="tab-panel seg3" id="panel-2">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="tab-panel seg1 active" id="panel-0">
+          <div class="loading-tab">
+            <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>
+        </div>
+        <div class="tab-panel seg2" id="panel-1">
+          <div class="loading-tab">
+            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>
+        </div>
+        <div class="tab-panel seg3" id="panel-2">
+          <div class="loading-tab">
+            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    let activeTab = 0;
-
     function switchTab(i) {
-      activeTab = i;
       document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', i === j));
       document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
     }
@@ -194,38 +229,112 @@
       return 'type-' + type.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
 
+    function scoreBarColor(score) {
+      if (score >= 80) return '#1D9E75';
+      if (score >= 65) return '#BA7517';
+      if (score >= 50) return '#E24B4A';
+      return '#A32D2D';
+    }
+
+    function badgeClass(interpretation) {
+      if (interpretation.includes('Very Strong')) return 'badge-strong';
+      if (interpretation.includes('Promising')) return 'badge-promising';
+      if (interpretation.includes('Unclear')) return 'badge-unclear';
+      return 'badge-weak';
+    }
+
+    function renderAssessment(data) {
+      const box = document.getElementById('assessmentBox');
+      const warnings = data.warnings && data.warnings.length > 0
+        ? `<div class="warnings-box">
+            <div class="warnings-label">Warnings</div>
+            ${data.warnings.map(w => `<div class="warning-item"><span>—</span><span>${w}</span></div>`).join('')}
+          </div>` : '';
+
+      box.innerHTML = `
+        <div class="animate">
+          <div class="assessment-header">
+            <div>
+              <div class="assessment-intro-eyebrow">Business Idea Assessment</div>
+              <div class="assessment-intro-title">Strong businesses are built on strong problems.</div>
+              <div class="assessment-intro-text">This assessment evaluates how compelling your idea is across five critical dimensions — before you invest time or capital. Scores are grounded in market dynamics, problem strength, and business fundamentals.</div>
+            </div>
+            <div class="score-display">
+              <div style="font-size:11px;color:#B5A99A;margin-bottom:4px;">Final Score</div>
+              <div class="score-number">${Math.round(data.finalScore)}</div>
+              <div class="score-outof">out of 100</div>
+              <span class="score-badge ${badgeClass(data.interpretation)}">${data.interpretation}</span>
+            </div>
+          </div>
+
+          <div class="score-bar-track">
+            <div class="score-bar-fill" style="width:${Math.round(data.finalScore)}%;background:${scoreBarColor(data.finalScore)};"></div>
+          </div>
+          <div class="score-bar-labels">
+            <span>Weak / High Risk</span>
+            <span>Very Strong Opportunity</span>
+          </div>
+
+          <div class="pillars">
+            ${[
+              { key: 'problem', label: 'Problem Strength' },
+              { key: 'market', label: 'Market Attractiveness' },
+              { key: 'valueProposition', label: 'Value Proposition' },
+              { key: 'businessModel', label: 'Business Model' },
+              { key: 'execution', label: 'Execution Feasibility' }
+            ].map(p => `
+              <div class="pillar">
+                <div class="pillar-label">${p.label}</div>
+                <div class="pillar-score">${data.scores[p.key].score}<span>/5</span></div>
+                <div class="pillar-reason">${data.scores[p.key].reason}</div>
+              </div>`).join('')}
+          </div>
+
+          <div class="insights">
+            <div class="insight-card strength">
+              <div class="insight-label">Top Strength</div>
+              <div class="insight-text">${data.insights.topStrength}</div>
+            </div>
+            <div class="insight-card risk">
+              <div class="insight-label">Biggest Risk</div>
+              <div class="insight-text">${data.insights.biggestRisk}</div>
+            </div>
+            <div class="insight-card assumption">
+              <div class="insight-label">Key Assumption</div>
+              <div class="insight-text">${data.insights.keyAssumption}</div>
+            </div>
+            <div class="insight-card action">
+              <div class="insight-label">Next Best Action</div>
+              <div class="insight-text">${data.insights.nextBestAction}</div>
+            </div>
+          </div>
+
+          ${warnings}
+        </div>
+      `;
+    }
+
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const rp = data.revenuePotential;
-      const segClass = `seg${panelIndex + 1}`;
 
-      const html = `
+      document.getElementById(`panel-${panelIndex}`).innerHTML = `
         <div class="animate">
-
           <div class="section">
             <div class="section-label">Customer Segment</div>
             <div class="seg-profile">${seg.profile}</div>
             <div class="seg-tags">${seg.tags.map(t => `<span class="seg-tag">${t}</span>`).join('')}</div>
-
             <div class="seg-block">
               <div class="seg-block-label">Jobs to Be Done</div>
-              ${seg.jobsToBeDone.map(j => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>
-              `).join('')}
+              ${seg.jobsToBeDone.map(j => `<div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>`).join('')}
             </div>
-
             <div class="seg-block">
               <div class="seg-block-label">Top Pain Points</div>
-              ${seg.painPoints.map(p => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>
-              `).join('')}
+              ${seg.painPoints.map(p => `<div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>`).join('')}
             </div>
-
             <div class="seg-block">
               <div class="seg-block-label">Gains</div>
-              ${seg.gains.map(g => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>
-              `).join('')}
+              ${seg.gains.map(g => `<div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>`).join('')}
             </div>
           </div>
 
@@ -369,11 +478,9 @@
                 </div>`).join('')}
             </div>
           </div>
-
         </div>
       `;
 
-      document.getElementById(`panel-${panelIndex}`).innerHTML = html;
       document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
     }
 
@@ -385,7 +492,17 @@
       });
       const data = await response.json();
       renderCanvas(data, panelIndex);
-      return data.segment.name;
+      return { name: data.segment.name, data };
+    }
+
+    async function fetchAssessment(idea, canvasData) {
+      const response = await fetch('/api/assess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idea, canvasData })
+      });
+      const data = await response.json();
+      renderAssessment(data);
     }
 
     async function generate() {
@@ -393,6 +510,7 @@
       const errorMsg = document.getElementById('errorMsg');
       const btn = document.getElementById('generateBtn');
       const loading = document.getElementById('loading');
+      const assessmentWrapper = document.getElementById('assessmentWrapper');
       const tabsWrapper = document.getElementById('tabsWrapper');
 
       if (!idea) {
@@ -406,7 +524,14 @@
       btn.disabled = true;
       btn.innerHTML = 'Building your canvases...';
       loading.style.display = 'block';
+      assessmentWrapper.style.display = 'none';
       tabsWrapper.style.display = 'none';
+
+      document.getElementById('assessmentBox').innerHTML = `
+        <div class="assessment-loading">
+          <div class="assessment-loading-msg">Assessing your business idea…</div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>`;
 
       document.querySelectorAll('.tab-btn').forEach((b, i) => {
         b.textContent = `Customer Segment ${i + 1}`;
@@ -423,10 +548,16 @@
 
       try {
         loading.style.display = 'none';
+        assessmentWrapper.style.display = 'block';
         tabsWrapper.style.display = 'block';
         switchTab(0);
 
-        const seg1Name = await fetchSegment(idea, null, 0);
+        const [seg1Result] = await Promise.all([
+          fetchSegment(idea, null, 0),
+          fetchAssessment(idea, { idea })
+        ]);
+
+        const seg1Name = seg1Result.name;
 
         document.getElementById('panel-1').innerHTML = `
           <div class="loading-tab">
@@ -434,7 +565,8 @@
             <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
           </div>`;
 
-        const seg2Name = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
+        const seg2Result = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
+        const seg2Name = seg2Result.name;
 
         document.getElementById('panel-2').innerHTML = `
           <div class="loading-tab">
