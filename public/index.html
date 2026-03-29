@@ -24,138 +24,96 @@
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .canvas { margin-top: 52px; display: none; }
-    .canvas-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
-    .canvas-badge { display: inline-block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #3D6B4F; background: rgba(61,107,79,0.1); padding: 4px 10px; border-radius: 20px; margin-bottom: 32px; }
-    .rationale { background: white; border: 1.5px solid #E2D9CE; border-left: 4px solid #E8C547; border-radius: 12px; padding: 18px 20px; margin-bottom: 40px; font-size: 14.5px; color: #444; line-height: 1.65; }
-    .rationale-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
+    .tabs-wrapper { margin-top: 52px; display: none; }
 
-    .section { margin-bottom: 48px; }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
-    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
+    .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
+    .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
+    .tab-btn.active { background: white; color: #1A1A2E; border-bottom: 2px solid white; }
+    .tab-btn.active.seg1 { border-top: 3px solid #FF6B4A; }
+    .tab-btn.active.seg2 { border-top: 3px solid #3D6B4F; }
+    .tab-btn.active.seg3 { border-top: 3px solid #E8C547; }
+    .tab-btn:hover:not(.active) { background: #E2D9CE; color: #555; }
 
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; position: relative; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
-    .card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-    .card:nth-child(1)::before { background: #FF6B4A; }
-    .card:nth-child(2)::before { background: #3D6B4F; }
-    .card:nth-child(3)::before { background: #E8C547; }
-    .card-num { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #C8BDB2; font-weight: 500; margin-bottom: 10px; }
-    .card-name { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
-    .card-profile { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 14px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
-    .card:nth-child(1) .tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
-    .card:nth-child(2) .tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
-    .card:nth-child(3) .tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-    .pain-points { border-top: 1px solid #F0E8DC; padding-top: 14px; margin-top: 4px; }
-    .pain-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
-    .pain-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 12.5px; color: #555; line-height: 1.55; }
-    .pain-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF6B4A; margin-top: 5px; flex-shrink: 0; }
-    .card:nth-child(2) .pain-dot { background: #3D6B4F; }
-    .card:nth-child(3) .pain-dot { background: #E8C547; }
+    .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 12px 12px 12px; padding: 32px; display: none; }
+    .tab-panel.active { display: block; }
 
-    .vp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .vp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .vp-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .vp-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .vp-card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 14px; }
-    .advantage-badge { display: inline-block; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; }
-
-    .cr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .cr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .cr-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .cr-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
-    .cr-type.acquire { color: #FF6B4A; }
-    .cr-type.retain { color: #3D6B4F; }
-    .cr-type.grow { color: #A8851A; }
-    .cr-card-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .cr-card-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .ch-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 20px 18px; transition: box-shadow 0.2s, transform 0.2s; }
-    .ch-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .ch-phase { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #FF6B4A; }
-    .ch-card:nth-child(2) .ch-phase { color: #3D6B4F; }
-    .ch-card:nth-child(3) .ch-phase { color: #A8851A; }
-    .ch-card:nth-child(4) .ch-phase { color: #1A1A2E; }
-    .ch-card:nth-child(5) .ch-phase { color: #7B5EA7; }
-    .ch-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #1A1A2E; }
-    .ch-desc { font-size: 12.5px; color: #777; line-height: 1.6; }
-
-    .kp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .kp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .kp-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .kp-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #7B5EA7; }
-    .kp-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .kp-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .ka-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .ka-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .ka-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .ka-category { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #3D6B4F; }
-    .ka-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .ka-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .kr-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .kr-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .kr-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .kr-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #E8A838; }
-    .kr-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .kr-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .cs-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .cs-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .cs-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .cs-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; color: #C0392B; }
-    .cs-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .cs-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .rs-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .rs-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .rs-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .rs-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; color: #27AE60; }
-    .rs-pricing { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: #B5A99A; margin-bottom: 8px; }
-    .rs-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; }
-    .rs-segment { font-size: 11px; color: #FF6B4A; font-weight: 500; margin-bottom: 10px; }
-    .rs-desc { font-size: 13px; color: #777; line-height: 1.6; }
-
-    .cl-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .cl-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 24px 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .cl-card:hover { box-shadow: 0 10px 32px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .cl-type { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
-    .cl-type.direct { color: #C0392B; }
-    .cl-type.indirect { color: #7B5EA7; }
-    .cl-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #1A1A2E; }
-    .cl-desc { font-size: 13px; color: #777; line-height: 1.6; }
-    .cl-advantage { background: rgba(26,26,46,0.04); border-radius: 10px; padding: 14px 16px; margin-top: 24px; font-size: 13.5px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; }
-    .cl-advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
-
-    /* Revenue Potential */
-    .revenue-intro { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
-    .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 20px; font-size: 13.5px; line-height: 1.5; }
-    .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
-    .revenue-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 560px; }
-    .revenue-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 20px 16px; transition: box-shadow 0.2s, transform 0.2s; position: relative; }
-    .revenue-card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.1); transform: translateY(-2px); }
-    .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
-    .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-    .revenue-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
-    .revenue-card:nth-child(1) .revenue-label { color: #C0392B; }
-    .revenue-card:nth-child(2) .revenue-label { color: #3D6B4F; }
-    .revenue-card:nth-child(3) .revenue-label { color: #A8851A; }
-    .revenue-card:nth-child(4) .revenue-label { color: #7B5EA7; }
-    .revenue-amount { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1A1A2E; margin-bottom: 4px; line-height: 1.1; }
-    .revenue-currency { font-size: 11px; color: #B5A99A; margin-bottom: 12px; }
-    .revenue-assumption { font-size: 12px; color: #666; line-height: 1.55; border-top: 1px solid #F0E8DC; padding-top: 10px; margin-top: 4px; }
-
-    .loading { text-align: center; padding: 40px 0; display: none; }
-    .dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+    .loading-tab { text-align: center; padding: 60px 20px; }
+    .loading-tab-msg { font-size: 15px; color: #888; font-weight: 300; margin-bottom: 20px; }
+    .dots { display: flex; justify-content: center; gap: 8px; }
     .dot { width: 10px; height: 10px; border-radius: 50%; animation: bounce 1.2s infinite ease-in-out; }
     .dot:nth-child(1) { background: #FF6B4A; }
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
+
+    .section { margin-bottom: 40px; }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
+    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
+
+    .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
+    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
+    .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
+    .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
+    .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
+    .pain-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
+    .pain-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.55; }
+    .pain-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .tab-panel.seg1 .pain-dot { background: #FF6B4A; }
+    .tab-panel.seg2 .pain-dot { background: #3D6B4F; }
+    .tab-panel.seg3 .pain-dot { background: #E8C547; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.08); transform: translateY(-2px); }
+    .card-type { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; line-height: 1.2; }
+    .card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
+    .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
+
+    .type-acquire { color: #FF6B4A; }
+    .type-retain { color: #3D6B4F; }
+    .type-grow { color: #A8851A; }
+    .type-direct { color: #C0392B; }
+    .type-indirect { color: #7B5EA7; }
+    .type-supplier, .type-strategic-alliance, .type-joint-venture { color: #7B5EA7; }
+    .type-production, .type-problem-solving, .type-platform { color: #3D6B4F; }
+    .type-physical, .type-financial, .type-intellectual, .type-human { color: #E8A838; }
+    .type-fixed { color: #C0392B; }
+    .type-variable { color: #27AE60; }
+    .type-semi-variable { color: #A8851A; }
+
+    .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; transition: box-shadow 0.2s; }
+    .ch-card:hover { box-shadow: 0 6px 18px rgba(26,26,46,0.08); }
+    .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+    .phase-awareness { color: #FF6B4A; }
+    .phase-evaluation { color: #3D6B4F; }
+    .phase-purchase { color: #A8851A; }
+    .phase-delivery { color: #1A1A2E; }
+    .phase-post-purchase { color: #7B5EA7; }
+    .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
+    .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
+
+    .advantage-block { background: rgba(26,26,46,0.04); border-radius: 10px; padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
+    .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
+
+    .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
+    .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
+    .revenue-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 560px; }
+    .revenue-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; position: relative; transition: box-shadow 0.2s; }
+    .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
+    .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+    .revenue-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+    .revenue-card:nth-child(1) .revenue-label { color: #C0392B; }
+    .revenue-card:nth-child(2) .revenue-label { color: #3D6B4F; }
+    .revenue-card:nth-child(3) .revenue-label { color: #A8851A; }
+    .revenue-card:nth-child(4) .revenue-label { color: #7B5EA7; }
+    .revenue-amount { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 3px; }
+    .revenue-currency { font-size: 11px; color: #B5A99A; margin-bottom: 10px; }
+    .revenue-assumption { font-size: 11.5px; color: #666; line-height: 1.5; border-top: 1px solid #E2D9CE; padding-top: 8px; }
+
+    .loading { text-align: center; padding: 40px 0; display: none; }
+    .loading-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
     .loading-text { font-size: 14px; color: #888; font-weight: 300; }
     @keyframes bounce { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -167,7 +125,7 @@
     <div class="eyebrow">Costa Rica Market Intelligence</div>
     <h1>Business Idea<br><span>Validator</span></h1>
     <div class="deco-line"></div>
-    <p class="sub">Describe your idea and discover your full business model canvas — grounded in real Costa Rican market data.</p>
+    <p class="sub">Describe your idea and discover three complete business model canvases — one per customer segment.</p>
 
     <div class="field-label">Business Idea <span>*</span></div>
     <textarea id="idea" placeholder="e.g. Executive English coaching for mid-senior professionals at transnational companies in Costa Rica..."></textarea>
@@ -179,88 +137,232 @@
     </button>
 
     <div class="loading" id="loading">
-      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <div class="loading-text">Building your full business model canvas…</div>
+      <div class="loading-dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="loading-text" id="loadingText">Identifying your customer segments…</div>
     </div>
 
-    <div class="canvas" id="canvas">
-      <div class="canvas-title">Business Model Canvas</div>
-      <div class="canvas-badge">Live Analysis</div>
-      <div class="rationale animate" id="rationale"></div>
-
-      <div class="section">
-        <div class="section-label">Customer Segments</div>
-        <div class="cards" id="cards"></div>
+    <div class="tabs-wrapper" id="tabsWrapper">
+      <div class="tab-nav">
+        <button class="tab-btn seg1 active" onclick="switchTab(0)">Segment 01</button>
+        <button class="tab-btn seg2" onclick="switchTab(1)">Segment 02</button>
+        <button class="tab-btn seg3" onclick="switchTab(2)">Segment 03</button>
       </div>
-
-      <div class="section">
-        <div class="section-label">Value Proposition</div>
-        <div class="section-summary" id="vpSummary"></div>
-        <div class="vp-cards" id="vpCards"></div>
+      <div class="tab-panel seg1 active" id="panel-0">
+        <div class="loading-tab">
+          <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
       </div>
-
-      <div class="section">
-        <div class="section-label">Customer Relationships</div>
-        <div class="section-summary" id="crSummary"></div>
-        <div class="cr-cards" id="crCards"></div>
+      <div class="tab-panel seg2" id="panel-1">
+        <div class="loading-tab">
+          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
       </div>
-
-      <div class="section">
-        <div class="section-label">Channels</div>
-        <div class="section-summary" id="chSummary"></div>
-        <div class="ch-cards" id="chCards"></div>
+      <div class="tab-panel seg3" id="panel-2">
+        <div class="loading-tab">
+          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
       </div>
-
-      <div class="section">
-        <div class="section-label">Key Partners</div>
-        <div class="section-summary" id="kpSummary"></div>
-        <div class="kp-cards" id="kpCards"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Key Activities</div>
-        <div class="section-summary" id="kaSummary"></div>
-        <div class="ka-cards" id="kaCards"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Key Resources</div>
-        <div class="section-summary" id="krSummary"></div>
-        <div class="kr-cards" id="krCards"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Cost Structure</div>
-        <div class="section-summary" id="csSummary"></div>
-        <div class="cs-cards" id="csCards"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Revenue Streams</div>
-        <div class="section-summary" id="rsSummary"></div>
-        <div class="rs-cards" id="rsCards"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Competitive Landscape</div>
-        <div class="section-summary" id="clSummary"></div>
-        <div class="cl-cards" id="clCards"></div>
-        <div class="cl-advantage" id="clAdvantage"></div>
-      </div>
-
-      <div class="section">
-        <div class="section-label">Revenue Potential</div>
-        <div class="revenue-intro" id="revenueIntro"></div>
-        <div class="revenue-likely" id="revenueLikely"></div>
-        <div class="revenue-cards" id="revenueCards"></div>
-      </div>
-
     </div>
   </div>
 
   <script>
+    let activeTab = 0;
+    const segmentNames = ['Segment 01', 'Segment 02', 'Segment 03'];
+
+    function switchTab(i) {
+      activeTab = i;
+      document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+      document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
+    }
+
     function formatCRC(amount) {
       return '₡' + Math.round(amount).toLocaleString('es-CR');
+    }
+
+    function typeClass(type) {
+      if (!type) return '';
+      return 'type-' + type.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    }
+
+    function renderCanvas(data, panelIndex) {
+      const seg = data.segment;
+      const rp = data.revenuePotential;
+
+      const html = `
+        <div class="animate">
+
+          <div class="section">
+            <div class="section-label">Customer Segment</div>
+            <div class="seg-profile">${seg.profile}</div>
+            <div class="seg-tags">${seg.tags.map(t => `<span class="seg-tag">${t}</span>`).join('')}</div>
+            <div class="pain-label">Top Pain Points</div>
+            ${seg.painPoints.map(p => `<div class="pain-item"><div class="pain-dot"></div><span>${p}</span></div>`).join('')}
+          </div>
+
+          <div class="section">
+            <div class="section-label">Value Proposition</div>
+            <div class="section-summary">${data.valueProposition.summary}</div>
+            <div class="cards-grid">
+              ${data.valueProposition.offerings.map((o, i) => `
+                <div class="card">
+                  <div class="card-type" style="color:#1A1A2E;">Offering ${String(i+1).padStart(2,'0')}</div>
+                  <div class="card-name">${o.name}</div>
+                  <div class="card-desc">${o.description}</div>
+                  <span class="card-badge">✦ ${o.advantage}</span>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Customer Relationships</div>
+            <div class="section-summary">${data.customerRelationships.summary}</div>
+            <div class="cards-grid">
+              ${data.customerRelationships.strategies.map(s => `
+                <div class="card">
+                  <div class="card-type ${typeClass(s.type)}">${s.type}</div>
+                  <div class="card-name">${s.name}</div>
+                  <div class="card-desc">${s.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Channels</div>
+            <div class="section-summary">${data.channels.summary}</div>
+            <div class="ch-cards">
+              ${data.channels.touchpoints.map(t => `
+                <div class="ch-card">
+                  <div class="ch-phase phase-${t.phase.toLowerCase().replace('-','').replace(' ','-')}">${t.phase}</div>
+                  <div class="ch-name">${t.name}</div>
+                  <div class="ch-desc">${t.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Key Partners</div>
+            <div class="section-summary">${data.keyPartners.summary}</div>
+            <div class="cards-grid">
+              ${data.keyPartners.partners.map(p => `
+                <div class="card">
+                  <div class="card-type ${typeClass(p.type)}">${p.type}</div>
+                  <div class="card-name">${p.name}</div>
+                  <div class="card-desc">${p.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Key Activities</div>
+            <div class="section-summary">${data.keyActivities.summary}</div>
+            <div class="cards-grid">
+              ${data.keyActivities.activities.map(a => `
+                <div class="card">
+                  <div class="card-type ${typeClass(a.category)}">${a.category}</div>
+                  <div class="card-name">${a.name}</div>
+                  <div class="card-desc">${a.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Key Resources</div>
+            <div class="section-summary">${data.keyResources.summary}</div>
+            <div class="cards-grid">
+              ${data.keyResources.resources.map(r => `
+                <div class="card">
+                  <div class="card-type ${typeClass(r.type)}">${r.type}</div>
+                  <div class="card-name">${r.name}</div>
+                  <div class="card-desc">${r.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Cost Structure</div>
+            <div class="section-summary">${data.costStructure.summary}</div>
+            <div class="cards-grid">
+              ${data.costStructure.costs.map(c => `
+                <div class="card">
+                  <div class="card-type ${typeClass(c.type)}">${c.type}</div>
+                  <div class="card-name">${c.name}</div>
+                  <div class="card-desc">${c.description}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Revenue Streams</div>
+            <div class="section-summary">${data.revenueStreams.summary}</div>
+            <div class="cards-grid">
+              ${data.revenueStreams.streams.map(s => `
+                <div class="card">
+                  <div class="card-type" style="color:#27AE60;">${s.type}</div>
+                  <div class="card-name">${s.name}</div>
+                  <div class="card-desc">${s.description}</div>
+                  <span class="card-badge">${s.pricing} pricing</span>
+                </div>`).join('')}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Competitive Landscape</div>
+            <div class="section-summary">${data.competitiveLandscape.summary}</div>
+            <div class="cards-grid">
+              ${data.competitiveLandscape.competitors.map(c => `
+                <div class="card">
+                  <div class="card-type ${typeClass(c.type)}">${c.type}</div>
+                  <div class="card-name">${c.name}</div>
+                  <div class="card-desc">${c.description}</div>
+                </div>`).join('')}
+            </div>
+            <div class="advantage-block">
+              <div class="advantage-label">Our Competitive Advantage</div>
+              ${data.competitiveLandscape.advantage}
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Revenue Potential</div>
+            <div class="section-summary">${rp.intro}</div>
+            <div class="revenue-likely">
+              <div class="revenue-likely-label">Most Likely Scenario</div>
+              ${rp.mostLikelyReason}
+            </div>
+            <div class="revenue-cards">
+              ${rp.scenarios.map(s => `
+                <div class="revenue-card ${s.label.toLowerCase() === rp.mostLikelyScenario ? 'highlighted' : ''}">
+                  <div class="revenue-label">${s.label}</div>
+                  <div class="revenue-amount">${formatCRC(s.monthlyRevenue)}</div>
+                  <div class="revenue-currency">colones / month</div>
+                  <div class="revenue-assumption">${s.assumption}</div>
+                </div>`).join('')}
+            </div>
+          </div>
+
+        </div>
+      `;
+
+      document.getElementById(`panel-${panelIndex}`).innerHTML = html;
+
+      const tabBtn = document.querySelectorAll('.tab-btn')[panelIndex];
+      tabBtn.textContent = data.segment.name;
+    }
+
+    async function fetchSegment(idea, segmentContext, panelIndex) {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idea, segmentContext })
+      });
+      const data = await response.json();
+      renderCanvas(data, panelIndex);
+      return data.segment.name;
     }
 
     async function generate() {
@@ -268,7 +370,8 @@
       const errorMsg = document.getElementById('errorMsg');
       const btn = document.getElementById('generateBtn');
       const loading = document.getElementById('loading');
-      const canvas = document.getElementById('canvas');
+      const tabsWrapper = document.getElementById('tabsWrapper');
+      const loadingText = document.getElementById('loadingText');
 
       if (!idea) {
         errorMsg.style.display = 'block';
@@ -279,142 +382,46 @@
       errorMsg.style.display = 'none';
       document.getElementById('idea').classList.remove('error');
       btn.disabled = true;
-      btn.innerHTML = 'Building your canvas...';
+      btn.innerHTML = 'Building your canvases...';
       loading.style.display = 'block';
-      canvas.style.display = 'none';
+      tabsWrapper.style.display = 'none';
+
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.textContent = `Segment 0${i+1}`;
+        b.classList.toggle('active', i === 0);
+      });
+      document.querySelectorAll('.tab-panel').forEach((p, i) => {
+        p.classList.toggle('active', i === 0);
+        p.innerHTML = `
+          <div class="loading-tab">
+            <div class="loading-tab-msg">${i === 0 ? 'Building the business model canvas for this customer segment…' : 'We are working on the business model canvas for this customer segment.'}</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>`;
+      });
 
       try {
-        const response = await fetch('/api/generate', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea })
-        });
+        loadingText.textContent = 'Identifying your first customer segment…';
+        tabsWrapper.style.display = 'block';
+        loading.style.display = 'none';
+        switchTab(0);
 
-        const data = await response.json();
+        const seg1Name = await fetchSegment(idea, null, 0);
 
-        document.getElementById('rationale').innerHTML = `
-          <div class="rationale-eyebrow">Why these segments</div>
-          ${data.rationale}
-        `;
+        document.getElementById('panel-1').innerHTML = `
+          <div class="loading-tab">
+            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>`;
 
-        const rp = data.revenuePotential;
-        document.getElementById('revenueIntro').textContent = rp.intro;
-        document.getElementById('revenueLikely').innerHTML = `
-          <div class="revenue-likely-label">Most Likely Scenario</div>
-          ${rp.mostLikelyReason}
-        `;
-        document.getElementById('revenueCards').innerHTML = rp.scenarios.map(s => `
-          <div class="revenue-card animate ${s.label.toLowerCase() === rp.mostLikelyScenario ? 'highlighted' : ''}">
-            <div class="revenue-label">${s.label}</div>
-            <div class="revenue-amount">${formatCRC(s.monthlyRevenue)}</div>
-            <div class="revenue-currency">colones / month</div>
-            <div class="revenue-assumption">${s.assumption}</div>
-          </div>
-        `).join('');
+        const seg2Name = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
 
-        document.getElementById('cards').innerHTML = data.segments.map((seg, i) => `
-          <div class="card animate" style="animation-delay:${i * 0.1}s">
-            <div class="card-num">Segment ${String(i + 1).padStart(2, '0')}</div>
-            <div class="card-name">${seg.name}</div>
-            <div class="card-profile">${seg.profile}</div>
-            <div class="tags">${seg.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-            <div class="pain-points">
-              <div class="pain-label">Top Pain Points</div>
-              ${seg.painPoints.map(p => `<div class="pain-item"><div class="pain-dot"></div><span>${p}</span></div>`).join('')}
-            </div>
-          </div>
-        `).join('');
+        document.getElementById('panel-2').innerHTML = `
+          <div class="loading-tab">
+            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
+            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+          </div>`;
 
-        document.getElementById('vpSummary').textContent = data.valueProposition.summary;
-        document.getElementById('vpCards').innerHTML = data.valueProposition.offerings.map((o, i) => `
-          <div class="vp-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="card-num">Offering ${String(i + 1).padStart(2, '0')}</div>
-            <div class="vp-card-name">${o.name}</div>
-            <div class="vp-card-desc">${o.description}</div>
-            <span class="advantage-badge">✦ ${o.advantage}</span>
-          </div>
-        `).join('');
-
-        document.getElementById('crSummary').textContent = data.customerRelationships.summary;
-        document.getElementById('crCards').innerHTML = data.customerRelationships.strategies.map((s, i) => `
-          <div class="cr-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="cr-type ${s.type.toLowerCase()}">${s.type}</div>
-            <div class="cr-card-name">${s.name}</div>
-            <div class="cr-card-desc">${s.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('chSummary').textContent = data.channels.summary;
-        document.getElementById('chCards').innerHTML = data.channels.touchpoints.map((t, i) => `
-          <div class="ch-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="ch-phase">${t.phase}</div>
-            <div class="ch-name">${t.name}</div>
-            <div class="ch-desc">${t.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('kpSummary').textContent = data.keyPartners.summary;
-        document.getElementById('kpCards').innerHTML = data.keyPartners.partners.map((p, i) => `
-          <div class="kp-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="kp-type">${p.type}</div>
-            <div class="kp-name">${p.name}</div>
-            <div class="kp-desc">${p.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('kaSummary').textContent = data.keyActivities.summary;
-        document.getElementById('kaCards').innerHTML = data.keyActivities.activities.map((a, i) => `
-          <div class="ka-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="ka-category">${a.category}</div>
-            <div class="ka-name">${a.name}</div>
-            <div class="ka-desc">${a.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('krSummary').textContent = data.keyResources.summary;
-        document.getElementById('krCards').innerHTML = data.keyResources.resources.map((r, i) => `
-          <div class="kr-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="kr-type">${r.type}</div>
-            <div class="kr-name">${r.name}</div>
-            <div class="kr-desc">${r.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('csSummary').textContent = data.costStructure.summary;
-        document.getElementById('csCards').innerHTML = data.costStructure.costs.map((c, i) => `
-          <div class="cs-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="cs-type">${c.type}</div>
-            <div class="cs-name">${c.name}</div>
-            <div class="cs-desc">${c.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('rsSummary').textContent = data.revenueStreams.summary;
-        document.getElementById('rsCards').innerHTML = data.revenueStreams.streams.map((s, i) => `
-          <div class="rs-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="rs-type">${s.type}</div>
-            <div class="rs-pricing">${s.pricing} pricing</div>
-            <div class="rs-name">${s.name}</div>
-            <div class="rs-segment">→ ${s.segment}</div>
-            <div class="rs-desc">${s.description}</div>
-          </div>
-        `).join('');
-
-        document.getElementById('clSummary').textContent = data.competitiveLandscape.summary;
-        document.getElementById('clCards').innerHTML = data.competitiveLandscape.competitors.map((c, i) => `
-          <div class="cl-card animate" style="animation-delay:${i * 0.1}s">
-            <div class="cl-type ${c.type.toLowerCase()}">${c.type}</div>
-            <div class="cl-name">${c.name}</div>
-            <div class="cl-desc">${c.description}</div>
-          </div>
-        `).join('');
-        document.getElementById('clAdvantage').innerHTML = `
-          <div class="cl-advantage-label">Our Competitive Advantage</div>
-          ${data.competitiveLandscape.advantage}
-        `;
-
-        canvas.style.display = 'block';
-        canvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        await fetchSegment(idea, `A different segment from "${seg1Name}" and "${seg2Name}" — identify the third most promising customer segment`, 2);
 
       } catch (err) {
         alert('Something went wrong. Please try again.');
