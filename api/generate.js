@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
       "anthropic-version": "2023-06-01"
     },
     body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
+      model: "claude-sonnet-4-20250514",
       max_tokens: 4000,
       messages: [{ role: "user", content: buildPrompt(idea, segmentContext) }]
     })
@@ -36,7 +36,7 @@ module.exports = async function handler(req, res) {
 
 function buildPrompt(idea, segmentContext) {
   const segmentInstruction = segmentContext
-    ? `Focus exclusively on this specific customer segment: "${segmentContext}". All sections must be coherent with and tailored to this segment.`
+    ? `Focus exclusively on this specific customer segment: "${segmentContext}". All 11 sections must be coherent with and tailored to this segment.`
     : `Identify the single most promising customer segment in Costa Rica for this business idea.`;
 
   return `You are an expert business model strategist specializing in Costa Rica. You have deep knowledge of consumer trends, demographics, shopping habits, cultural nuances, and the competitive landscape in Costa Rica.
@@ -45,7 +45,9 @@ A user has this business idea: "${idea}"
 
 ${segmentInstruction}
 
-Generate a complete Business Model Canvas. Be concise — one sentence per description field maximum.
+The current minimum wage in Costa Rica is approximately 383,386 colones per month (2024 official figure).
+
+Generate a complete Business Model Canvas with all 11 sections fully coherent with and tailored to the specified customer segment. Be concise — one sentence per description field maximum.
 
 Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON object.
 
@@ -55,9 +57,9 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
     "profile": "One sentence: age range, location in CR, income level, and why they need this.",
     "tags": ["tag1", "tag2", "tag3"],
     "jobsToBeDone": [
-      "One sentence: first underlying goal or task this segment is trying to solve.",
-      "One sentence: second underlying goal.",
-      "One sentence: third underlying goal."
+      "One sentence: first underlying goal, task, or problem this segment is trying to solve.",
+      "One sentence: second underlying goal or task.",
+      "One sentence: third underlying goal or task."
     ],
     "painPoints": [
       "One sentence: first real struggle with existing solutions.",
@@ -65,54 +67,17 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       "One sentence: third real frustration."
     ],
     "gains": [
-      "One sentence: first positive outcome this segment wants.",
-      "One sentence: second aspiration.",
-      "One sentence: third thing that would delight them."
+      "One sentence: first positive outcome or benefit this segment wants to achieve.",
+      "One sentence: second aspiration or desired result.",
+      "One sentence: third thing that would delight or exceed expectations."
     ]
   },
   "valueProposition": {
     "summary": "One sentence: core reason this segment chooses this over alternatives.",
     "offerings": [
-      {
-        "name": "Offering name",
-        "description": "One sentence: what it is and which pain point it solves.",
-        "advantage": "better design | better price | better performance | more convenient",
-        "tasks": [
-          {
-            "portfolio": "Portfolio name (e.g. Product Development, Marketing, Operations, Legal, Technology, Partnerships)",
-            "items": [
-              "Task description",
-              "Task description",
-              "Task description"
-            ]
-          },
-          {
-            "portfolio": "Another portfolio name",
-            "items": [
-              "Task description",
-              "Task description"
-            ]
-          }
-        ]
-      },
-      {
-        "name": "Offering name",
-        "description": "One sentence.",
-        "advantage": "",
-        "tasks": [
-          { "portfolio": "Portfolio name", "items": ["Task", "Task", "Task"] },
-          { "portfolio": "Portfolio name", "items": ["Task", "Task"] }
-        ]
-      },
-      {
-        "name": "Offering name",
-        "description": "One sentence.",
-        "advantage": "",
-        "tasks": [
-          { "portfolio": "Portfolio name", "items": ["Task", "Task", "Task"] },
-          { "portfolio": "Portfolio name", "items": ["Task", "Task"] }
-        ]
-      }
+      {"name": "", "description": "One sentence: what it is and which pain point it solves.", "advantage": "better design | better price | better performance | more convenient"},
+      {"name": "", "description": "One sentence.", "advantage": ""},
+      {"name": "", "description": "One sentence.", "advantage": ""}
     ]
   },
   "customerRelationships": {
@@ -181,6 +146,18 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
       {"name": "", "type": "", "description": "One sentence."}
     ],
     "advantage": "One sentence: unique advantage defensible in Costa Rica for this segment."
+  },
+  "revenuePotential": {
+    "intro": "One sentence: revenue potential basis for this segment.",
+    "minimumWage": 383386,
+    "mostLikelyScenario": "pessimistic | standard | optimistic | outstanding",
+    "mostLikelyReason": "One sentence: why this scenario is most realistic for this segment.",
+    "scenarios": [
+      {"label": "Pessimistic", "multiplier": 0.8, "monthlyRevenue": 306709, "currency": "CRC", "assumption": "One sentence."},
+      {"label": "Standard", "multiplier": 1, "monthlyRevenue": 383386, "currency": "CRC", "assumption": "One sentence."},
+      {"label": "Optimistic", "multiplier": 3, "monthlyRevenue": 1150158, "currency": "CRC", "assumption": "One sentence."},
+      {"label": "Outstanding", "multiplier": 6, "monthlyRevenue": 2300316, "currency": "CRC", "assumption": "One sentence."}
+    ]
   }
 }`;
 }
