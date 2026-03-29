@@ -103,21 +103,6 @@
     .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
 
-    .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
-    .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
-    .revenue-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 560px; }
-    .revenue-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; position: relative; transition: box-shadow 0.2s; }
-    .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
-    .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-    .revenue-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
-    .revenue-card:nth-child(1) .revenue-label { color: #C0392B; }
-    .revenue-card:nth-child(2) .revenue-label { color: #3D6B4F; }
-    .revenue-card:nth-child(3) .revenue-label { color: #A8851A; }
-    .revenue-card:nth-child(4) .revenue-label { color: #7B5EA7; }
-    .revenue-amount { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 3px; }
-    .revenue-currency { font-size: 11px; color: #B5A99A; margin-bottom: 10px; }
-    .revenue-assumption { font-size: 11.5px; color: #666; line-height: 1.5; border-top: 1px solid #E2D9CE; padding-top: 8px; }
-
     .loading { text-align: center; padding: 40px 0; display: none; }
     .loading-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
     .loading-text { font-size: 14px; color: #888; font-weight: 300; }
@@ -196,8 +181,6 @@
 
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
-      const rp = data.revenuePotential;
-      const segClass = `seg${panelIndex + 1}`;
 
       const html = `
         <div class="animate">
@@ -352,24 +335,6 @@
             </div>
           </div>
 
-          <div class="section">
-            <div class="section-label">Revenue Potential</div>
-            <div class="section-summary">${rp.intro}</div>
-            <div class="revenue-likely">
-              <div class="revenue-likely-label">Most Likely Scenario</div>
-              ${rp.mostLikelyReason}
-            </div>
-            <div class="revenue-cards">
-              ${rp.scenarios.map(s => `
-                <div class="revenue-card ${s.label.toLowerCase() === rp.mostLikelyScenario ? 'highlighted' : ''}">
-                  <div class="revenue-label">${s.label}</div>
-                  <div class="revenue-amount">${formatCRC(s.monthlyRevenue)}</div>
-                  <div class="revenue-currency">colones / month</div>
-                  <div class="revenue-assumption">${s.assumption}</div>
-                </div>`).join('')}
-            </div>
-          </div>
-
         </div>
       `;
 
@@ -427,21 +392,7 @@
         switchTab(0);
 
         const seg1Name = await fetchSegment(idea, null, 0);
-
-        document.getElementById('panel-1').innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
-
         const seg2Name = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
-
-        document.getElementById('panel-2').innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
-
         await fetchSegment(idea, `A different segment from "${seg1Name}" and "${seg2Name}" — identify the third most promising customer segment`, 2);
 
       } catch (err) {
