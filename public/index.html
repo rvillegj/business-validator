@@ -220,12 +220,23 @@
     function scrollToImpl(implId) {
       const el = document.getElementById(implId);
       if (!el) return;
-      const body = el.querySelector('.impl-body');
-      const chevron = el.querySelector('.impl-chevron');
-      if (!body.classList.contains('open')) {
-        body.classList.add('open');
-        chevron.classList.add('open');
+
+      const panelIndex = implId.split('-')[1];
+      const sectionId = `impl-section-${panelIndex}`;
+      const sectionBody = document.getElementById(sectionId + '-body');
+      const sectionChev = document.getElementById(sectionId + '-chev');
+      if (sectionBody && !sectionBody.classList.contains('open')) {
+        sectionBody.classList.add('open');
+        sectionChev.classList.add('open');
       }
+
+      const implBody = el.querySelector('.impl-body');
+      const implChev = el.querySelector('.impl-chevron');
+      if (!implBody.classList.contains('open')) {
+        implBody.classList.add('open');
+        implChev.classList.add('open');
+      }
+
       setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
 
