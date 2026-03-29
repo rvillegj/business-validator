@@ -45,7 +45,7 @@
 
     .section { margin-bottom: 40px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
-    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
+    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
 
     .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
@@ -66,7 +66,6 @@
     .tab-panel.seg3 .seg-dot { background: #E8C547; }
 
     .seg-block { margin-bottom: 18px; padding: 16px; background: #FDF6EC; border-radius: 10px; }
-    .seg-block:last-child { margin-bottom: 0; }
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
     .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
@@ -75,6 +74,34 @@
     .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; line-height: 1.2; }
     .card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
     .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
+
+    /* Offering card — full width with tasks */
+    .offering-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .offering-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+    .offering-meta { flex: 1; }
+    .offering-number { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #1A1A2E; margin-bottom: 4px; }
+    .offering-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A1A2E; margin-bottom: 6px; }
+    .offering-desc { font-size: 13px; color: #666; line-height: 1.55; margin-bottom: 8px; }
+
+    .tasks-toggle { background: none; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 6px 14px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: #888; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+    .tasks-toggle:hover { border-color: #1A1A2E; color: #1A1A2E; }
+    .tasks-toggle.open { background: #1A1A2E; color: white; border-color: #1A1A2E; }
+
+    .tasks-section { display: none; border-top: 1.5px solid #E2D9CE; margin-top: 16px; padding-top: 20px; }
+    .tasks-section.open { display: block; }
+    .tasks-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #B5A99A; margin-bottom: 16px; }
+    .portfolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .portfolio { background: white; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 16px; }
+    .portfolio-name { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+    .tab-panel.seg1 .portfolio-name { color: #FF6B4A; }
+    .tab-panel.seg2 .portfolio-name { color: #3D6B4F; }
+    .tab-panel.seg3 .portfolio-name { color: #A8851A; }
+    .task-item { display: flex; gap: 8px; margin-bottom: 7px; font-size: 12px; color: #555; line-height: 1.5; }
+    .task-check { width: 14px; height: 14px; border: 1.5px solid #E2D9CE; border-radius: 3px; flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .task-check.checked { background: #1A1A2E; border-color: #1A1A2E; }
+    .task-check.checked::after { content: '✓'; color: white; font-size: 9px; }
+    .task-text { flex: 1; }
+    .task-text.checked { text-decoration: line-through; color: #B5A99A; }
 
     .type-acquire { color: #FF6B4A; }
     .type-retain { color: #3D6B4F; }
@@ -89,34 +116,18 @@
     .type-semi-variable { color: #A8851A; }
 
     .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; transition: box-shadow 0.2s; }
-    .ch-card:hover { box-shadow: 0 6px 18px rgba(26,26,46,0.08); }
+    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; }
     .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
     .phase-awareness { color: #FF6B4A; }
     .phase-evaluation { color: #3D6B4F; }
     .phase-purchase { color: #A8851A; }
     .phase-delivery { color: #1A1A2E; }
-    .phase-post-purchase { color: #7B5EA7; }
+    .phase-postsale, .phase-post-purchase { color: #7B5EA7; }
     .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
     .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
 
-    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
+    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
-
-    .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
-    .revenue-likely-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 4px; }
-    .revenue-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 560px; }
-    .revenue-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; position: relative; transition: box-shadow 0.2s; }
-    .revenue-card.highlighted { border: 2.5px solid #FF6B4A; background: #FFF8F6; }
-    .revenue-card.highlighted::after { content: 'Most Likely'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #FF6B4A; color: white; font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
-    .revenue-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
-    .revenue-card:nth-child(1) .revenue-label { color: #C0392B; }
-    .revenue-card:nth-child(2) .revenue-label { color: #3D6B4F; }
-    .revenue-card:nth-child(3) .revenue-label { color: #A8851A; }
-    .revenue-card:nth-child(4) .revenue-label { color: #7B5EA7; }
-    .revenue-amount { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1A1A2E; margin-bottom: 3px; }
-    .revenue-currency { font-size: 11px; color: #B5A99A; margin-bottom: 10px; }
-    .revenue-assumption { font-size: 11.5px; color: #666; line-height: 1.5; border-top: 1px solid #E2D9CE; padding-top: 8px; }
 
     .loading { text-align: center; padding: 40px 0; display: none; }
     .loading-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
@@ -155,24 +166,9 @@
         <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
         <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
       </div>
-      <div class="tab-panel seg1 active" id="panel-0">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-        </div>
-      </div>
-      <div class="tab-panel seg2" id="panel-1">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-        </div>
-      </div>
-      <div class="tab-panel seg3" id="panel-2">
-        <div class="loading-tab">
-          <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-        </div>
-      </div>
+      <div class="tab-panel seg1 active" id="panel-0"></div>
+      <div class="tab-panel seg2" id="panel-1"></div>
+      <div class="tab-panel seg3" id="panel-2"></div>
     </div>
   </div>
 
@@ -185,19 +181,58 @@
       document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
     }
 
-    function formatCRC(amount) {
-      return '₡' + Math.round(amount).toLocaleString('es-CR');
-    }
-
     function typeClass(type) {
       if (!type) return '';
       return 'type-' + type.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     }
 
+    function toggleTasks(btn, sectionId) {
+      const section = document.getElementById(sectionId);
+      const isOpen = section.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+      btn.textContent = isOpen ? 'Hide tasks' : 'View tasks';
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('checked');
+      const text = el.nextElementSibling;
+      text.classList.toggle('checked');
+    }
+
+    function renderOfferings(offerings) {
+      return offerings.map((o, i) => {
+        const sectionId = `tasks-${Math.random().toString(36).substr(2,9)}`;
+        const portfoliosHtml = (o.tasks || []).map(p => `
+          <div class="portfolio">
+            <div class="portfolio-name">${p.portfolio}</div>
+            ${(p.items || []).map(task => `
+              <div class="task-item">
+                <div class="task-check" onclick="toggleCheck(this)"></div>
+                <div class="task-text">${task}</div>
+              </div>`).join('')}
+          </div>`).join('');
+
+        return `
+          <div class="offering-card">
+            <div class="offering-header">
+              <div class="offering-meta">
+                <div class="offering-number">Offering ${String(i+1).padStart(2,'0')}</div>
+                <div class="offering-name">${o.name}</div>
+                <div class="offering-desc">${o.description}</div>
+                <span class="card-badge">✦ ${o.advantage}</span>
+              </div>
+              <button class="tasks-toggle" onclick="toggleTasks(this, '${sectionId}')">View tasks</button>
+            </div>
+            <div class="tasks-section" id="${sectionId}">
+              <div class="tasks-label">Essential tasks to realize this offering</div>
+              <div class="portfolios-grid">${portfoliosHtml}</div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
-      const rp = data.revenuePotential;
-      const segClass = `seg${panelIndex + 1}`;
 
       const html = `
         <div class="animate">
@@ -206,41 +241,24 @@
             <div class="section-label">Customer Segment</div>
             <div class="seg-profile">${seg.profile}</div>
             <div class="seg-tags">${seg.tags.map(t => `<span class="seg-tag">${t}</span>`).join('')}</div>
-
             <div class="seg-block">
               <div class="seg-block-label">Jobs to Be Done</div>
-              ${seg.jobsToBeDone.map(j => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>
-              `).join('')}
+              ${seg.jobsToBeDone.map(j => `<div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>`).join('')}
             </div>
-
             <div class="seg-block">
               <div class="seg-block-label">Top Pain Points</div>
-              ${seg.painPoints.map(p => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>
-              `).join('')}
+              ${seg.painPoints.map(p => `<div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>`).join('')}
             </div>
-
             <div class="seg-block">
               <div class="seg-block-label">Gains</div>
-              ${seg.gains.map(g => `
-                <div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>
-              `).join('')}
+              ${seg.gains.map(g => `<div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>`).join('')}
             </div>
           </div>
 
           <div class="section">
             <div class="section-label">Value Proposition</div>
             <div class="section-summary">${data.valueProposition.summary}</div>
-            <div class="cards-grid">
-              ${data.valueProposition.offerings.map((o, i) => `
-                <div class="card">
-                  <div class="card-type" style="color:#1A1A2E;">Offering ${String(i+1).padStart(2,'0')}</div>
-                  <div class="card-name">${o.name}</div>
-                  <div class="card-desc">${o.description}</div>
-                  <span class="card-badge">✦ ${o.advantage}</span>
-                </div>`).join('')}
-            </div>
+            ${renderOfferings(data.valueProposition.offerings)}
           </div>
 
           <div class="section">
@@ -262,7 +280,7 @@
             <div class="ch-cards">
               ${data.channels.touchpoints.map(t => `
                 <div class="ch-card">
-                  <div class="ch-phase phase-${t.phase.toLowerCase().replace('-','').replace(' ','-')}">${t.phase}</div>
+                  <div class="ch-phase phase-${t.phase.toLowerCase().replace(/[^a-z]/g,'')}'">${t.phase}</div>
                   <div class="ch-name">${t.name}</div>
                   <div class="ch-desc">${t.description}</div>
                 </div>`).join('')}
@@ -352,26 +370,7 @@
             </div>
           </div>
 
-          <div class="section">
-            <div class="section-label">Revenue Potential</div>
-            <div class="section-summary">${rp.intro}</div>
-            <div class="revenue-likely">
-              <div class="revenue-likely-label">Most Likely Scenario</div>
-              ${rp.mostLikelyReason}
-            </div>
-            <div class="revenue-cards">
-              ${rp.scenarios.map(s => `
-                <div class="revenue-card ${s.label.toLowerCase() === rp.mostLikelyScenario ? 'highlighted' : ''}">
-                  <div class="revenue-label">${s.label}</div>
-                  <div class="revenue-amount">${formatCRC(s.monthlyRevenue)}</div>
-                  <div class="revenue-currency">colones / month</div>
-                  <div class="revenue-assumption">${s.assumption}</div>
-                </div>`).join('')}
-            </div>
-          </div>
-
-        </div>
-      `;
+        </div>`;
 
       document.getElementById(`panel-${panelIndex}`).innerHTML = html;
       document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
@@ -388,11 +387,18 @@
       return data.segment.name;
     }
 
+    function setLoading(panelIndex, msg) {
+      document.getElementById(`panel-${panelIndex}`).innerHTML = `
+        <div class="loading-tab">
+          <div class="loading-tab-msg">${msg}</div>
+          <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>`;
+    }
+
     async function generate() {
       const idea = document.getElementById('idea').value.trim();
       const errorMsg = document.getElementById('errorMsg');
       const btn = document.getElementById('generateBtn');
-      const loading = document.getElementById('loading');
       const tabsWrapper = document.getElementById('tabsWrapper');
 
       if (!idea) {
@@ -405,42 +411,27 @@
       document.getElementById('idea').classList.remove('error');
       btn.disabled = true;
       btn.innerHTML = 'Building your canvases...';
-      loading.style.display = 'block';
       tabsWrapper.style.display = 'none';
 
       document.querySelectorAll('.tab-btn').forEach((b, i) => {
         b.textContent = `Customer Segment ${i + 1}`;
         b.classList.toggle('active', i === 0);
       });
-      document.querySelectorAll('.tab-panel').forEach((p, i) => {
-        p.classList.toggle('active', i === 0);
-        p.innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">${i === 0 ? 'Building the business model canvas for this customer segment…' : 'We are working on the business model canvas for this customer segment.'}</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
-      });
+      document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === 0));
+
+      setLoading(0, 'Building the business model canvas for segment 1…');
+      setLoading(1, 'Segment 2 will load next…');
+      setLoading(2, 'Segment 3 will load last…');
 
       try {
-        loading.style.display = 'none';
         tabsWrapper.style.display = 'block';
         switchTab(0);
 
         const seg1Name = await fetchSegment(idea, null, 0);
-
-        document.getElementById('panel-1').innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
+        setLoading(1, 'Building the business model canvas for segment 2…');
 
         const seg2Name = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
-
-        document.getElementById('panel-2').innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
+        setLoading(2, 'Building the business model canvas for segment 3…');
 
         await fetchSegment(idea, `A different segment from "${seg1Name}" and "${seg2Name}" — identify the third most promising customer segment`, 2);
 
@@ -449,7 +440,6 @@
       } finally {
         btn.disabled = false;
         btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Generate Business Model';
-        loading.style.display = 'none';
       }
     }
   </script>
