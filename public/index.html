@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Idea Validator</title>
+  <title>Business Model Generator</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +25,6 @@
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
     .tabs-wrapper { margin-top: 52px; display: none; }
-
     .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
     .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
     .tab-btn.active { background: white; color: #1A1A2E; border-bottom: 2px solid white; }
@@ -33,7 +32,6 @@
     .tab-btn.active.seg2 { border-top: 3px solid #3D6B4F; }
     .tab-btn.active.seg3 { border-top: 3px solid #E8C547; }
     .tab-btn:hover:not(.active) { background: #E2D9CE; color: #555; }
-
     .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 12px 12px 12px; padding: 32px; display: none; }
     .tab-panel.active { display: block; }
 
@@ -50,17 +48,25 @@
     .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
 
     .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
-    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-    .pain-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
-    .pain-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.55; }
-    .pain-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-    .tab-panel.seg1 .pain-dot { background: #FF6B4A; }
-    .tab-panel.seg2 .pain-dot { background: #3D6B4F; }
-    .tab-panel.seg3 .pain-dot { background: #E8C547; }
+
+    .seg-block-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+    .tab-panel.seg1 .seg-block-label { color: #FF6B4A; }
+    .tab-panel.seg2 .seg-block-label { color: #3D6B4F; }
+    .tab-panel.seg3 .seg-block-label { color: #A8851A; }
+
+    .seg-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.55; }
+    .seg-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+    .tab-panel.seg1 .seg-dot { background: #FF6B4A; }
+    .tab-panel.seg2 .seg-dot { background: #3D6B4F; }
+    .tab-panel.seg3 .seg-dot { background: #E8C547; }
+
+    .seg-block { margin-bottom: 18px; padding: 16px; background: #FDF6EC; border-radius: 10px; }
+    .seg-block:last-child { margin-bottom: 0; }
 
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
     .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
@@ -94,7 +100,7 @@
     .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
     .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
 
-    .advantage-block { background: rgba(26,26,46,0.04); border-radius: 10px; padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
+    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
 
     .revenue-likely { background: #1A1A2E; color: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
@@ -123,9 +129,9 @@
 <body>
   <div class="app">
     <div class="eyebrow">Costa Rica Market Intelligence</div>
-    <h1>Business Idea<br><span>Validator</span></h1>
+    <h1>Business Model<br><span>Generator</span></h1>
     <div class="deco-line"></div>
-    <p class="sub">Describe your idea and discover three complete business model canvases — one per customer segment.</p>
+    <p class="sub">Describe your business idea and discover three complete business model canvases — one per potential customer segment.</p>
 
     <div class="field-label">Business Idea <span>*</span></div>
     <textarea id="idea" placeholder="e.g. Executive English coaching for mid-senior professionals at transnational companies in Costa Rica..."></textarea>
@@ -145,9 +151,9 @@
 
     <div class="tabs-wrapper" id="tabsWrapper">
       <div class="tab-nav">
-        <button class="tab-btn seg1 active" onclick="switchTab(0)">Segment 01</button>
-        <button class="tab-btn seg2" onclick="switchTab(1)">Segment 02</button>
-        <button class="tab-btn seg3" onclick="switchTab(2)">Segment 03</button>
+        <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
+        <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
+        <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
       </div>
       <div class="tab-panel seg1 active" id="panel-0">
         <div class="loading-tab">
@@ -172,7 +178,6 @@
 
   <script>
     let activeTab = 0;
-    const segmentNames = ['Segment 01', 'Segment 02', 'Segment 03'];
 
     function switchTab(i) {
       activeTab = i;
@@ -192,6 +197,7 @@
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const rp = data.revenuePotential;
+      const segClass = `seg${panelIndex + 1}`;
 
       const html = `
         <div class="animate">
@@ -200,8 +206,27 @@
             <div class="section-label">Customer Segment</div>
             <div class="seg-profile">${seg.profile}</div>
             <div class="seg-tags">${seg.tags.map(t => `<span class="seg-tag">${t}</span>`).join('')}</div>
-            <div class="pain-label">Top Pain Points</div>
-            ${seg.painPoints.map(p => `<div class="pain-item"><div class="pain-dot"></div><span>${p}</span></div>`).join('')}
+
+            <div class="seg-block">
+              <div class="seg-block-label">Jobs to Be Done</div>
+              ${seg.jobsToBeDone.map(j => `
+                <div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>
+              `).join('')}
+            </div>
+
+            <div class="seg-block">
+              <div class="seg-block-label">Top Pain Points</div>
+              ${seg.painPoints.map(p => `
+                <div class="seg-item"><div class="seg-dot"></div><span>${p}</span></div>
+              `).join('')}
+            </div>
+
+            <div class="seg-block">
+              <div class="seg-block-label">Gains</div>
+              ${seg.gains.map(g => `
+                <div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>
+              `).join('')}
+            </div>
           </div>
 
           <div class="section">
@@ -349,9 +374,7 @@
       `;
 
       document.getElementById(`panel-${panelIndex}`).innerHTML = html;
-
-      const tabBtn = document.querySelectorAll('.tab-btn')[panelIndex];
-      tabBtn.textContent = data.segment.name;
+      document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
     }
 
     async function fetchSegment(idea, segmentContext, panelIndex) {
@@ -371,7 +394,6 @@
       const btn = document.getElementById('generateBtn');
       const loading = document.getElementById('loading');
       const tabsWrapper = document.getElementById('tabsWrapper');
-      const loadingText = document.getElementById('loadingText');
 
       if (!idea) {
         errorMsg.style.display = 'block';
@@ -387,7 +409,7 @@
       tabsWrapper.style.display = 'none';
 
       document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.textContent = `Segment 0${i+1}`;
+        b.textContent = `Customer Segment ${i + 1}`;
         b.classList.toggle('active', i === 0);
       });
       document.querySelectorAll('.tab-panel').forEach((p, i) => {
@@ -400,9 +422,8 @@
       });
 
       try {
-        loadingText.textContent = 'Identifying your first customer segment…';
-        tabsWrapper.style.display = 'block';
         loading.style.display = 'none';
+        tabsWrapper.style.display = 'block';
         switchTab(0);
 
         const seg1Name = await fetchSegment(idea, null, 0);

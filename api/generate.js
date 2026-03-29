@@ -56,10 +56,20 @@ Return ONLY valid JSON — no markdown fences, no explanation, just the raw JSON
     "name": "Segment name",
     "profile": "One sentence: age range, location in CR, income level, and why they need this.",
     "tags": ["tag1", "tag2", "tag3"],
+    "jobsToBeDone": [
+      "One sentence: first underlying goal, task, or problem this segment is trying to solve.",
+      "One sentence: second underlying goal or task.",
+      "One sentence: third underlying goal or task."
+    ],
     "painPoints": [
       "One sentence: first real struggle with existing solutions.",
       "One sentence: second real struggle.",
       "One sentence: third real frustration."
+    ],
+    "gains": [
+      "One sentence: first positive outcome or benefit this segment wants to achieve.",
+      "One sentence: second aspiration or desired result.",
+      "One sentence: third thing that would delight or exceed expectations."
     ]
   },
   "valueProposition": {
