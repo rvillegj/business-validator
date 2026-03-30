@@ -7,7 +7,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
   const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-  const { idea, segmentContext, scoreMode, canvasContext } = body;
+  const { idea, segmentContext, scoreMode } = body;
 
   // --- Score mode: evaluate likelihood of success from canvas context ---
   if (scoreMode) {
@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
         model: "claude-sonnet-4-20250514",
         max_tokens: 1000,
         system: buildScoringSystemPrompt(),
-        messages: [{ role: "user", content: buildScoringUserPrompt(idea, canvasContext) }]
+        messages: [{ role: "user", content: buildScoringUserPrompt(idea) }]
       })
     });
 
@@ -65,9 +65,11 @@ module.exports = async function handler(req, res) {
 function buildScoringSystemPrompt() {
   return `You are an expert startup evaluator used by founders, investors, and venture studios.
 
-Your task is to evaluate a business idea based on its Business Model Canvas and produce a structured "Likelihood of Success" assessment.
+Your task is to evaluate a business idea and produce a structured "Likelihood of Success" assessment.
 
-Be analytical, objective, and concise. Avoid hype. Base your reasoning on market dynamics, problem strength, and business fundamentals.
+Be analytical, objective, and concise. Avoid hype. Base your reasoning on problem strength, business fundamentals, and general market dynamics.
+
+CRITICAL INSTRUCTION: You are evaluating the BUSINESS IDEA only — not any specific customer segment, geography, or market. The user has described an idea; your job is to assess whether the underlying problem is real, whether the business model is sound, and whether it can succeed. Do NOT anchor your reasoning to any specific country, city, demographic, or customer segment. Your evaluation must be valid regardless of which market the founder eventually targets. If you find yourself referencing a specific geography or segment in your reasoning, stop and reframe around the idea itself.
 
 EVALUATION FRAMEWORK
 
@@ -108,11 +110,8 @@ INTERPRETATION RULES
 IMPORTANT: Be critical and realistic. Do not give all high scores unless strongly justified. Keep reasoning concise but specific. Always return valid JSON only — no extra text, no markdown fences.`;
 }
 
-function buildScoringUserPrompt(idea, canvasContext) {
+function buildScoringUserPrompt(idea) {
   return `Business idea: "${idea}"
-
-Business Model Canvas (first customer segment):
-${JSON.stringify(canvasContext, null, 2)}
 
 Evaluate this business idea and return ONLY valid JSON in this exact structure:
 
