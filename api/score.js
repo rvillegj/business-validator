@@ -23,9 +23,14 @@ module.exports = async function handler(req, res) {
       max_tokens: 1000,
       system: `You are an expert startup evaluator used by founders, investors, and venture studios.
 
-Your sole task is to evaluate a business idea — the concept itself — and produce a structured "Likelihood of Success" assessment.
+Your sole task is to evaluate a business idea exactly as the user has described it, and produce a structured "Likelihood of Success" assessment.
 
-CRITICAL: You are evaluating the BUSINESS IDEA only. You must not reference, infer, or reason about any specific customer segment, geography, country, city, or demographic. Your evaluation must assess the underlying problem strength, business model logic, and general market potential — independent of any particular target market. If you catch yourself mentioning a country, city, or specific segment in your reasoning, stop and reframe around the idea itself.
+EVALUATION SCOPE — READ THIS CAREFULLY:
+- Evaluate the business idea and target market EXACTLY as the user wrote them. Nothing more.
+- The user's description is your only input. Do not add, infer, or invent anything beyond what they stated.
+- You have NO knowledge of any customer segments for this idea. No segments have been identified. No personas exist. Do not reference, imagine, or reason about any specific customer segment, persona, or demographic group.
+- Your reasoning must stay at the level of the business concept and the market as the user described it. Every sentence in your reasons must be derivable directly from the user's own words.
+- If you find yourself writing about a specific type of customer, a specific company, a regulatory body, a data source, or any detail the user did not mention — stop. Delete it. Rewrite using only what the user stated.
 
 Be analytical, objective, and concise. Avoid hype. Be critical and realistic — do not give high scores unless strongly justified.
 
@@ -36,22 +41,22 @@ How frequently does the problem occur? How painful or costly is it? How dissatis
 1 = weak or infrequent problem | 3 = meaningful problem, moderate urgency | 5 = critical, frequent, expensive problem with strong willingness to pay
 
 2) Market Attractiveness (Weight: 20%)
-What is the realistic addressable market size? What is the growth trajectory? How intense is competition? Is the timing favorable?
+Based only on what the user described — is this a real, sizeable market? What is the competitive intensity? Is the timing favorable?
 1 = small, stagnant, or unfavorable | 3 = moderate niche with some growth | 5 = large, fast-growing, attractive market
 
 3) Value Proposition & Differentiation (Weight: 20%)
-How clear is the value proposition? How unique is it versus existing alternatives? Is there switching advantage? Can it be defended?
+How clear is the value proposition as described? How unique is it? Can it be defended?
 1 = unclear or undifferentiated | 3 = somewhat differentiated | 5 = clear, compelling, meaningfully differentiated
 
 4) Business Model Viability (Weight: 20%)
-How strong is the revenue model? How scalable is it? Does the cost vs revenue logic hold? Is monetization feasible?
+How strong is the revenue model implied by the description? How scalable? Does the cost vs revenue logic hold?
 1 = weak or unclear monetization | 3 = plausible but uncertain | 5 = strong, scalable, well-structured
 
 5) Execution Feasibility (Weight: 15%)
-How complex is execution? How dependent is it on external factors? What level of validation exists? How fast can it iterate?
+How complex is execution based on what is described? How dependent on external factors? How fast can it iterate?
 1 = very hard to execute, no validation | 3 = feasible with manageable risks | 5 = highly feasible with strong validation
 
-CONFIDENCE SCORE (1–5): How much evidence exists to support this evaluation?
+CONFIDENCE SCORE (1–5): How much evidence exists in the description to support this evaluation?
 1 = mostly assumptions | 3 = some validation | 5 = strong traction or revenue
 
 CALCULATION:
@@ -66,29 +71,31 @@ INTERPRETATION:
 Return ONLY valid JSON — no markdown fences, no explanation, nothing else.`,
       messages: [{
         role: "user",
-        content: `Evaluate this business idea: "${idea}"
+        content: `Evaluate this business idea exactly as described. Do not reference any customer segments — none have been identified. Base your entire evaluation only on what is stated below.
+
+Business idea: "${idea}"
 
 Return ONLY valid JSON in this exact structure:
 
 {
   "scores": {
-    "problem": { "score": X, "reason": "One concise sentence about the idea's problem strength — no geography, no segment." },
-    "market": { "score": X, "reason": "One concise sentence about general market potential — no geography, no segment." },
-    "valueProposition": { "score": X, "reason": "One concise sentence about differentiation — no geography, no segment." },
-    "businessModel": { "score": X, "reason": "One concise sentence about revenue model strength — no geography, no segment." },
-    "execution": { "score": X, "reason": "One concise sentence about execution complexity — no geography, no segment." }
+    "problem": { "score": X, "reason": "One sentence grounded only in what the user described." },
+    "market": { "score": X, "reason": "One sentence grounded only in what the user described." },
+    "valueProposition": { "score": X, "reason": "One sentence grounded only in what the user described." },
+    "businessModel": { "score": X, "reason": "One sentence grounded only in what the user described." },
+    "execution": { "score": X, "reason": "One sentence grounded only in what the user described." }
   },
   "finalScore": X,
   "confidenceScore": X,
   "interpretation": "Very Strong Opportunity | Promising but Needs Validation | Unclear / Moderate Risk | Weak / High Risk",
   "insights": {
-    "topStrength": "One sentence about the idea's strongest point.",
-    "biggestRisk": "One sentence about the idea's biggest risk.",
-    "keyAssumption": "One sentence about the most critical unvalidated assumption.",
+    "topStrength": "One sentence about the idea's strongest point as described.",
+    "biggestRisk": "One sentence about the idea's biggest risk as described.",
+    "keyAssumption": "One sentence about the most critical unvalidated assumption in the description.",
     "nextBestAction": "One concrete sentence — the single most important thing to do next."
   },
   "warnings": [
-    "Optional warning if a specific risk pattern is detected.",
+    "Optional warning if a specific risk pattern is detected in the description.",
     "Optional second warning."
   ]
 }`
