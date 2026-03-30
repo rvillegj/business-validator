@@ -7,36 +7,9 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).end();
 
   const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-  const { idea, segmentContext, scoreMode } = body;
+  const { idea, segmentContext } = body;
 
-  // --- Score mode: evaluate likelihood of success from canvas context ---
-  if (scoreMode) {
-    const scoreResponse = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01"
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        system: buildScoringSystemPrompt(),
-        messages: [{ role: "user", content: buildScoringUserPrompt(idea) }]
-      })
-    });
-
-    const scoreData = await scoreResponse.json();
-    if (!scoreResponse.ok || !scoreData.content) {
-      return res.status(500).json({ error: "Scoring API error", detail: scoreData });
-    }
-
-    const scoreText = scoreData.content.map(b => b.text || "").join("");
-    const scoreClean = scoreText.replace(/```json|```/g, "").trim();
-    return res.status(200).json(JSON.parse(scoreClean));
-  }
-
-  // --- Normal mode: generate business model canvas ---
+  // Generate business model canvas
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -62,86 +35,12 @@ module.exports = async function handler(req, res) {
   res.status(200).json(JSON.parse(clean));
 };
 
-function buildScoringSystemPrompt() {
-  return `You are an expert startup evaluator used by founders, investors, and venture studios.
-
-Your task is to evaluate a business idea and produce a structured "Likelihood of Success" assessment.
-
-Be analytical, objective, and concise. Avoid hype. Base your reasoning on problem strength, business fundamentals, and general market dynamics.
-
-CRITICAL INSTRUCTION: You are evaluating the BUSINESS IDEA only — not any specific customer segment, geography, or market. The user has described an idea; your job is to assess whether the underlying problem is real, whether the business model is sound, and whether it can succeed. Do NOT anchor your reasoning to any specific country, city, demographic, or customer segment. Your evaluation must be valid regardless of which market the founder eventually targets. If you find yourself referencing a specific geography or segment in your reasoning, stop and reframe around the idea itself.
-
-EVALUATION FRAMEWORK
-
-Score the idea across 5 pillars using a scale from 1 to 5:
-
-1) Problem Strength & Urgency (Weight: 25%)
-Evaluate: how frequently the problem occurs, how painful or costly it is, how dissatisfied users are with current solutions, evidence of willingness to pay.
-1 = weak or infrequent problem, low urgency | 3 = meaningful problem for a niche, moderate urgency | 5 = critical, frequent, expensive problem with strong willingness to pay
-
-2) Market Attractiveness (Weight: 20%)
-Evaluate: realistic market size, growth rate, competition intensity, timing.
-1 = small, stagnant, or highly unfavorable market | 3 = moderate or niche market with some growth | 5 = large, fast-growing, attractive market
-
-3) Value Proposition & Differentiation (Weight: 20%)
-Evaluate: clarity of the value proposition, uniqueness vs competitors, switching advantage, defensibility potential.
-1 = unclear or undifferentiated | 3 = somewhat differentiated | 5 = clear, compelling, and meaningfully differentiated
-
-4) Business Model Viability (Weight: 20%)
-Evaluate: revenue model strength, scalability, cost vs revenue logic, monetization feasibility.
-1 = weak or unclear monetization | 3 = plausible but uncertain | 5 = strong, scalable, and well-structured
-
-5) Execution Feasibility & Evidence (Weight: 15%)
-Evaluate: operational complexity, dependency on external factors, level of validation, speed of iteration.
-1 = very hard to execute, little to no validation | 3 = feasible with some risks and partial validation | 5 = highly feasible with strong validation or traction
-
-CONFIDENCE SCORE (1–5)
-1 = mostly assumptions | 3 = some validation | 5 = strong evidence (traction, revenue, retention)
-
-CALCULATION
-Final Score = ((Problem * 25) + (Market * 20) + (ValueProposition * 20) + (BusinessModel * 20) + (Execution * 15)) / 5
-
-INTERPRETATION RULES
-80–100 → Very Strong Opportunity
-65–79 → Promising but Needs Validation
-50–64 → Unclear / Moderate Risk
-<50 → Weak / High Risk
-
-IMPORTANT: Be critical and realistic. Do not give all high scores unless strongly justified. Keep reasoning concise but specific. Always return valid JSON only — no extra text, no markdown fences.`;
-}
-
-function buildScoringUserPrompt(idea) {
-  return `Business idea: "${idea}"
-
-Evaluate this business idea and return ONLY valid JSON in this exact structure:
-
-{
-  "scores": {
-    "problem": { "score": X, "reason": "One concise sentence." },
-    "market": { "score": X, "reason": "One concise sentence." },
-    "valueProposition": { "score": X, "reason": "One concise sentence." },
-    "businessModel": { "score": X, "reason": "One concise sentence." },
-    "execution": { "score": X, "reason": "One concise sentence." }
-  },
-  "finalScore": X,
-  "confidenceScore": X,
-  "interpretation": "Very Strong Opportunity | Promising but Needs Validation | Unclear / Moderate Risk | Weak / High Risk",
-  "insights": {
-    "topStrength": "One sentence.",
-    "biggestRisk": "One sentence.",
-    "keyAssumption": "One sentence.",
-    "nextBestAction": "One concrete sentence."
-  },
-  "warnings": ["Optional warning string", "Optional warning string"]
-}`;
-}
-
 function buildPrompt(idea, segmentContext) {
-  const segmentInstruction = segmentContext
+const segmentInstruction = segmentContext
     ? `Focus exclusively on this specific customer segment: "${segmentContext}". All sections must be coherent with and tailored to this segment.`
-    : `Identify the single most promising customer segment for this business idea. You operate globally — select the market and geography where this idea has the highest realistic likelihood of success, based on demand signals, competitive white space, cultural fit, and economic conditions.`;
+    : `Identify the single most promising customer segment for this business idea. If the user has mentioned a specific country, city, or market in their description, use that as the primary geography. Only if no geography is mentioned should you select the most promising market globally based on demand signals, competitive white space, cultural fit, and economic conditions.`;
 
-  return `You are an unparalleled global market research strategist — a data detective who operates across borders, blending advanced analytical methods with deep cultural empathy to convert raw market signals into actionable business intelligence.
+    return `You are an unparalleled global market research strategist — a data detective who operates across borders, blending advanced analytical methods with deep cultural empathy to convert raw market signals into actionable business intelligence.
 
 Your capabilities span:
 - Cross-cultural insight and localization: You possess a non-stereotypical mindset. You understand that consumer behavior is shaped by local culture, history, economic conditions, and emotional drivers. You move beyond surface-level data to uncover nuanced preferences, advising on how products and services must adapt to win in specific markets.
