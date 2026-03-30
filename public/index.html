@@ -24,7 +24,57 @@
     .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
     .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .tabs-wrapper { margin-top: 52px; display: none; }
+    /* ── Likelihood of success score ── */
+    .score-wrapper { margin-top: 48px; display: none; }
+    .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 16px; overflow: hidden; animation: fadeIn 0.4s ease both; }
+    .score-skeleton { background: white; border: 1.5px solid #E2D9CE; border-radius: 16px; padding: 28px; display: none; }
+    .skel-line { background: #E2D9CE; border-radius: 4px; margin-bottom: 10px; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+    .score-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 24px 28px 20px; border-bottom: 1.5px solid #E2D9CE; gap: 24px; flex-wrap: wrap; }
+    .score-left { display: flex; align-items: flex-start; gap: 20px; }
+    .score-dial { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
+    .score-dial svg { width: 72px; height: 72px; }
+    .score-dial-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .score-dial-big { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1; }
+    .score-dial-sub { font-size: 10px; color: #B5A99A; letter-spacing: 0.04em; }
+    .score-meta { display: flex; flex-direction: column; gap: 6px; }
+    .score-section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; }
+    .score-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; padding: 5px 13px; border-radius: 7px; }
+    .score-badge.very-strong { background: #E1F5EE; color: #085041; }
+    .score-badge.promising    { background: #FDF6EC; color: #A8851A; border: 1px solid #E8C547; }
+    .score-badge.moderate     { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
+    .score-badge.weak         { background: #FFF5F5; color: #9B2335; }
+    .score-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .score-confidence { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .score-conf-label { font-size: 11px; color: #B5A99A; }
+    .score-conf-pips { display: flex; gap: 3px; }
+    .score-conf-pip { width: 16px; height: 4px; border-radius: 2px; background: #E2D9CE; }
+    .score-conf-pip.on { background: #1A1A2E; }
+
+    .score-pillars { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1.5px solid #E2D9CE; }
+    .score-pillar { padding: 16px 18px; border-right: 1.5px solid #E2D9CE; }
+    .score-pillar:last-child { border-right: none; }
+    .score-pillar-name { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
+    .score-bar-track { height: 5px; background: #E2D9CE; border-radius: 3px; margin-bottom: 6px; }
+    .score-bar-fill { height: 5px; border-radius: 3px; transition: width 0.6s ease; }
+    .score-pillar-num { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; }
+    .score-pillar-reason { font-size: 11px; color: #888; line-height: 1.45; }
+
+    .score-insights { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .score-insight { padding: 16px 20px; border-right: 1.5px solid #E2D9CE; border-bottom: 1.5px solid #E2D9CE; }
+    .score-insight:nth-child(2) { border-right: none; }
+    .score-insight:nth-child(3) { border-bottom: none; }
+    .score-insight:nth-child(4) { border-right: none; border-bottom: none; }
+    .score-insight-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+    .score-insight-text { font-size: 13px; color: #444; line-height: 1.55; }
+
+    .score-warnings { padding: 14px 24px; background: #FDF6EC; border-top: 1.5px solid #E2D9CE; display: flex; flex-direction: column; gap: 8px; }
+    .score-warning { display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; color: #666; line-height: 1.5; }
+    .score-warning-icon { width: 17px; height: 17px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; color: #A8851A; font-weight: 700; }
+
+    /* ── Tabs ── */
+    .tabs-wrapper { margin-top: 24px; display: none; }
     .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
     .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
     .tab-btn.active { background: white; color: #1A1A2E; border-bottom: 2px solid white; }
@@ -43,12 +93,10 @@
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
 
-    /* Always-expanded sections */
+    /* ── Canvas sections ── */
     .section { margin-bottom: 24px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
-    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
-
-    /* Collapsible sections */
+    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
     .collapsible { margin-bottom: 10px; border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; }
     .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; background: #FDF6EC; transition: background 0.2s; user-select: none; }
     .collapsible-header:hover { background: #F0EAE0; }
@@ -57,28 +105,23 @@
     .collapsible-chevron.open { transform: rotate(180deg); }
     .collapsible-body { display: none; padding: 20px 20px 24px; border-top: 1.5px solid #E2D9CE; }
     .collapsible-body.open { display: block; }
-
     .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-
     .seg-block-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
     .tab-panel.seg1 .seg-block-label { color: #FF6B4A; }
     .tab-panel.seg2 .seg-block-label { color: #3D6B4F; }
     .tab-panel.seg3 .seg-block-label { color: #A8851A; }
-
     .seg-item { display: flex; gap: 10px; margin-bottom: 8px; font-size: 13px; color: #555; line-height: 1.55; }
     .seg-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
     .tab-panel.seg1 .seg-dot { background: #FF6B4A; }
     .tab-panel.seg2 .seg-dot { background: #3D6B4F; }
     .tab-panel.seg3 .seg-dot { background: #E8C547; }
-
     .seg-block { margin-bottom: 18px; padding: 16px; background: #FDF6EC; border-radius: 10px; }
     .seg-block:last-child { margin-bottom: 0; }
-
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
     .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
     .card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.08); transform: translateY(-2px); }
@@ -88,7 +131,6 @@
     .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
     .card-link { display: block; font-size: 12px; color: #FF6B4A; font-weight: 500; margin-top: 12px; text-decoration: none; cursor: pointer; transition: opacity 0.2s; }
     .card-link:hover { opacity: 0.7; text-decoration: underline; }
-
     .type-acquire { color: #FF6B4A; }
     .type-retain { color: #3D6B4F; }
     .type-grow { color: #A8851A; }
@@ -100,7 +142,6 @@
     .type-fixed { color: #C0392B; }
     .type-variable { color: #27AE60; }
     .type-semi-variable { color: #A8851A; }
-
     .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
     .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; }
     .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
@@ -111,11 +152,8 @@
     .phase-post-purchase { color: #7B5EA7; }
     .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
     .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
-
-    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
+    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
-
-    /* Implementation plan */
     .impl-block { border: 1.5px solid #E2D9CE; border-radius: 12px; margin-bottom: 10px; overflow: hidden; scroll-margin-top: 80px; }
     .impl-header { padding: 18px 20px; background: #FDF6EC; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; cursor: pointer; transition: background 0.2s; }
     .impl-header:hover { background: #F0EAE0; }
@@ -127,14 +165,12 @@
     .impl-body.open { display: block; }
     .impl-task-count { font-size: 12px; color: #888; margin-bottom: 16px; }
     .impl-task-count span { font-weight: 500; color: #1A1A2E; }
-
     .portfolios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
     .portfolio { background: white; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 16px; }
     .portfolio-name { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
     .tab-panel.seg1 .portfolio-name { color: #FF6B4A; }
     .tab-panel.seg2 .portfolio-name { color: #3D6B4F; }
     .tab-panel.seg3 .portfolio-name { color: #A8851A; }
-
     .task-item { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; }
     .task-item:last-child { margin-bottom: 0; }
     .task-check { width: 15px; height: 15px; border: 1.5px solid #E2D9CE; border-radius: 3px; flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -142,13 +178,11 @@
     .task-check.checked::after { content: '✓'; color: white; font-size: 9px; }
     .task-text { font-size: 12.5px; color: #555; line-height: 1.55; flex: 1; }
     .task-text.checked { text-decoration: line-through; color: #B5A99A; }
-
     .progress-wrap { height: 3px; background: #E2D9CE; border-radius: 2px; margin-top: 12px; }
     .progress-bar { height: 3px; background: #FF6B4A; border-radius: 2px; width: 0%; transition: width 0.3s; }
     .tab-panel.seg2 .progress-bar { background: #3D6B4F; }
     .tab-panel.seg3 .progress-bar { background: #E8C547; }
     .progress-label { font-size: 11px; color: #B5A99A; margin-top: 5px; }
-
     .loading { text-align: center; padding: 40px 0; display: none; }
     .loading-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
     .loading-text { font-size: 14px; color: #888; font-weight: 300; }
@@ -178,6 +212,18 @@
       <div class="loading-text">Identifying your customer segments…</div>
     </div>
 
+    <!-- Likelihood of success score -->
+    <div class="score-wrapper" id="scoreWrapper">
+      <div class="score-skeleton" id="scoreSkeleton">
+        <div class="skel-line" style="width:140px;height:12px;"></div>
+        <div class="skel-line" style="width:220px;height:20px;margin-top:8px;"></div>
+        <div class="skel-line" style="width:100%;height:8px;margin-top:20px;"></div>
+        <div class="skel-line" style="width:80%;height:8px;"></div>
+      </div>
+      <div class="score-card" id="scoreCard" style="display:none;"></div>
+    </div>
+
+    <!-- Segment tabs -->
     <div class="tabs-wrapper" id="tabsWrapper">
       <div class="tab-nav">
         <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
@@ -220,7 +266,6 @@
     function scrollToImpl(implId) {
       const el = document.getElementById(implId);
       if (!el) return;
-
       const panelIndex = implId.split('-')[1];
       const sectionId = `impl-section-${panelIndex}`;
       const sectionBody = document.getElementById(sectionId + '-body');
@@ -229,14 +274,12 @@
         sectionBody.classList.add('open');
         sectionChev.classList.add('open');
       }
-
       const implBody = el.querySelector('.impl-body');
       const implChev = el.querySelector('.impl-chevron');
       if (!implBody.classList.contains('open')) {
         implBody.classList.add('open');
         implChev.classList.add('open');
       }
-
       setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
     }
 
@@ -303,6 +346,109 @@
       }).join('');
     }
 
+    // ── Render likelihood of success score ──
+    function renderScore(data) {
+      const s = data.scores;
+      const interp = data.interpretation || '';
+      const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong'
+        : interp.toLowerCase().includes('promising') ? 'promising'
+        : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
+      const dotColor = { 'very-strong': '#1D9E75', 'promising': '#E8C547', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
+      const barColor = { 'very-strong': '#1D9E75', 'promising': '#E8C547', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
+      const finalScore = Math.round(data.finalScore);
+      const circumference = 2 * Math.PI * 28;
+      const dashArray = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
+      const pillars = [
+        { key: 'problem',          label: 'Problem strength',    weight: '25%' },
+        { key: 'market',           label: 'Market attractiveness', weight: '20%' },
+        { key: 'valueProposition', label: 'Value proposition',   weight: '20%' },
+        { key: 'businessModel',    label: 'Business model',      weight: '20%' },
+        { key: 'execution',        label: 'Execution feasibility', weight: '15%' }
+      ];
+      const insights = data.insights || {};
+      const warnings = data.warnings || [];
+
+      document.getElementById('scoreCard').innerHTML = `
+        <div class="score-header">
+          <div class="score-left">
+            <div class="score-dial">
+              <svg viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#E2D9CE" stroke-width="5"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="${barColor}" stroke-width="5"
+                  stroke-dasharray="${dashArray}" stroke-dashoffset="${(circumference * 0.25).toFixed(1)}"
+                  stroke-linecap="round" transform="rotate(-90 36 36)"/>
+              </svg>
+              <div class="score-dial-num">
+                <span class="score-dial-big" style="color:${barColor};">${finalScore}</span>
+                <span class="score-dial-sub">/100</span>
+              </div>
+            </div>
+            <div class="score-meta">
+              <div class="score-section-eyebrow">Likelihood of success</div>
+              <div class="score-badge ${interpKey}">
+                <div class="score-badge-dot" style="background:${dotColor};"></div>
+                ${interp}
+              </div>
+              <div class="score-confidence">
+                <span class="score-conf-label">Confidence</span>
+                <div class="score-conf-pips">
+                  ${[1,2,3,4,5].map(n => `<div class="score-conf-pip ${n <= data.confidenceScore ? 'on' : ''}"></div>`).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-pillars">
+          ${pillars.map(p => {
+            const pillar = s[p.key] || {};
+            const score = pillar.score || 0;
+            const barW = Math.round((score / 5) * 100);
+            return `
+              <div class="score-pillar">
+                <div class="score-pillar-name">${p.label}<br><span style="color:#E2D9CE;">${p.weight}</span></div>
+                <div class="score-pillar-num">${score}/5</div>
+                <div class="score-bar-track">
+                  <div class="score-bar-fill" style="width:${barW}%;background:${barColor};"></div>
+                </div>
+                <div class="score-pillar-reason">${pillar.reason || ''}</div>
+              </div>`;
+          }).join('')}
+        </div>
+
+        <div class="score-insights">
+          <div class="score-insight">
+            <div class="score-insight-label" style="color:#3D6B4F;">Top strength</div>
+            <div class="score-insight-text">${insights.topStrength || ''}</div>
+          </div>
+          <div class="score-insight">
+            <div class="score-insight-label" style="color:#E53E3E;">Biggest risk</div>
+            <div class="score-insight-text">${insights.biggestRisk || ''}</div>
+          </div>
+          <div class="score-insight">
+            <div class="score-insight-label" style="color:#B5A99A;">Key assumption</div>
+            <div class="score-insight-text">${insights.keyAssumption || ''}</div>
+          </div>
+          <div class="score-insight">
+            <div class="score-insight-label" style="color:#FF6B4A;">Next best action</div>
+            <div class="score-insight-text">${insights.nextBestAction || ''}</div>
+          </div>
+        </div>
+
+        ${warnings.length > 0 ? `
+        <div class="score-warnings">
+          ${warnings.map(w => `
+            <div class="score-warning">
+              <div class="score-warning-icon">!</div>
+              <span>${w}</span>
+            </div>`).join('')}
+        </div>` : ''}
+      `;
+
+      document.getElementById('scoreSkeleton').style.display = 'none';
+      document.getElementById('scoreCard').style.display = 'block';
+    }
+
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const offerings = data.valueProposition.offerings;
@@ -310,7 +456,6 @@
 
       const html = `
         <div class="animate">
-
           <div class="section">
             <div class="section-label">Customer Segment</div>
             <div class="seg-profile">${seg.profile}</div>
@@ -448,7 +593,6 @@
           ${collapsibleSection(`impl-section-${p}`, 'Suggested tasks to get you started',
             renderImplementationPlan(offerings, p)
           )}
-
         </div>`;
 
       document.getElementById(`panel-${panelIndex}`).innerHTML = html;
@@ -463,7 +607,21 @@
       });
       const data = await response.json();
       renderCanvas(data, panelIndex);
-      return data.segment.name;
+      return data;
+    }
+
+    async function fetchScore(idea, canvasContext) {
+      try {
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scoreMode: true, idea, canvasContext })
+        });
+        const data = await response.json();
+        renderScore(data);
+      } catch (err) {
+        document.getElementById('scoreSkeleton').style.display = 'none';
+      }
     }
 
     async function generate() {
@@ -472,6 +630,7 @@
       const btn = document.getElementById('generateBtn');
       const loading = document.getElementById('loading');
       const tabsWrapper = document.getElementById('tabsWrapper');
+      const scoreWrapper = document.getElementById('scoreWrapper');
 
       if (!idea) {
         errorMsg.style.display = 'block';
@@ -485,6 +644,7 @@
       btn.innerHTML = 'Building your canvases...';
       loading.style.display = 'block';
       tabsWrapper.style.display = 'none';
+      scoreWrapper.style.display = 'none';
 
       document.querySelectorAll('.tab-btn').forEach((b, i) => {
         b.textContent = `Customer Segment ${i + 1}`;
@@ -499,14 +659,27 @@
           </div>`;
       });
 
+      // Reset score card
+      document.getElementById('scoreSkeleton').style.display = 'block';
+      document.getElementById('scoreCard').style.display = 'none';
+      document.getElementById('scoreCard').innerHTML = '';
+
       try {
         loading.style.display = 'none';
         tabsWrapper.style.display = 'block';
+        scoreWrapper.style.display = 'block';
         switchTab(0);
 
-        const seg1Name = await fetchSegment(idea, null, 0);
-        const seg2Name = await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
-        await fetchSegment(idea, `A different segment from "${seg1Name}" and "${seg2Name}" — identify the third most promising customer segment`, 2);
+        // Fetch segment 1 first — its canvas feeds the score
+        const seg1Data = await fetchSegment(idea, null, 0);
+
+        // Fetch score + segments 2 & 3 in parallel
+        const seg1Name = seg1Data.segment.name;
+        await Promise.all([
+          fetchScore(idea, seg1Data),
+          fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1),
+          fetchSegment(idea, `A different segment from "${seg1Name}" and a second segment — identify the third most promising customer segment`, 2)
+        ]);
 
       } catch (err) {
         alert('Something went wrong. Please try again.');
