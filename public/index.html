@@ -235,10 +235,18 @@
         <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
       <div class="tab-panel seg2" id="panel-1">
-        <div class="loading-tab"><div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+        <div style="text-align:center;padding:60px 24px;">
+          <div style="font-size:32px;margin-bottom:20px;">🙏</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
+          <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
+        </div>
       </div>
       <div class="tab-panel seg3" id="panel-2">
-        <div class="loading-tab"><div class="loading-tab-msg">We are working on the business model canvas for this customer segment.</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+        <div style="text-align:center;padding:60px 24px;">
+          <div style="font-size:32px;margin-bottom:20px;">🙏</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
+          <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -691,11 +699,21 @@
       });
       document.querySelectorAll('.tab-panel').forEach((p, i) => {
         p.classList.toggle('active', i === 0);
-        p.innerHTML = `
-          <div class="loading-tab">
-            <div class="loading-tab-msg">${i === 0 ? 'Building the business model canvas for this customer segment…' : 'We are working on the business model canvas for this customer segment.'}</div>
-            <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-          </div>`;
+        if (i === 0) {
+          p.innerHTML = `
+            <div class="loading-tab">
+              <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
+              <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            </div>`;
+        } else {
+          p.innerHTML = `
+            <div style="text-align:center;padding:60px 24px;">
+              <div style="font-size:32px;margin-bottom:20px;">🙏</div>
+              <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
+              <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
+            </div>`;
+        }
+      });
       });
 
       // Reset score card
@@ -732,11 +750,15 @@
         renderCanvas(seg1Data, 0);
         document.querySelectorAll('.tab-btn')[0].textContent = seg1Data.segment.name;
 
-        const seg1Name = seg1Data.segment.name;
-
-        // Seg2 then seg3 sequentially — guarantees correct order
-        await fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1);
-        await fetchSegment(idea, `A different segment from "${seg1Name}" and a second segment — identify the third most promising customer segment`, 2);
+        // Seg2 and seg3 show a coming-soon message during testing
+        const comingSoonHtml = `
+          <div style="text-align:center;padding:60px 24px;">
+            <div style="font-size:32px;margin-bottom:20px;">🙏</div>
+            <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
+            <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
+          </div>`;
+        document.getElementById('panel-1').innerHTML = comingSoonHtml;
+        document.getElementById('panel-2').innerHTML = comingSoonHtml;
 
       } catch (err) {
         alert('Something went wrong. Please try again.');
