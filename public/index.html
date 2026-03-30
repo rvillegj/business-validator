@@ -14,7 +14,6 @@
     h1 span { color: #FF6B4A; }
     .deco-line { width: 60px; height: 3px; background: #E8C547; margin: 22px 0; border-radius: 2px; }
     .sub { font-size: 15px; color: #666; font-weight: 300; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
-    .sub strong { font-weight: 500; color: #1A1A2E; }
     .field-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
     .field-label span { color: #FF6B4A; }
     textarea { width: 100%; min-height: 128px; background: white; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 18px 20px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1A1A2E; resize: vertical; line-height: 1.6; outline: none; transition: border-color 0.2s; }
@@ -124,34 +123,6 @@
     .tab-panel.seg1 .seg-dot { background: #FF6B4A; }
     .tab-panel.seg2 .seg-dot { background: #3D6B4F; }
     .tab-panel.seg3 .seg-dot { background: #E8C547; }
-    .sv-card { border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; margin: 20px 0 24px; animation: fadeIn 0.4s ease both; }
-    .sv-header { display: flex; align-items: flex-start; padding: 18px 22px 16px; border-bottom: 1.5px solid #E2D9CE; gap: 18px; }
-    .sv-dial-wrap { position: relative; width: 60px; height: 60px; flex-shrink: 0; }
-    .sv-dial-wrap svg { width: 60px; height: 60px; }
-    .sv-dial-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .sv-dial-big { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1; }
-    .sv-dial-sub { font-size: 9px; color: #B5A99A; }
-    .sv-meta { display: flex; flex-direction: column; gap: 5px; }
-    .sv-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; }
-    .sv-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 11px; border-radius: 6px; }
-    .sv-badge.sv-strong   { background: #E1F5EE; color: #085041; }
-    .sv-badge.sv-moderate { background: #FDF6EC; color: #A8851A; border: 1px solid #E8C547; }
-    .sv-badge.sv-weak     { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
-    .sv-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .sv-summary { font-size: 12.5px; color: #666; line-height: 1.55; margin-top: 3px; max-width: 500px; }
-    .sv-pillars { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1.5px solid #E2D9CE; }
-    .sv-pillar { padding: 13px 14px; border-right: 1.5px solid #E2D9CE; background: white; }
-    .sv-pillar:last-child { border-right: none; }
-    .sv-pil-name { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; line-height: 1.4; }
-    .sv-pil-weight { font-size: 9px; color: #D0C9BF; margin-bottom: 6px; margin-top: 1px; }
-    .sv-pil-score { font-size: 12px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; }
-    .sv-bar-track { height: 4px; background: #E2D9CE; border-radius: 2px; margin-bottom: 5px; }
-    .sv-bar-fill { height: 4px; border-radius: 2px; }
-    .sv-pil-reason { font-size: 10.5px; color: #999; line-height: 1.45; }
-    .sv-warnings { padding: 12px 18px; background: #FDF6EC; border-top: 1.5px solid #E2D9CE; display: flex; flex-direction: column; gap: 7px; }
-    .sv-warn-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
-    .sv-warn-row { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #666; line-height: 1.5; }
-    .sv-warn-icon { width: 16px; height: 16px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: #A8851A; font-weight: 700; margin-top: 1px; }
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
     .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
     .card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.08); transform: translateY(-2px); }
@@ -194,14 +165,14 @@
 </head>
 <body>
   <div class="app">
-    <div class="eyebrow">Global Market Intelligence</div>
+    <div class="eyebrow">Costa Rica Market Intelligence</div>
     <h1>Business Model<br><span>Generator</span></h1>
     <div class="deco-line"></div>
-    <p class="sub">Describe your <strong>business idea</strong> and <strong>target market</strong>. Our global market research strategist will build three complete business model canvases tailored to your context.</p>
+    <p class="sub">Describe your business idea and discover three complete business model canvases — one per potential customer segment.</p>
 
-    <div class="field-label">Business idea and target market <span>*</span></div>
-    <textarea id="idea" placeholder="e.g. Personalized English coaching for executives in Spain and Latin America"></textarea>
-    <div class="error-msg" id="errorMsg">Oh snap! Please describe your business idea so we can build your model.</div>
+    <div class="field-label">Business Idea <span>*</span></div>
+    <textarea id="idea" placeholder="e.g. Executive English coaching for mid-senior professionals at transnational companies in Costa Rica..."></textarea>
+    <div class="error-msg" id="errorMsg">Oh snap! The business idea is missing. Please let us know what you are working on so we can suggest your business model.</div>
 
     <button class="btn" id="generateBtn" onclick="generate()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -380,109 +351,6 @@
       document.getElementById('scoreCard').style.display = 'block';
     }
 
-    function scoreFromCanvas(data) {
-      const seg = data.segment;
-      const rev = data.revenueStreams.streams;
-      const comp = data.competitiveLandscape;
-      const res = data.keyResources.resources;
-      const act = data.keyActivities.activities;
-
-      const painText = seg.painPoints.join(' ').toLowerCase();
-      const gainText = seg.gains.join(' ').toLowerCase();
-      const jobText  = seg.jobsToBeDone.join(' ').toLowerCase();
-      const compText = comp.competitors.map(c => c.description).join(' ').toLowerCase();
-      const advText  = (comp.advantage || '').toLowerCase();
-      const resText  = res.map(r => r.type).join(' ').toLowerCase();
-      const revTypes = rev.map(r => (r.type || '').toLowerCase());
-
-      const urgencyWords = ['urgent','critical','expensive','costly','career','promotion','revenue','growth','risk','fail'];
-      const urgencyScore = Math.min(5, 2 + urgencyWords.filter(w => (painText + jobText).includes(w)).length);
-
-      const hasSubscription = revTypes.some(t => t.includes('subscription'));
-      const revScore = Math.min(5, (hasSubscription ? 2 : 1) + Math.min(2, revTypes.length));
-
-      const weakCompetitor = compText.includes('no') || compText.includes('weak') || compText.includes('lack') || compText.includes('generic');
-      const strongAdv = advText.length > 40;
-      const defScore = Math.min(5, 1 + (weakCompetitor ? 2 : 1) + (strongAdv ? 1 : 0) + (advText.includes('only') ? 1 : 0));
-
-      const isLightweight = resText.includes('intellectual') || resText.includes('human');
-      const isHeavy = resText.includes('physical') || resText.includes('financial');
-      const execScore = Math.min(5, Math.max(1, 3 + (isLightweight ? 1 : 0) - (isHeavy ? 1 : 0) - (act.length > 3 ? 1 : 0)));
-
-      const specificWords = ['specific','measurable','documented','proven','known','evidence','data'];
-      const demandScore = Math.min(5, 2 + specificWords.filter(w => (painText + gainText + jobText).includes(w)).length);
-
-      const final = Math.round((urgencyScore * 25 + revScore * 20 + defScore * 20 + execScore * 20 + demandScore * 15) / 5);
-      const verdict = final >= 65 ? 'sv-strong' : final >= 45 ? 'sv-moderate' : 'sv-weak';
-      const verdictLabel = final >= 65 ? 'Strong segment' : final >= 45 ? 'Moderate — proceed with caution' : 'Weak — significant barriers';
-      const color = final >= 65 ? '#1D9E75' : final >= 45 ? '#E8C547' : '#E24B4A';
-      const dotColor = final >= 65 ? '#1D9E75' : final >= 45 ? '#BA7517' : '#E24B4A';
-
-      const circumference = 2 * Math.PI * 23;
-      const arc = ((final / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
-
-      const pillars = [
-        { name: 'Market access',   weight: '25%', score: urgencyScore, reason: urgencyScore >= 4 ? 'Segment has strong, frequent, high-urgency needs.' : urgencyScore >= 3 ? 'Moderate urgency — some friction to activate buyers.' : 'Low urgency detected — consider segment motivation.' },
-        { name: 'Revenue model',   weight: '20%', score: revScore,     reason: revScore >= 4 ? 'Multiple revenue streams including recurring model.' : revScore >= 3 ? 'Viable model but limited to one or two stream types.' : 'Weak monetization — mostly one-off or unclear pricing.' },
-        { name: 'Defensibility',   weight: '20%', score: defScore,     reason: defScore >= 4 ? 'Competitors have named weaknesses; advantage is specific.' : defScore >= 3 ? 'Some differentiation but advantage could be replicated.' : 'Competitive advantage is vague or competitors are strong.' },
-        { name: 'Execution',       weight: '20%', score: execScore,    reason: execScore >= 4 ? 'Lean resource profile — primarily intellectual or human assets.' : execScore >= 3 ? 'Moderate complexity — manageable with focused effort.' : 'High execution risk — heavy resources or broad activity set.' },
-        { name: 'Demand evidence', weight: '15%', score: demandScore,  reason: demandScore >= 4 ? 'Jobs and pains are specific, measurable, and well-documented.' : demandScore >= 3 ? 'Demand signals present but could be more concrete.' : 'Vague jobs/pains — demand evidence needs strengthening.' }
-      ];
-
-      const warnings = [];
-      if (compText.includes('free') || compText.includes('youtube') || compText.includes('app')) warnings.push('Free alternatives exist in the competitive landscape — a clear "why pay?" case must be made before launch.');
-      if (!hasSubscription) warnings.push('No subscription or recurring revenue stream detected — consider how to build predictable revenue from this segment.');
-      if (isHeavy) warnings.push('Key resources include physical or financial assets — validate capital requirements before committing to this segment.');
-
-      return { final, verdict, verdictLabel, color, dotColor, arc, circumference, pillars, warnings };
-    }
-
-    function renderSegmentViability(data) {
-      const sv = scoreFromCanvas(data);
-      const pillarsHtml = sv.pillars.map(p => `
-        <div class="sv-pillar">
-          <div class="sv-pil-name">${p.name}</div>
-          <div class="sv-pil-weight">${p.weight}</div>
-          <div class="sv-pil-score">${p.score}/5</div>
-          <div class="sv-bar-track"><div class="sv-bar-fill" style="width:${p.score * 20}%;background:${p.score >= 4 ? '#1D9E75' : p.score >= 3 ? '#E8C547' : '#FF6B4A'};"></div></div>
-          <div class="sv-pil-reason">${p.reason}</div>
-        </div>`).join('');
-
-      const warningsHtml = sv.warnings.length > 0 ? `
-        <div class="sv-warnings">
-          <div class="sv-warn-label">Watch out for</div>
-          ${sv.warnings.map(w => `<div class="sv-warn-row"><div class="sv-warn-icon">!</div><span>${w}</span></div>`).join('')}
-        </div>` : '';
-
-      return `
-        <div class="sv-card">
-          <div class="sv-header">
-            <div class="sv-dial-wrap">
-              <svg viewBox="0 0 60 60">
-                <circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/>
-                <circle cx="30" cy="30" r="23" fill="none" stroke="${sv.color}" stroke-width="4.5"
-                  stroke-dasharray="${sv.arc}" stroke-dashoffset="${(sv.circumference * 0.25).toFixed(1)}"
-                  stroke-linecap="round" transform="rotate(-90 30 30)"/>
-              </svg>
-              <div class="sv-dial-num">
-                <span class="sv-dial-big" style="color:${sv.color};">${sv.final}</span>
-                <span class="sv-dial-sub">/100</span>
-              </div>
-            </div>
-            <div class="sv-meta">
-              <div class="sv-eyebrow">Segment viability</div>
-              <div class="sv-badge ${sv.verdict}">
-                <div class="sv-badge-dot" style="background:${sv.dotColor};"></div>
-                ${sv.verdictLabel}
-              </div>
-              <div class="sv-summary">${data.competitiveLandscape.advantage}</div>
-            </div>
-          </div>
-          <div class="sv-pillars">${pillarsHtml}</div>
-          ${warningsHtml}
-        </div>`;
-    }
-
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const offerings = data.valueProposition.offerings;
@@ -509,8 +377,6 @@
               </div>
             </div>
           </div>
-
-          ${renderSegmentViability(data)}
 
           <div class="section">
             <div class="section-label">Value Proposition</div>
@@ -633,7 +499,77 @@
       document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
     }
 
+    const USE_MOCK = new URLSearchParams(window.location.search).has('mock');
+
+    const MOCK_SEGMENTS = [
+      {
+        segment: { name: "Mid-senior professionals", profile: "Ages 28–45 in the Greater Metropolitan Area earning ₡1.5M–₡3.5M/month at transnational companies like Amazon, Intel, or Experian who need business-level English to access senior roles.", tags: ["career-driven", "GAM-based", "transnational", "promotion-seeking"], jobsToBeDone: ["Communicate confidently in global leadership meetings and cross-functional calls.", "Qualify for senior roles that explicitly require demonstrated English fluency.", "Build a personal brand in English across LinkedIn and international networks."], painPoints: ["Generic language courses don't address executive vocabulary or corporate register.", "No structured feedback on written business communication like emails or presentations.", "Existing coaches lack knowledge of Costa Rican corporate culture and role expectations."], gains: ["Land the next promotion with a measurable fluency certificate as proof.", "Feel confident and credible in high-stakes presentations to global stakeholders.", "Access international job opportunities beyond the Costa Rican market."] },
+        valueProposition: { summary: "The only executive English coaching in Costa Rica built around corporate role transitions, not general fluency.", offerings: [{ name: "1:1 Executive Coaching", description: "Weekly sessions tailored to the professional's exact role and company context, targeting their specific communication gaps.", advantage: "better performance", implementationPlan: { portfolios: [] } }, { name: "Role Simulation Labs", description: "Recorded mock meetings and presentations with structured written feedback from a coach.", advantage: "more convenient", implementationPlan: { portfolios: [] } }, { name: "Fluency Progress Report", description: "Monthly report shareable with HR as evidence of professional development investment.", advantage: "better design", implementationPlan: { portfolios: [] } }] },
+        customerRelationships: { summary: "High-touch, outcome-oriented relationship built on measurable progress milestones.", strategies: [{ name: "LinkedIn Outreach", type: "Acquire", description: "Target professionals who engage with promotion and leadership content on LinkedIn." }, { name: "Monthly Progress Reviews", type: "Retain", description: "Structured check-ins tied to career goals keep clients accountable and engaged." }, { name: "Corporate Referral Program", type: "Grow", description: "Satisfied clients refer colleagues within the same employer, reducing acquisition cost." }] },
+        channels: { summary: "Digital-first reach via LinkedIn and employer networks, with in-person delivery for premium clients.", touchpoints: [{ phase: "Awareness", name: "LinkedIn Content", description: "Weekly posts on executive communication tips targeting GAM professionals." }, { phase: "Evaluation", name: "Free Discovery Call", description: "30-minute session to assess the client's current level and define goals." }, { phase: "Purchase", name: "Online Booking", description: "Self-serve booking and payment via Calendly and Stripe." }, { phase: "Delivery", name: "Zoom Sessions", description: "Live coaching sessions recorded for client review and coach feedback." }, { phase: "Post-Purchase", name: "WhatsApp Check-ins", description: "Weekly voice note feedback between sessions to reinforce learning." }] },
+        keyPartners: { summary: "Partnerships that extend reach into target employers and validate credibility.", partners: [{ name: "CINDE", type: "Strategic Alliance", description: "Costa Rica's investment promotion agency connects the service to free zone employers." }, { name: "ULACIT / TEC", type: "Strategic Alliance", description: "University partnerships offer co-branded executive education certificates." }, { name: "Stripe / Calendly", type: "Supplier", description: "Payment and scheduling infrastructure that keeps operations lean." }] },
+        keyActivities: { summary: "Coaching delivery, content creation, and employer relationship development.", activities: [{ name: "Session Delivery", category: "Production", description: "Weekly 1:1 coaching sessions with structured curriculum and feedback loops." }, { name: "Content Marketing", category: "Problem Solving", description: "LinkedIn posts and short videos that demonstrate expertise and attract inbound leads." }, { name: "Employer Partnerships", category: "Platform/Network", description: "Building direct relationships with HR teams at transnational employers in GAM." }] },
+        keyResources: { summary: "Coach expertise, content library, and employer network are the core assets.", resources: [{ name: "Coach Credentials", type: "Intellectual", description: "TEFL certification and corporate coaching methodology adapted for CR market." }, { name: "Session Curriculum", type: "Intellectual", description: "Proprietary 12-week executive communication program with measurable outcomes." }, { name: "Employer Network", type: "Human", description: "Direct relationships with HR and L&D decision-makers at 10+ GAM employers." }] },
+        costStructure: { summary: "Low fixed cost, high margin service business with minimal overhead.", costs: [{ name: "Coach Time", type: "Variable", description: "Primary cost scales directly with client volume — no sessions, no cost." }, { name: "Tools & Software", type: "Fixed", description: "Zoom, Calendly, Stripe, and Notion subscriptions total under $100/month." }, { name: "Content Production", type: "Semi-variable", description: "LinkedIn content creation time increases with audience growth but not linearly." }] },
+        revenueStreams: { summary: "Subscription-based monthly retainer with optional corporate billing for employer-sponsored clients.", streams: [{ name: "Monthly Coaching Retainer", type: "Subscription", pricing: "Fixed", description: "₡250,000/month per client for two sessions per week plus async feedback." }, { name: "Corporate Package", type: "Asset Sale", pricing: "Dynamic", description: "Bulk packages sold to HR departments for 5–10 employees at negotiated rates." }, { name: "Fluency Certificate", type: "Licensing", pricing: "Fixed", description: "One-time ₡50,000 fee for the formal progress report issued after 12 weeks." }] },
+        competitiveLandscape: { summary: "Fragmented market dominated by generic English schools with no executive specialisation.", competitors: [{ name: "Berlitz Costa Rica", type: "Direct", description: "Offers business English but uses generic curriculum with no corporate role context." }, { name: "Preply / iTalki", type: "Direct", description: "Low-cost online tutoring platforms with no structured outcome or progress tracking." }, { name: "YouTube / Duolingo", type: "Indirect", description: "Free self-study tools that lack accountability, feedback, and professional context." }], advantage: "Only coaching service in Costa Rica that ties English progress directly to promotion readiness at transnational employers." }
+      },
+      {
+        segment: { name: "HR & L&D Managers", profile: "Ages 30–50 at transnational companies in the GAM free zones responsible for employee development budgets of ₡5M–₡20M/year who need scalable English training solutions.", tags: ["budget-holder", "B2B", "L&D-focused", "free-zone"], jobsToBeDone: ["Improve workforce English proficiency to meet global team communication standards.", "Demonstrate ROI on training spend to justify budget allocation to senior leadership.", "Reduce time-to-productivity for employees promoted into cross-functional roles."], painPoints: ["Generic training vendors can't prove measurable outcomes tied to business performance.", "Internal English programs lack structure and are abandoned within 3 months.", "Sourcing and vetting individual coaches is time-consuming without a trusted provider."], gains: ["A turnkey program that HR can deploy without managing individual coach relationships.", "Quarterly progress reports that satisfy internal audit and budget review requirements.", "Reduced attrition by investing visibly in employee career development."] },
+        valueProposition: { summary: "A managed corporate English coaching program that delivers measurable outcomes HR can report upward.", offerings: [{ name: "Corporate Cohort Program", description: "12-week cohort coaching for 5–10 employees with shared progress dashboard.", advantage: "better performance", implementationPlan: { portfolios: [] } }, { name: "HR Reporting Dashboard", description: "Quarterly fluency improvement reports formatted for internal budget reviews.", advantage: "better design", implementationPlan: { portfolios: [] } }, { name: "Onboarding Accelerator", description: "4-week intensive for newly promoted employees entering cross-functional roles.", advantage: "more convenient", implementationPlan: { portfolios: [] } }] },
+        customerRelationships: { summary: "Consultative B2B relationship managed through quarterly business reviews.", strategies: [{ name: "Warm Intro via CINDE", type: "Acquire", description: "Leverage CINDE network to get warm introductions to HR directors at free zone employers." }, { name: "Quarterly Business Reviews", type: "Retain", description: "Formal reviews with ROI data keep the contract renewal conversation simple." }, { name: "Upsell to Departments", type: "Grow", description: "Successful cohort in one team leads to referral to adjacent departments." }] },
+        channels: { summary: "Direct B2B sales via LinkedIn and CINDE network, with formal procurement process.", touchpoints: [{ phase: "Awareness", name: "CINDE Network Events", description: "Presence at free zone employer HR forums and L&D conferences." }, { phase: "Evaluation", name: "Pilot Proposal", description: "Free 2-week pilot for 3 employees with a full outcome report at the end." }, { phase: "Purchase", name: "Formal Contract", description: "MSA and SOW signed through employer procurement process." }, { phase: "Delivery", name: "Cohort Sessions", description: "Scheduled group and 1:1 sessions coordinated with HR calendar." }, { phase: "Post-Purchase", name: "Progress Dashboard", description: "Real-time access to employee fluency metrics via shared Notion workspace." }] },
+        keyPartners: { summary: "CINDE and legal support are critical to accessing and contracting with free zone employers.", partners: [{ name: "CINDE", type: "Strategic Alliance", description: "Primary channel into free zone employer network and HR director introductions." }, { name: "Local Law Firm", type: "Supplier", description: "Legal support for MSA drafting and employer contract compliance." }, { name: "Assessment Platform", type: "Supplier", description: "Third-party English proficiency testing tool to anchor baseline and final scores." }] },
+        keyActivities: { summary: "Cohort delivery, outcome reporting, and enterprise sales pipeline management.", activities: [{ name: "Cohort Facilitation", category: "Production", description: "Structured group coaching sessions with individual progress tracking per employee." }, { name: "ROI Reporting", category: "Problem Solving", description: "Quarterly business review decks showing fluency gains tied to performance metrics." }, { name: "Enterprise Sales", category: "Platform/Network", description: "Active pipeline of HR director relationships and RFP responses." }] },
+        keyResources: { summary: "Enterprise credibility, reporting infrastructure, and coach capacity to run parallel cohorts.", resources: [{ name: "Cohort Curriculum", type: "Intellectual", description: "Scalable 12-week program that runs consistently across multiple employer clients." }, { name: "Reporting Templates", type: "Intellectual", description: "Standardised quarterly report format that maps to typical HR budget review requirements." }, { name: "Coach Network", type: "Human", description: "2–3 certified coaches available to run simultaneous cohorts across different employers." }] },
+        costStructure: { summary: "Higher fixed cost than B2C due to sales cycle length and reporting infrastructure.", costs: [{ name: "Coach Salaries", type: "Variable", description: "Contractor coach fees scale with number of active cohorts running simultaneously." }, { name: "Sales & BD Time", type: "Semi-variable", description: "Significant upfront time investment per employer with long payback period." }, { name: "Legal & Compliance", type: "Fixed", description: "Ongoing legal retainer for contract management across multiple employer MSAs." }] },
+        revenueStreams: { summary: "Annual corporate contracts with per-employee pricing and renewal incentives.", streams: [{ name: "Annual Corporate Contract", type: "Subscription", pricing: "Dynamic", description: "₡1.8M–₡3.5M per cohort of 8 employees depending on session frequency." }, { name: "Onboarding Accelerator", type: "Asset Sale", pricing: "Fixed", description: "₡400,000 per employee for the 4-week intensive onboarding program." }, { name: "Assessment & Reporting", type: "Usage Fee", pricing: "Fixed", description: "₡150,000 per quarterly reporting cycle as an add-on to base contract." }] },
+        competitiveLandscape: { summary: "Competing against large language schools with existing HR relationships but weak outcome measurement.", competitors: [{ name: "Berlitz Corporate", type: "Direct", description: "Established brand with corporate clients but no outcome measurement or ROI reporting." }, { name: "Instituto Cultural CR", type: "Direct", description: "Low-cost group classes preferred by cost-sensitive HR teams but no business context." }, { name: "Internal Training Teams", type: "Indirect", description: "Some large employers attempt to run programs in-house but lack coaching expertise." }], advantage: "Only provider in Costa Rica offering corporate English coaching with formal ROI reporting tied to promotion readiness metrics." }
+      },
+      {
+        segment: { name: "Recent University Graduates", profile: "Ages 22–28 in the GAM who recently graduated from UCR, TEC, or UNA earning ₡400k–₡800k/month in entry-level roles who aspire to join transnational companies.", tags: ["early-career", "aspiring", "price-sensitive", "digital-native"], jobsToBeDone: ["Pass English proficiency interviews at transnational employers in free zones.", "Build a CV that stands out with a credible English certification.", "Develop enough conversational fluency to survive the first 90 days in an English-speaking team."], painPoints: ["Can't afford ₡200k+/month for private coaching on an entry-level salary.", "Free resources like YouTube lack structure and don't prepare for job interview scenarios.", "University English classes were too academic and didn't cover workplace communication."], gains: ["Land a first job at a transnational employer within 6 months of graduating.", "Feel less intimidated in English interviews and group assessment centres.", "Access a self-paced program that fits around shift work or part-time employment."] },
+        valueProposition: { summary: "Affordable, self-paced English coaching specifically designed for the transnational job interview process in Costa Rica.", offerings: [{ name: "Interview Prep Track", description: "6-week self-paced program covering the most common transnational employer interview formats in CR.", advantage: "better price", implementationPlan: { portfolios: [] } }, { name: "Group Coaching Cohort", description: "Weekly group sessions with 8–12 peers at ₡45,000/month — affordable through shared cost model.", advantage: "better price", implementationPlan: { portfolios: [] } }, { name: "Entry Certificate", description: "Completion certificate co-branded with a recognisable local institution to add CV credibility.", advantage: "better design", implementationPlan: { portfolios: [] } }] },
+        customerRelationships: { summary: "Community-driven, peer-supported experience that leverages social proof and alumni outcomes.", strategies: [{ name: "University Partnerships", type: "Acquire", description: "Partner with UCR and TEC career centres to promote the program to final-year students." }, { name: "Peer Community", type: "Retain", description: "WhatsApp and Discord community keeps graduates engaged between sessions." }, { name: "Alumni Outcomes Feed", type: "Grow", description: "Showcase graduate job placements on Instagram to drive organic referrals from their networks." }] },
+        channels: { summary: "Social-first reach via Instagram and TikTok, with university career centres as the primary offline channel.", touchpoints: [{ phase: "Awareness", name: "Instagram & TikTok", description: "Short-form video content showing real interview scenarios and success stories." }, { phase: "Evaluation", name: "Free Sample Lesson", description: "One free lesson available without registration to reduce friction." }, { phase: "Purchase", name: "SINPE Móvil", description: "Local mobile payment method preferred by this segment over credit cards." }, { phase: "Delivery", name: "Self-paced LMS", description: "Video lessons and exercises hosted on a simple Teachable or similar platform." }, { phase: "Post-Purchase", name: "WhatsApp Community", description: "Peer group for accountability, job tips, and coach Q&A sessions." }] },
+        keyPartners: { summary: "University career centres and social media collaborators are the primary acquisition channels.", partners: [{ name: "UCR / TEC Career Centres", type: "Strategic Alliance", description: "Formal partnership to distribute the program to graduating cohorts each semester." }, { name: "Local Micro-influencers", type: "Strategic Alliance", description: "CR-based career and lifestyle creators who reach the 22–28 demographic on TikTok." }, { name: "Teachable / Hotmart", type: "Supplier", description: "LMS platform that handles content hosting, payments, and student progress tracking." }] },
+        keyActivities: { summary: "Content production, community management, and university partnership development.", activities: [{ name: "Course Content Creation", category: "Production", description: "Video lessons, practice exercises, and mock interview simulations updated each semester." }, { name: "Community Management", category: "Platform/Network", description: "Daily engagement in WhatsApp and Discord groups to maintain retention and referrals." }, { name: "University Outreach", category: "Problem Solving", description: "Semester presentations at UCR, TEC, and UNA career fairs to drive enrollment." }] },
+        keyResources: { summary: "Content library, community platform, and university relationships are the moat for this segment.", resources: [{ name: "Interview Content Library", type: "Intellectual", description: "Bank of 50+ recorded mock interviews and scenario exercises specific to CR employers." }, { name: "University Agreements", type: "Intellectual", description: "Signed MOU with at least 2 universities providing distribution and co-branding rights." }, { name: "Community Platform", type: "Physical", description: "WhatsApp and Discord infrastructure with active moderation to maintain engagement." }] },
+        costStructure: { summary: "Low marginal cost per student once content is produced — scale drives profitability.", costs: [{ name: "Content Production", type: "Fixed", description: "One-time production cost per course update — amortised across all enrolled students." }, { name: "Community Management", type: "Semi-variable", description: "Part-time community manager cost grows slowly with student volume." }, { name: "Platform Fees", type: "Variable", description: "Teachable or Hotmart transaction fees scale directly with revenue." }] },
+        revenueStreams: { summary: "Low-price, high-volume model with group cohorts and self-paced tracks.", streams: [{ name: "Self-paced Course", type: "Asset Sale", pricing: "Fixed", description: "₡35,000 one-time purchase for the full 6-week Interview Prep Track." }, { name: "Group Cohort", type: "Subscription", pricing: "Fixed", description: "₡45,000/month for 4 weekly group sessions with a live coach." }, { name: "Certificate Fee", type: "Licensing", pricing: "Fixed", description: "₡15,000 one-time fee for the co-branded completion certificate." }] },
+        competitiveLandscape: { summary: "Competing primarily against free content and low-cost apps rather than other coaches.", competitors: [{ name: "Duolingo / YouTube", type: "Indirect", description: "Free and ubiquitous but lacks structure, accountability, and interview-specific preparation." }, { name: "Instituto Cultural CR", type: "Direct", description: "Affordable group classes but academic focus misses the job interview preparation angle." }, { name: "Individual Tutors", type: "Direct", description: "Available on Facebook Marketplace but inconsistent quality and no certification." }], advantage: "Only program in Costa Rica combining affordable group pricing, interview-specific content, and a co-branded university certificate." }
+      }
+    ];
+
+    const MOCK_SCORE = {
+      scores: {
+        problem:          { score: 4, reason: "English fluency is a documented and frequent career blocker at CR's transnational employers, with clear willingness to pay among promotion-seeking professionals." },
+        market:           { score: 4, reason: "Dense GAM free zone cluster creates a reachable, growing market — over 400 multinationals in Costa Rica provide a concentrated target base." },
+        valueProposition: { score: 3, reason: "Niche positioning is clear but differentiation versus individual coaches on LinkedIn or Preply is not yet proven without testimonials or case studies." },
+        businessModel:    { score: 4, reason: "Subscription retainer plus B2B corporate billing are both proven models in the professional services space with strong margin potential." },
+        execution:        { score: 2, reason: "No validation data exists yet — the idea is logical but untested, and solo execution risk is high without a proven demand signal." }
+      },
+      finalScore: 72,
+      confidenceScore: 2,
+      interpretation: "Promising but Needs Validation",
+      insights: {
+        topStrength: "Strong, specific problem with clear willingness to pay among professionals seeking promotion at transnational firms in Costa Rica.",
+        biggestRisk: "No evidence yet that target professionals will pay a premium over free or low-cost alternatives — price sensitivity is unknown.",
+        keyAssumption: "That mid-senior professionals associate executive-level English coaching with measurable career advancement outcomes.",
+        nextBestAction: "Run 5 paid discovery sessions before building any product — validate price point and conversion rate from first contact."
+      },
+      warnings: [
+        "Score is high but confidence is low — this idea has strong logic but needs real customer validation before committing to a full build.",
+        "B2B corporate sales cycles in Costa Rican HR departments average 4–9 months — validate direct-to-professional channel first."
+      ]
+    };
+
     async function fetchSegment(idea, segmentContext, panelIndex) {
+      if (USE_MOCK) {
+        await new Promise(r => setTimeout(r, 800 + panelIndex * 600));
+        const data = MOCK_SEGMENTS[panelIndex] || MOCK_SEGMENTS[0];
+        renderCanvas(data, panelIndex);
+        return data;
+      }
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -644,12 +580,17 @@
       return data;
     }
 
-    async function fetchScore(idea) {
+    async function fetchScore(idea, canvasContext) {
       try {
-        const response = await fetch('/api/score', {
+        if (USE_MOCK) {
+          await new Promise(r => setTimeout(r, 1400));
+          renderScore(MOCK_SCORE);
+          return;
+        }
+        const response = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea })
+          body: JSON.stringify({ scoreMode: true, idea, canvasContext })
         });
         const data = await response.json();
         if (data.error) {
@@ -663,6 +604,7 @@
         document.getElementById('scoreSkeleton').style.display = 'none';
       }
     }
+
     async function generate() {
       const idea = document.getElementById('idea').value.trim();
       const errorMsg = document.getElementById('errorMsg');
@@ -709,15 +651,13 @@
         scoreWrapper.style.display = 'block';
         switchTab(0);
 
-        // Score fires immediately — idea text only, no canvas dependency.
-        // Segment 1 fires at the same time. Both race independently.
-        // Segments 2 & 3 start once segment 1 resolves and we have its name.
-        fetchScore(idea);
-
+        // Seg1 fetches first. The moment it resolves, score + seg2 + seg3
+        // all fire in parallel. User sees score fill in independently.
         const seg1Data = await fetchSegment(idea, null, 0);
         const seg1Name = seg1Data.segment.name;
 
         await Promise.all([
+          fetchScore(idea, seg1Data),
           fetchSegment(idea, `A different segment from "${seg1Name}" — identify the second most promising customer segment`, 1),
           fetchSegment(idea, `A different segment from "${seg1Name}" and a second segment — identify the third most promising customer segment`, 2)
         ]);
