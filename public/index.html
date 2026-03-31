@@ -8,96 +8,156 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; background: #FDF6EC; color: #1A1A2E; min-height: 100vh; }
-    .app { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
-    .eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 12px; }
-    h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 58px); font-weight: 900; line-height: 1.05; }
-    h1 span { color: #FF6B4A; }
-    .deco-line { width: 60px; height: 3px; background: #E8C547; margin: 22px 0; border-radius: 2px; }
-    .sub { font-size: 15px; color: #666; font-weight: 300; max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
-    .sub strong { font-weight: 500; color: #1A1A2E; }
-    .field-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
-    .field-label span { color: #FF6B4A; }
-    textarea { width: 100%; min-height: 128px; background: white; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 18px 20px; font-family: 'DM Sans', sans-serif; font-size: 15px; color: #1A1A2E; resize: vertical; line-height: 1.6; outline: none; transition: border-color 0.2s; }
-    textarea:focus { border-color: #FF6B4A; box-shadow: 0 0 0 3px rgba(255,107,74,0.12); }
-    textarea.error { border-color: #E53E3E; background: #FFF5F5; }
-    .error-msg { margin-top: 10px; padding: 12px 16px; background: #FFF5F5; border-left: 3px solid #E53E3E; border-radius: 0 8px 8px 0; font-size: 13.5px; color: #C53030; line-height: 1.5; display: none; }
-    .btn { margin-top: 28px; width: 100%; padding: 18px 32px; background: #1A1A2E; color: white; border: none; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: background 0.2s, transform 0.15s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .btn:hover:not(:disabled) { background: #FF6B4A; transform: translateY(-1px); }
-    .btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    /* ── Likelihood of success score ── */
-    .score-wrapper { margin-top: 48px; display: none; }
-    .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 16px; overflow: hidden; animation: fadeIn 0.4s ease both; }
-    .score-skeleton { background: white; border: 1.5px solid #E2D9CE; border-radius: 16px; padding: 28px; display: none; }
-    .skel-line { background: #E2D9CE; border-radius: 4px; margin-bottom: 10px; animation: pulse 1.4s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+    /* ── PAGE 1: Landing ── */
+    .landing { display: block; }
+    .hero { max-width: 760px; margin: 0 auto; padding: 56px 24px 40px; text-align: center; }
+    .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 14px; }
+    .h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 52px); font-weight: 900; line-height: 1.05; color: #1A1A2E; }
+    .h1 span { color: #FF6B4A; display: block; }
+    .tagline { font-size: 15px; color: #666; font-weight: 300; margin: 16px auto 10px; max-width: 400px; line-height: 1.65; }
+    .tagline-sub { font-size: 13px; color: #888; font-weight: 300; max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
+    .input-outer { max-width: 680px; margin: 0 auto 32px; background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 16px 18px 14px; text-align: left; }
+    .input-placeholder { font-size: 14px; color: #C5BDB2; margin-bottom: 12px; }
+    .input-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .input-pill { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: #FAF0EC; color: #993C1D; border: 1px solid #F0997B; white-space: nowrap; }
+    .analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 10px 20px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 7px; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+    .analyse-btn:hover { background: #E55A3A; }
+    .context-msg { margin-top: 10px; padding: 10px 14px; background: #FFF5F5; border-left: 3px solid #FF6B4A; border-radius: 0 8px 8px 0; font-size: 12px; color: #C53030; display: none; }
+    .what-section { max-width: 860px; margin: 0 auto; padding: 0 24px 56px; }
+    .what-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1A1A2E; margin-bottom: 20px; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 20px; }
+    .fc-icon { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .fc-title { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 6px; line-height: 1.35; }
+    .fc-text { font-size: 12px; color: #888; line-height: 1.6; }
 
-    .score-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 24px 28px 20px; border-bottom: 1.5px solid #E2D9CE; gap: 24px; flex-wrap: wrap; }
-    .score-left { display: flex; align-items: flex-start; gap: 20px; }
-    .score-dial { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
-    .score-dial svg { width: 72px; height: 72px; }
-    .score-dial-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .score-dial-big { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1; }
-    .score-dial-sub { font-size: 10px; color: #B5A99A; letter-spacing: 0.04em; }
-    .score-meta { display: flex; flex-direction: column; gap: 6px; }
-    .score-section-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; }
-    .score-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; padding: 5px 13px; border-radius: 7px; }
-    .score-badge.very-strong { background: #E1F5EE; color: #085041; }
-    .score-badge.promising    { background: #FDF6EC; color: #A8851A; border: 1px solid #E8C547; }
-    .score-badge.moderate     { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
-    .score-badge.weak         { background: #FFF5F5; color: #9B2335; }
-    .score-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .score-confidence { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
-    .score-conf-label { font-size: 11px; color: #B5A99A; }
-    .score-conf-pips { display: flex; gap: 3px; }
-    .score-conf-pip { width: 16px; height: 4px; border-radius: 2px; background: #E2D9CE; }
-    .score-conf-pip.on { background: #1A1A2E; }
+    /* ── PAGE 2: Results ── */
+    .results { display: none; max-width: 960px; margin: 0 auto; padding: 28px 24px 56px; }
 
-    .score-pillars { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1.5px solid #E2D9CE; }
-    .score-pillar { padding: 16px 18px; border-right: 1.5px solid #E2D9CE; }
-    .score-pillar:last-child { border-right: none; }
-    .score-pillar-name { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
-    .score-bar-track { height: 5px; background: #E2D9CE; border-radius: 3px; margin-bottom: 6px; }
-    .score-bar-fill { height: 5px; border-radius: 3px; transition: width 0.6s ease; }
-    .score-pillar-num { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; }
-    .score-pillar-reason { font-size: 11px; color: #888; line-height: 1.45; }
+    .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 11px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .idea-bar-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 4px; }
+    .idea-bar-text { font-size: 13px; color: #1A1A2E; line-height: 1.55; }
+    .idea-edit-btn { width: 26px; height: 26px; border-radius: 7px; background: #F5F1EB; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; margin-top: 2px; }
+    .idea-edit-btn:hover { background: #EDE8DF; }
 
-    .score-insights { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .score-insight { padding: 16px 20px; border-right: 1.5px solid #E2D9CE; border-bottom: 1.5px solid #E2D9CE; }
-    .score-insight:nth-child(2) { border-right: none; }
-    .score-insight:nth-child(3) { border-bottom: none; }
-    .score-insight:nth-child(4) { border-right: none; border-bottom: none; }
-    .score-insight-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
-    .score-insight-text { font-size: 13px; color: #444; line-height: 1.55; }
+    .align-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 16px; animation: fadeIn 0.4s ease both; }
+    .align-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
+    .align-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .align-header-title { font-size: 12px; font-weight: 500; color: #1A1A2E; }
+    .problem-strip { background: #FAEEDA; padding: 11px 18px; border-bottom: 1px solid #EDD9A3; display: flex; gap: 9px; align-items: flex-start; }
+    .prob-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #633806; font-weight: 500; margin-bottom: 3px; }
+    .prob-text { font-size: 12px; color: #412402; line-height: 1.6; }
+    .align-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 680px) { .align-grid { grid-template-columns: 1fr 1fr; } }
+    .align-cell { padding: 12px 16px; border-right: 1px solid #F0EBE3; }
+    .align-cell:last-child { border-right: none; }
+    .align-cell-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; margin-bottom: 5px; }
+    .align-cell-text { font-size: 11.5px; color: #555; line-height: 1.55; }
 
-    .score-warnings { padding: 14px 24px; background: #FDF6EC; border-top: 1.5px solid #E2D9CE; display: flex; flex-direction: column; gap: 8px; }
-    .score-warning { display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; color: #666; line-height: 1.5; }
-    .score-warning-icon { width: 17px; height: 17px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; color: #A8851A; font-weight: 700; }
+    .main-grid { display: grid; grid-template-columns: 1fr 252px; gap: 14px; margin-bottom: 14px; }
+    @media (max-width: 700px) { .main-grid { grid-template-columns: 1fr; } }
 
-    /* ── Tabs ── */
-    .tabs-wrapper { margin-top: 24px; display: none; }
+    /* Customer card */
+    .ccard { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; }
+    .cc-top { padding: 14px 18px 12px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: #EEEDFE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; font-weight: 700; color: #3C3489; font-family: 'Playfair Display', serif; }
+    .cc-name { font-size: 14px; font-weight: 500; color: #1A1A2E; margin-bottom: 1px; }
+    .cc-role { font-size: 11.5px; color: #999; }
+    .cc-loc { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #B5A99A; margin-top: 3px; }
+    .locdot { width: 5px; height: 5px; border-radius: 50%; background: #FF6B4A; }
+    .cc-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .cc-col { padding: 13px 18px; display: flex; flex-direction: column; gap: 11px; }
+    .cc-col:first-child { border-right: 1px solid #F0EBE3; }
+    .cc-sec-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
+    .trait-row { display: flex; flex-wrap: wrap; gap: 5px; }
+    .trait { font-size: 10.5px; padding: 2px 8px; border-radius: 20px; background: #F5F1EB; color: #666; }
+    .trait-p { background: #EEEDFE; color: #3C3489; }
+    .trait-t { background: #E1F5EE; color: #085041; }
+    .trait-a { background: #FAEEDA; color: #633806; }
+    .cc-items { display: flex; flex-direction: column; gap: 4px; }
+    .cc-item { display: flex; gap: 6px; font-size: 11.5px; color: #555; line-height: 1.5; align-items: flex-start; }
+    .cbullet { width: 4px; height: 4px; border-radius: 50%; background: #FF6B4A; flex-shrink: 0; margin-top: 5px; }
+    .channels-row { display: flex; gap: 7px; flex-wrap: wrap; }
+    .ch-wrap { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .ch-icon { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+    .ch-lbl { font-size: 8px; color: #999; }
+    .firm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #F0EBE3; border-radius: 9px; overflow: hidden; }
+    .firm-cell { background: white; padding: 8px 11px; }
+    .firm-label { font-size: 9px; letter-spacing: 0.11em; text-transform: uppercase; color: #B5A99A; margin-bottom: 2px; }
+    .firm-val { font-size: 11.5px; color: #1A1A2E; font-weight: 500; }
+    .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+    .geo-tag { font-size: 10.5px; padding: 2px 8px; border-radius: 20px; background: #F5F1EB; color: #666; border: 1px solid #E2D9CE; }
+
+    /* Score card */
+    .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; }
+    .sc-top { padding: 13px 16px 11px; border-bottom: 1px solid #F0EBE3; }
+    .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
+    .sc-dial-row { display: flex; align-items: center; gap: 11px; }
+    .sc-dial { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
+    .sc-dial svg { width: 50px; height: 50px; }
+    .sc-num-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .sc-big { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; line-height: 1; }
+    .sc-sub { font-size: 9px; color: #B5A99A; }
+    .sc-interp { font-size: 11.5px; font-weight: 500; margin-bottom: 5px; line-height: 1.35; }
+    .sc-conf { display: flex; align-items: center; gap: 6px; }
+    .sc-conf-lbl { font-size: 9px; color: #B5A99A; }
+    .sc-pips { display: flex; gap: 3px; }
+    .sc-pip { width: 11px; height: 3px; border-radius: 2px; background: #E2D9CE; }
+    .sc-pip.on { background: #1A1A2E; }
+    .sc-pillar { padding: 8px 14px; border-bottom: 1px solid #F8F3EE; display: flex; align-items: flex-start; gap: 9px; }
+    .sc-pillar:last-child { border-bottom: none; }
+    .sc-pbar-col { flex-shrink: 0; width: 32px; }
+    .sc-pnum { font-size: 11.5px; font-weight: 500; color: #1A1A2E; }
+    .sc-ptrack { height: 3px; background: #E2D9CE; border-radius: 2px; margin-top: 5px; }
+    .sc-pfill { height: 3px; border-radius: 2px; }
+    .sc-pname { font-size: 10.5px; font-weight: 500; color: #1A1A2E; margin-bottom: 2px; }
+    .sc-preason { font-size: 9.5px; color: #999; line-height: 1.45; }
+
+    /* Skeleton loaders */
+    .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
+
+    /* Action buttons */
+    .actions-row { display: flex; gap: 10px; }
+    .btn-design { flex: 1; padding: 13px; background: #FF6B4A; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+    .btn-design:hover { background: #E55A3A; }
+    .btn-edit { padding: 13px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
+    .btn-edit:hover { background: #F8F4EE; }
+
+    /* Section 2 — Canvas */
+    .canvas-section { display: none; margin-top: 40px; }
+    .canvas-section.visible { display: block; }
+    .canvas-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 6px; }
+    .canvas-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 36px); font-weight: 900; line-height: 1.05; margin-bottom: 8px; }
+    .canvas-title span { color: #FF6B4A; }
+    .canvas-deco { width: 44px; height: 3px; background: #E8C547; margin: 12px 0 16px; border-radius: 2px; }
+    .canvas-sub { font-size: 13px; color: #777; font-weight: 300; max-width: 520px; line-height: 1.7; margin-bottom: 24px; }
+    .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 36px; }
+
+    /* Tabs */
     .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
-    .tab-btn { padding: 12px 24px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
-    .tab-btn.active { background: white; color: #1A1A2E; border-bottom: 2px solid white; }
+    .tab-btn { padding: 11px 20px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: white; color: #1A1A2E; }
     .tab-btn.active.seg1 { border-top: 3px solid #FF6B4A; }
     .tab-btn.active.seg2 { border-top: 3px solid #3D6B4F; }
     .tab-btn.active.seg3 { border-top: 3px solid #E8C547; }
     .tab-btn:hover:not(.active) { background: #E2D9CE; color: #555; }
-    .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 12px 12px 12px; padding: 32px; display: none; }
+    .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 13px 13px 13px; padding: 32px; display: none; }
     .tab-panel.active { display: block; }
-
     .loading-tab { text-align: center; padding: 60px 20px; }
-    .loading-tab-msg { font-size: 15px; color: #888; font-weight: 300; margin-bottom: 20px; }
+    .loading-tab-msg { font-size: 14px; color: #888; font-weight: 300; margin-bottom: 20px; }
     .dots { display: flex; justify-content: center; gap: 8px; }
     .dot { width: 10px; height: 10px; border-radius: 50%; animation: bounce 1.2s infinite ease-in-out; }
     .dot:nth-child(1) { background: #FF6B4A; }
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
 
-    /* ── Canvas sections ── */
+    /* Canvas content */
     .section { margin-bottom: 24px; }
     .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
-    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; }
+    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
     .collapsible { margin-bottom: 10px; border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; }
     .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; background: #FDF6EC; transition: background 0.2s; user-select: none; }
     .collapsible-header:hover { background: #F0EAE0; }
@@ -134,9 +194,9 @@
     .sv-meta { display: flex; flex-direction: column; gap: 5px; }
     .sv-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; }
     .sv-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 11px; border-radius: 6px; }
-    .sv-badge.sv-strong   { background: #E1F5EE; color: #085041; }
+    .sv-badge.sv-strong { background: #E1F5EE; color: #085041; }
     .sv-badge.sv-moderate { background: #FDF6EC; color: #A8851A; border: 1px solid #E8C547; }
-    .sv-badge.sv-weak     { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
+    .sv-badge.sv-weak { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
     .sv-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .sv-summary { font-size: 12.5px; color: #666; line-height: 1.55; margin-top: 3px; max-width: 500px; }
     .sv-pillars { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1.5px solid #E2D9CE; }
@@ -159,7 +219,6 @@
     .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; line-height: 1.2; }
     .card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
     .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
-
     .type-acquire { color: #FF6B4A; }
     .type-retain { color: #3D6B4F; }
     .type-grow { color: #A8851A; }
@@ -178,81 +237,256 @@
     .phase-evaluation { color: #3D6B4F; }
     .phase-purchase { color: #A8851A; }
     .phase-delivery { color: #1A1A2E; }
-    .phase-post-purchase { color: #7B5EA7; }
+    .phase-postpurchase { color: #7B5EA7; }
     .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
     .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
-    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; }
+    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
     .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
 
-    .loading { text-align: center; padding: 40px 0; display: none; }
-    .loading-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
-    .loading-text { font-size: 14px; color: #888; font-weight: 300; }
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,46,0.5); z-index: 100; align-items: center; justify-content: center; }
+    .modal-overlay.visible { display: flex; }
+    .modal { background: white; border-radius: 16px; padding: 28px; max-width: 400px; width: 90%; }
+    .modal-icon { width: 44px; height: 44px; border-radius: 50%; background: #FFF5F5; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A1A2E; margin-bottom: 8px; }
+    .modal-body { font-size: 13px; color: #666; line-height: 1.65; margin-bottom: 6px; }
+    .modal-warning { font-size: 12px; color: #C53030; background: #FFF5F5; border-left: 3px solid #E53E3E; border-radius: 0 8px 8px 0; padding: 10px 12px; margin: 14px 0 20px; line-height: 1.55; }
+    .modal-actions { display: flex; flex-direction: column; gap: 8px; }
+    .modal-btn-cancel { background: white; color: #1A1A2E; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 12px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+    .modal-btn-cancel:hover { background: #F8F4EE; }
+    .modal-btn-confirm { background: #C53030; color: white; border: none; border-radius: 10px; padding: 12px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+    .modal-btn-confirm:hover { background: #A82020; }
+
     @keyframes bounce { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .animate { animation: fadeIn 0.4s ease both; }
   </style>
 </head>
 <body>
-  <div class="app">
-    <div class="eyebrow">Global Market Intelligence</div>
-    <h1>Business Model<br><span>Generator</span></h1>
-    <div class="deco-line"></div>
-    <p class="sub">Describe your <strong>business idea</strong> and <strong>target market</strong>. Our global market research strategist will build three complete business model canvases tailored to your context.</p>
 
-    <div class="field-label">Business idea and target market <span>*</span></div>
-    <textarea id="idea" placeholder="e.g. Personalized English coaching for executives in Spain and Latin America"></textarea>
-    <div class="error-msg" id="errorMsg">Oh snap! Please describe your business idea so we can build your model.</div>
-
-    <button class="btn" id="generateBtn" onclick="generate()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      Generate Business Model
-    </button>
-
-    <div class="loading" id="loading">
-      <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-      <div class="loading-text">Identifying your customer segments…</div>
-    </div>
-
-    <!-- Likelihood of success score -->
-    <div class="score-wrapper" id="scoreWrapper">
-      <div class="score-skeleton" id="scoreSkeleton">
-        <div class="skel-line" style="width:140px;height:12px;"></div>
-        <div class="skel-line" style="width:220px;height:20px;margin-top:8px;"></div>
-        <div class="skel-line" style="width:100%;height:8px;margin-top:20px;"></div>
-        <div class="skel-line" style="width:80%;height:8px;"></div>
+  <!-- ── PAGE 1: LANDING ── -->
+  <div class="landing" id="landing">
+    <div class="hero">
+      <div class="eyebrow">Market Intelligence</div>
+      <div class="h1">Business Model<br><span>Generator</span></div>
+      <div class="tagline">From idea to validated opportunity</div>
+      <p class="tagline-sub">Describe your idea — or the problem you're driven to solve. We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
+      <div class="input-outer">
+        <div class="input-placeholder">Describe your business idea or problem...</div>
+        <div class="input-row">
+          <div style="flex:1;display:flex;align-items:center;gap:0;">
+            <textarea id="ideaInput" placeholder="" style="display:none;"></textarea>
+            <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()"></div>
+          </div>
+        </div>
+        <div class="input-row" style="margin-top:10px;">
+          <span class="input-pill" onclick="usePill(this)" style="cursor:pointer;">e.g. English coaching for executives in Latin America</span>
+          <button class="analyse-btn" id="landingAnalyseBtn" onclick="runAnalysis()" disabled>
+            Analyse idea
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="context-msg" id="contextMsg">Please provide additional details to analyse your idea.</div>
       </div>
-      <div class="score-card" id="scoreCard" style="display:none;"></div>
     </div>
 
-    <!-- Segment tabs -->
-    <div class="tabs-wrapper" id="tabsWrapper">
+    <div class="what-section">
+      <div class="what-title">What you'll get</div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="fc-icon" style="background:#FAF0EC;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#993C1D" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="fc-title">Prioritised Business Model Canvas</div>
+          <div class="fc-text">A clear, structured model tailored to your idea and context.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon" style="background:#E1F5EE;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="fc-title">Viability Assessment from Market Signals</div>
+          <div class="fc-text">Data-driven insights on demand, trends, and competitive landscape.</div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon" style="background:#FAEEDA;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="fc-title">Key Risks, Gaps &amp; Assumptions</div>
+          <div class="fc-text">Critical factors to validate before you build or invest.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE 2: RESULTS ── -->
+  <div class="results" id="results">
+
+    <div class="idea-bar">
+      <div>
+        <div class="idea-bar-label">Your business idea or problem...</div>
+        <div class="idea-bar-text" id="ideaDisplay"></div>
+      </div>
+      <button class="idea-edit-btn" onclick="requestEdit()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+    </div>
+
+    <div class="align-card" id="alignCard">
+      <div class="align-header">
+        <div class="align-icon">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="align-header-title">Idea\u2013problem alignment</div>
+      </div>
+      <div class="problem-strip" id="problemStrip">
+        <div style="flex-shrink:0;margin-top:2px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#633806" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        </div>
+        <div>
+          <div class="prob-label">Problem being solved</div>
+          <div class="prob-text" id="problemText">
+            <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
+            <div class="skel" style="height:10px;width:85%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="align-grid" id="alignGrid">
+        <div class="align-cell">
+          <div class="align-cell-label" style="color:#C0392B;">Problem strength</div>
+          <div class="align-cell-text" id="cellProblem"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:80%;"></div></div>
+        </div>
+        <div class="align-cell">
+          <div class="align-cell-label" style="color:#1D9E75;">Idea\u2013problem fit</div>
+          <div class="align-cell-text" id="cellFit"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:75%;"></div></div>
+        </div>
+        <div class="align-cell">
+          <div class="align-cell-label" style="color:#B5A99A;">Key assumption to validate</div>
+          <div class="align-cell-text" id="cellAssumption"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:70%;"></div></div>
+        </div>
+        <div class="align-cell">
+          <div class="align-cell-label" style="color:#FF6B4A;">Suggested next action</div>
+          <div class="align-cell-text" id="cellAction"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:85%;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="ccard" id="customerCard">
+        <div class="cc-top">
+          <div class="avatar" id="customerAvatar">
+            <div class="skel" style="width:40px;height:40px;border-radius:50%;"></div>
+          </div>
+          <div id="customerMeta">
+            <div class="skel" style="height:12px;width:120px;margin-bottom:5px;"></div>
+            <div class="skel" style="height:10px;width:90px;"></div>
+          </div>
+        </div>
+        <div class="cc-inner" id="customerInner">
+          <div class="cc-col">
+            <div class="skel" style="height:8px;width:80px;margin-bottom:8px;"></div>
+            <div class="skel" style="height:60px;width:100%;border-radius:8px;"></div>
+          </div>
+          <div class="cc-col">
+            <div class="skel" style="height:8px;width:100px;margin-bottom:8px;"></div>
+            <div class="skel" style="height:80px;width:100%;border-radius:8px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-card" id="scoreCard">
+        <div class="sc-top">
+          <div class="sc-eyebrow">Likelihood of success</div>
+          <div class="sc-dial-row">
+            <div class="sc-dial" id="scoreDial">
+              <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/></svg>
+              <div class="sc-num-wrap"><div class="skel" style="width:30px;height:18px;border-radius:4px;"></div></div>
+            </div>
+            <div id="scoreInterpWrap">
+              <div class="skel" style="height:11px;width:90px;margin-bottom:5px;"></div>
+              <div class="skel" style="height:9px;width:70px;"></div>
+            </div>
+          </div>
+        </div>
+        <div id="scorePillars">
+          ${[1,2,3,4,5].map(() => '<div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>').join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="actions-row" id="actionsRow" style="display:none;">
+      <button class="btn-design" onclick="designModel()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Design my business model
+      </button>
+      <button class="btn-edit" onclick="requestEdit()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Edit my idea
+      </button>
+    </div>
+
+    <!-- Canvas section -->
+    <div class="canvas-section" id="canvasSection">
+      <div class="canvas-divider"></div>
+      <div class="canvas-eyebrow">Section 02</div>
+      <div class="canvas-title">Design your<br><span>business model</span></div>
+      <div class="canvas-deco"></div>
+      <p class="canvas-sub">Your business model canvas — one per customer segment, built around the idea and problem you defined above.</p>
       <div class="tab-nav">
         <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
         <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
         <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
       </div>
       <div class="tab-panel seg1 active" id="panel-0">
-        <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+        <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment\u2026</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
       <div class="tab-panel seg2" id="panel-1">
-        <div style="text-align:center;padding:60px 24px;">
-          <div style="font-size:32px;margin-bottom:20px;">🙏</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
-          <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
-        </div>
+        <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
       </div>
       <div class="tab-panel seg3" id="panel-2">
-        <div style="text-align:center;padding:60px 24px;">
-          <div style="font-size:32px;margin-bottom:20px;">🙏</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
-          <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
-        </div>
+        <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C53030" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div class="modal-title">Edit your proposal?</div>
+      <div class="modal-body">You are about to edit your business idea or problem statement.</div>
+      <div class="modal-warning">Your current business model canvas will be cleared. You will need to re-analyse your proposal and generate a new canvas after making changes.</div>
+      <div class="modal-actions">
+        <button class="modal-btn-cancel" onclick="closeModal()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          Keep my current canvas
+        </button>
+        <button class="modal-btn-confirm" onclick="confirmEdit()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Yes, edit my idea
+        </button>
       </div>
     </div>
   </div>
 
   <script>
+    let currentIdea = '';
     let activeTab = 0;
+
+    function onInputChange() {
+      const text = document.getElementById('inputText').innerText.trim();
+      document.getElementById('landingAnalyseBtn').disabled = !text;
+      document.getElementById('contextMsg').style.display = 'none';
+    }
+
+    function usePill(el) {
+      const text = el.textContent.replace('e.g. ', '');
+      const input = document.getElementById('inputText');
+      input.innerText = text;
+      input.focus();
+      onInputChange();
+    }
 
     function switchTab(i) {
       activeTab = i;
@@ -266,126 +500,214 @@
     }
 
     function toggleCollapsible(id) {
-      const body = document.getElementById(id + '-body');
-      const chevron = document.getElementById(id + '-chev');
-      body.classList.toggle('open');
-      chevron.classList.toggle('open');
+      document.getElementById(id + '-body').classList.toggle('open');
+      document.getElementById(id + '-chev').classList.toggle('open');
     }
 
-    function collapsibleSection(id, label, contentHtml) {
-      return `
-        <div class="collapsible">
-          <div class="collapsible-header" onclick="toggleCollapsible('${id}')">
-            <div class="collapsible-title">${label}</div>
-            <div class="collapsible-chevron" id="${id}-chev">&#8964;</div>
-          </div>
-          <div class="collapsible-body" id="${id}-body">
-            ${contentHtml}
-          </div>
-        </div>`;
+    function collapsibleSection(id, label, html) {
+      return '<div class="collapsible"><div class="collapsible-header" onclick="toggleCollapsible(\'' + id + '\')"><div class="collapsible-title">' + label + '</div><div class="collapsible-chevron" id="' + id + '-chev">&#8964;</div></div><div class="collapsible-body" id="' + id + '-body">' + html + '</div></div>';
     }
 
-    // ── Render likelihood of success score ──
-    function renderScore(data) {
-      const s = data.scores;
+    async function runAnalysis() {
+      const idea = document.getElementById('inputText').innerText.trim();
+      if (!idea) return;
+      currentIdea = idea;
+
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('ideaDisplay').textContent = idea;
+      document.getElementById('actionsRow').style.display = 'none';
+      document.getElementById('canvasSection').classList.remove('visible');
+
+      window.scrollTo({ top: 0 });
+
+      try {
+        const response = await fetch('/api/analyse', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idea })
+        });
+        const data = await response.json();
+
+        if (data.insufficientContext) {
+          document.getElementById('landing').style.display = 'block';
+          document.getElementById('results').style.display = 'none';
+          document.getElementById('contextMsg').textContent = data.insufficientContextMessage || 'Please provide additional details to analyse your idea.';
+          document.getElementById('contextMsg').style.display = 'block';
+          return;
+        }
+
+        renderAnalysisResults(data);
+        document.getElementById('actionsRow').style.display = 'flex';
+
+      } catch (err) {
+        console.error('Analysis failed:', err);
+        document.getElementById('landing').style.display = 'block';
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
+        document.getElementById('contextMsg').style.display = 'block';
+      }
+    }
+
+    function renderAnalysisResults(data) {
+      const alignment = data.alignment || {};
+      const insights = data.insights || {};
+
+      document.getElementById('problemText').textContent = data.inferredValue && data.inferredField === 'problem'
+        ? data.inferredValue
+        : (alignment.problemStrength || insights.topStrength || '');
+
+      document.getElementById('cellProblem').textContent = alignment.problemStrength || insights.topStrength || '';
+      document.getElementById('cellFit').textContent = alignment.ideaProblemFit || '';
+      document.getElementById('cellAssumption').textContent = alignment.keyAssumption || insights.keyAssumption || '';
+      document.getElementById('cellAction').textContent = alignment.nextBestAction || insights.nextBestAction || '';
+
+      renderScoreCard(data);
+      renderCustomerCard(data);
+    }
+
+    function renderScoreCard(data) {
       const interp = data.interpretation || '';
       const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong'
         : interp.toLowerCase().includes('promising') ? 'promising'
         : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
-      const dotColor = { 'very-strong': '#1D9E75', 'promising': '#E8C547', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
       const barColor = { 'very-strong': '#1D9E75', 'promising': '#E8C547', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
-      const finalScore = Math.round(data.finalScore);
-      const circumference = 2 * Math.PI * 28;
-      const dashArray = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
+      const interpDisplay = interp.replace(' but Needs Validation', '.\nNeeds validation.').replace('but Needs Validation', '.\nNeeds validation.');
+      const finalScore = Math.round(data.finalScore || 0);
+      const circumference = 2 * Math.PI * 19;
+      const arc = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
+      const s = data.scores || {};
       const pillars = [
-        { key: 'problem',          label: 'Problem strength',    weight: '25%' },
-        { key: 'market',           label: 'Market attractiveness', weight: '20%' },
-        { key: 'valueProposition', label: 'Value proposition',   weight: '20%' },
-        { key: 'businessModel',    label: 'Business model',      weight: '20%' },
-        { key: 'execution',        label: 'Execution feasibility', weight: '15%' }
+        { key: 'problem', label: 'Problem strength' },
+        { key: 'market', label: 'Market attractiveness' },
+        { key: 'valueProposition', label: 'Value proposition' },
+        { key: 'businessModel', label: 'Business model' },
+        { key: 'execution', label: 'Execution feasibility' }
       ];
-      const insights = data.insights || {};
-      const warnings = data.warnings || [];
 
-      document.getElementById('scoreCard').innerHTML = `
-        <div class="score-header">
-          <div class="score-left">
-            <div class="score-dial">
-              <svg viewBox="0 0 72 72">
-                <circle cx="36" cy="36" r="28" fill="none" stroke="#E2D9CE" stroke-width="5"/>
-                <circle cx="36" cy="36" r="28" fill="none" stroke="${barColor}" stroke-width="5"
-                  stroke-dasharray="${dashArray}" stroke-dashoffset="${(circumference * 0.25).toFixed(1)}"
-                  stroke-linecap="round" transform="rotate(-90 36 36)"/>
-              </svg>
-              <div class="score-dial-num">
-                <span class="score-dial-big" style="color:${barColor};">${finalScore}</span>
-                <span class="score-dial-sub">/100</span>
-              </div>
-            </div>
-            <div class="score-meta">
-              <div class="score-section-eyebrow">Likelihood of success</div>
-              <div class="score-badge ${interpKey}">
-                <div class="score-badge-dot" style="background:${dotColor};"></div>
-                ${interp}
-              </div>
-              <div class="score-confidence">
-                <span class="score-conf-label">Confidence</span>
-                <div class="score-conf-pips">
-                  ${[1,2,3,4,5].map(n => `<div class="score-conf-pip ${n <= data.confidenceScore ? 'on' : ''}"></div>`).join('')}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      document.getElementById('scoreDial').innerHTML =
+        '<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/><circle cx="25" cy="25" r="19" fill="none" stroke="' + barColor + '" stroke-width="3.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 25 25)"/></svg>' +
+        '<div class="sc-num-wrap"><span class="sc-big" style="color:' + barColor + ';">' + finalScore + '</span><span class="sc-sub">/100</span></div>';
 
-        <div class="score-pillars">
-          ${pillars.map(p => {
-            const pillar = s[p.key] || {};
-            const score = pillar.score || 0;
-            const barW = Math.round((score / 5) * 100);
-            return `
-              <div class="score-pillar">
-                <div class="score-pillar-name">${p.label}<br><span style="color:#E2D9CE;">${p.weight}</span></div>
-                <div class="score-pillar-num">${score}/5</div>
-                <div class="score-bar-track">
-                  <div class="score-bar-fill" style="width:${barW}%;background:${barColor};"></div>
-                </div>
-                <div class="score-pillar-reason">${pillar.reason || ''}</div>
-              </div>`;
-          }).join('')}
-        </div>
+      document.getElementById('scoreInterpWrap').innerHTML =
+        '<div class="sc-interp" style="color:' + barColor + ';">' + interpDisplay.replace('\n', '<br>') + '</div>' +
+        '<div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">' +
+        [1,2,3,4,5].map(n => '<div class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></div>').join('') +
+        '</div></div>';
 
-        <div class="score-insights">
-          <div class="score-insight">
-            <div class="score-insight-label" style="color:#3D6B4F;">Top strength</div>
-            <div class="score-insight-text">${insights.topStrength || ''}</div>
-          </div>
-          <div class="score-insight">
-            <div class="score-insight-label" style="color:#E53E3E;">Biggest risk</div>
-            <div class="score-insight-text">${insights.biggestRisk || ''}</div>
-          </div>
-          <div class="score-insight">
-            <div class="score-insight-label" style="color:#B5A99A;">Key assumption</div>
-            <div class="score-insight-text">${insights.keyAssumption || ''}</div>
-          </div>
-          <div class="score-insight">
-            <div class="score-insight-label" style="color:#FF6B4A;">Next best action</div>
-            <div class="score-insight-text">${insights.nextBestAction || ''}</div>
-          </div>
-        </div>
+      document.getElementById('scorePillars').innerHTML = pillars.map(p => {
+        const pillar = s[p.key] || {};
+        const score = pillar.score || 0;
+        const color = score >= 4 ? '#1D9E75' : score >= 3 ? '#E8C547' : '#FF6B4A';
+        return '<div class="sc-pillar"><div class="sc-pbar-col"><div class="sc-pnum">' + score + '/5</div><div class="sc-ptrack"><div class="sc-pfill" style="width:' + Math.round((score/5)*100) + '%;background:' + color + ';"></div></div></div><div><div class="sc-pname">' + p.label + '</div><div class="sc-preason">' + (pillar.reason || '') + '</div></div></div>';
+      }).join('');
+    }
 
-        ${warnings.length > 0 ? `
-        <div class="score-warnings">
-          ${warnings.map(w => `
-            <div class="score-warning">
-              <div class="score-warning-icon">!</div>
-              <span>${w}</span>
-            </div>`).join('')}
-        </div>` : ''}
-      `;
+    function renderCustomerCard(data) {
+      const customer = data.customer || {};
+      const initials = (customer.name || 'CR').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      const avatarColors = ['#EEEDFE', '#E1F5EE', '#FAEEDA', '#FAF0EC'];
+      const textColors = ['#3C3489', '#085041', '#633806', '#712B13'];
+      const ci = Math.abs(initials.charCodeAt(0)) % 4;
 
-      document.getElementById('scoreSkeleton').style.display = 'none';
-      document.getElementById('scoreCard').style.display = 'block';
+      document.getElementById('customerAvatar').style.cssText = 'width:40px;height:40px;border-radius:50%;background:' + avatarColors[ci] + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:' + textColors[ci] + ';font-family:\'Playfair Display\',serif;';
+      document.getElementById('customerAvatar').textContent = initials;
+
+      document.getElementById('customerMeta').innerHTML =
+        '<div class="cc-name">' + (customer.name || 'Primary Segment') + '</div>' +
+        '<div class="cc-role">' + (customer.role || '') + (customer.age ? ' \u00b7 ' + customer.age : '') + '</div>' +
+        (customer.location ? '<div class="cc-loc"><div class="locdot"></div>' + customer.location + '</div>' : '');
+
+      const psychTags = (customer.psychographic || []).map(t => {
+        const cls = t.toLowerCase().includes('ambit') || t.toLowerCase().includes('career') ? 'trait-p'
+          : t.toLowerCase().includes('growth') || t.toLowerCase().includes('effic') ? 'trait-t' : 'trait-a';
+        return '<span class="trait ' + cls + '">' + t + '</span>';
+      }).join('');
+
+      const behavItems = (customer.behavioral || []).map(b => '<div class="cc-item"><div class="cbullet"></div><span>' + b + '</span></div>').join('');
+
+      const channelIcons = {
+        'linkedin': { bg: '#0A66C2', svg: '<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>' },
+        'whatsapp': { bg: '#25D366', svg: '<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>' },
+        'instagram': { bg: '#E4405F', svg: '<rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="white"/>' },
+        'youtube': { bg: '#FF0000', svg: '<path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/>' },
+        'twitter': { bg: '#1DA1F2', svg: '<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>' },
+        'x': { bg: '#1DA1F2', svg: '<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>' },
+        'telegram': { bg: '#0088CC', svg: '<path d="M21.7 2.3a1 1 0 00-1-.2L2.3 8.9a1 1 0 00.1 1.9l7.3 2 1.5 5.8a1 1 0 001 .7 1 1 0 00.8-.4l3.2-3.9 5.3 4a1 1 0 001.5-.8l1-15a1 1 0 00-.3-.9z"/>' },
+        'facebook': { bg: '#1877F2', svg: '<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>' }
+      };
+
+      const channelsHtml = (customer.channels || []).slice(0, 7).map(ch => {
+        const key = ch.toLowerCase().replace(/[^a-z]/g, '');
+        const icon = channelIcons[key] || channelIcons['linkedin'];
+        return '<div class="ch-wrap"><div class="ch-icon" style="background:' + icon.bg + ';"><svg width="13" height="13" viewBox="0 0 24 24" fill="white">' + icon.svg + '</svg></div><div class="ch-lbl">' + ch + '</div></div>';
+      }).join('');
+
+      const demo = customer.demographics || {};
+      const firmCells = [
+        { label: 'Age range', val: demo.ageRange || '' },
+        { label: 'Income', val: demo.income || '' },
+        { label: 'Education', val: demo.education || '' },
+        { label: 'Role level', val: demo.roleLevel || '' },
+        { label: 'Company size', val: demo.companySize || '' },
+        { label: 'Industry', val: demo.industry || '' }
+      ].filter(c => c.val).map(c => '<div class="firm-cell"><div class="firm-label">' + c.label + '</div><div class="firm-val">' + c.val + '</div></div>').join('');
+
+      const geoTags = (customer.geographies || []).map(g => '<span class="geo-tag">' + g + '</span>').join('');
+
+      document.getElementById('customerInner').innerHTML =
+        '<div class="cc-col">' +
+          (psychTags ? '<div><div class="cc-sec-label">Psychographic</div><div class="trait-row">' + psychTags + '</div></div>' : '') +
+          (behavItems ? '<div><div class="cc-sec-label">Behavioral</div><div class="cc-items">' + behavItems + '</div></div>' : '') +
+          (channelsHtml ? '<div><div class="cc-sec-label">Channels</div><div class="channels-row">' + channelsHtml + '</div></div>' : '') +
+        '</div>' +
+        '<div class="cc-col">' +
+          (firmCells ? '<div><div class="cc-sec-label">Demographics &amp; firmographic</div><div class="firm-grid">' + firmCells + '</div></div>' : '') +
+          (geoTags ? '<div><div class="cc-sec-label">Geographic markets</div><div class="geo-tags">' + geoTags + '</div></div>' : '') +
+        '</div>';
+    }
+
+    async function designModel() {
+      document.getElementById('canvasSection').classList.add('visible');
+      document.getElementById('canvasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.textContent = 'Customer Segment ' + (i + 1);
+        b.classList.toggle('active', i === 0);
+      });
+      document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas\u2026</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+      document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === 0));
+
+      document.getElementById('actionsRow').style.display = 'none';
+
+      try {
+        const seg1Data = await fetchSegment(currentIdea, null, 0);
+        document.querySelectorAll('.tab-btn')[0].textContent = seg1Data.segment.name;
+      } catch (err) {
+        document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Something went wrong. Please try again.</div></div>';
+        document.getElementById('actionsRow').style.display = 'flex';
+      }
+    }
+
+    function requestEdit() {
+      const canvasVisible = document.getElementById('canvasSection').classList.contains('visible');
+      if (canvasVisible) {
+        document.getElementById('editModal').classList.add('visible');
+      } else {
+        confirmEdit();
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('editModal').classList.remove('visible');
+    }
+
+    function confirmEdit() {
+      closeModal();
+      document.getElementById('landing').style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('canvasSection').classList.remove('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function scoreFromCanvas(data) {
@@ -394,250 +716,70 @@
       const comp = data.competitiveLandscape;
       const res = data.keyResources.resources;
       const act = data.keyActivities.activities;
-
       const painText = seg.painPoints.join(' ').toLowerCase();
       const gainText = seg.gains.join(' ').toLowerCase();
-      const jobText  = seg.jobsToBeDone.join(' ').toLowerCase();
+      const jobText = seg.jobsToBeDone.join(' ').toLowerCase();
       const compText = comp.competitors.map(c => c.description).join(' ').toLowerCase();
-      const advText  = (comp.advantage || '').toLowerCase();
-      const resText  = res.map(r => r.type).join(' ').toLowerCase();
+      const advText = (comp.advantage || '').toLowerCase();
+      const resText = res.map(r => r.type).join(' ').toLowerCase();
       const revTypes = rev.map(r => (r.type || '').toLowerCase());
-
       const urgencyWords = ['urgent','critical','expensive','costly','career','promotion','revenue','growth','risk','fail'];
       const urgencyScore = Math.min(5, 2 + urgencyWords.filter(w => (painText + jobText).includes(w)).length);
-
       const hasSubscription = revTypes.some(t => t.includes('subscription'));
       const revScore = Math.min(5, (hasSubscription ? 2 : 1) + Math.min(2, revTypes.length));
-
       const weakCompetitor = compText.includes('no') || compText.includes('weak') || compText.includes('lack') || compText.includes('generic');
       const strongAdv = advText.length > 40;
       const defScore = Math.min(5, 1 + (weakCompetitor ? 2 : 1) + (strongAdv ? 1 : 0) + (advText.includes('only') ? 1 : 0));
-
       const isLightweight = resText.includes('intellectual') || resText.includes('human');
       const isHeavy = resText.includes('physical') || resText.includes('financial');
       const execScore = Math.min(5, Math.max(1, 3 + (isLightweight ? 1 : 0) - (isHeavy ? 1 : 0) - (act.length > 3 ? 1 : 0)));
-
       const specificWords = ['specific','measurable','documented','proven','known','evidence','data'];
       const demandScore = Math.min(5, 2 + specificWords.filter(w => (painText + gainText + jobText).includes(w)).length);
-
       const final = Math.round((urgencyScore * 25 + revScore * 20 + defScore * 20 + execScore * 20 + demandScore * 15) / 5);
       const verdict = final >= 65 ? 'sv-strong' : final >= 45 ? 'sv-moderate' : 'sv-weak';
-      const verdictLabel = final >= 65 ? 'Strong segment' : final >= 45 ? 'Moderate — proceed with caution' : 'Weak — significant barriers';
+      const verdictLabel = final >= 65 ? 'Strong segment' : final >= 45 ? 'Moderate \u2014 proceed with caution' : 'Weak \u2014 significant barriers';
       const color = final >= 65 ? '#1D9E75' : final >= 45 ? '#E8C547' : '#E24B4A';
       const dotColor = final >= 65 ? '#1D9E75' : final >= 45 ? '#BA7517' : '#E24B4A';
-
       const circumference = 2 * Math.PI * 23;
       const arc = ((final / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
-
       const pillars = [
-        { name: 'Market access',   weight: '25%', score: urgencyScore, reason: urgencyScore >= 4 ? 'Segment has strong, frequent, high-urgency needs.' : urgencyScore >= 3 ? 'Moderate urgency — some friction to activate buyers.' : 'Low urgency detected — consider segment motivation.' },
-        { name: 'Revenue model',   weight: '20%', score: revScore,     reason: revScore >= 4 ? 'Multiple revenue streams including recurring model.' : revScore >= 3 ? 'Viable model but limited to one or two stream types.' : 'Weak monetization — mostly one-off or unclear pricing.' },
-        { name: 'Defensibility',   weight: '20%', score: defScore,     reason: defScore >= 4 ? 'Competitors have named weaknesses; advantage is specific.' : defScore >= 3 ? 'Some differentiation but advantage could be replicated.' : 'Competitive advantage is vague or competitors are strong.' },
-        { name: 'Execution',       weight: '20%', score: execScore,    reason: execScore >= 4 ? 'Lean resource profile — primarily intellectual or human assets.' : execScore >= 3 ? 'Moderate complexity — manageable with focused effort.' : 'High execution risk — heavy resources or broad activity set.' },
-        { name: 'Demand evidence', weight: '15%', score: demandScore,  reason: demandScore >= 4 ? 'Jobs and pains are specific, measurable, and well-documented.' : demandScore >= 3 ? 'Demand signals present but could be more concrete.' : 'Vague jobs/pains — demand evidence needs strengthening.' }
+        { name: 'Market access', weight: '25%', score: urgencyScore, reason: urgencyScore >= 4 ? 'Strong, frequent, high-urgency needs.' : urgencyScore >= 3 ? 'Moderate urgency \u2014 some friction to activate.' : 'Low urgency \u2014 consider segment motivation.' },
+        { name: 'Revenue model', weight: '20%', score: revScore, reason: revScore >= 4 ? 'Multiple streams including recurring model.' : revScore >= 3 ? 'Viable but limited stream types.' : 'Weak monetization \u2014 unclear pricing.' },
+        { name: 'Defensibility', weight: '20%', score: defScore, reason: defScore >= 4 ? 'Competitors have named weaknesses; advantage specific.' : defScore >= 3 ? 'Some differentiation but replicable.' : 'Vague advantage or strong competitors.' },
+        { name: 'Execution', weight: '20%', score: execScore, reason: execScore >= 4 ? 'Lean resource profile \u2014 intellectual/human assets.' : execScore >= 3 ? 'Moderate complexity, manageable.' : 'High execution risk \u2014 heavy resources.' },
+        { name: 'Demand evidence', weight: '15%', score: demandScore, reason: demandScore >= 4 ? 'Jobs and pains are specific and measurable.' : demandScore >= 3 ? 'Demand signals present but unspecific.' : 'Vague jobs/pains \u2014 needs strengthening.' }
       ];
-
       const warnings = [];
-      if (compText.includes('free') || compText.includes('youtube') || compText.includes('app')) warnings.push('Free alternatives exist in the competitive landscape — a clear "why pay?" case must be made before launch.');
-      if (!hasSubscription) warnings.push('No subscription or recurring revenue stream detected — consider how to build predictable revenue from this segment.');
-      if (isHeavy) warnings.push('Key resources include physical or financial assets — validate capital requirements before committing to this segment.');
-
+      if (compText.includes('free') || compText.includes('youtube') || compText.includes('app')) warnings.push('Free alternatives exist \u2014 a clear "why pay?" case must be made.');
+      if (!hasSubscription) warnings.push('No recurring revenue detected \u2014 consider how to build predictable income.');
+      if (isHeavy) warnings.push('Physical/financial assets detected \u2014 validate capital requirements first.');
       return { final, verdict, verdictLabel, color, dotColor, arc, circumference, pillars, warnings };
     }
 
     function renderSegmentViability(data) {
       const sv = scoreFromCanvas(data);
-      const pillarsHtml = sv.pillars.map(p => `
-        <div class="sv-pillar">
-          <div class="sv-pil-name">${p.name}</div>
-          <div class="sv-pil-weight">${p.weight}</div>
-          <div class="sv-pil-score">${p.score}/5</div>
-          <div class="sv-bar-track"><div class="sv-bar-fill" style="width:${p.score * 20}%;background:${p.score >= 4 ? '#1D9E75' : p.score >= 3 ? '#E8C547' : '#FF6B4A'};"></div></div>
-          <div class="sv-pil-reason">${p.reason}</div>
-        </div>`).join('');
-
-      const warningsHtml = sv.warnings.length > 0 ? `
-        <div class="sv-warnings">
-          <div class="sv-warn-label">Watch out for</div>
-          ${sv.warnings.map(w => `<div class="sv-warn-row"><div class="sv-warn-icon">!</div><span>${w}</span></div>`).join('')}
-        </div>` : '';
-
-      return `
-        <div class="sv-card">
-          <div class="sv-header">
-            <div class="sv-dial-wrap">
-              <svg viewBox="0 0 60 60">
-                <circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/>
-                <circle cx="30" cy="30" r="23" fill="none" stroke="${sv.color}" stroke-width="4.5"
-                  stroke-dasharray="${sv.arc}" stroke-dashoffset="${(sv.circumference * 0.25).toFixed(1)}"
-                  stroke-linecap="round" transform="rotate(-90 30 30)"/>
-              </svg>
-              <div class="sv-dial-num">
-                <span class="sv-dial-big" style="color:${sv.color};">${sv.final}</span>
-                <span class="sv-dial-sub">/100</span>
-              </div>
-            </div>
-            <div class="sv-meta">
-              <div class="sv-eyebrow">Segment viability</div>
-              <div class="sv-badge ${sv.verdict}">
-                <div class="sv-badge-dot" style="background:${sv.dotColor};"></div>
-                ${sv.verdictLabel}
-              </div>
-              <div class="sv-summary">${data.competitiveLandscape.advantage}</div>
-            </div>
-          </div>
-          <div class="sv-pillars">${pillarsHtml}</div>
-          ${warningsHtml}
-        </div>`;
+      const pillarsHtml = sv.pillars.map(p => '<div class="sv-pillar"><div class="sv-pil-name">' + p.name + '</div><div class="sv-pil-weight">' + p.weight + '</div><div class="sv-pil-score">' + p.score + '/5</div><div class="sv-bar-track"><div class="sv-bar-fill" style="width:' + (p.score * 20) + '%;background:' + (p.score >= 4 ? '#1D9E75' : p.score >= 3 ? '#E8C547' : '#FF6B4A') + ';"></div></div><div class="sv-pil-reason">' + p.reason + '</div></div>').join('');
+      const warningsHtml = sv.warnings.length > 0 ? '<div class="sv-warnings"><div class="sv-warn-label">Watch out for</div>' + sv.warnings.map(w => '<div class="sv-warn-row"><div class="sv-warn-icon">!</div><span>' + w + '</span></div>').join('') + '</div>' : '';
+      return '<div class="sv-card"><div class="sv-header"><div class="sv-dial-wrap"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + sv.color + '" stroke-width="4.5" stroke-dasharray="' + sv.arc + '" stroke-dashoffset="' + (sv.circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg><div class="sv-dial-num"><span class="sv-dial-big" style="color:' + sv.color + ';">' + sv.final + '</span><span class="sv-dial-sub">/100</span></div></div><div class="sv-meta"><div class="sv-eyebrow">Segment viability</div><div class="sv-badge ' + sv.verdict + '"><div class="sv-badge-dot" style="background:' + sv.dotColor + ';"></div>' + sv.verdictLabel + '</div><div class="sv-summary">' + data.competitiveLandscape.advantage + '</div></div></div><div class="sv-pillars">' + pillarsHtml + '</div>' + warningsHtml + '</div>';
     }
 
     function renderCanvas(data, panelIndex) {
       const seg = data.segment;
       const offerings = data.valueProposition.offerings;
       const p = panelIndex;
-
-      const html = `
-        <div class="animate">
-          <div class="section">
-            <div class="section-label">Customer Segment</div>
-            <div class="seg-profile">${seg.profile}</div>
-            <div class="seg-tags">${seg.tags.map(t => `<span class="seg-tag">${t}</span>`).join('')}</div>
-            <div class="seg-grid">
-              <div class="seg-col">
-                <div class="seg-col-label">Jobs to be done</div>
-                ${seg.jobsToBeDone.map(j => `<div class="seg-item"><div class="seg-dot"></div><span>${j}</span></div>`).join('')}
-              </div>
-              <div class="seg-col">
-                <div class="seg-col-label">Top pain points</div>
-                ${seg.painPoints.map(pt => `<div class="seg-item"><div class="seg-dot"></div><span>${pt}</span></div>`).join('')}
-              </div>
-              <div class="seg-col">
-                <div class="seg-col-label">Gains</div>
-                ${seg.gains.map(g => `<div class="seg-item"><div class="seg-dot"></div><span>${g}</span></div>`).join('')}
-              </div>
-            </div>
-          </div>
-
-          ${renderSegmentViability(data)}
-
-          <div class="section">
-            <div class="section-label">Value Proposition</div>
-            <div class="section-summary">${data.valueProposition.summary}</div>
-            <div class="cards-grid">
-              ${offerings.map((o, i) => `
-                <div class="card">
-                  <div class="card-type" style="color:#1A1A2E;">Offering ${String(i+1).padStart(2,'0')}</div>
-                  <div class="card-name">${o.name}</div>
-                  <div class="card-desc">${o.description}</div>
-                  <span class="card-badge">✦ ${o.advantage}</span>
-                </div>`).join('')}
-            </div>
-          </div>
-
-          ${collapsibleSection(`cr-${p}`, 'Customer Relationships',
-            `<div class="section-summary">${data.customerRelationships.summary}</div>
-            <div class="cards-grid">
-              ${data.customerRelationships.strategies.map(s => `
-                <div class="card">
-                  <div class="card-type ${typeClass(s.type)}">${s.type}</div>
-                  <div class="card-name">${s.name}</div>
-                  <div class="card-desc">${s.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`ch-${p}`, 'Channels',
-            `<div class="section-summary">${data.channels.summary}</div>
-            <div class="ch-cards">
-              ${data.channels.touchpoints.map(t => `
-                <div class="ch-card">
-                  <div class="ch-phase phase-${t.phase.toLowerCase().replace(/[^a-z]/g,'')}">${t.phase}</div>
-                  <div class="ch-name">${t.name}</div>
-                  <div class="ch-desc">${t.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`kp-${p}`, 'Key Partners',
-            `<div class="section-summary">${data.keyPartners.summary}</div>
-            <div class="cards-grid">
-              ${data.keyPartners.partners.map(pt => `
-                <div class="card">
-                  <div class="card-type ${typeClass(pt.type)}">${pt.type}</div>
-                  <div class="card-name">${pt.name}</div>
-                  <div class="card-desc">${pt.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`ka-${p}`, 'Key Activities',
-            `<div class="section-summary">${data.keyActivities.summary}</div>
-            <div class="cards-grid">
-              ${data.keyActivities.activities.map(a => `
-                <div class="card">
-                  <div class="card-type ${typeClass(a.category)}">${a.category}</div>
-                  <div class="card-name">${a.name}</div>
-                  <div class="card-desc">${a.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`kr-${p}`, 'Key Resources',
-            `<div class="section-summary">${data.keyResources.summary}</div>
-            <div class="cards-grid">
-              ${data.keyResources.resources.map(r => `
-                <div class="card">
-                  <div class="card-type ${typeClass(r.type)}">${r.type}</div>
-                  <div class="card-name">${r.name}</div>
-                  <div class="card-desc">${r.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`cost-${p}`, 'Cost Structure',
-            `<div class="section-summary">${data.costStructure.summary}</div>
-            <div class="cards-grid">
-              ${data.costStructure.costs.map(c => `
-                <div class="card">
-                  <div class="card-type ${typeClass(c.type)}">${c.type}</div>
-                  <div class="card-name">${c.name}</div>
-                  <div class="card-desc">${c.description}</div>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`rev-${p}`, 'Revenue Streams',
-            `<div class="section-summary">${data.revenueStreams.summary}</div>
-            <div class="cards-grid">
-              ${data.revenueStreams.streams.map(s => `
-                <div class="card">
-                  <div class="card-type" style="color:#27AE60;">${s.type}</div>
-                  <div class="card-name">${s.name}</div>
-                  <div class="card-desc">${s.description}</div>
-                  <span class="card-badge">${s.pricing} pricing</span>
-                </div>`).join('')}
-            </div>`
-          )}
-
-          ${collapsibleSection(`cl-${p}`, 'Competitive Landscape',
-            `<div class="section-summary">${data.competitiveLandscape.summary}</div>
-            <div class="cards-grid">
-              ${data.competitiveLandscape.competitors.map(c => `
-                <div class="card">
-                  <div class="card-type ${typeClass(c.type)}">${c.type}</div>
-                  <div class="card-name">${c.name}</div>
-                  <div class="card-desc">${c.description}</div>
-                </div>`).join('')}
-            </div>
-            <div class="advantage-block">
-              <div class="advantage-label">Our Competitive Advantage</div>
-              ${data.competitiveLandscape.advantage}
-            </div>`
-          )}
-
-        </div>`;
-
-      document.getElementById(`panel-${panelIndex}`).innerHTML = html;
+      const html = '<div class="animate"><div class="section"><div class="section-label">Customer Segment</div><div class="seg-profile">' + seg.profile + '</div><div class="seg-tags">' + seg.tags.map(t => '<span class="seg-tag">' + t + '</span>').join('') + '</div><div class="seg-grid"><div class="seg-col"><div class="seg-col-label">Jobs to be done</div>' + seg.jobsToBeDone.map(j => '<div class="seg-item"><div class="seg-dot"></div><span>' + j + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Top pain points</div>' + seg.painPoints.map(pt => '<div class="seg-item"><div class="seg-dot"></div><span>' + pt + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Gains</div>' + seg.gains.map(g => '<div class="seg-item"><div class="seg-dot"></div><span>' + g + '</span></div>').join('') + '</div></div></div>' +
+        renderSegmentViability(data) +
+        '<div class="section"><div class="section-label">Value Proposition</div><div class="section-summary">' + data.valueProposition.summary + '</div><div class="cards-grid">' + offerings.map((o, i) => '<div class="card"><div class="card-type" style="color:#1A1A2E;">Offering ' + String(i+1).padStart(2,'0') + '</div><div class="card-name">' + o.name + '</div><div class="card-desc">' + o.description + '</div><span class="card-badge">&#x2736; ' + o.advantage + '</span></div>').join('') + '</div></div>' +
+        collapsibleSection('cr-'+p, 'Customer Relationships', '<div class="section-summary">' + data.customerRelationships.summary + '</div><div class="cards-grid">' + data.customerRelationships.strategies.map(s => '<div class="card"><div class="card-type ' + typeClass(s.type) + '">' + s.type + '</div><div class="card-name">' + s.name + '</div><div class="card-desc">' + s.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('ch-'+p, 'Channels', '<div class="section-summary">' + data.channels.summary + '</div><div class="ch-cards">' + data.channels.touchpoints.map(t => '<div class="ch-card"><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div class="ch-name">' + t.name + '</div><div class="ch-desc">' + t.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('kp-'+p, 'Key Partners', '<div class="section-summary">' + data.keyPartners.summary + '</div><div class="cards-grid">' + data.keyPartners.partners.map(pt => '<div class="card"><div class="card-type ' + typeClass(pt.type) + '">' + pt.type + '</div><div class="card-name">' + pt.name + '</div><div class="card-desc">' + pt.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('ka-'+p, 'Key Activities', '<div class="section-summary">' + data.keyActivities.summary + '</div><div class="cards-grid">' + data.keyActivities.activities.map(a => '<div class="card"><div class="card-type ' + typeClass(a.category) + '">' + a.category + '</div><div class="card-name">' + a.name + '</div><div class="card-desc">' + a.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('kr-'+p, 'Key Resources', '<div class="section-summary">' + data.keyResources.summary + '</div><div class="cards-grid">' + data.keyResources.resources.map(r => '<div class="card"><div class="card-type ' + typeClass(r.type) + '">' + r.type + '</div><div class="card-name">' + r.name + '</div><div class="card-desc">' + r.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('cost-'+p, 'Cost Structure', '<div class="section-summary">' + data.costStructure.summary + '</div><div class="cards-grid">' + data.costStructure.costs.map(c => '<div class="card"><div class="card-type ' + typeClass(c.type) + '">' + c.type + '</div><div class="card-name">' + c.name + '</div><div class="card-desc">' + c.description + '</div></div>').join('') + '</div>') +
+        collapsibleSection('rev-'+p, 'Revenue Streams', '<div class="section-summary">' + data.revenueStreams.summary + '</div><div class="cards-grid">' + data.revenueStreams.streams.map(s => '<div class="card"><div class="card-type" style="color:#27AE60;">' + s.type + '</div><div class="card-name">' + s.name + '</div><div class="card-desc">' + s.description + '</div><span class="card-badge">' + s.pricing + ' pricing</span></div>').join('') + '</div>') +
+        collapsibleSection('cl-'+p, 'Competitive Landscape', '<div class="section-summary">' + data.competitiveLandscape.summary + '</div><div class="cards-grid">' + data.competitiveLandscape.competitors.map(c => '<div class="card"><div class="card-type ' + typeClass(c.type) + '">' + c.type + '</div><div class="card-name">' + c.name + '</div><div class="card-desc">' + c.description + '</div></div>').join('') + '</div><div class="advantage-block"><div class="advantage-label">Our Competitive Advantage</div>' + data.competitiveLandscape.advantage + '</div>') +
+        '</div>';
+      document.getElementById('panel-' + panelIndex).innerHTML = html;
       document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
     }
 
@@ -650,118 +792,6 @@
       const data = await response.json();
       renderCanvas(data, panelIndex);
       return data;
-    }
-
-    async function fetchScore(idea) {
-      try {
-        const response = await fetch('/api/score', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea })
-        });
-        const data = await response.json();
-        if (data.error) {
-          console.error('Score API error:', data.error, data.detail);
-          document.getElementById('scoreSkeleton').style.display = 'none';
-          return;
-        }
-        renderScore(data);
-      } catch (err) {
-        console.error('fetchScore failed:', err);
-        document.getElementById('scoreSkeleton').style.display = 'none';
-      }
-    }
-    async function generate() {
-      const idea = document.getElementById('idea').value.trim();
-      const errorMsg = document.getElementById('errorMsg');
-      const btn = document.getElementById('generateBtn');
-      const loading = document.getElementById('loading');
-      const tabsWrapper = document.getElementById('tabsWrapper');
-      const scoreWrapper = document.getElementById('scoreWrapper');
-
-      if (!idea) {
-        errorMsg.style.display = 'block';
-        document.getElementById('idea').classList.add('error');
-        return;
-      }
-
-      errorMsg.style.display = 'none';
-      document.getElementById('idea').classList.remove('error');
-      btn.disabled = true;
-      btn.innerHTML = 'Building your canvases...';
-      loading.style.display = 'block';
-      tabsWrapper.style.display = 'none';
-      scoreWrapper.style.display = 'none';
-
-      document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.textContent = `Customer Segment ${i + 1}`;
-        b.classList.toggle('active', i === 0);
-      });
-      document.querySelectorAll('.tab-panel').forEach((p, i) => {
-        p.classList.toggle('active', i === 0);
-        if (i === 0) {
-          p.innerHTML = `
-            <div class="loading-tab">
-              <div class="loading-tab-msg">Building the business model canvas for this customer segment…</div>
-              <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-            </div>`;
-        } else {
-          p.innerHTML = `
-            <div style="text-align:center;padding:60px 24px;">
-              <div style="font-size:32px;margin-bottom:20px;">🙏</div>
-              <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div>
-              <div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div>
-            </div>`;
-        }
-      });
-
-      // Reset score card
-      document.getElementById('scoreSkeleton').style.display = 'block';
-      document.getElementById('scoreCard').style.display = 'none';
-      document.getElementById('scoreCard').innerHTML = '';
-
-      try {
-        loading.style.display = 'none';
-        tabsWrapper.style.display = 'block';
-        scoreWrapper.style.display = 'block';
-        switchTab(0);
-
-        // Score and seg1 fetch in parallel — but score renders FIRST,
-        // then seg1 renders immediately after. Seg2 and seg3 run
-        // sequentially after seg1 to guarantee correct tab order.
-        const [scoreData, seg1Data] = await Promise.all([
-          fetch('/api/score', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idea })
-          }).then(r => r.json()),
-          fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idea, segmentContext: null })
-          }).then(r => r.json())
-        ]);
-
-        // Render score first, then seg1 immediately after
-        if (scoreData && !scoreData.error) renderScore(scoreData);
-        else document.getElementById('scoreSkeleton').style.display = 'none';
-
-        renderCanvas(seg1Data, 0);
-        document.querySelectorAll('.tab-btn')[0].textContent = seg1Data.segment.name;
-
-        // Seg2 and seg3 show a coming-soon message during testing
-const comingSoonHtml = '<div style="text-align:center;padding:60px 24px;"><div style="font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;font-family:serif;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>';
-
-        document.getElementById('panel-1').innerHTML = comingSoonHtml;
-        document.getElementById('panel-2').innerHTML = comingSoonHtml;
-
-      } catch (err) {
-        alert('Something went wrong. Please try again.');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Generate Business Model';
-        loading.style.display = 'none';
-      }
     }
   </script>
 </body>
