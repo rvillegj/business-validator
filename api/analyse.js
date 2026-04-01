@@ -66,7 +66,7 @@ Confidence Score (1-5): overall reliability of this assessment based on how much
 CORE HYPOTHESIS:
 - problem: one tight sentence (max 25 words) — the core problem being solved
 - hypothesis: one tight sentence (max 30 words) — the core belief about the solution
-- metric: one tight sentence (max 25 words) — a specific falsifiable success metric including a number or percentage
+- metric: one tight sentence (max 25 words) — a specific falsifiable experiment completable within 1–4 weeks. Must include a concrete number or percentage AND a timeframe expressed in days or weeks (never months or years). Example: "at least 20 people sign up within 7 days of launching a landing page."
 
 In the reason field for each pillar, briefly reference what market knowledge informed the evidence score (e.g. "The e-learning market was valued at $250B in 2023 with 14% CAGR — strong published evidence supports market attractiveness.").
 
