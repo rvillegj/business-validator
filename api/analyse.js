@@ -6,57 +6,11 @@ export default async function handler(req, res) {
 
   if (!idea) return res.status(400).json({ error: 'idea is required' });
 
-  const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-
-  // ── PASS 1: Web search for market research evidence ───────────────────────
-  let marketIntelligence = '';
-
-  try {
-    const searchResponse = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1024,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{
-          role: 'user',
-          content: `You are a market research analyst. Search the web and gather real-world evidence for this business idea across five dimensions:
-1. Market size and growth rate for the relevant industry
-2. Existing competitors and their traction or funding
-3. Consumer demand trends and signals
-4. Geographic market data if a location is mentioned
-5. Published research, reports, or news indicating momentum or decline in this space
-
-Business idea: "${idea}"
-
-After searching, write a concise market intelligence summary (max 200 words). Be specific — cite numbers, growth rates, or named competitors where found. If no data exists for a dimension, say so explicitly.`
-        }]
-      })
-    });
-
-    const searchData = await searchResponse.json();
-    if (searchResponse.ok && searchData.content) {
-      marketIntelligence = searchData.content
-        .filter(b => b.type === 'text')
-        .map(b => b.text || '')
-        .join('\n')
-        .trim();
-    }
-  } catch (e) {
-    marketIntelligence = 'No market research data could be retrieved.';
-  }
-
-  // ── PASS 2: Score using market intelligence as evidence context ───────────
-  const scoreResponse = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': ANTHROPIC_API_KEY,
+      'x-api-key': process.env.ANTHROPIC_API_KEY,
       'anthropic-version': '2023-06-01'
     },
     body: JSON.stringify({
@@ -64,39 +18,41 @@ After searching, write a concise market intelligence summary (max 200 words). Be
       max_tokens: 1500,
       system: `You are an expert startup evaluator used by founders, investors, and venture studios.
 
-Evaluate the business idea using both the user's description and the market intelligence provided from web research.
+Your task is to evaluate a business idea and produce a structured Likelihood of Success assessment.
 
-Use market intelligence to inform evidence scores. Evidence scores reflect how much real-world published data supports each pillar — not the quality of the user's description.
+You have deep knowledge of global markets, industries, competitors, funding trends, consumer behavior research, and published industry reports. Use this knowledge to assess the evidence behind each pillar — do not rely only on what the user wrote. Draw on what you know about the relevant market, industry dynamics, and comparable businesses.
 
 EVALUATION SCOPE:
-- Evaluate the idea EXACTLY as described. Do not infer details the user did not mention.
-- Be analytical, objective, critical. Avoid hype. Penalize unsupported claims.
+- Evaluate the idea EXACTLY as the user described it. Do not infer details they did not mention.
+- Be analytical, objective, critical, and concise. Avoid hype.
+- Penalize high-quality claims that lack real-world backing.
+- Base evidence scores on what is actually known about this market and problem space — not on the quality of the user's description.
 
-FRAMEWORK — score each pillar on two dimensions:
-- qualityScore (1–5): intrinsic business strength on this dimension
-- evidenceScore (1–5): real-world proof from market research
+EVALUATION FRAMEWORK — score each pillar on two dimensions:
+- qualityScore (1–5): intrinsic strength of the business idea on this dimension
+- evidenceScore (1–5): how much real-world market knowledge, published research, or industry data supports that score
 
 1) Problem Strength & Urgency (Weight: 25%)
-Quality: 1=weak/infrequent, 3=meaningful/moderate urgency, 5=critical/frequent/expensive with willingness to pay
-Evidence: 1=no data found, 3=some published research, 5=strong behavioral data or surveys with numbers
+Quality: 1=weak/infrequent, 3=meaningful/moderate urgency, 5=critical/frequent/expensive with clear willingness to pay
+Evidence: 1=no published data supports this problem, 3=industry reports or surveys confirm the problem exists, 5=strong behavioral or payment data confirms urgency at scale
 
 2) Market Attractiveness (Weight: 20%)
-Quality: 1=small/stagnant, 3=moderate niche with growth, 5=large/fast-growing/attractive
-Evidence: 1=no market data, 3=some size or growth estimates, 5=verified reports with specific figures
+Quality: 1=small/stagnant/unfavorable, 3=moderate niche with some growth, 5=large/fast-growing/attractive
+Evidence: 1=market size unknown or unverified, 3=credible market size estimates or growth rates exist, 5=well-documented market with specific verified figures from reputable sources
 
 3) Value Proposition & Differentiation (Weight: 20%)
 Quality: 1=unclear/undifferentiated, 3=somewhat differentiated, 5=clear/compelling/defensible
-Evidence: 1=no competitor data, 3=some competitor or preference data, 5=clear market gap verified by research
+Evidence: 1=no comparable competitive data, 3=known competitors exist with documented gaps, 5=clear underserved gap confirmed by market research or competitor analysis
 
 4) Business Model Viability (Weight: 20%)
 Quality: 1=weak/unclear monetization, 3=plausible but uncertain, 5=strong/scalable/well-structured
-Evidence: 1=no pricing or revenue data, 3=comparable pricing data exists, 5=verified revenue models in this space
+Evidence: 1=no pricing or revenue benchmarks exist, 3=comparable pricing or revenue models are documented in this space, 5=proven monetization models with published unit economics exist
 
 5) Execution Feasibility (Weight: 15%)
 Quality: 1=very hard/many dependencies, 3=feasible with some risks, 5=highly feasible/fast to test
-Evidence: 1=no comparable execution data, 3=similar businesses have launched, 5=proven playbook exists in research
+Evidence: 1=no precedent for this type of execution, 3=similar businesses have launched and documented their approach, 5=well-established playbook with multiple successful precedents
 
-SCORING:
+SCORING RULES:
 Base Score = ((Problem Quality * 25) + (Market Quality * 20) + (VP Quality * 20) + (BM Quality * 20) + (Execution Quality * 15)) / 5
 Average Evidence = average of 5 evidence scores
 Evidence Multiplier: avg<1.5→0.60, avg<2.5→0.75, avg<3.5→0.85, avg<4.5→0.95, avg>=4.5→1.00
@@ -104,12 +60,15 @@ Final Score = round(Base Score * Evidence Multiplier)
 
 Interpretation: 80-100=Very Strong Opportunity, 65-79=Promising but Needs Validation, 50-64=Unclear / Moderate Risk, <50=Weak / High Risk
 
-Confidence Score (1-5): reliability of this assessment based on quality and consistency of market research found.
+Confidence Score (1-5): overall reliability of this assessment based on how much you actually know about this market.
+1=mostly assumptions with little market knowledge, 3=moderate market knowledge exists, 5=well-documented space with strong published evidence.
 
 CORE HYPOTHESIS:
 - problem: one tight sentence (max 25 words) — the core problem being solved
 - hypothesis: one tight sentence (max 30 words) — the core belief about the solution
-- metric: one tight sentence (max 25 words) — a specific falsifiable success metric with a number or percentage
+- metric: one tight sentence (max 25 words) — a specific falsifiable success metric including a number or percentage
+
+In the reason field for each pillar, briefly reference what market knowledge informed the evidence score (e.g. "The e-learning market was valued at $250B in 2023 with 14% CAGR — strong published evidence supports market attractiveness.").
 
 Return ONLY valid JSON, no markdown fences, no explanation:
 {
@@ -132,18 +91,18 @@ Return ONLY valid JSON, no markdown fences, no explanation:
 }`,
       messages: [{
         role: 'user',
-        content: `Business idea: "${idea}"\n\nMarket intelligence from web research:\n${marketIntelligence || 'No market data available.'}`
+        content: `Business idea: "${idea}"`
       }]
     })
   });
 
-  const scoreData = await scoreResponse.json();
+  const data = await response.json();
 
-  if (!scoreResponse.ok || !scoreData.content) {
-    return res.status(500).json({ error: 'Scoring API error', detail: scoreData });
+  if (!response.ok || !data.content) {
+    return res.status(500).json({ error: 'Scoring API error', detail: data });
   }
 
-  const text = scoreData.content.map(b => b.text || '').join('');
+  const text = data.content.map(b => b.text || '').join('');
   const clean = text.replace(/```json|```/g, '').trim();
 
   try {
