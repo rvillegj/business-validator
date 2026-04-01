@@ -35,9 +35,20 @@
     .fc-text { font-size: 11px; color: #888; line-height: 1.55; }
 
     /* ── PAGE 2: Results ── */
-    .results { display: none; max-width: 960px; margin: 0 auto; padding: 28px 24px 56px; }
-
+    .results { display: none; max-width: 960px; margin: 0 auto; padding: 0 24px 56px; }
+    .results-nav { display: flex; align-items: center; gap: 10px; padding: 20px 0 16px; }
+    .back-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; background: none; border: none; cursor: pointer; padding: 0; font-family: 'DM Sans', sans-serif; }
+    .back-btn:hover { color: #555; }
+    .nav-sep { font-size: 12px; color: #D0C9BF; }
+    .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; }
     .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 10px; }
+    .idea-bar-locked { opacity: 0.45; pointer-events: none; }
+    .psych-desc { font-size: 11.5px; color: #555; line-height: 1.55; font-style: italic; margin-bottom: 8px; }
+    .platform-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .platform-pill { font-size: 10.5px; padding: 2px 10px; border-radius: 20px; background: #F5F1EB; color: #555; border: 1px solid #E2D9CE; }
+    .expand-collapse-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .expand-collapse-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; }
+    .expand-collapse-btn { font-size: 11px; color: #FF6B4A; font-weight: 500; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; padding: 0; font-family: 'DM Sans', sans-serif; }
     .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 12px 16px; margin-bottom: 14px; transition: border 0.15s; }
     .idea-bar.edit-mode { border: 2px solid #FF6B4A; }
     .idea-bar-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
@@ -333,7 +344,14 @@
   <!-- ── PAGE 2: RESULTS ── -->
   <div class="results" id="results">
 
-    <div class="results-eyebrow">Your business model analysis</div>
+    <div class="results-nav">
+      <button class="back-btn" onclick="goBack()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back
+      </button>
+      <span class="nav-sep">/</span>
+      <span class="results-eyebrow">Your business model analysis</span>
+    </div>
 
     <div class="idea-bar" id="ideaBar">
       <div class="idea-bar-top">
@@ -515,6 +533,32 @@
       document.getElementById(id + '-chev').classList.toggle('open');
     }
 
+    function goBack() {
+      document.getElementById('landing').style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('canvasSection').classList.remove('visible');
+      window.scrollTo({ top: 0 });
+    }
+
+    function toggleAllSections(p) {
+      const btn = document.getElementById('ec-btn-' + p);
+      const ids = ['cr','ch','kp','ka','kr','cost','rev','cl'].map(s => s + '-' + p);
+      const anyOpen = ids.some(id => {
+        const b = document.getElementById(id + '-body');
+        return b && b.classList.contains('open');
+      });
+      ids.forEach(id => {
+        const body = document.getElementById(id + '-body');
+        const chev = document.getElementById(id + '-chev');
+        if (!body) return;
+        if (anyOpen) { body.classList.remove('open'); if (chev) chev.classList.remove('open'); }
+        else { body.classList.add('open'); if (chev) chev.classList.add('open'); }
+      });
+      btn.innerHTML = anyOpen
+        ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Expand all'
+        : '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M5 12h14"/></svg> Collapse all';
+    }
+
     function collapsibleSection(id, label, html) {
       return '<div class="collapsible"><div class="collapsible-header" onclick="toggleCollapsible(\'' + id + '\')"><div class="collapsible-title">' + label + '</div><div class="collapsible-chevron" id="' + id + '-chev">&#8964;</div></div><div class="collapsible-body" id="' + id + '-body">' + html + '</div></div>';
     }
@@ -528,6 +572,7 @@
       document.getElementById('results').style.display = 'block';
       document.getElementById('ideaDisplay').innerText = idea;
       exitEditMode();
+      document.getElementById('ideaBar').classList.add('idea-bar-locked');
       document.getElementById('actionsRow').style.display = 'none';
       document.getElementById('canvasSection').classList.remove('visible');
 
@@ -550,10 +595,12 @@
         }
 
         renderAnalysisResults(data);
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
         document.getElementById('actionsRow').style.display = 'flex';
 
       } catch (err) {
         console.error('Analysis failed:', err);
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
         document.getElementById('landing').style.display = 'block';
         document.getElementById('results').style.display = 'none';
         document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
@@ -638,22 +685,7 @@
 
       const behavItems = (customer.behavioral || []).map(b => '<div class="cc-item"><div class="cbullet"></div><span>' + b + '</span></div>').join('');
 
-      const channelIcons = {
-        'linkedin': { bg: '#0A66C2', svg: '<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>' },
-        'whatsapp': { bg: '#25D366', svg: '<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>' },
-        'instagram': { bg: '#E4405F', svg: '<rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" stroke="white" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="1" fill="white"/>' },
-        'youtube': { bg: '#FF0000', svg: '<path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/>' },
-        'twitter': { bg: '#1DA1F2', svg: '<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>' },
-        'x': { bg: '#1DA1F2', svg: '<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>' },
-        'telegram': { bg: '#0088CC', svg: '<path d="M21.7 2.3a1 1 0 00-1-.2L2.3 8.9a1 1 0 00.1 1.9l7.3 2 1.5 5.8a1 1 0 001 .7 1 1 0 00.8-.4l3.2-3.9 5.3 4a1 1 0 001.5-.8l1-15a1 1 0 00-.3-.9z"/>' },
-        'facebook': { bg: '#1877F2', svg: '<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>' }
-      };
-
-      const channelsHtml = (customer.channels || []).slice(0, 7).map(ch => {
-        const key = ch.toLowerCase().replace(/[^a-z]/g, '');
-        const icon = channelIcons[key] || channelIcons['linkedin'];
-        return '<div class="ch-wrap"><div class="ch-icon" style="background:' + icon.bg + ';"><svg width="13" height="13" viewBox="0 0 24 24" fill="white">' + icon.svg + '</svg></div><div class="ch-lbl">' + ch + '</div></div>';
-      }).join('');
+      const channelsHtml = (customer.channels || []).slice(0, 7).map(ch => '<span class="platform-pill">' + ch + '</span>').join('');
 
       const demo = customer.demographics || {};
       const firmCells = [
@@ -669,9 +701,13 @@
 
       document.getElementById('customerInner').innerHTML =
         '<div class="cc-col">' +
-          (psychTags ? '<div><div class="cc-sec-label">Psychographic</div><div class="trait-row">' + psychTags + '</div></div>' : '') +
+          (psychTags ? '<div>' +
+            (customer.psychographicDescription ? '<div class="psych-desc">' + customer.psychographicDescription + '</div>' : '') +
+            '<div class="cc-sec-label">Psychographic</div>' +
+            '<div class="trait-row">' + psychTags + '</div>' +
+          '</div>' : '') +
           (behavItems ? '<div><div class="cc-sec-label">Behavioral</div><div class="cc-items">' + behavItems + '</div></div>' : '') +
-          (channelsHtml ? '<div><div class="cc-sec-label">Channels</div><div class="channels-row">' + channelsHtml + '</div></div>' : '') +
+          (channelsHtml ? '<div><div class="cc-sec-label">Social media platforms</div><div class="platform-row">' + channelsHtml + '</div></div>' : '') +
         '</div>' +
         '<div class="cc-col">' +
           (firmCells ? '<div><div class="cc-sec-label">Demographics &amp; firmographic</div><div class="firm-grid">' + firmCells + '</div></div>' : '') +
@@ -736,6 +772,7 @@
       if (!idea) return;
       currentIdea = idea;
       exitEditMode();
+      document.getElementById('ideaBar').classList.add('idea-bar-locked');
 
       resetResultsToShimmers();
       document.getElementById('actionsRow').style.display = 'none';
@@ -752,12 +789,15 @@
         if (data.insufficientContext) {
           document.getElementById('contextMsg').textContent = data.insufficientContextMessage || 'Please provide additional details.';
           document.getElementById('contextMsg').style.display = 'block';
+          document.getElementById('ideaBar').classList.remove('idea-bar-locked');
           return;
         }
         renderAnalysisResults(data);
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
         document.getElementById('actionsRow').style.display = 'flex';
       } catch (err) {
         console.error('Re-analysis failed:', err);
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
       }
     }
 
@@ -836,6 +876,7 @@
       const html = '<div class="animate"><div class="section"><div class="section-label">Customer Segment</div><div class="seg-profile">' + seg.profile + '</div><div class="seg-tags">' + seg.tags.map(t => '<span class="seg-tag">' + t + '</span>').join('') + '</div><div class="seg-grid"><div class="seg-col"><div class="seg-col-label">Jobs to be done</div>' + seg.jobsToBeDone.map(j => '<div class="seg-item"><div class="seg-dot"></div><span>' + j + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Top pain points</div>' + seg.painPoints.map(pt => '<div class="seg-item"><div class="seg-dot"></div><span>' + pt + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Gains</div>' + seg.gains.map(g => '<div class="seg-item"><div class="seg-dot"></div><span>' + g + '</span></div>').join('') + '</div></div></div>' +
         renderSegmentViability(data) +
         '<div class="section"><div class="section-label">Value Proposition</div><div class="section-summary">' + data.valueProposition.summary + '</div><div class="cards-grid">' + offerings.map((o, i) => '<div class="card"><div class="card-type" style="color:#1A1A2E;">Offering ' + String(i+1).padStart(2,'0') + '</div><div class="card-name">' + o.name + '</div><div class="card-desc">' + o.description + '</div><span class="card-badge">&#x2736; ' + o.advantage + '</span></div>').join('') + '</div></div>' +
+        '<div class="expand-collapse-row"><div class="expand-collapse-label">Business model</div><button class="expand-collapse-btn" id="ec-btn-' + p + '" onclick="toggleAllSections(' + p + ')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Expand all</button></div>' +
         collapsibleSection('cr-'+p, 'Customer Relationships', '<div class="section-summary">' + data.customerRelationships.summary + '</div><div class="cards-grid">' + data.customerRelationships.strategies.map(s => '<div class="card"><div class="card-type ' + typeClass(s.type) + '">' + s.type + '</div><div class="card-name">' + s.name + '</div><div class="card-desc">' + s.description + '</div></div>').join('') + '</div>') +
         collapsibleSection('ch-'+p, 'Channels', '<div class="section-summary">' + data.channels.summary + '</div><div class="ch-cards">' + data.channels.touchpoints.map(t => '<div class="ch-card"><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div class="ch-name">' + t.name + '</div><div class="ch-desc">' + t.description + '</div></div>').join('') + '</div>') +
         collapsibleSection('kp-'+p, 'Key Partners', '<div class="section-summary">' + data.keyPartners.summary + '</div><div class="cards-grid">' + data.keyPartners.partners.map(pt => '<div class="card"><div class="card-type ' + typeClass(pt.type) + '">' + pt.type + '</div><div class="card-name">' + pt.name + '</div><div class="card-desc">' + pt.description + '</div></div>').join('') + '</div>') +
