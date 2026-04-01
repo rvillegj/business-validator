@@ -276,7 +276,7 @@
         <div class="input-row">
           <div style="flex:1;display:flex;align-items:center;gap:0;">
             <textarea id="ideaInput" placeholder="" style="display:none;"></textarea>
-            <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()"></div>
+            <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()" onblur="cleanInput()"></div>
           </div>
         </div>
         <div class="input-row" style="margin-top:10px;">
@@ -484,6 +484,13 @@
       const text = document.getElementById('inputText').innerText.trim();
       document.getElementById('landingAnalyseBtn').disabled = !text;
       document.getElementById('contextMsg').style.display = 'none';
+    }
+
+    function cleanInput() {
+      const el = document.getElementById('inputText');
+      if (!el.innerText.trim()) {
+        el.innerHTML = '';
+      }
     }
 
     function usePill(el) {
