@@ -41,7 +41,9 @@
     .back-btn:hover { color: #555; }
     .nav-sep { font-size: 12px; color: #D0C9BF; }
     .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; }
-    .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 10px; }
+    .nav-download-btn { margin-left: auto; display: none; align-items: center; gap: 6px; font-size: 12px; color: #666; background: white; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+    .nav-download-btn:hover { background: #F8F4EE; }
+    .nav-download-btn.visible { display: flex; }
     .idea-bar-locked { opacity: 0.45; pointer-events: none; }
     .psych-desc { font-size: 11.5px; color: #555; line-height: 1.55; font-style: italic; margin-bottom: 8px; }
     .platform-row { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -371,6 +373,10 @@
       </button>
       <span class="nav-sep">/</span>
       <span class="results-eyebrow">Your business model analysis</span>
+      <button class="nav-download-btn" id="navDownloadBtn" onclick="downloadPDF()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
     </div>
 
     <div class="print-header">
@@ -494,10 +500,6 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         Edit my idea
       </button>
-      <button class="btn-download" onclick="downloadPDF()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download
-      </button>
     </div>
 
     <!-- Canvas section -->
@@ -577,6 +579,7 @@
       document.getElementById('landing').style.display = 'block';
       document.getElementById('results').style.display = 'none';
       document.getElementById('canvasSection').classList.remove('visible');
+      document.getElementById('navDownloadBtn').classList.remove('visible');
       window.scrollTo({ top: 0 });
     }
 
@@ -636,6 +639,7 @@
 
         renderAnalysisResults(data);
         document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+        document.getElementById('navDownloadBtn').classList.add('visible');
         document.getElementById('actionsRow').style.display = 'flex';
 
       } catch (err) {
@@ -723,6 +727,11 @@
         return '<span class="trait ' + cls + '">' + t + '</span>';
       }).join('');
 
+      const psychDesc = customer.psychographicDescription ||
+        (customer.psychographic && customer.psychographic.length > 0
+          ? (customer.name || 'This segment') + ' tend to be ' + customer.psychographic.slice(0, 3).join(', ').toLowerCase() + ' — motivated by professional growth and results.'
+          : '');
+
       const behavItems = (customer.behavioral || []).map(b => '<div class="cc-item"><div class="cbullet"></div><span>' + b + '</span></div>').join('');
 
       const channelsHtml = (customer.channels || []).slice(0, 7).map(ch => '<span class="platform-pill">' + ch + '</span>').join('');
@@ -742,7 +751,7 @@
       document.getElementById('customerInner').innerHTML =
         '<div class="cc-col">' +
           (psychTags ? '<div>' +
-            (customer.psychographicDescription ? '<div class="psych-desc">' + customer.psychographicDescription + '</div>' : '') +
+            (psychDesc ? '<div class="psych-desc">' + psychDesc + '</div>' : '') +
             '<div class="cc-sec-label">Psychographic</div>' +
             '<div class="trait-row">' + psychTags + '</div>' +
           '</div>' : '') +
@@ -834,6 +843,7 @@
         }
         renderAnalysisResults(data);
         document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+        document.getElementById('navDownloadBtn').classList.add('visible');
         document.getElementById('actionsRow').style.display = 'flex';
       } catch (err) {
         console.error('Re-analysis failed:', err);
