@@ -339,14 +339,14 @@
       <div class="idea-bar-top">
         <div style="flex:1;">
           <div class="idea-bar-label">Your business idea or problem</div>
-          <div class="idea-bar-text" id="ideaDisplay" contenteditable="false"></div>
+          <div class="idea-bar-text" id="ideaDisplay" contenteditable="false" onblur="onIdeaBlur(event)"></div>
         </div>
         <button class="idea-edit-btn" id="ideaEditBtn" onclick="enterEditMode()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         </button>
       </div>
       <div class="idea-bar-actions" id="ideaBarActions" style="display:none;">
-        <button class="idea-analyse-btn" onclick="rerunAnalysis()">
+        <button class="idea-analyse-btn" tabindex="0" onclick="rerunAnalysis()">
           Analyze idea
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
@@ -453,10 +453,7 @@
     <!-- Canvas section -->
     <div class="canvas-section" id="canvasSection">
       <div class="canvas-divider"></div>
-      <div class="canvas-eyebrow">Section 02</div>
-      <div class="canvas-title">Design your<br><span>business model</span></div>
-      <div class="canvas-deco"></div>
-      <p class="canvas-sub">Your business model canvas — one per customer segment, built around the idea and problem you defined above.</p>
+      <div class="canvas-eyebrow">Your customer segments and business model</div>
       <div class="tab-nav">
         <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
         <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
@@ -713,7 +710,12 @@
       actions.style.display = 'flex';
     }
 
-    function exitEditMode() {
+    function onIdeaBlur(e) {
+      const actions = document.getElementById('ideaBarActions');
+      const related = e.relatedTarget;
+      if (related && actions.contains(related)) return;
+      exitEditMode();
+    }
       const bar = document.getElementById('ideaBar');
       const display = document.getElementById('ideaDisplay');
       const editBtn = document.getElementById('ideaEditBtn');
