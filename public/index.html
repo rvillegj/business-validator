@@ -18,7 +18,8 @@
     .tagline { font-size: 15px; color: #666; font-weight: 300; margin: 16px auto 10px; max-width: 400px; line-height: 1.65; }
     .tagline-sub { font-size: 13px; color: #888; font-weight: 300; max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
     .input-outer { max-width: 860px; margin: 0 auto 20px; background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 16px 18px 14px; text-align: left; }
-    .input-placeholder { font-size: 14px; color: #C5BDB2; margin-bottom: 12px; }
+    .input-placeholder { display: none; }
+    #inputText:empty:before { content: 'Describe your business idea or problem...'; color: #C5BDB2; pointer-events: none; }
     .input-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .input-pill { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: #FAF0EC; color: #993C1D; border: 1px solid #F0997B; white-space: nowrap; }
     .analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 10px 20px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 7px; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
@@ -272,7 +273,6 @@
       <div class="tagline" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</div>
       <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
       <div class="input-outer">
-        <div class="input-placeholder">Describe your business idea or problem...</div>
         <div class="input-row">
           <div style="flex:1;display:flex;align-items:center;gap:0;">
             <textarea id="ideaInput" placeholder="" style="display:none;"></textarea>
