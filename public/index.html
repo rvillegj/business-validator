@@ -37,11 +37,17 @@
     /* ── PAGE 2: Results ── */
     .results { display: none; max-width: 960px; margin: 0 auto; padding: 28px 24px 56px; }
 
-    .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 11px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 10px; }
+    .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 12px 16px; margin-bottom: 14px; transition: border 0.15s; }
+    .idea-bar.edit-mode { border: 2px solid #FF6B4A; }
+    .idea-bar-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .idea-bar-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 4px; }
-    .idea-bar-text { font-size: 13px; color: #1A1A2E; line-height: 1.55; }
-    .idea-edit-btn { width: 26px; height: 26px; border-radius: 7px; background: #F5F1EB; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; margin-top: 2px; }
+    .idea-bar-text { font-size: 13px; color: #1A1A2E; line-height: 1.55; outline: none; }
+    .idea-bar-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
+    .idea-edit-btn { width: 28px; height: 28px; border-radius: 8px; background: #F5F1EB; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; margin-top: 2px; }
     .idea-edit-btn:hover { background: #EDE8DF; }
+    .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; }
+    .idea-analyse-btn:hover { background: #E55A3A; }
 
     .align-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 16px; animation: fadeIn 0.4s ease both; }
     .align-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
@@ -327,14 +333,24 @@
   <!-- ── PAGE 2: RESULTS ── -->
   <div class="results" id="results">
 
-    <div class="idea-bar">
-      <div>
-        <div class="idea-bar-label">Your business idea or problem...</div>
-        <div class="idea-bar-text" id="ideaDisplay"></div>
+    <div class="results-eyebrow">Your business model analysis</div>
+
+    <div class="idea-bar" id="ideaBar">
+      <div class="idea-bar-top">
+        <div style="flex:1;">
+          <div class="idea-bar-label">Your business idea or problem</div>
+          <div class="idea-bar-text" id="ideaDisplay" contenteditable="false"></div>
+        </div>
+        <button class="idea-edit-btn" id="ideaEditBtn" onclick="enterEditMode()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button>
       </div>
-      <button class="idea-edit-btn" onclick="requestEdit()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      </button>
+      <div class="idea-bar-actions" id="ideaBarActions" style="display:none;">
+        <button class="idea-analyse-btn" onclick="rerunAnalysis()">
+          Analyze idea
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
 
     <div class="align-card" id="alignCard">
@@ -428,7 +444,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Design my business model
       </button>
-      <button class="btn-edit" onclick="requestEdit()">
+      <button class="btn-edit" onclick="enterEditMode()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         Edit my idea
       </button>
@@ -454,28 +470,6 @@
       </div>
       <div class="tab-panel seg3" id="panel-2">
         <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit modal -->
-  <div class="modal-overlay" id="editModal">
-    <div class="modal">
-      <div class="modal-icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C53030" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-      </div>
-      <div class="modal-title">Edit your proposal?</div>
-      <div class="modal-body">You are about to edit your business idea or problem statement.</div>
-      <div class="modal-warning">Your current business model canvas will be cleared. You will need to re-analyse your proposal and generate a new canvas after making changes.</div>
-      <div class="modal-actions">
-        <button class="modal-btn-cancel" onclick="closeModal()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          Keep my current canvas
-        </button>
-        <button class="modal-btn-confirm" onclick="confirmEdit()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-          Yes, edit my idea
-        </button>
       </div>
     </div>
   </div>
@@ -532,7 +526,8 @@
 
       document.getElementById('landing').style.display = 'none';
       document.getElementById('results').style.display = 'block';
-      document.getElementById('ideaDisplay').textContent = idea;
+      document.getElementById('ideaDisplay').innerText = idea;
+      exitEditMode();
       document.getElementById('actionsRow').style.display = 'none';
       document.getElementById('canvasSection').classList.remove('visible');
 
@@ -706,25 +701,72 @@
       }
     }
 
-    function requestEdit() {
-      const canvasVisible = document.getElementById('canvasSection').classList.contains('visible');
-      if (canvasVisible) {
-        document.getElementById('editModal').classList.add('visible');
-      } else {
-        confirmEdit();
+    function enterEditMode() {
+      const bar = document.getElementById('ideaBar');
+      const display = document.getElementById('ideaDisplay');
+      const editBtn = document.getElementById('ideaEditBtn');
+      const actions = document.getElementById('ideaBarActions');
+      bar.classList.add('edit-mode');
+      display.contentEditable = 'true';
+      display.focus();
+      editBtn.style.display = 'none';
+      actions.style.display = 'flex';
+    }
+
+    function exitEditMode() {
+      const bar = document.getElementById('ideaBar');
+      const display = document.getElementById('ideaDisplay');
+      const editBtn = document.getElementById('ideaEditBtn');
+      const actions = document.getElementById('ideaBarActions');
+      bar.classList.remove('edit-mode');
+      display.contentEditable = 'false';
+      editBtn.style.display = 'flex';
+      actions.style.display = 'none';
+    }
+
+    async function rerunAnalysis() {
+      const idea = document.getElementById('ideaDisplay').innerText.trim();
+      if (!idea) return;
+      currentIdea = idea;
+      exitEditMode();
+
+      resetResultsToShimmers();
+      document.getElementById('actionsRow').style.display = 'none';
+      document.getElementById('canvasSection').classList.remove('visible');
+      window.scrollTo({ top: 0 });
+
+      try {
+        const response = await fetch('/api/analyse', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idea })
+        });
+        const data = await response.json();
+        if (data.insufficientContext) {
+          document.getElementById('contextMsg').textContent = data.insufficientContextMessage || 'Please provide additional details.';
+          document.getElementById('contextMsg').style.display = 'block';
+          return;
+        }
+        renderAnalysisResults(data);
+        document.getElementById('actionsRow').style.display = 'flex';
+      } catch (err) {
+        console.error('Re-analysis failed:', err);
       }
     }
 
-    function closeModal() {
-      document.getElementById('editModal').classList.remove('visible');
-    }
-
-    function confirmEdit() {
-      closeModal();
-      document.getElementById('landing').style.display = 'block';
-      document.getElementById('results').style.display = 'none';
-      document.getElementById('canvasSection').classList.remove('visible');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function resetResultsToShimmers() {
+      document.getElementById('problemText').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div>';
+      document.getElementById('cellProblem').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:80%;"></div>';
+      document.getElementById('cellFit').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:75%;"></div>';
+      document.getElementById('cellAssumption').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:70%;"></div>';
+      document.getElementById('cellAction').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:85%;"></div>';
+      document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:30px;height:18px;border-radius:4px;"></div></div>';
+      document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:11px;width:90px;margin-bottom:5px;"></div><div class="skel" style="height:9px;width:70px;"></div>';
+      document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>').join('');
+      document.getElementById('customerAvatar').innerHTML = '<div class="skel" style="width:40px;height:40px;border-radius:50%;"></div>';
+      document.getElementById('customerAvatar').style.cssText = '';
+      document.getElementById('customerMeta').innerHTML = '<div class="skel" style="height:12px;width:120px;margin-bottom:5px;"></div><div class="skel" style="height:10px;width:90px;"></div>';
+      document.getElementById('customerInner').innerHTML = '<div class="cc-col"><div class="skel" style="height:8px;width:80px;margin-bottom:8px;"></div><div class="skel" style="height:60px;width:100%;border-radius:8px;"></div></div><div class="cc-col"><div class="skel" style="height:8px;width:100px;margin-bottom:8px;"></div><div class="skel" style="height:80px;width:100%;border-radius:8px;"></div></div>';
     }
 
     function scoreFromCanvas(data) {
