@@ -62,22 +62,58 @@
     .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; }
     .idea-analyse-btn:hover { background: #E55A3A; }
 
-    .align-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 16px; animation: fadeIn 0.4s ease both; }
-    .align-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
-    .align-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .align-header-title { font-size: 12px; font-weight: 500; color: #1A1A2E; }
-    .problem-strip { background: #FAEEDA; padding: 11px 18px; border-bottom: 1px solid #EDD9A3; display: flex; gap: 9px; align-items: flex-start; }
-    .prob-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #633806; font-weight: 500; margin-bottom: 3px; }
-    .prob-text { font-size: 12px; color: #412402; line-height: 1.6; }
-    .align-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 680px) { .align-grid { grid-template-columns: 1fr 1fr; } }
-    .align-cell { padding: 12px 16px; border-right: 1px solid #F0EBE3; }
-    .align-cell:last-child { border-right: none; }
-    .align-cell-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; margin-bottom: 5px; }
-    .align-cell-text { font-size: 11.5px; color: #555; line-height: 1.55; }
+    /* Core hypothesis card */
+    .hyp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
+    .hyp-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
+    .hyp-header-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .hyp-header-title { font-size: 12px; font-weight: 500; color: #1A1A2E; }
+    .hyp-row { padding: 14px 18px; border-bottom: 1px solid #F0EBE3; }
+    .hyp-row:last-child { border-bottom: none; }
+    .hyp-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+    .hyp-text { font-size: 13px; color: #444; line-height: 1.6; }
+    .hyp-metric { font-size: 13px; color: #555; line-height: 1.6; margin-top: 8px; }
+    .hyp-metric-prefix { color: #1D9E75; font-weight: 500; }
 
-    .main-grid { display: grid; grid-template-columns: 1fr 252px; gap: 14px; margin-bottom: 14px; }
-    @media (max-width: 700px) { .main-grid { grid-template-columns: 1fr; } }
+    /* Enhanced score card */
+    .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
+    .sc-top { padding: 16px 20px 14px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: flex-start; gap: 20px; }
+    .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
+    .sc-dial { position: relative; width: 60px; height: 60px; flex-shrink: 0; }
+    .sc-dial svg { width: 60px; height: 60px; }
+    .sc-num-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .sc-big { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; line-height: 1; }
+    .sc-sub { font-size: 9px; color: #B5A99A; }
+    .sc-meta { flex: 1; }
+    .sc-interp { font-size: 13px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+    .sc-score-breakdown { display: flex; gap: 16px; margin-bottom: 6px; }
+    .sc-score-item { display: flex; flex-direction: column; }
+    .sc-score-lbl { font-size: 9px; color: #B5A99A; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+    .sc-score-val { font-size: 12px; font-weight: 500; color: #1A1A2E; }
+    .sc-conf { display: flex; align-items: center; gap: 6px; }
+    .sc-conf-lbl { font-size: 9px; color: #B5A99A; }
+    .sc-pips { display: flex; gap: 3px; }
+    .sc-pip { width: 11px; height: 3px; border-radius: 2px; background: #E2D9CE; display: inline-block; }
+    .sc-pip.on { background: #1A1A2E; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .sc-pillar { padding: 12px 14px; border-right: 1px solid #F0EBE3; border-top: 1px solid #F0EBE3; }
+    .sc-pillar:last-child { border-right: none; }
+    .sc-pname { font-size: 10px; font-weight: 500; color: #1A1A2E; margin-bottom: 6px; line-height: 1.3; }
+    .sc-pil-scores { display: flex; gap: 5px; margin-bottom: 7px; align-items: center; }
+    .sc-qs { font-size: 10px; font-weight: 500; padding: 1px 7px; border-radius: 4px; }
+    .sc-es { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: #F5F1EB; color: #888; }
+    .sc-tracks { display: flex; flex-direction: column; gap: 4px; margin-bottom: 7px; }
+    .sc-track-row { display: flex; align-items: center; gap: 6px; }
+    .sc-track-lbl { font-size: 8px; color: #C5BDB2; width: 28px; flex-shrink: 0; }
+    .sc-track { flex: 1; height: 3px; background: #E2D9CE; border-radius: 2px; overflow: hidden; }
+    .sc-pfill { height: 3px; border-radius: 2px; }
+    .sc-preason { font-size: 9.5px; color: #999; line-height: 1.45; }
+    .sc-legend { padding: 8px 18px; border-top: 1px solid #F0EBE3; display: flex; gap: 16px; background: #FAFAF8; }
+    .sc-legend-item { display: flex; align-items: center; gap: 5px; font-size: 9.5px; color: #888; }
+    .sc-legend-badge { font-size: 9px; font-weight: 500; padding: 1px 6px; border-radius: 4px; }
+    .sc-warn { padding: 10px 18px; background: #FFF5F5; border-top: 1px solid #F5C4B3; display: flex; flex-direction: column; gap: 5px; }
+    .sc-warn-lbl { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
+    .sc-warn-row { display: flex; align-items: flex-start; gap: 7px; font-size: 11px; color: #A32D2D; line-height: 1.5; }
+    .sc-warn-dot { width: 4px; height: 4px; border-radius: 50%; background: #E24B4A; flex-shrink: 0; margin-top: 5px; }
 
     /* Customer card */
     .ccard { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; }
@@ -99,41 +135,12 @@
     .cc-items { display: flex; flex-direction: column; gap: 4px; }
     .cc-item { display: flex; gap: 6px; font-size: 11.5px; color: #555; line-height: 1.5; align-items: flex-start; }
     .cbullet { width: 4px; height: 4px; border-radius: 50%; background: #FF6B4A; flex-shrink: 0; margin-top: 5px; }
-    .channels-row { display: flex; gap: 7px; flex-wrap: wrap; }
-    .ch-wrap { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-    .ch-icon { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
-    .ch-lbl { font-size: 8px; color: #999; }
     .firm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #F0EBE3; border-radius: 9px; overflow: hidden; }
     .firm-cell { background: white; padding: 8px 11px; }
     .firm-label { font-size: 9px; letter-spacing: 0.11em; text-transform: uppercase; color: #B5A99A; margin-bottom: 2px; }
     .firm-val { font-size: 11.5px; color: #1A1A2E; font-weight: 500; }
     .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
     .geo-tag { font-size: 10.5px; padding: 2px 8px; border-radius: 20px; background: #F5F1EB; color: #666; border: 1px solid #E2D9CE; }
-
-    /* Score card */
-    .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; }
-    .sc-top { padding: 13px 16px 11px; border-bottom: 1px solid #F0EBE3; }
-    .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
-    .sc-dial-row { display: flex; align-items: center; gap: 11px; }
-    .sc-dial { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
-    .sc-dial svg { width: 50px; height: 50px; }
-    .sc-num-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .sc-big { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; line-height: 1; }
-    .sc-sub { font-size: 9px; color: #B5A99A; }
-    .sc-interp { font-size: 11.5px; font-weight: 500; margin-bottom: 5px; line-height: 1.35; }
-    .sc-conf { display: flex; align-items: center; gap: 6px; }
-    .sc-conf-lbl { font-size: 9px; color: #B5A99A; }
-    .sc-pips { display: flex; gap: 3px; }
-    .sc-pip { width: 11px; height: 3px; border-radius: 2px; background: #E2D9CE; }
-    .sc-pip.on { background: #1A1A2E; }
-    .sc-pillar { padding: 8px 14px; border-bottom: 1px solid #F8F3EE; display: flex; align-items: flex-start; gap: 9px; }
-    .sc-pillar:last-child { border-bottom: none; }
-    .sc-pbar-col { flex-shrink: 0; width: 32px; }
-    .sc-pnum { font-size: 11.5px; font-weight: 500; color: #1A1A2E; }
-    .sc-ptrack { height: 3px; background: #E2D9CE; border-radius: 2px; margin-top: 5px; }
-    .sc-pfill { height: 3px; border-radius: 2px; }
-    .sc-pname { font-size: 10.5px; font-weight: 500; color: #1A1A2E; margin-bottom: 2px; }
-    .sc-preason { font-size: 9.5px; color: #999; line-height: 1.45; }
 
     /* Skeleton loaders */
     .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
@@ -287,7 +294,7 @@
       @page { margin: 18mm 16mm; size: A4; }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: white !important; }
-      .landing, .results-nav, .actions-row, .canvas-section, .idea-edit-btn, .idea-bar-actions { display: none !important; }
+      .landing, .results-nav, .actions-row, .canvas-section, .idea-edit-btn, .idea-bar-actions, .sc-legend { display: none !important; }
       .results { display: block !important; max-width: 100%; padding: 0; }
       .skel { display: none !important; }
       .align-card, .ccard, .score-card, .idea-bar { break-inside: avoid; }
@@ -405,89 +412,57 @@
       </div>
     </div>
 
-    <div class="align-card" id="alignCard">
-      <div class="align-header">
-        <div class="align-icon">
+    <div class="hyp-card" id="hypCard">
+      <div class="hyp-header">
+        <div class="hyp-header-icon">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         </div>
-        <div class="align-header-title">Idea&#8211;problem alignment</div>
+        <div class="hyp-header-title">Core hypothesis</div>
       </div>
-      <div class="problem-strip" id="problemStrip">
-        <div style="flex-shrink:0;margin-top:2px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#633806" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-        </div>
-        <div>
-          <div class="prob-label">Problem being solved</div>
-          <div class="prob-text" id="problemText">
-            <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
-            <div class="skel" style="height:10px;width:85%;"></div>
-          </div>
+      <div class="hyp-row">
+        <div class="hyp-label" style="color:#C0392B;">Problem</div>
+        <div class="hyp-text" id="hypProblem">
+          <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
+          <div class="skel" style="height:10px;width:80%;"></div>
         </div>
       </div>
-      <div class="align-grid" id="alignGrid">
-        <div class="align-cell">
-          <div class="align-cell-label" style="color:#C0392B;">Problem strength</div>
-          <div class="align-cell-text" id="cellProblem"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:80%;"></div></div>
+      <div class="hyp-row">
+        <div class="hyp-label" style="color:#1D9E75;">Testable hypothesis</div>
+        <div class="hyp-text" id="hypStatement">
+          <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
+          <div class="skel" style="height:10px;width:85%;"></div>
         </div>
-        <div class="align-cell">
-          <div class="align-cell-label" style="color:#1D9E75;">Idea&#8211;problem fit</div>
-          <div class="align-cell-text" id="cellFit"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:75%;"></div></div>
-        </div>
-        <div class="align-cell">
-          <div class="align-cell-label" style="color:#B5A99A;">Key assumption to validate</div>
-          <div class="align-cell-text" id="cellAssumption"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:70%;"></div></div>
-        </div>
-        <div class="align-cell">
-          <div class="align-cell-label" style="color:#FF6B4A;">Suggested next action</div>
-          <div class="align-cell-text" id="cellAction"><div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:85%;"></div></div>
+        <div class="hyp-metric" id="hypMetric" style="display:none;">
+          <span class="hyp-metric-prefix">We will know this is true if </span><span id="hypMetricText"></span>
         </div>
       </div>
     </div>
 
-    <div class="main-grid">
-      <div class="ccard" id="customerCard">
-        <div class="cc-top">
-          <div class="avatar" id="customerAvatar">
-            <div class="skel" style="width:40px;height:40px;border-radius:50%;"></div>
-          </div>
-          <div id="customerMeta">
-            <div class="skel" style="height:12px;width:120px;margin-bottom:5px;"></div>
-            <div class="skel" style="height:10px;width:90px;"></div>
+    <div class="score-card" id="scoreCard">
+      <div class="sc-top">
+        <div>
+          <div class="sc-eyebrow">Likelihood of success</div>
+          <div class="sc-dial" id="scoreDial">
+            <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg>
+            <div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div>
           </div>
         </div>
-        <div class="cc-inner" id="customerInner">
-          <div class="cc-col">
-            <div class="skel" style="height:8px;width:80px;margin-bottom:8px;"></div>
-            <div class="skel" style="height:60px;width:100%;border-radius:8px;"></div>
+        <div class="sc-meta" id="scoreInterpWrap">
+          <div class="skel" style="height:13px;width:160px;margin-bottom:8px;"></div>
+          <div style="display:flex;gap:16px;margin-bottom:8px;">
+            <div><div class="skel" style="height:8px;width:60px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:50px;"></div></div>
+            <div><div class="skel" style="height:8px;width:80px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:40px;"></div></div>
+            <div><div class="skel" style="height:8px;width:70px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:40px;"></div></div>
           </div>
-          <div class="cc-col">
-            <div class="skel" style="height:8px;width:100px;margin-bottom:8px;"></div>
-            <div class="skel" style="height:80px;width:100%;border-radius:8px;"></div>
-          </div>
+          <div class="skel" style="height:8px;width:100px;"></div>
         </div>
       </div>
-
-      <div class="score-card" id="scoreCard">
-        <div class="sc-top">
-          <div class="sc-eyebrow">Likelihood of success</div>
-          <div class="sc-dial-row">
-            <div class="sc-dial" id="scoreDial">
-              <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/></svg>
-              <div class="sc-num-wrap"><div class="skel" style="width:30px;height:18px;border-radius:4px;"></div></div>
-            </div>
-            <div id="scoreInterpWrap">
-              <div class="skel" style="height:11px;width:90px;margin-bottom:5px;"></div>
-              <div class="skel" style="height:9px;width:70px;"></div>
-            </div>
-          </div>
-        </div>
-        <div id="scorePillars">
-          <div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>
-          <div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>
-          <div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>
-          <div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>
-          <div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>
-        </div>
+      <div class="pillars-grid" id="scorePillars">
+        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
       </div>
     </div>
 
@@ -656,17 +631,15 @@
       const alignment = data.alignment || {};
       const insights = data.insights || {};
 
-      document.getElementById('problemText').textContent = data.inferredValue && data.inferredField === 'problem'
-        ? data.inferredValue
-        : (alignment.problemStrength || insights.topStrength || '');
-
-      document.getElementById('cellProblem').textContent = alignment.problemStrength || insights.topStrength || '';
-      document.getElementById('cellFit').textContent = alignment.ideaProblemFit || '';
-      document.getElementById('cellAssumption').textContent = alignment.keyAssumption || insights.keyAssumption || '';
-      document.getElementById('cellAction').textContent = alignment.nextBestAction || insights.nextBestAction || '';
+      document.getElementById('hypProblem').textContent = alignment.problem || alignment.problemStrength || insights.topStrength || '';
+      document.getElementById('hypStatement').textContent = alignment.hypothesis || alignment.ideaProblemFit || '';
+      const metric = alignment.metric || alignment.nextBestAction || '';
+      if (metric) {
+        document.getElementById('hypMetricText').textContent = metric;
+        document.getElementById('hypMetric').style.display = 'block';
+      }
 
       renderScoreCard(data);
-      renderCustomerCard(data);
     }
 
     function renderScoreCard(data) {
@@ -674,10 +647,13 @@
       const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong'
         : interp.toLowerCase().includes('promising') ? 'promising'
         : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
-      const barColor = { 'very-strong': '#1D9E75', 'promising': '#E8C547', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
-      const interpDisplay = interp.replace(' but Needs Validation', '.\nNeeds validation.').replace('but Needs Validation', '.\nNeeds validation.');
+      const barColor = { 'very-strong': '#1D9E75', 'promising': '#1D9E75', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
+      const interpDisplay = interp.replace(' but Needs Validation', ' \u2014 needs validation').replace('but Needs Validation', '\u2014 needs validation');
       const finalScore = Math.round(data.finalScore || 0);
-      const circumference = 2 * Math.PI * 19;
+      const baseScore = Math.round(data.baseScore || 0);
+      const evidenceMultiplier = data.evidenceMultiplier || 1;
+      const avgEvidence = (data.averageEvidenceScore || 0).toFixed(1);
+      const circumference = 2 * Math.PI * 23;
       const arc = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
       const s = data.scores || {};
       const pillars = [
@@ -689,21 +665,53 @@
       ];
 
       document.getElementById('scoreDial').innerHTML =
-        '<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/><circle cx="25" cy="25" r="19" fill="none" stroke="' + barColor + '" stroke-width="3.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 25 25)"/></svg>' +
+        '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + barColor + '" stroke-width="4.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>' +
         '<div class="sc-num-wrap"><span class="sc-big" style="color:' + barColor + ';">' + finalScore + '</span><span class="sc-sub">/100</span></div>';
 
       document.getElementById('scoreInterpWrap').innerHTML =
-        '<div class="sc-interp" style="color:' + barColor + ';">' + interpDisplay.replace('\n', '<br>') + '</div>' +
+        '<div class="sc-interp" style="color:' + barColor + ';">' + interpDisplay + '</div>' +
+        '<div class="sc-score-breakdown">' +
+          '<div class="sc-score-item"><span class="sc-score-lbl">Base score</span><span class="sc-score-val">' + baseScore + ' / 100</span></div>' +
+          '<div class="sc-score-item"><span class="sc-score-lbl">Evidence multiplier</span><span class="sc-score-val">\u00d7 ' + evidenceMultiplier + '</span></div>' +
+          '<div class="sc-score-item"><span class="sc-score-lbl">Avg. evidence</span><span class="sc-score-val">' + avgEvidence + ' / 5</span></div>' +
+        '</div>' +
         '<div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">' +
-        [1,2,3,4,5].map(n => '<div class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></div>').join('') +
+        [1,2,3,4,5].map(n => '<span class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></span>').join('') +
         '</div></div>';
 
-      document.getElementById('scorePillars').innerHTML = pillars.map(p => {
+      const pillarsHtml = pillars.map(p => {
         const pillar = s[p.key] || {};
-        const score = pillar.score || 0;
-        const color = score >= 4 ? '#1D9E75' : score >= 3 ? '#E8C547' : '#FF6B4A';
-        return '<div class="sc-pillar"><div class="sc-pbar-col"><div class="sc-pnum">' + score + '/5</div><div class="sc-ptrack"><div class="sc-pfill" style="width:' + Math.round((score/5)*100) + '%;background:' + color + ';"></div></div></div><div><div class="sc-pname">' + p.label + '</div><div class="sc-preason">' + (pillar.reason || '') + '</div></div></div>';
+        const qs = pillar.qualityScore || pillar.score || 0;
+        const es = pillar.evidenceScore || 0;
+        const qColor = qs >= 4 ? '#1D9E75' : qs >= 3 ? '#EF9F27' : '#FF6B4A';
+        const qBadgeBg = qs >= 4 ? '#E1F5EE' : qs >= 3 ? '#FAEEDA' : '#FCEBEB';
+        const qBadgeColor = qs >= 4 ? '#085041' : qs >= 3 ? '#633806' : '#791F1F';
+        return '<div class="sc-pillar">' +
+          '<div class="sc-pname">' + p.label + '</div>' +
+          '<div class="sc-pil-scores">' +
+            '<span class="sc-qs" style="background:' + qBadgeBg + ';color:' + qBadgeColor + ';">Q ' + qs + '/5</span>' +
+            '<span class="sc-es">E ' + es + '/5</span>' +
+          '</div>' +
+          '<div class="sc-tracks">' +
+            '<div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((qs/5)*100) + '%;background:' + qColor + ';"></div></div></div>' +
+            '<div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((es/5)*100) + '%;background:#B4B2A9;"></div></div></div>' +
+          '</div>' +
+          '<div class="sc-preason">' + (pillar.reason || '') + '</div>' +
+        '</div>';
       }).join('');
+
+      const warningsHtml = (data.warnings && data.warnings.length > 0)
+        ? '<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>' +
+          data.warnings.map(w => '<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>' + w + '</span></div>').join('') +
+          '</div>' : '';
+
+      const legendHtml = '<div class="sc-legend">' +
+        '<div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality \u2014 intrinsic strength of the business on this dimension (1\u20135)</div>' +
+        '<div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence \u2014 real-world proof supporting that score (1\u20135)</div>' +
+        '</div>';
+
+      document.getElementById('scorePillars').innerHTML = pillarsHtml;
+      document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legendHtml + warningsHtml);
     }
 
     function renderCustomerCard(data) {
@@ -852,18 +860,14 @@
     }
 
     function resetResultsToShimmers() {
-      document.getElementById('problemText').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div>';
-      document.getElementById('cellProblem').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:80%;"></div>';
-      document.getElementById('cellFit').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:75%;"></div>';
-      document.getElementById('cellAssumption').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:70%;"></div>';
-      document.getElementById('cellAction').innerHTML = '<div class="skel" style="height:9px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:85%;"></div>';
-      document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="19" fill="none" stroke="#E2D9CE" stroke-width="3.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:30px;height:18px;border-radius:4px;"></div></div>';
-      document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:11px;width:90px;margin-bottom:5px;"></div><div class="skel" style="height:9px;width:70px;"></div>';
-      document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="sc-pbar-col"><div class="skel" style="height:11px;width:28px;margin-bottom:5px;"></div><div class="skel" style="height:3px;width:28px;"></div></div><div style="flex:1"><div class="skel" style="height:9px;width:80%;margin-bottom:4px;"></div><div class="skel" style="height:9px;width:60%;"></div></div></div>').join('');
-      document.getElementById('customerAvatar').innerHTML = '<div class="skel" style="width:40px;height:40px;border-radius:50%;"></div>';
-      document.getElementById('customerAvatar').style.cssText = '';
-      document.getElementById('customerMeta').innerHTML = '<div class="skel" style="height:12px;width:120px;margin-bottom:5px;"></div><div class="skel" style="height:10px;width:90px;"></div>';
-      document.getElementById('customerInner').innerHTML = '<div class="cc-col"><div class="skel" style="height:8px;width:80px;margin-bottom:8px;"></div><div class="skel" style="height:60px;width:100%;border-radius:8px;"></div></div><div class="cc-col"><div class="skel" style="height:8px;width:100px;margin-bottom:8px;"></div><div class="skel" style="height:80px;width:100%;border-radius:8px;"></div></div>';
+      document.getElementById('hypProblem').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:80%;"></div>';
+      document.getElementById('hypStatement').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div>';
+      document.getElementById('hypMetric').style.display = 'none';
+      document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div>';
+      document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:13px;width:160px;margin-bottom:8px;"></div><div style="display:flex;gap:16px;margin-bottom:8px;"><div><div class="skel" style="height:8px;width:60px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:50px;"></div></div><div><div class="skel" style="height:8px;width:80px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:40px;"></div></div><div><div class="skel" style="height:8px;width:70px;margin-bottom:4px;"></div><div class="skel" style="height:11px;width:40px;"></div></div></div><div class="skel" style="height:8px;width:100px;"></div>';
+      document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>').join('');
+      const existing = document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn');
+      existing.forEach(el => el.remove());
     }
 
     function scoreFromCanvas(data) {
