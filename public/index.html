@@ -375,7 +375,6 @@
 
 <script>
   let currentIdea = '';
-  document.addEventListener('DOMContentLoaded', onInputChange);
   let currentAnalysisData = null;
   let refineUsed = false;
 
@@ -586,7 +585,7 @@
     }).join('');
 
     const showElse = (coachSelections[coachIndex] || []).includes('else');
-    const elseChip = '<div class="chip' + (showElse ? ' chip-selected' : '') + '" onclick="toggleChip('else')" id="chip-else">Something else…</div>';
+    const elseChip = '<div class="chip' + (showElse ? ' chip-selected' : '') + '" onclick="toggleChip(&apos;else&apos;)" id="chip-else">Something else…</div>';
     const elseInput = '<div id="elseInputWrap" style="margin-top:10px;display:' + (showElse ? 'block' : 'none') + ';"><textarea class="q-textarea" id="coachFreeInput" placeholder="Describe in your own words…" style="min-height:64px;">' + (coachFreeText[coachIndex] || '') + '</textarea></div>';
 
     panel.innerHTML =
@@ -752,6 +751,7 @@
     document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>').join('');
     document.getElementById('scoreCard').querySelectorAll('.sc-legend,.sc-warn').forEach(el=>el.remove());
   }
+  document.addEventListener('DOMContentLoaded', function() { onInputChange(); });
 </script>
 </body>
 </html>
