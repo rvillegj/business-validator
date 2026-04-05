@@ -108,7 +108,7 @@
     .btn-refine:disabled { background: #B5A99A; cursor: not-allowed; }
     .btn-design { flex: 1; padding: 13px; background: #FF6B4A; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
     .btn-design:hover { background: #E55A3A; }
-    .btn-edit { padding: 13px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
+    .btn-edit { padding: 13px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: none; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
     .btn-edit:hover { background: #F8F4EE; }
     .coach-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .coach-hdr { padding: 14px 20px; background: #1A1A2E; }
@@ -172,6 +172,32 @@
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
     .bmc-seg-header { padding: 14px 16px 0; }
+    .seg-score-band { margin: 12px 16px; background: #FAFAF8; border: 1px solid #F0EBE3; border-radius: 10px; padding: 12px 14px; }
+    .seg-score-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .seg-dial { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
+    .seg-dial svg { width: 44px; height: 44px; }
+    .seg-num-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .seg-big { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; line-height: 1; }
+    .seg-sub { font-size: 7px; color: #B5A99A; }
+    .seg-interp { font-size: 11px; font-weight: 500; line-height: 1.3; }
+    .seg-conf { display: flex; align-items: center; gap: 5px; margin-top: 3px; }
+    .seg-conf-lbl { font-size: 8px; color: #B5A99A; }
+    .seg-pips { display: flex; gap: 2px; }
+    .seg-pip { width: 9px; height: 2px; border-radius: 2px; background: #E2D9CE; display: inline-block; }
+    .seg-pip.on { background: #1A1A2E; }
+    .seg-bk { display: flex; gap: 0; border: 1px solid #E2D9CE; border-radius: 7px; overflow: hidden; margin-left: auto; }
+    .seg-bk-cell { padding: 4px 10px; border-right: 1px solid #E2D9CE; }
+    .seg-bk-cell:last-child { border-right: none; }
+    .seg-bk-lbl { font-size: 7.5px; color: #B5A99A; text-transform: uppercase; letter-spacing: 0.08em; }
+    .seg-bk-val { font-size: 11px; font-weight: 700; color: #1A1A2E; }
+    .seg-pillars { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; border-top: 1px solid #F0EBE3; padding-top: 10px; }
+    .seg-pillar { padding: 0 6px; border-right: 1px solid #F0EBE3; }
+    .seg-pillar:last-child { border-right: none; }
+    .seg-pname { font-size: 8.5px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; line-height: 1.3; }
+    .seg-pbadges { display: flex; gap: 3px; margin-bottom: 4px; }
+    .seg-ptrack { height: 3px; border-radius: 2px; background: #E2D9CE; overflow: hidden; margin-bottom: 2px; }
+    .seg-pfill { height: 3px; border-radius: 2px; }
+    .seg-preason { font-size: 8px; color: #B5A99A; line-height: 1.4; }
     .seg-profile { font-size: 12px; color: #444; line-height: 1.6; margin-bottom: 8px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
     .seg-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
@@ -444,12 +470,15 @@
     const row = document.getElementById('actionsRow');
     row.style.display = 'flex';
     const btn = document.getElementById('btnRefine');
+    const editBtn = document.getElementById('btnEdit');
     if (refineUsed) {
       btn.style.display = 'none';
+      if (editBtn) editBtn.style.display = 'flex';
     } else {
       btn.style.display = 'flex';
       btn.disabled = false;
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine idea';
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Think through my business';
+      if (editBtn) editBtn.style.display = 'none';
     }
   }
 
@@ -759,6 +788,38 @@
     return data;
   }
 
+  function buildSegScoreBand() {
+    if (!currentAnalysisData) return '';
+    const data = currentAnalysisData;
+    const interp = data.interpretation || '';
+    const ik = interp.toLowerCase().includes('very strong') ? 'vs' : interp.toLowerCase().includes('promising') ? 'pr' : interp.toLowerCase().includes('unclear') ? 'mo' : 'wk';
+    const bc = { vs:'#1D9E75', pr:'#1D9E75', mo:'#FF6B4A', wk:'#E53E3E' }[ik];
+    const fs = Math.round(data.finalScore||0), bs = Math.round(data.baseScore||0);
+    const em = data.evidenceMultiplier||1, ae = (data.averageEvidenceScore||0).toFixed(1);
+    const C = 2*Math.PI*18, arc = ((fs/100)*C).toFixed(1)+' '+C.toFixed(1);
+    const s = data.scores||{};
+    const pillars = [{key:'problem',label:'Problem'},{key:'market',label:'Market'},{key:'valueProposition',label:'Value prop.'},{key:'businessModel',label:'Business model'},{key:'execution',label:'Execution'}];
+    const pillarsHtml = pillars.map(p => {
+      const pi = s[p.key]||{}, qs = pi.qualityScore||pi.score||0, es = pi.evidenceScore||0;
+      const qc = qs>=4?'#1D9E75':qs>=3?'#EF9F27':'#FF6B4A';
+      const qbg = qs>=4?'#E1F5EE':qs>=3?'#FAEEDA':'#FCEBEB';
+      const qtx = qs>=4?'#085041':qs>=3?'#633806':'#791F1F';
+      return '<div class="seg-pillar"><div class="seg-pname">'+p.label+'</div><div class="seg-pbadges"><span class="sc-qs" style="font-size:8px;padding:1px 5px;border-radius:3px;background:'+qbg+';color:'+qtx+';">Q '+qs+'</span><span class="sc-es" style="font-size:8px;padding:1px 5px;">E '+es+'</span></div><div class="seg-ptrack"><div class="seg-pfill" style="width:'+Math.round((qs/5)*100)+'%;background:'+qc+';"></div></div><div class="seg-preason">'+(pi.reason||'').substring(0,60)+'…</div></div>';
+    }).join('');
+    return '<div class="seg-score-band">'+
+      '<div class="seg-score-top">'+
+        '<div class="seg-dial"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="#E2D9CE" stroke-width="3.5"/><circle cx="22" cy="22" r="18" fill="none" stroke="'+bc+'" stroke-width="3.5" stroke-dasharray="'+arc+'" stroke-dashoffset="'+(C*0.25).toFixed(1)+'" stroke-linecap="round" transform="rotate(-90 22 22)"/></svg><div class="seg-num-wrap"><span class="seg-big" style="color:'+bc+';">'+fs+'</span><span class="seg-sub">/100</span></div></div>'+
+        '<div><div class="seg-interp" style="color:'+bc+';">'+interp+'</div><div class="seg-conf"><span class="seg-conf-lbl">Confidence</span><div class="seg-pips">'+[1,2,3,4,5].map(n=>'<span class="seg-pip'+(n<=(data.confidenceScore||0)?' on':'')+'"></span>').join('')+'</div></div></div>'+
+        '<div class="seg-bk">'+
+          '<div class="seg-bk-cell"><div class="seg-bk-lbl">Base</div><div class="seg-bk-val">'+bs+'/100</div></div>'+
+          '<div class="seg-bk-cell"><div class="seg-bk-lbl">Multiplier</div><div class="seg-bk-val">&times;'+em+'</div></div>'+
+          '<div class="seg-bk-cell"><div class="seg-bk-lbl">Avg. evidence</div><div class="seg-bk-val">'+ae+'/5</div></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="seg-pillars">'+pillarsHtml+'</div>'+
+    '</div>';
+  }
+
   function renderCanvas(data, pi) {
     const seg=data.segment, vp=data.valueProposition, cr=data.customerRelationships, ch=data.channels, kp=data.keyPartners, ka=data.keyActivities, kr=data.keyResources, cost=data.costStructure, rev=data.revenueStreams;
     const bItem = t => '<div class="bmc-item"><div class="bmc-dot"></div><span>'+t+'</span></div>';
@@ -766,6 +827,7 @@
     const chs = (ch.touchpoints||[]).map(t=>'<div style="margin-bottom:6px;"><div class="ch-phase phase-'+t.phase.toLowerCase().replace(/[^a-z]/g,'')+'">'+t.phase+'</div><div style="font-size:10px;color:#555;line-height:1.5;">'+t.name+' &mdash; '+t.description+'</div></div>').join('');
     const html =
       '<div class="bmc-seg-header"><div class="seg-profile">'+seg.profile+'</div><div class="seg-tags">'+(seg.tags||[]).map(t=>'<span class="seg-tag">'+t+'</span>').join('')+'</div></div>'+
+      buildSegScoreBand()+
       '<div class="bmc-grid">'+
         '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key partners</div>'+(kp.partners||[]).map(p=>bItem('<strong style="font-weight:500;">'+p.name+'</strong> &mdash; '+p.description)).join('')+'</div><div class="bmc-cell"><div class="bmc-cell-label">Key resources</div>'+(kr.resources||[]).map(r=>bItem(r.name+' <span class="bmc-tag">'+r.type+'</span>')).join('')+'</div></div>'+
         '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key activities</div>'+(ka.activities||[]).map(a=>bItem(a.name+' &mdash; '+a.description)).join('')+'</div></div>'+
