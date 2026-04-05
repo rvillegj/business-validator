@@ -110,40 +110,33 @@
     .btn-design:hover { background: #E55A3A; }
     .btn-edit { padding: 13px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
     .btn-edit:hover { background: #F8F4EE; }
-    .refine-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
-    .refine-panel-hdr { padding: 14px 20px; background: #1A1A2E; display: flex; align-items: center; justify-content: space-between; }
-    .refine-panel-title { font-size: 13px; font-weight: 500; color: white; display: flex; align-items: center; gap: 8px; }
-    .refine-panel-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
-    .refine-score-badge { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 12px; text-align: right; flex-shrink: 0; }
-    .refine-score-lbl { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
-    .refine-score-val { font-size: 18px; font-weight: 700; color: white; font-family: 'Playfair Display', serif; }
-    .refine-score-arrow { color: #5DCAA5; font-size: 13px; }
-    .refine-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
-    .lever { border: 1.5px solid #E2D9CE; border-radius: 11px; overflow: hidden; }
-    .lever-hdr { padding: 10px 14px; background: #FAFAF8; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F0EBE3; }
-    .lever-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .lever-pillar { font-size: 12px; font-weight: 500; color: #1A1A2E; }
-    .lever-before { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: #FAEEDA; color: #633806; }
-    .lever-after { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: #E1F5EE; color: #085041; display: flex; align-items: center; gap: 3px; }
-    .lever-arrow-sep { font-size: 11px; color: #C5BDB2; }
-    .lever-impact-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #F5F1EB; color: #666; white-space: nowrap; }
-    .lever-body { padding: 14px; }
-    .lever-issue { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 12px; border-left: 3px solid #FF6B4A; padding-left: 12px; border-radius: 0; }
-    .lever-recs { display: flex; flex-direction: column; gap: 10px; }
-    .lever-rec { display: flex; gap: 10px; align-items: flex-start; }
-    .rec-num { width: 18px; height: 18px; border-radius: 50%; background: #1A1A2E; color: white; font-size: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-    .rec-content { flex: 1; }
-    .rec-text { font-size: 12px; color: #1A1A2E; line-height: 1.6; }
-    .rec-impact { font-size: 10px; color: #1D9E75; font-weight: 500; margin-top: 3px; }
-    .refine-summary-block { background: #E1F5EE; border: 1.5px solid #9FE1CB; border-radius: 11px; padding: 14px 16px; }
-    .refine-summary-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #0F6E56; font-weight: 500; margin-bottom: 6px; }
-    .refine-summary-text { font-size: 12px; color: #085041; line-height: 1.65; }
-    .refine-summary-score { font-size: 14px; font-weight: 500; color: #085041; margin-top: 8px; }
-    .refine-actions { padding: 14px 20px; border-top: 1px solid #F0EBE3; background: #FAFAF8; display: flex; gap: 10px; }
-    .btn-apply { flex: 1; padding: 12px; background: #FF6B4A; color: white; border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
-    .btn-apply:hover { background: #E55A3A; }
-    .btn-keep { padding: 12px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
-    .btn-keep:hover { background: #F8F4EE; }
+    .coach-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
+    .coach-hdr { padding: 14px 20px; background: #1A1A2E; }
+    .coach-title { font-size: 13px; font-weight: 500; color: white; display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .coach-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+    .coach-progress-wrap { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+    .coach-progress-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+    .coach-progress-fill { height: 3px; background: #5DCAA5; border-radius: 2px; transition: width 0.4s ease; }
+    .coach-progress-lbl { font-size: 10px; color: rgba(255,255,255,0.4); white-space: nowrap; }
+    .q-answered { padding: 12px 20px; border-top: 1px solid #F0EBE3; background: #FAFAF8; }
+    .q-answered-pill { font-size: 9px; padding: 2px 8px; border-radius: 20px; background: #E1F5EE; color: #085041; display: inline-block; margin-bottom: 5px; }
+    .q-answered-q { font-size: 11px; color: #999; margin-bottom: 5px; line-height: 1.5; }
+    .q-answered-a { font-size: 12px; color: #444; line-height: 1.6; border-left: 2px solid #1D9E75; padding-left: 10px; border-radius: 0; }
+    .q-body { padding: 20px; }
+    .q-pillar-badge { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 500; display: inline-block; margin-bottom: 12px; }
+    .q-why { font-size: 12px; color: #555; line-height: 1.6; border-left: 3px solid #FF6B4A; padding-left: 12px; margin-bottom: 16px; border-radius: 0; font-style: italic; }
+    .q-text { font-size: 15px; font-weight: 500; color: #1A1A2E; line-height: 1.5; margin-bottom: 10px; }
+    .q-hint { font-size: 11px; color: #B5A99A; margin-bottom: 12px; line-height: 1.5; }
+    .q-textarea { width: 100%; border: 1.5px solid #E2D9CE; border-radius: 9px; padding: 12px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: #1A1A2E; background: white; resize: none; line-height: 1.6; min-height: 90px; transition: border 0.15s; }
+    .q-textarea:focus { outline: none; border-color: #1A1A2E; }
+    .q-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+    .q-skip { font-size: 12px; color: #B5A99A; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0; }
+    .q-next { padding: 10px 20px; background: #1A1A2E; color: white; border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .coach-footer { padding: 14px 20px; border-top: 1px solid #F0EBE3; background: #FAFAF8; display: flex; gap: 10px; }
+    .btn-reanalyze { flex: 1; padding: 12px; background: #FF6B4A; color: white; border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
+    .btn-reanalyze:hover { background: #E55A3A; }
+    .btn-skip-all { padding: 12px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
+    .coach-footer-note { font-size: 10px; color: #B5A99A; text-align: center; padding: 0 20px 12px; line-height: 1.5; }
     .canvas-section { display: none; }
     .canvas-section.visible { display: block; }
     .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 20px; }
@@ -337,13 +330,13 @@
   </div>
 
   <!-- Refine panel — shown above actions row when triggered -->
-  <div class="refine-panel" id="refinePanel" style="display:none;"></div>
+  <div class="coach-panel" id="refinePanel" style="display:none;"></div>
 
   <!-- THREE-BUTTON ROW — hidden while refine panel is open -->
   <div class="actions-row" id="actionsRow" style="display:none;">
     <button class="btn-refine" id="btnRefine" onclick="runRefine()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      Refine idea
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Think through my business
     </button>
     <button class="btn-design" onclick="designModel()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
@@ -525,50 +518,139 @@
     document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legHtml+warnHtml);
   }
 
+  let coachQuestions = [];
+  let coachAnswers = [];
+  let coachIndex = 0;
+
   async function runRefine() {
     if (!currentAnalysisData) return;
-    // Hide actions row while panel is open
     document.getElementById('actionsRow').style.display = 'none';
     const panel = document.getElementById('refinePanel');
     panel.style.display = 'block';
-    panel.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:13px;color:#888;font-weight:300;margin-bottom:16px;">Identifying your highest-impact improvements…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+    panel.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:13px;color:#888;font-weight:300;margin-bottom:16px;">Preparing your coaching session…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
     panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
     try {
-      const r = await fetch('/api/refine', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea:currentIdea, scores:currentAnalysisData.scores, finalScore:currentAnalysisData.finalScore, baseScore:currentAnalysisData.baseScore, averageEvidenceScore:currentAnalysisData.averageEvidenceScore, evidenceMultiplier:currentAnalysisData.evidenceMultiplier }) });
+      const r = await fetch('/api/refine', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ idea: currentIdea, scores: currentAnalysisData.scores })
+      });
       const data = await r.json();
-      renderRefinePanel(data);
+      coachQuestions = data.questions || [];
+      coachAnswers = new Array(coachQuestions.length).fill('');
+      coachIndex = 0;
+      if (coachQuestions.length === 0) {
+        panel.innerHTML = '<div style="padding:20px;font-size:13px;color:#555;">Your idea is already well-defined. Try designing your business model.</div>';
+        showActionsRow();
+        return;
+      }
+      renderCoachSession();
     } catch(err) {
       panel.innerHTML = '<div style="padding:20px;font-size:13px;color:#A32D2D;">Something went wrong. Please try again.</div>';
       showActionsRow();
     }
   }
 
-  function renderRefinePanel(data) {
-    const levers = data.levers||[], ps = Math.round(data.projectedFinalScore||0), cs = Math.round(currentAnalysisData.finalScore||0), pi = data.projectedInterpretation||'';
-    const leversHtml = levers.map(lv => {
-      const recs = (lv.recommendations||[]).map((rec,i)=>'<div class="lever-rec"><div class="rec-num">'+(i+1)+'</div><div class="rec-content"><div class="rec-text">'+rec.text+'</div><div class="rec-impact">'+(rec.pointsGained||'')+'</div></div></div>').join('');
-      return '<div class="lever"><div class="lever-hdr"><div class="lever-left"><div class="lever-pillar">'+(lv.pillarLabel||lv.pillar)+'</div><span class="lever-before">Q '+lv.currentQuality+'/5</span><span class="lever-arrow-sep">&rarr;</span><span class="lever-after"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Q '+lv.projectedQuality+'/5</span></div><span class="lever-impact-tag">'+(lv.impact||'')+'</span></div><div class="lever-body"><div class="lever-issue">'+(lv.issue||'')+'</div><div class="lever-recs">'+recs+'</div></div></div>';
+  function renderCoachSession() {
+    const panel = document.getElementById('refinePanel');
+    const total = coachQuestions.length;
+    const current = coachQuestions[coachIndex];
+    const scoreColor = current.currentScore <= 2 ? '#E24B4A' : '#EF9F27';
+    const scoreBg = current.currentScore <= 2 ? '#FCEBEB' : '#FAEEDA';
+    const scoreTextColor = current.currentScore <= 2 ? '#791F1F' : '#633806';
+    const progressPct = Math.round((coachIndex / total) * 100);
+
+    const answeredHtml = coachAnswers.slice(0, coachIndex).map((ans, i) => {
+      const q = coachQuestions[i];
+      if (!ans.trim()) return '';
+      return '<div class="q-answered"><span class="q-answered-pill">Answered · ' + q.pillarLabel + '</span><div class="q-answered-q">' + q.question + '</div><div class="q-answered-a">' + ans + '</div></div>';
     }).join('');
-    document.getElementById('refinePanel').innerHTML =
-      '<div class="refine-panel-hdr"><div><div class="refine-panel-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Idea refinement analysis</div><div class="refine-panel-sub">'+levers.length+' pillar'+(levers.length!==1?'s':'')+' with room to improve &mdash; here\'s how</div></div><div class="refine-score-badge"><div class="refine-score-lbl">Potential score</div><div class="refine-score-val">'+cs+' <span class="refine-score-arrow">&rarr; '+ps+'</span></div></div></div>'+
-      '<div class="refine-body">'+leversHtml+'<div class="refine-summary-block"><div class="refine-summary-label">Projected outcome</div><div class="refine-summary-text">Applying these refinements should move your score from '+cs+' to approximately '+ps+', reaching &ldquo;'+pi+'.&rdquo;</div><div class="refine-summary-score">'+cs+' &rarr; ~'+ps+' &middot; '+pi+'</div></div></div>'+
-      '<div class="refine-actions"><button class="btn-apply" onclick="applyRefinements()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Apply refinements and re-analyze</button><button class="btn-keep" onclick="dismissRefine()">Keep my idea as-is</button></div>';
-    window.__refinedIdea = data.refinedIdeaSuggestion||'';
+
+    const isLast = coachIndex === total - 1;
+
+    panel.innerHTML =
+      '<div class="coach-hdr">' +
+        '<div class="coach-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Informed founder session</div>' +
+        '<div class="coach-sub">Your answers deepen the analysis — your idea stays exactly as you wrote it</div>' +
+        '<div class="coach-progress-wrap"><div class="coach-progress-bar"><div class="coach-progress-fill" style="width:' + progressPct + '%;"></div></div>' +
+        '<div class="coach-progress-lbl">Question ' + (coachIndex + 1) + ' of ' + total + '</div></div>' +
+      '</div>' +
+      answeredHtml +
+      '<div class="q-body">' +
+        '<span class="q-pillar-badge" style="background:' + scoreBg + ';color:' + scoreTextColor + ';">' + current.pillarLabel + ' · Q ' + current.currentScore + '/5</span>' +
+        '<div class="q-why">' + current.why + '</div>' +
+        '<div class="q-text">' + current.question + '</div>' +
+        '<div class="q-hint">' + current.hint + '</div>' +
+        '<textarea class="q-textarea" id="coachTextarea" placeholder="Share what you know, even if it’s approximate…"></textarea>' +
+        '<div class="q-footer">' +
+          '<button class="q-skip" onclick="skipQuestion()">Skip this question</button>' +
+          (isLast
+            ? '<button class="q-next" onclick="finishCoaching()">Re-analyze with my answers <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>'
+            : '<button class="q-next" onclick="nextQuestion()">Next question <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>'
+          ) +
+        '</div>' +
+      '</div>';
+
+    const ta = document.getElementById('coachTextarea');
+    if (ta) {
+      if (coachAnswers[coachIndex]) ta.value = coachAnswers[coachIndex];
+      ta.addEventListener('input', function() { coachAnswers[coachIndex] = this.value; });
+    }
   }
 
-  function applyRefinements() {
-    if (!window.__refinedIdea) return;
+  function nextQuestion() {
+    coachIndex++;
+    renderCoachSession();
+    document.getElementById('refinePanel').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  function skipQuestion() {
+    coachAnswers[coachIndex] = '';
+    if (coachIndex < coachQuestions.length - 1) {
+      coachIndex++;
+      renderCoachSession();
+    } else {
+      finishCoaching();
+    }
+  }
+
+  function finishCoaching() {
+    const hasAnswers = coachAnswers.some(a => a && a.trim().length > 0);
+    if (!hasAnswers) { dismissRefine(); return; }
+
+    const qaPairs = coachQuestions.map((q, i) => {
+      if (!coachAnswers[i] || !coachAnswers[i].trim()) return null;
+      return 'Q: ' + q.question + '\nA: ' + coachAnswers[i].trim();
+    }).filter(Boolean).join('\n\n');
+
+    const enrichedIdea = currentIdea + '\n\n--- Additional context from the founder ---\n' + qaPairs;
     refineUsed = true;
-    currentIdea = window.__refinedIdea;
-    document.getElementById('ideaDisplay').innerText = window.__refinedIdea;
     document.getElementById('refinePanel').style.display = 'none';
-    rerunAnalysis();
+    document.getElementById('ideaBar').classList.add('idea-bar-locked');
+    resetResultsToShimmers();
+    document.getElementById('actionsRow').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    window.scrollTo({ top: 0 });
+
+    fetch('/api/analyse', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea: enrichedIdea }) })
+      .then(r => r.json())
+      .then(data => {
+        currentAnalysisData = data;
+        renderAnalysisResults(data);
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+        document.getElementById('navDownloadBtn').classList.add('visible');
+        showActionsRow();
+      })
+      .catch(() => {
+        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+        showActionsRow();
+      });
   }
 
   function dismissRefine() {
     document.getElementById('refinePanel').style.display = 'none';
     showActionsRow();
   }
+
 
   async function designModel() {
     document.getElementById('canvasSection').classList.add('visible');
