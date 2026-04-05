@@ -8,22 +8,19 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; background: #FDF6EC; color: #1A1A2E; min-height: 100vh; }
-
-    /* ── PAGE 1: Landing ── */
     .landing { display: block; }
     .hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 20px; text-align: center; }
     .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 14px; }
     .h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 52px); font-weight: 900; line-height: 1.05; color: #1A1A2E; }
-    .h1 span { color: #FF6B4A; display: block; }
     .tagline { font-size: 15px; color: #666; font-weight: 300; margin: 16px auto 10px; max-width: 400px; line-height: 1.65; }
     .tagline-sub { font-size: 13px; color: #888; font-weight: 300; max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
     .input-outer { max-width: 860px; margin: 0 auto 20px; background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 16px 18px 14px; text-align: left; }
-    .input-placeholder { display: none; }
     #inputText:empty:before { content: 'Describe your business idea or problem...'; color: #C5BDB2; pointer-events: none; }
     .input-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .input-pill { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: #FAF0EC; color: #993C1D; border: 1px solid #F0997B; white-space: nowrap; }
+    .input-pill { font-size: 11px; padding: 4px 12px; border-radius: 20px; background: #FAF0EC; color: #993C1D; border: 1px solid #F0997B; white-space: nowrap; cursor: pointer; }
     .analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 10px 20px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 7px; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
     .analyse-btn:hover { background: #E55A3A; }
+    .analyse-btn:disabled { background: #D0C9BF; cursor: not-allowed; }
     .context-msg { margin-top: 10px; padding: 10px 14px; background: #FFF5F5; border-left: 3px solid #FF6B4A; border-radius: 0 8px 8px 0; font-size: 12px; color: #C53030; display: none; }
     .what-section { max-width: 860px; margin: 0 auto; padding: 0 24px 48px; }
     .what-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1A1A2E; margin-bottom: 12px; }
@@ -33,36 +30,26 @@
     .fc-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
     .fc-title { font-size: 12px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; line-height: 1.3; }
     .fc-text { font-size: 11px; color: #888; line-height: 1.55; }
-
-    /* ── PAGE 2: Results ── */
     .results { display: none; max-width: 960px; margin: 0 auto; padding: 0 24px 56px; }
     .results-nav { display: flex; align-items: center; gap: 10px; padding: 20px 0 16px; }
     .back-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; background: none; border: none; cursor: pointer; padding: 0; font-family: 'DM Sans', sans-serif; }
     .back-btn:hover { color: #555; }
     .nav-sep { font-size: 12px; color: #D0C9BF; }
     .results-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; }
-    .nav-download-btn { margin-left: auto; display: none; align-items: center; gap: 6px; font-size: 12px; color: #666; background: white; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+    .nav-download-btn { margin-left: auto; display: none; align-items: center; gap: 6px; font-size: 12px; color: #666; background: white; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; }
     .nav-download-btn:hover { background: #F8F4EE; }
     .nav-download-btn.visible { display: flex; }
-    .idea-bar-locked { opacity: 0.45; pointer-events: none; }
-    .psych-desc { font-size: 11.5px; color: #555; line-height: 1.55; font-style: italic; margin-bottom: 8px; }
-    .platform-row { display: flex; flex-wrap: wrap; gap: 6px; }
-    .platform-pill { font-size: 10.5px; padding: 2px 10px; border-radius: 20px; background: #F5F1EB; color: #555; border: 1px solid #E2D9CE; }
-    .expand-collapse-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-    .expand-collapse-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; }
-    .expand-collapse-btn { font-size: 11px; color: #FF6B4A; font-weight: 500; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px; padding: 0; font-family: 'DM Sans', sans-serif; }
     .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 12px 16px; margin-bottom: 14px; transition: border 0.15s; }
     .idea-bar.edit-mode { border: 2px solid #FF6B4A; }
+    .idea-bar-locked { opacity: 0.45; pointer-events: none; }
     .idea-bar-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .idea-bar-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 4px; }
     .idea-bar-text { font-size: 13px; color: #1A1A2E; line-height: 1.55; outline: none; }
     .idea-bar-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
     .idea-edit-btn { width: 28px; height: 28px; border-radius: 8px; background: #F5F1EB; border: none; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; margin-top: 2px; }
     .idea-edit-btn:hover { background: #EDE8DF; }
-    .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: background 0.2s; }
+    .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; }
     .idea-analyse-btn:hover { background: #E55A3A; }
-
-    /* Core hypothesis card */
     .hyp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .hyp-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
     .hyp-header-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -73,8 +60,6 @@
     .hyp-text { font-size: 13px; color: #444; line-height: 1.6; }
     .hyp-metric { font-size: 13px; color: #555; line-height: 1.6; margin-top: 8px; }
     .hyp-metric-prefix { color: #1D9E75; font-weight: 500; }
-
-    /* Enhanced score card */
     .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .sc-top { padding: 16px 20px 14px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: flex-start; gap: 16px; }
     .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
@@ -118,66 +103,61 @@
     .sc-warn-lbl { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
     .sc-warn-row { display: flex; align-items: flex-start; gap: 7px; font-size: 11px; color: #A32D2D; line-height: 1.5; }
     .sc-warn-dot { width: 4px; height: 4px; border-radius: 50%; background: #E24B4A; flex-shrink: 0; margin-top: 5px; }
-
-    /* Customer card */
-    .ccard { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; }
-    .cc-top { padding: 14px 18px 12px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 12px; }
-    .avatar { width: 40px; height: 40px; border-radius: 50%; background: #EEEDFE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; font-weight: 700; color: #3C3489; font-family: 'Playfair Display', serif; }
-    .cc-name { font-size: 14px; font-weight: 500; color: #1A1A2E; margin-bottom: 1px; }
-    .cc-role { font-size: 11.5px; color: #999; }
-    .cc-loc { display: flex; align-items: center; gap: 5px; font-size: 10px; color: #B5A99A; margin-top: 3px; }
-    .locdot { width: 5px; height: 5px; border-radius: 50%; background: #FF6B4A; }
-    .cc-inner { display: grid; grid-template-columns: 1fr 1fr; }
-    .cc-col { padding: 13px 18px; display: flex; flex-direction: column; gap: 11px; }
-    .cc-col:first-child { border-right: 1px solid #F0EBE3; }
-    .cc-sec-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 6px; }
-    .trait-row { display: flex; flex-wrap: wrap; gap: 5px; }
-    .trait { font-size: 10.5px; padding: 2px 8px; border-radius: 20px; background: #F5F1EB; color: #666; }
-    .trait-p { background: #EEEDFE; color: #3C3489; }
-    .trait-t { background: #E1F5EE; color: #085041; }
-    .trait-a { background: #FAEEDA; color: #633806; }
-    .cc-items { display: flex; flex-direction: column; gap: 4px; }
-    .cc-item { display: flex; gap: 6px; font-size: 11.5px; color: #555; line-height: 1.5; align-items: flex-start; }
-    .cbullet { width: 4px; height: 4px; border-radius: 50%; background: #FF6B4A; flex-shrink: 0; margin-top: 5px; }
-    .firm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #F0EBE3; border-radius: 9px; overflow: hidden; }
-    .firm-cell { background: white; padding: 8px 11px; }
-    .firm-label { font-size: 9px; letter-spacing: 0.11em; text-transform: uppercase; color: #B5A99A; margin-bottom: 2px; }
-    .firm-val { font-size: 11.5px; color: #1A1A2E; font-weight: 500; }
-    .geo-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-    .geo-tag { font-size: 10.5px; padding: 2px 8px; border-radius: 20px; background: #F5F1EB; color: #666; border: 1px solid #E2D9CE; }
-
-    /* Skeleton loaders */
-    .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
-
-    /* Action buttons */
-    .actions-row { display: flex; gap: 10px; }
+    .refine-trigger-row { margin-bottom: 14px; }
+    .btn-refine { width: 100%; padding: 13px 20px; background: #1A1A2E; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+    .btn-refine:hover { background: #2D2D4A; }
+    .btn-refine:disabled { background: #B5A99A; cursor: not-allowed; }
+    .refine-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
+    .refine-panel-hdr { padding: 14px 20px; background: #1A1A2E; display: flex; align-items: center; justify-content: space-between; }
+    .refine-panel-title { font-size: 13px; font-weight: 500; color: white; display: flex; align-items: center; gap: 8px; }
+    .refine-panel-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+    .refine-score-badge { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 6px 12px; text-align: right; flex-shrink: 0; }
+    .refine-score-lbl { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; text-transform: uppercase; }
+    .refine-score-val { font-size: 18px; font-weight: 700; color: white; font-family: 'Playfair Display', serif; }
+    .refine-score-arrow { color: #5DCAA5; font-size: 13px; }
+    .refine-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .lever { border: 1.5px solid #E2D9CE; border-radius: 11px; overflow: hidden; }
+    .lever-hdr { padding: 10px 14px; background: #FAFAF8; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #F0EBE3; }
+    .lever-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .lever-pillar { font-size: 12px; font-weight: 500; color: #1A1A2E; }
+    .lever-before { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: #FAEEDA; color: #633806; }
+    .lever-after { font-size: 10px; padding: 1px 7px; border-radius: 4px; background: #E1F5EE; color: #085041; display: flex; align-items: center; gap: 3px; }
+    .lever-arrow-sep { font-size: 11px; color: #C5BDB2; }
+    .lever-impact-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: #F5F1EB; color: #666; white-space: nowrap; }
+    .lever-body { padding: 14px; }
+    .lever-issue { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 12px; border-left: 3px solid #FF6B4A; padding-left: 12px; border-radius: 0; }
+    .lever-recs { display: flex; flex-direction: column; gap: 10px; }
+    .lever-rec { display: flex; gap: 10px; align-items: flex-start; }
+    .rec-num { width: 18px; height: 18px; border-radius: 50%; background: #1A1A2E; color: white; font-size: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .rec-content { flex: 1; }
+    .rec-text { font-size: 12px; color: #1A1A2E; line-height: 1.6; }
+    .rec-impact { font-size: 10px; color: #1D9E75; font-weight: 500; margin-top: 3px; }
+    .refine-summary-block { background: #E1F5EE; border: 1.5px solid #9FE1CB; border-radius: 11px; padding: 14px 16px; }
+    .refine-summary-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #0F6E56; font-weight: 500; margin-bottom: 6px; }
+    .refine-summary-text { font-size: 12px; color: #085041; line-height: 1.65; }
+    .refine-summary-score { font-size: 14px; font-weight: 500; color: #085041; margin-top: 8px; }
+    .refine-actions { padding: 14px 20px; border-top: 1px solid #F0EBE3; background: #FAFAF8; display: flex; gap: 10px; }
+    .btn-apply { flex: 1; padding: 12px; background: #FF6B4A; color: white; border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
+    .btn-apply:hover { background: #E55A3A; }
+    .btn-keep { padding: 12px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+    .btn-keep:hover { background: #F8F4EE; }
+    .actions-row { display: flex; gap: 10px; margin-bottom: 14px; }
     .btn-design { flex: 1; padding: 13px; background: #FF6B4A; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
     .btn-design:hover { background: #E55A3A; }
     .btn-edit { padding: 13px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
     .btn-edit:hover { background: #F8F4EE; }
-    .btn-download { padding: 13px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
-    .btn-download:hover { background: #F8F4EE; }
-
-    /* Section 2 — Canvas */
-    .canvas-section { display: none; margin-top: 40px; }
+    .canvas-section { display: none; }
     .canvas-section.visible { display: block; }
-    .canvas-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 6px; }
-    .canvas-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 36px); font-weight: 900; line-height: 1.05; margin-bottom: 8px; }
-    .canvas-title span { color: #FF6B4A; }
-    .canvas-deco { width: 44px; height: 3px; background: #E8C547; margin: 12px 0 16px; border-radius: 2px; }
-    .canvas-sub { font-size: 13px; color: #777; font-weight: 300; max-width: 520px; line-height: 1.7; margin-bottom: 24px; }
-    .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 36px; }
-
-    /* Tabs */
-    .tab-nav { display: flex; gap: 4px; margin-bottom: 0; }
+    .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 20px; }
+    .canvas-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 14px; }
+    .tab-nav { display: flex; gap: 4px; }
     .tab-btn { padding: 11px 20px; background: #EDE8DF; border: none; border-radius: 10px 10px 0 0; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: #888; cursor: pointer; transition: all 0.2s; }
     .tab-btn.active { background: white; color: #1A1A2E; }
     .tab-btn.active.seg1 { border-top: 3px solid #FF6B4A; }
     .tab-btn.active.seg2 { border-top: 3px solid #3D6B4F; }
     .tab-btn.active.seg3 { border-top: 3px solid #E8C547; }
     .tab-btn:hover:not(.active) { background: #E2D9CE; color: #555; }
-    .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 13px 13px 13px; padding: 32px; display: none; }
+    .tab-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 0 13px 13px 13px; display: none; }
     .tab-panel.active { display: block; }
     .loading-tab { text-align: center; padding: 60px 20px; }
     .loading-tab-msg { font-size: 14px; color: #888; font-weight: 300; margin-bottom: 20px; }
@@ -186,809 +166,577 @@
     .dot:nth-child(1) { background: #FF6B4A; }
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
-
-    /* Canvas content */
-    .section { margin-bottom: 24px; }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; margin-bottom: 6px; }
-    .section-summary { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 16px; font-style: italic; border-left: 3px solid #E8C547; padding-left: 14px; border-radius: 0; }
-    .collapsible { margin-bottom: 10px; border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; }
-    .collapsible-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; background: #FDF6EC; transition: background 0.2s; user-select: none; }
-    .collapsible-header:hover { background: #F0EAE0; }
-    .collapsible-title { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; }
-    .collapsible-chevron { font-size: 16px; color: #B5A99A; transition: transform 0.2s; }
-    .collapsible-chevron.open { transform: rotate(180deg); }
-    .collapsible-body { display: none; padding: 20px 20px 24px; border-top: 1.5px solid #E2D9CE; }
-    .collapsible-body.open { display: block; }
-    .seg-profile { font-size: 14px; color: #444; line-height: 1.6; margin-bottom: 12px; }
-    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .bmc-seg-header { padding: 16px 20px 0; }
+    .seg-profile { font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 10px; }
+    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
     .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-    .seg-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 4px; }
-    .seg-col { background: #FDF6EC; border-radius: 10px; padding: 14px 16px; }
-    .seg-col-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
-    .tab-panel.seg1 .seg-col-label { color: #FF6B4A; }
-    .tab-panel.seg2 .seg-col-label { color: #3D6B4F; }
-    .tab-panel.seg3 .seg-col-label { color: #A8851A; }
-    .seg-item { display: flex; gap: 8px; margin-bottom: 7px; font-size: 13px; color: #555; line-height: 1.5; }
-    .seg-item:last-child { margin-bottom: 0; }
-    .seg-dot { width: 5px; height: 5px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-    .tab-panel.seg1 .seg-dot { background: #FF6B4A; }
-    .tab-panel.seg2 .seg-dot { background: #3D6B4F; }
-    .tab-panel.seg3 .seg-dot { background: #E8C547; }
-    .sv-card { border: 1.5px solid #E2D9CE; border-radius: 12px; overflow: hidden; margin: 20px 0 24px; animation: fadeIn 0.4s ease both; }
-    .sv-header { display: flex; align-items: flex-start; padding: 18px 22px 16px; border-bottom: 1.5px solid #E2D9CE; gap: 18px; }
-    .sv-dial-wrap { position: relative; width: 60px; height: 60px; flex-shrink: 0; }
-    .sv-dial-wrap svg { width: 60px; height: 60px; }
-    .sv-dial-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .sv-dial-big { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1; }
-    .sv-dial-sub { font-size: 9px; color: #B5A99A; }
-    .sv-meta { display: flex; flex-direction: column; gap: 5px; }
-    .sv-eyebrow { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B5A99A; font-weight: 500; }
-    .sv-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 11px; border-radius: 6px; }
-    .sv-badge.sv-strong { background: #E1F5EE; color: #085041; }
-    .sv-badge.sv-moderate { background: #FDF6EC; color: #A8851A; border: 1px solid #E8C547; }
-    .sv-badge.sv-weak { background: #FFF5F5; color: #9B2335; border: 1px solid #F5C4B3; }
-    .sv-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .sv-summary { font-size: 12.5px; color: #666; line-height: 1.55; margin-top: 3px; max-width: 500px; }
-    .sv-pillars { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1.5px solid #E2D9CE; }
-    .sv-pillar { padding: 13px 14px; border-right: 1.5px solid #E2D9CE; background: white; }
-    .sv-pillar:last-child { border-right: none; }
-    .sv-pil-name { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; line-height: 1.4; }
-    .sv-pil-weight { font-size: 9px; color: #D0C9BF; margin-bottom: 6px; margin-top: 1px; }
-    .sv-pil-score { font-size: 12px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; }
-    .sv-bar-track { height: 4px; background: #E2D9CE; border-radius: 2px; margin-bottom: 5px; }
-    .sv-bar-fill { height: 4px; border-radius: 2px; }
-    .sv-pil-reason { font-size: 10.5px; color: #999; line-height: 1.45; }
-    .sv-warnings { padding: 12px 18px; background: #FDF6EC; border-top: 1.5px solid #E2D9CE; display: flex; flex-direction: column; gap: 7px; }
-    .sv-warn-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
-    .sv-warn-row { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #666; line-height: 1.5; }
-    .sv-warn-icon { width: 16px; height: 16px; border-radius: 50%; background: #FFF3CD; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 9px; color: #A8851A; font-weight: 700; margin-top: 1px; }
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-    .card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 20px; transition: box-shadow 0.2s, transform 0.2s; }
-    .card:hover { box-shadow: 0 8px 24px rgba(26,26,46,0.08); transform: translateY(-2px); }
-    .card-type { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
-    .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #1A1A2E; line-height: 1.2; }
-    .card-desc { font-size: 12.5px; color: #666; line-height: 1.55; }
-    .card-badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 12px; font-weight: 500; background: rgba(26,26,46,0.07); color: #1A1A2E; margin-top: 8px; }
-    .type-acquire { color: #FF6B4A; }
-    .type-retain { color: #3D6B4F; }
-    .type-grow { color: #A8851A; }
-    .type-direct { color: #C0392B; }
-    .type-indirect { color: #7B5EA7; }
-    .type-supplier, .type-strategic-alliance, .type-joint-venture { color: #7B5EA7; }
-    .type-production, .type-problem-solving, .type-platform { color: #3D6B4F; }
-    .type-physical, .type-financial, .type-intellectual, .type-human { color: #E8A838; }
-    .type-fixed { color: #C0392B; }
-    .type-variable { color: #27AE60; }
-    .type-semi-variable { color: #A8851A; }
-    .ch-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-    .ch-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 12px; padding: 16px; }
-    .ch-phase { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+    .bmc-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr 1fr 1fr; border-top: 1.5px solid #E2D9CE; border-bottom: 1.5px solid #E2D9CE; }
+    .bmc-col { display: flex; flex-direction: column; border-right: 1px solid #E2D9CE; }
+    .bmc-col:last-child { border-right: none; }
+    .bmc-cell { padding: 12px 13px; flex: 1; border-bottom: 1px solid #E2D9CE; }
+    .bmc-cell:last-child { border-bottom: none; }
+    .bmc-cell-label { font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #FF6B4A; margin-bottom: 7px; }
+    .bmc-item { display: flex; gap: 6px; font-size: 11px; color: #555; line-height: 1.5; margin-bottom: 4px; }
+    .bmc-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B4A; margin-top: 5px; flex-shrink: 0; }
+    .bmc-sublabel { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; margin: 7px 0 3px; }
+    .bmc-tag { font-size: 9.5px; padding: 2px 7px; border-radius: 10px; background: #F5F1EB; color: #666; display: inline-block; margin-top: 4px; margin-right: 3px; }
+    .vp-summary { font-size: 11px; color: #555; line-height: 1.6; font-style: italic; border-left: 3px solid #E8C547; padding-left: 11px; margin-bottom: 10px; border-radius: 0; }
+    .vp-offering { background: #FDF6EC; border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; }
+    .vp-offering:last-child { margin-bottom: 0; }
+    .vp-name { font-size: 11px; font-weight: 500; color: #1A1A2E; margin-bottom: 3px; }
+    .vp-desc { font-size: 10px; color: #666; line-height: 1.5; }
+    .vp-badge { font-size: 9px; padding: 2px 7px; border-radius: 10px; background: rgba(26,26,46,0.07); color: #1A1A2E; display: inline-block; margin-top: 4px; }
+    .ch-phase { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
     .phase-awareness { color: #FF6B4A; }
     .phase-evaluation { color: #3D6B4F; }
     .phase-purchase { color: #A8851A; }
     .phase-delivery { color: #1A1A2E; }
     .phase-postpurchase { color: #7B5EA7; }
-    .ch-name { font-size: 13px; font-weight: 500; color: #1A1A2E; margin-bottom: 5px; }
-    .ch-desc { font-size: 11.5px; color: #777; line-height: 1.5; }
-    .advantage-block { background: rgba(26,26,46,0.04); padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.6; border-left: 3px solid #1A1A2E; border-radius: 0; }
-    .advantage-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 5px; }
-
-    /* Modal */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,46,0.5); z-index: 100; align-items: center; justify-content: center; }
-    .modal-overlay.visible { display: flex; }
-    .modal { background: white; border-radius: 16px; padding: 28px; max-width: 400px; width: 90%; }
-    .modal-icon { width: 44px; height: 44px; border-radius: 50%; background: #FFF5F5; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    .modal-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A1A2E; margin-bottom: 8px; }
-    .modal-body { font-size: 13px; color: #666; line-height: 1.65; margin-bottom: 6px; }
-    .modal-warning { font-size: 12px; color: #C53030; background: #FFF5F5; border-left: 3px solid #E53E3E; border-radius: 0 8px 8px 0; padding: 10px 12px; margin: 14px 0 20px; line-height: 1.55; }
-    .modal-actions { display: flex; flex-direction: column; gap: 8px; }
-    .modal-btn-cancel { background: white; color: #1A1A2E; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 12px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
-    .modal-btn-cancel:hover { background: #F8F4EE; }
-    .modal-btn-confirm { background: #C53030; color: white; border: none; border-radius: 10px; padding: 12px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
-    .modal-btn-confirm:hover { background: #A82020; }
-
+    .bmc-bottom { display: grid; grid-template-columns: 1fr 1fr; border-top: 1.5px solid #E2D9CE; }
+    .bmc-bottom-cell { padding: 12px 13px; }
+    .bmc-bottom-cell:first-child { border-right: 1px solid #E2D9CE; }
+    .rev-stream { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+    .rev-tag { font-size: 9px; padding: 2px 7px; border-radius: 10px; }
+    .rev-name { font-size: 11px; font-weight: 500; color: #1A1A2E; }
+    .rev-desc { font-size: 10px; color: #888; margin-bottom: 9px; }
+    .cost-row { font-size: 10.5px; color: #555; margin-bottom: 4px; display: flex; gap: 6px; align-items: flex-start; }
+    .cost-tag { font-size: 8.5px; padding: 1px 6px; border-radius: 3px; background: #F5F1EB; color: #888; flex-shrink: 0; margin-top: 1px; }
+    .section-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-top: 14px; animation: fadeIn 0.4s ease both; }
+    .section-card-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .section-card-header:hover { background: #FAFAF8; }
+    .section-card-title { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: #888; }
+    .section-card-chev { font-size: 16px; color: #B5A99A; transition: transform 0.2s; }
+    .section-card-chev.open { transform: rotate(180deg); }
+    .section-card-body { display: none; border-top: 1px solid #F0EBE3; }
+    .section-card-body.open { display: block; }
+    .comp-summary { font-size: 13px; color: #555; line-height: 1.6; font-style: italic; border-left: 3px solid #1A1A2E; padding-left: 14px; margin: 16px 20px; border-radius: 0; }
+    .comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0 20px 16px; }
+    .comp-card { background: #FDF6EC; border: 1.5px solid #E2D9CE; border-radius: 10px; padding: 14px 16px; }
+    .comp-type { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 4px; }
+    .comp-name { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #1A1A2E; margin-bottom: 6px; }
+    .comp-desc { font-size: 11.5px; color: #666; line-height: 1.55; }
+    .adv-block { margin: 0 20px 20px; padding: 12px 16px; background: rgba(26,26,46,0.04); border-left: 3px solid #1A1A2E; border-radius: 0; }
+    .adv-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 5px; }
+    .adv-text { font-size: 13px; color: #444; line-height: 1.6; }
+    .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
     @keyframes bounce { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .animate { animation: fadeIn 0.4s ease both; }
-
     @media print {
       @page { margin: 18mm 16mm; size: A4; }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: white !important; }
-      .landing, .results-nav, .actions-row, .canvas-section, .idea-edit-btn, .idea-bar-actions, .sc-legend { display: none !important; }
+      .landing, .results-nav, .actions-row, .refine-trigger-row, .refine-panel, .idea-edit-btn, .idea-bar-actions { display: none !important; }
       .results { display: block !important; max-width: 100%; padding: 0; }
-      .skel { display: none !important; }
-      .align-card, .ccard, .score-card, .idea-bar { break-inside: avoid; }
-      .main-grid { grid-template-columns: 1fr 220px; gap: 10px; }
-      .collapsible-body { display: block !important; }
-      .collapsible-header { background: #FDF6EC !important; }
-      .print-header { display: flex !important; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1.5px solid #E2D9CE; }
-      .print-header-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1A1A2E; }
-      .print-header-sub { font-size: 10px; color: #B5A99A; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 3px; }
-      .print-header-logo { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; }
+      .section-card-body { display: block !important; }
     }
-    .print-header { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- ── PAGE 1: LANDING ── -->
-  <div class="landing" id="landing">
-    <div class="hero">
-      <div class="eyebrow">From idea to validated opportunity</div>
-      <div class="h1">Business Model Evaluator</div>
-      <div class="tagline" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</div>
-      <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
-      <div class="input-outer">
-        <div class="input-row">
-          <div style="flex:1;display:flex;align-items:center;gap:0;">
-            <textarea id="ideaInput" placeholder="" style="display:none;"></textarea>
-            <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()" onblur="cleanInput(event)"></div>
-          </div>
-        </div>
-        <div class="input-row" style="margin-top:10px;">
-          <span class="input-pill" onclick="usePill(this)" style="cursor:pointer;">e.g. English coaching for executives in Latin America</span>
-          <button class="analyse-btn" id="landingAnalyseBtn" tabindex="0" onclick="runAnalysis()" disabled>
-            Analyze idea
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-        <div class="context-msg" id="contextMsg">Please provide additional details to analyze your idea.</div>
+<div class="landing" id="landing">
+  <div class="hero">
+    <div class="eyebrow">From idea to validated opportunity</div>
+    <div class="h1">Business Model Evaluator</div>
+    <div class="tagline" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</div>
+    <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
+    <div class="input-outer">
+      <div class="input-row">
+        <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()"></div>
       </div>
-    </div>
-
-    <div class="what-section">
-      <div class="what-title">What you'll get</div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="fc-icon" style="background:#E1F5EE;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <div>
-            <div class="fc-title">Viability assessment from market signals</div>
-            <div class="fc-text">Data-driven insights on demand, trends, and competitive landscape.</div>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="fc-icon" style="background:#FAEEDA;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          </div>
-          <div>
-            <div class="fc-title">Key risks, gaps &amp; assumptions</div>
-            <div class="fc-text">Critical factors to validate before you build or invest.</div>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="fc-icon" style="background:#FAF0EC;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#993C1D" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <div>
-            <div class="fc-title">Prioritized customer segments &amp; offerings</div>
-            <div class="fc-text">A clear, structured model tailored to your idea and context.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PAGE 2: RESULTS ── -->
-  <div class="results" id="results">
-
-    <div class="results-nav">
-      <button class="back-btn" onclick="goBack()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Back
-      </button>
-      <span class="nav-sep">/</span>
-      <span class="results-eyebrow">Your business model analysis</span>
-      <button class="nav-download-btn" id="navDownloadBtn" onclick="downloadPDF()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF
-      </button>
-    </div>
-
-    <div class="print-header">
-      <div>
-        <div class="print-header-title">Business Model Evaluator</div>
-        <div class="print-header-sub">Your business model analysis</div>
-      </div>
-      <div class="print-header-logo">businessmodelevaluator.com</div>
-    </div>
-
-    <div class="idea-bar" id="ideaBar">
-      <div class="idea-bar-top">
-        <div style="flex:1;">
-          <div class="idea-bar-label">Your business idea or problem</div>
-          <div class="idea-bar-text" id="ideaDisplay" contenteditable="false" onblur="onIdeaBlur(event)"></div>
-        </div>
-        <button class="idea-edit-btn" id="ideaEditBtn" onclick="enterEditMode()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </button>
-      </div>
-      <div class="idea-bar-actions" id="ideaBarActions" style="display:none;">
-        <button class="idea-analyse-btn" tabindex="0" onclick="rerunAnalysis()">
+      <div class="input-row" style="margin-top:10px;">
+        <span class="input-pill" onclick="usePill(this)">e.g. English coaching for executives in Latin America</span>
+        <button class="analyse-btn" id="landingAnalyseBtn" onclick="runAnalysis()" disabled>
           Analyze idea
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
       </div>
+      <div class="context-msg" id="contextMsg">Please provide additional details to analyze your idea.</div>
     </div>
-
-    <div class="hyp-card" id="hypCard">
-      <div class="hyp-header">
-        <div class="hyp-header-icon">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <div class="hyp-header-title">Core hypothesis</div>
+  </div>
+  <div class="what-section">
+    <div class="what-title">What you'll get</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#E1F5EE;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div><div class="fc-title">Viability assessment from market signals</div><div class="fc-text">Data-driven insights on demand, trends, and competitive landscape.</div></div>
       </div>
-      <div class="hyp-row">
-        <div class="hyp-label" style="color:#C0392B;">Problem</div>
-        <div class="hyp-text" id="hypProblem">
-          <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
-          <div class="skel" style="height:10px;width:80%;"></div>
-        </div>
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#FAEEDA;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div><div class="fc-title">Key risks, gaps &amp; assumptions</div><div class="fc-text">Critical factors to validate before you build or invest.</div></div>
       </div>
-      <div class="hyp-row">
-        <div class="hyp-label" style="color:#1D9E75;">Testable hypothesis</div>
-        <div class="hyp-text" id="hypStatement">
-          <div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div>
-          <div class="skel" style="height:10px;width:85%;"></div>
-        </div>
-        <div class="hyp-metric" id="hypMetric" style="display:none;">
-          <span class="hyp-metric-prefix">We will know this is true if </span><span id="hypMetricText"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="score-card" id="scoreCard">
-      <div class="sc-top">
-        <div>
-          <div class="sc-eyebrow">Likelihood of success</div>
-          <div class="sc-left">
-            <div class="sc-dial" id="scoreDial">
-              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg>
-              <div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div>
-            </div>
-            <div class="sc-dial-meta" id="scoreInterpWrap">
-              <div class="skel" style="height:12px;width:130px;margin-bottom:6px;"></div>
-              <div class="skel" style="height:8px;width:100px;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="sc-vdivider"></div>
-        <div class="sc-breakdown" id="scoreBreakdown">
-          <div class="sc-bk-item">
-            <div class="sc-bk-label">Base score</div>
-            <div class="sc-bk-val skel" style="height:13px;width:50px;margin-bottom:4px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:90%;margin-bottom:3px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:70%;"></div>
-          </div>
-          <div class="sc-bk-item">
-            <div class="sc-bk-label">Evidence multiplier</div>
-            <div class="sc-bk-val skel" style="height:13px;width:40px;margin-bottom:4px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:90%;margin-bottom:3px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:70%;"></div>
-          </div>
-          <div class="sc-bk-item">
-            <div class="sc-bk-label">Avg. evidence</div>
-            <div class="sc-bk-val skel" style="height:13px;width:40px;margin-bottom:4px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:90%;margin-bottom:3px;"></div>
-            <div class="sc-bk-desc skel" style="height:8px;width:70%;"></div>
-          </div>
-        </div>
-      </div>
-      <div class="pillars-grid" id="scorePillars">
-        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
-        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
-        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
-        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
-        <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
-      </div>
-    </div>
-
-    <div class="actions-row" id="actionsRow" style="display:none;">
-      <button class="btn-design" onclick="designModel()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        Design my business model
-      </button>
-      <button class="btn-edit" onclick="enterEditMode()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        Edit my idea
-      </button>
-    </div>
-
-    <!-- Canvas section -->
-    <div class="canvas-section" id="canvasSection">
-      <div class="canvas-divider"></div>
-      <div class="canvas-eyebrow">Your customer segments and business model</div>
-      <div class="tab-nav">
-        <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
-        <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
-        <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
-      </div>
-      <div class="tab-panel seg1 active" id="panel-0">
-        <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment\u2026</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
-      </div>
-      <div class="tab-panel seg2" id="panel-1">
-        <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
-      </div>
-      <div class="tab-panel seg3" id="panel-2">
-        <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
+      <div class="feature-card">
+        <div class="fc-icon" style="background:#FAF0EC;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#993C1D" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <div><div class="fc-title">Prioritized customer segments &amp; offerings</div><div class="fc-text">A clear, structured model tailored to your idea and context.</div></div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
-    let currentIdea = '';
-    let activeTab = 0;
+<div class="results" id="results">
+  <div class="results-nav">
+    <button class="back-btn" onclick="goBack()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Back</button>
+    <span class="nav-sep">/</span>
+    <span class="results-eyebrow">Your business model analysis</span>
+    <button class="nav-download-btn" id="navDownloadBtn" onclick="window.print()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PDF</button>
+  </div>
 
-    function onInputChange() {
-      const text = document.getElementById('inputText').innerText.trim();
-      document.getElementById('landingAnalyseBtn').disabled = !text;
-      document.getElementById('contextMsg').style.display = 'none';
-    }
+  <div class="idea-bar" id="ideaBar">
+    <div class="idea-bar-top">
+      <div style="flex:1;">
+        <div class="idea-bar-label">Your business idea or problem</div>
+        <div class="idea-bar-text" id="ideaDisplay" contenteditable="false" onblur="onIdeaBlur(event)"></div>
+      </div>
+      <button class="idea-edit-btn" id="ideaEditBtn" onclick="enterEditMode()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+    </div>
+    <div class="idea-bar-actions" id="ideaBarActions" style="display:none;">
+      <button class="idea-analyse-btn" onclick="rerunAnalysis()">Analyze idea <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
 
-    function cleanInput(e) {
-      const related = e && e.relatedTarget;
-      const btn = document.getElementById('landingAnalyseBtn');
-      if (related && related === btn) return;
-      const el = document.getElementById('inputText');
-      if (!el.innerText.trim()) {
-        el.innerHTML = '';
-      }
-    }
+  <div class="hyp-card" id="hypCard">
+    <div class="hyp-header">
+      <div class="hyp-header-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <div class="hyp-header-title">Core hypothesis</div>
+    </div>
+    <div class="hyp-row">
+      <div class="hyp-label" style="color:#C0392B;">Problem</div>
+      <div class="hyp-text" id="hypProblem"><div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:80%;"></div></div>
+    </div>
+    <div class="hyp-row">
+      <div class="hyp-label" style="color:#1D9E75;">Testable hypothesis</div>
+      <div class="hyp-text" id="hypStatement"><div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div></div>
+      <div class="hyp-metric" id="hypMetric" style="display:none;"><span class="hyp-metric-prefix">We will know this is true if </span><span id="hypMetricText"></span></div>
+    </div>
+  </div>
 
-    function usePill(el) {
-      const text = el.textContent.replace('e.g. ', '');
-      const input = document.getElementById('inputText');
-      input.innerText = text;
-      input.focus();
-      onInputChange();
-    }
+  <div class="score-card" id="scoreCard">
+    <div class="sc-top">
+      <div>
+        <div class="sc-eyebrow">Likelihood of success</div>
+        <div class="sc-left">
+          <div class="sc-dial" id="scoreDial"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div></div>
+          <div class="sc-dial-meta" id="scoreInterpWrap"><div class="skel" style="height:12px;width:130px;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:100px;"></div></div>
+        </div>
+      </div>
+      <div class="sc-vdivider"></div>
+      <div class="sc-breakdown" id="scoreBreakdown">
+        <div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="skel" style="height:13px;width:50px;margin-bottom:4px;"></div></div>
+        <div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="skel" style="height:13px;width:40px;margin-bottom:4px;"></div></div>
+        <div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="skel" style="height:13px;width:40px;margin-bottom:4px;"></div></div>
+      </div>
+    </div>
+    <div class="pillars-grid" id="scorePillars">
+      <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+      <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+      <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+      <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+      <div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>
+    </div>
+  </div>
 
-    function switchTab(i) {
-      activeTab = i;
-      document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', i === j));
-      document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
-    }
+  <div class="refine-trigger-row" id="refineTriggerRow" style="display:none;">
+    <button class="btn-refine" id="btnRefine" onclick="runRefine()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Refine my idea to increase likelihood of success
+    </button>
+  </div>
 
-    function typeClass(type) {
-      if (!type) return '';
-      return 'type-' + type.toLowerCase().replace(/\//g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    }
+  <div class="refine-panel" id="refinePanel" style="display:none;"></div>
 
-    function toggleCollapsible(id) {
-      document.getElementById(id + '-body').classList.toggle('open');
-      document.getElementById(id + '-chev').classList.toggle('open');
-    }
+  <div class="actions-row" id="actionsRow" style="display:none;">
+    <button class="btn-design" onclick="designModel()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Design my business model
+    </button>
+    <button class="btn-edit" onclick="enterEditMode()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit my idea
+    </button>
+  </div>
 
-    function downloadPDF() {
-      const allBodies = document.querySelectorAll('.collapsible-body');
-      const wasOpen = Array.from(allBodies).map(b => b.classList.contains('open'));
-      allBodies.forEach(b => b.classList.add('open'));
-      window.print();
-      allBodies.forEach((b, i) => { if (!wasOpen[i]) b.classList.remove('open'); });
-    }
+  <div class="canvas-section" id="canvasSection">
+    <div class="canvas-divider"></div>
+    <div class="canvas-eyebrow">Your customer segments and business model</div>
+    <div class="tab-nav">
+      <button class="tab-btn seg1 active" onclick="switchTab(0)">Customer Segment 1</button>
+      <button class="tab-btn seg2" onclick="switchTab(1)">Customer Segment 2</button>
+      <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
+    </div>
+    <div class="tab-panel seg1 active" id="panel-0">
+      <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+    </div>
+    <div class="tab-panel seg2" id="panel-1">
+      <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
+    </div>
+    <div class="tab-panel seg3" id="panel-2">
+      <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
+    </div>
 
-    function goBack() {
+    <div class="section-card" id="compCard" style="display:none;">
+      <div class="section-card-header" onclick="toggleCompetitive()">
+        <div class="section-card-title">Competitive landscape</div>
+        <div class="section-card-chev" id="compChev">&#8964;</div>
+      </div>
+      <div class="section-card-body" id="compBody"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentIdea = '';
+  let currentScores = null;
+  let currentAnalysisData = null;
+
+  function onInputChange() {
+    const text = document.getElementById('inputText').innerText.trim();
+    document.getElementById('landingAnalyseBtn').disabled = !text;
+    document.getElementById('contextMsg').style.display = 'none';
+  }
+
+  function usePill(el) {
+    const text = el.textContent.replace('e.g. ', '');
+    document.getElementById('inputText').innerText = text;
+    onInputChange();
+  }
+
+  function switchTab(i) {
+    document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+    document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
+  }
+
+  function toggleCompetitive() {
+    document.getElementById('compBody').classList.toggle('open');
+    document.getElementById('compChev').classList.toggle('open');
+  }
+
+  function goBack() {
+    document.getElementById('landing').style.display = 'block';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    document.getElementById('navDownloadBtn').classList.remove('visible');
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('refineTriggerRow').style.display = 'none';
+    window.scrollTo({ top: 0 });
+  }
+
+  function enterEditMode() {
+    document.getElementById('ideaBar').classList.add('edit-mode');
+    const display = document.getElementById('ideaDisplay');
+    display.contentEditable = 'true';
+    display.focus();
+    document.getElementById('ideaEditBtn').style.display = 'none';
+    document.getElementById('ideaBarActions').style.display = 'flex';
+  }
+
+  function onIdeaBlur(e) {
+    const actions = document.getElementById('ideaBarActions');
+    if (e.relatedTarget && actions.contains(e.relatedTarget)) return;
+    exitEditMode();
+  }
+
+  function exitEditMode() {
+    document.getElementById('ideaBar').classList.remove('edit-mode');
+    document.getElementById('ideaDisplay').contentEditable = 'false';
+    document.getElementById('ideaEditBtn').style.display = 'flex';
+    document.getElementById('ideaBarActions').style.display = 'none';
+  }
+
+  async function runAnalysis() {
+    const idea = document.getElementById('inputText').innerText.trim();
+    if (!idea) return;
+    currentIdea = idea;
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('ideaDisplay').innerText = idea;
+    exitEditMode();
+    document.getElementById('ideaBar').classList.add('idea-bar-locked');
+    document.getElementById('actionsRow').style.display = 'none';
+    document.getElementById('refineTriggerRow').style.display = 'none';
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    window.scrollTo({ top: 0 });
+    try {
+      const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
+      const data = await response.json();
+      currentAnalysisData = data;
+      currentScores = data.scores;
+      renderAnalysisResults(data);
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+      document.getElementById('navDownloadBtn').classList.add('visible');
+      document.getElementById('actionsRow').style.display = 'flex';
+      document.getElementById('refineTriggerRow').style.display = 'block';
+    } catch (err) {
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
       document.getElementById('landing').style.display = 'block';
       document.getElementById('results').style.display = 'none';
-      document.getElementById('canvasSection').classList.remove('visible');
-      document.getElementById('navDownloadBtn').classList.remove('visible');
-      window.scrollTo({ top: 0 });
+      document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
+      document.getElementById('contextMsg').style.display = 'block';
     }
+  }
 
-    function toggleAllSections(p) {
-      const btn = document.getElementById('ec-btn-' + p);
-      const ids = ['cr','ch','kp','ka','kr','cost','rev','cl'].map(s => s + '-' + p);
-      const anyOpen = ids.some(id => {
-        const b = document.getElementById(id + '-body');
-        return b && b.classList.contains('open');
-      });
-      ids.forEach(id => {
-        const body = document.getElementById(id + '-body');
-        const chev = document.getElementById(id + '-chev');
-        if (!body) return;
-        if (anyOpen) { body.classList.remove('open'); if (chev) chev.classList.remove('open'); }
-        else { body.classList.add('open'); if (chev) chev.classList.add('open'); }
-      });
-      btn.innerHTML = anyOpen
-        ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Expand all'
-        : '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M5 12h14"/></svg> Collapse all';
+  async function rerunAnalysis() {
+    const idea = document.getElementById('ideaDisplay').innerText.trim();
+    if (!idea) return;
+    currentIdea = idea;
+    exitEditMode();
+    document.getElementById('ideaBar').classList.add('idea-bar-locked');
+    document.getElementById('actionsRow').style.display = 'none';
+    document.getElementById('refineTriggerRow').style.display = 'none';
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    resetResultsToShimmers();
+    window.scrollTo({ top: 0 });
+    try {
+      const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
+      const data = await response.json();
+      currentAnalysisData = data;
+      currentScores = data.scores;
+      renderAnalysisResults(data);
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+      document.getElementById('navDownloadBtn').classList.add('visible');
+      document.getElementById('actionsRow').style.display = 'flex';
+      document.getElementById('refineTriggerRow').style.display = 'block';
+    } catch (err) {
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
     }
+  }
 
-    function collapsibleSection(id, label, html) {
-      return '<div class="collapsible"><div class="collapsible-header" onclick="toggleCollapsible(\'' + id + '\')"><div class="collapsible-title">' + label + '</div><div class="collapsible-chevron" id="' + id + '-chev">&#8964;</div></div><div class="collapsible-body" id="' + id + '-body">' + html + '</div></div>';
-    }
+  function renderAnalysisResults(data) {
+    const alignment = data.alignment || {};
+    const insights = data.insights || {};
+    document.getElementById('hypProblem').textContent = alignment.problem || insights.topStrength || '';
+    document.getElementById('hypStatement').textContent = alignment.hypothesis || '';
+    const metric = alignment.metric || '';
+    if (metric) { document.getElementById('hypMetricText').textContent = metric; document.getElementById('hypMetric').style.display = 'block'; }
+    renderScoreCard(data);
+  }
 
-    async function runAnalysis() {
-      const idea = document.getElementById('inputText').innerText.trim();
-      if (!idea) return;
-      currentIdea = idea;
+  function renderScoreCard(data) {
+    const interp = data.interpretation || '';
+    const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong' : interp.toLowerCase().includes('promising') ? 'promising' : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
+    const barColor = { 'very-strong': '#1D9E75', 'promising': '#1D9E75', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
+    const finalScore = Math.round(data.finalScore || 0);
+    const baseScore = Math.round(data.baseScore || 0);
+    const evidenceMultiplier = data.evidenceMultiplier || 1;
+    const avgEvidence = (data.averageEvidenceScore || 0).toFixed(1);
+    const circumference = 2 * Math.PI * 23;
+    const arc = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
+    const s = data.scores || {};
+    const pillars = [
+      { key: 'problem', label: 'Problem strength' },
+      { key: 'market', label: 'Market attractiveness' },
+      { key: 'valueProposition', label: 'Value proposition' },
+      { key: 'businessModel', label: 'Business model' },
+      { key: 'execution', label: 'Execution feasibility' }
+    ];
+    document.getElementById('scoreDial').innerHTML =
+      '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + barColor + '" stroke-width="4.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>' +
+      '<div class="sc-num-wrap"><span class="sc-big" style="color:' + barColor + ';">' + finalScore + '</span><span class="sc-sub">/100</span></div>';
+    document.getElementById('scoreInterpWrap').innerHTML =
+      '<div class="sc-interp" style="color:' + barColor + ';">' + interp + '</div>' +
+      '<div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">' +
+      [1,2,3,4,5].map(n => '<span class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></span>').join('') + '</div></div>';
+    document.getElementById('scoreBreakdown').innerHTML =
+      '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="sc-bk-val">' + baseScore + '/100</div><div class="sc-bk-desc">Weighted average of all 5 pillars.</div></div>' +
+      '<div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="sc-bk-val">&times;' + evidenceMultiplier + '</div><div class="sc-bk-desc">Score discount when market data is limited.</div></div>' +
+      '<div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="sc-bk-val">' + avgEvidence + '/5</div><div class="sc-bk-desc">Published market research across all pillars.</div></div>';
+    const pillarsHtml = pillars.map(p => {
+      const pillar = s[p.key] || {};
+      const qs = pillar.qualityScore || pillar.score || 0;
+      const es = pillar.evidenceScore || 0;
+      const qColor = qs >= 4 ? '#1D9E75' : qs >= 3 ? '#EF9F27' : '#FF6B4A';
+      const qBadgeBg = qs >= 4 ? '#E1F5EE' : qs >= 3 ? '#FAEEDA' : '#FCEBEB';
+      const qBadgeColor = qs >= 4 ? '#085041' : qs >= 3 ? '#633806' : '#791F1F';
+      return '<div class="sc-pillar"><div class="sc-pname">' + p.label + '</div>' +
+        '<div class="sc-pil-scores"><span class="sc-qs" style="background:' + qBadgeBg + ';color:' + qBadgeColor + ';">Q ' + qs + '/5</span><span class="sc-es">E ' + es + '/5</span></div>' +
+        '<div class="sc-tracks"><div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((qs/5)*100) + '%;background:' + qColor + ';"></div></div></div>' +
+        '<div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((es/5)*100) + '%;background:#B4B2A9;"></div></div></div></div>' +
+        '<div class="sc-preason">' + (pillar.reason || '') + '</div></div>';
+    }).join('');
+    const warningsHtml = (data.warnings && data.warnings.length > 0)
+      ? '<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>' + data.warnings.map(w => '<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>' + w + '</span></div>').join('') + '</div>' : '';
+    const legendHtml = '<div class="sc-legend"><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality (1&ndash;5)</div><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence (1&ndash;5)</div></div>';
+    document.getElementById('scorePillars').innerHTML = pillarsHtml;
+    document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn').forEach(el => el.remove());
+    document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legendHtml + warningsHtml);
+  }
 
-      document.getElementById('landing').style.display = 'none';
-      document.getElementById('results').style.display = 'block';
-      document.getElementById('ideaDisplay').innerText = idea;
-      exitEditMode();
-      document.getElementById('ideaBar').classList.add('idea-bar-locked');
-      document.getElementById('actionsRow').style.display = 'none';
-      document.getElementById('canvasSection').classList.remove('visible');
-
-      window.scrollTo({ top: 0 });
-
-      try {
-        const response = await fetch('/api/analyse', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea })
-        });
-        const data = await response.json();
-
-        if (data.insufficientContext) {
-          document.getElementById('landing').style.display = 'block';
-          document.getElementById('results').style.display = 'none';
-          document.getElementById('contextMsg').textContent = data.insufficientContextMessage || 'Please provide additional details to analyse your idea.';
-          document.getElementById('contextMsg').style.display = 'block';
-          return;
-        }
-
-        renderAnalysisResults(data);
-        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-        document.getElementById('navDownloadBtn').classList.add('visible');
-        document.getElementById('actionsRow').style.display = 'flex';
-
-      } catch (err) {
-        console.error('Analysis failed:', err);
-        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-        document.getElementById('landing').style.display = 'block';
-        document.getElementById('results').style.display = 'none';
-        document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
-        document.getElementById('contextMsg').style.display = 'block';
-      }
-    }
-
-    function renderAnalysisResults(data) {
-      const alignment = data.alignment || {};
-      const insights = data.insights || {};
-
-      document.getElementById('hypProblem').textContent = alignment.problem || alignment.problemStrength || insights.topStrength || '';
-      document.getElementById('hypStatement').textContent = alignment.hypothesis || alignment.ideaProblemFit || '';
-      const metric = alignment.metric || alignment.nextBestAction || '';
-      if (metric) {
-        document.getElementById('hypMetricText').textContent = metric;
-        document.getElementById('hypMetric').style.display = 'block';
-      }
-
-      renderScoreCard(data);
-    }
-
-    function renderScoreCard(data) {
-      const interp = data.interpretation || '';
-      const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong'
-        : interp.toLowerCase().includes('promising') ? 'promising'
-        : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
-      const barColor = { 'very-strong': '#1D9E75', 'promising': '#1D9E75', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
-      const interpDisplay = interp.replace(' but Needs Validation', ' \u2014 needs validation').replace('but Needs Validation', '\u2014 needs validation');
-      const finalScore = Math.round(data.finalScore || 0);
-      const baseScore = Math.round(data.baseScore || 0);
-      const evidenceMultiplier = data.evidenceMultiplier || 1;
-      const avgEvidence = (data.averageEvidenceScore || 0).toFixed(1);
-      const circumference = 2 * Math.PI * 23;
-      const arc = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
-      const s = data.scores || {};
-      const pillars = [
-        { key: 'problem', label: 'Problem strength' },
-        { key: 'market', label: 'Market attractiveness' },
-        { key: 'valueProposition', label: 'Value proposition' },
-        { key: 'businessModel', label: 'Business model' },
-        { key: 'execution', label: 'Execution feasibility' }
-      ];
-
-      document.getElementById('scoreDial').innerHTML =
-        '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + barColor + '" stroke-width="4.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>' +
-        '<div class="sc-num-wrap"><span class="sc-big" style="color:' + barColor + ';">' + finalScore + '</span><span class="sc-sub">/100</span></div>';
-
-      document.getElementById('scoreInterpWrap').innerHTML =
-        '<div class="sc-interp" style="color:' + barColor + ';">' + interpDisplay + '</div>' +
-        '<div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">' +
-        [1,2,3,4,5].map(n => '<span class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></span>').join('') +
-        '</div></div>';
-
-      document.getElementById('scoreBreakdown').innerHTML =
-        '<div class="sc-bk-item">' +
-          '<div class="sc-bk-label">Base score</div>' +
-          '<div class="sc-bk-val">' + baseScore + ' / 100</div>' +
-          '<div class="sc-bk-desc">Idea strength before validation. Weighted average of all 5 pillars.</div>' +
-        '</div>' +
-        '<div class="sc-bk-item">' +
-          '<div class="sc-bk-label">Evidence multiplier</div>' +
-          '<div class="sc-bk-val">\u00d7 ' + evidenceMultiplier + '</div>' +
-          '<div class="sc-bk-desc">Score discount when market data is limited. 0.60\u202f=\u202fno data\u00a0\u00b7\u00a01.00\u202f=\u202ffully proven.</div>' +
-        '</div>' +
-        '<div class="sc-bk-item">' +
-          '<div class="sc-bk-label">Avg. evidence</div>' +
-          '<div class="sc-bk-val">' + avgEvidence + ' / 5</div>' +
-          '<div class="sc-bk-desc">Published market research across all pillars. Drives the multiplier above.</div>' +
-        '</div>';
-
-      const pillarsHtml = pillars.map(p => {
-        const pillar = s[p.key] || {};
-        const qs = pillar.qualityScore || pillar.score || 0;
-        const es = pillar.evidenceScore || 0;
-        const qColor = qs >= 4 ? '#1D9E75' : qs >= 3 ? '#EF9F27' : '#FF6B4A';
-        const qBadgeBg = qs >= 4 ? '#E1F5EE' : qs >= 3 ? '#FAEEDA' : '#FCEBEB';
-        const qBadgeColor = qs >= 4 ? '#085041' : qs >= 3 ? '#633806' : '#791F1F';
-        return '<div class="sc-pillar">' +
-          '<div class="sc-pname">' + p.label + '</div>' +
-          '<div class="sc-pil-scores">' +
-            '<span class="sc-qs" style="background:' + qBadgeBg + ';color:' + qBadgeColor + ';">Q ' + qs + '/5</span>' +
-            '<span class="sc-es">E ' + es + '/5</span>' +
-          '</div>' +
-          '<div class="sc-tracks">' +
-            '<div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((qs/5)*100) + '%;background:' + qColor + ';"></div></div></div>' +
-            '<div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((es/5)*100) + '%;background:#B4B2A9;"></div></div></div>' +
-          '</div>' +
-          '<div class="sc-preason">' + (pillar.reason || '') + '</div>' +
-        '</div>';
-      }).join('');
-
-      const warningsHtml = (data.warnings && data.warnings.length > 0)
-        ? '<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>' +
-          data.warnings.map(w => '<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>' + w + '</span></div>').join('') +
-          '</div>' : '';
-
-      const legendHtml = '<div class="sc-legend">' +
-        '<div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality \u2014 intrinsic strength of the business on this dimension (1\u20135)</div>' +
-        '<div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence \u2014 real-world proof supporting that score (1\u20135)</div>' +
-        '</div>';
-
-      document.getElementById('scorePillars').innerHTML = pillarsHtml;
-      document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legendHtml + warningsHtml);
-    }
-
-    function renderCustomerCard(data) {
-      const customer = data.customer || {};
-      const initials = (customer.name || 'CR').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-      const avatarColors = ['#EEEDFE', '#E1F5EE', '#FAEEDA', '#FAF0EC'];
-      const textColors = ['#3C3489', '#085041', '#633806', '#712B13'];
-      const ci = Math.abs(initials.charCodeAt(0)) % 4;
-
-      document.getElementById('customerAvatar').style.cssText = 'width:40px;height:40px;border-radius:50%;background:' + avatarColors[ci] + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:' + textColors[ci] + ';font-family:\'Playfair Display\',serif;';
-      document.getElementById('customerAvatar').textContent = initials;
-
-      document.getElementById('customerMeta').innerHTML =
-        '<div class="cc-name">' + (customer.name || 'Primary Segment') + '</div>' +
-        '<div class="cc-role">' + (customer.role || '') + (customer.age ? ' \u00b7 ' + customer.age : '') + '</div>' +
-        (customer.location ? '<div class="cc-loc"><div class="locdot"></div>' + customer.location + '</div>' : '');
-
-      const psychTags = (customer.psychographic || []).map(t => {
-        const cls = t.toLowerCase().includes('ambit') || t.toLowerCase().includes('career') ? 'trait-p'
-          : t.toLowerCase().includes('growth') || t.toLowerCase().includes('effic') ? 'trait-t' : 'trait-a';
-        return '<span class="trait ' + cls + '">' + t + '</span>';
-      }).join('');
-
-      const psychDesc = customer.psychographicDescription ||
-        (customer.psychographic && customer.psychographic.length > 0
-          ? (customer.name || 'This segment') + ' tend to be ' + customer.psychographic.slice(0, 3).join(', ').toLowerCase() + ' — motivated by professional growth and results.'
-          : '');
-
-      const behavItems = (customer.behavioral || []).map(b => '<div class="cc-item"><div class="cbullet"></div><span>' + b + '</span></div>').join('');
-
-      const channelsHtml = (customer.channels || []).slice(0, 7).map(ch => '<span class="platform-pill">' + ch + '</span>').join('');
-
-      const demo = customer.demographics || {};
-      const firmCells = [
-        { label: 'Age range', val: demo.ageRange || '' },
-        { label: 'Income', val: demo.income || '' },
-        { label: 'Education', val: demo.education || '' },
-        { label: 'Role level', val: demo.roleLevel || '' },
-        { label: 'Company size', val: demo.companySize || '' },
-        { label: 'Industry', val: demo.industry || '' }
-      ].filter(c => c.val).map(c => '<div class="firm-cell"><div class="firm-label">' + c.label + '</div><div class="firm-val">' + c.val + '</div></div>').join('');
-
-      const geoTags = (customer.geographies || []).map(g => '<span class="geo-tag">' + g + '</span>').join('');
-
-      document.getElementById('customerInner').innerHTML =
-        '<div class="cc-col">' +
-          (psychTags ? '<div>' +
-            (psychDesc ? '<div class="psych-desc">' + psychDesc + '</div>' : '') +
-            '<div class="cc-sec-label">Psychographic</div>' +
-            '<div class="trait-row">' + psychTags + '</div>' +
-          '</div>' : '') +
-          (behavItems ? '<div><div class="cc-sec-label">Behavioral</div><div class="cc-items">' + behavItems + '</div></div>' : '') +
-          (channelsHtml ? '<div><div class="cc-sec-label">Social media platforms</div><div class="platform-row">' + channelsHtml + '</div></div>' : '') +
-        '</div>' +
-        '<div class="cc-col">' +
-          (firmCells ? '<div><div class="cc-sec-label">Demographics &amp; firmographic</div><div class="firm-grid">' + firmCells + '</div></div>' : '') +
-          (geoTags ? '<div><div class="cc-sec-label">Geographic markets</div><div class="geo-tags">' + geoTags + '</div></div>' : '') +
-        '</div>';
-    }
-
-    async function designModel() {
-      document.getElementById('canvasSection').classList.add('visible');
-      document.getElementById('canvasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.textContent = 'Customer Segment ' + (i + 1);
-        b.classList.toggle('active', i === 0);
-      });
-      document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas\u2026</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
-      document.querySelectorAll('.tab-panel').forEach((p, i) => p.classList.toggle('active', i === 0));
-
-      document.getElementById('actionsRow').style.display = 'none';
-
-      try {
-        const seg1Data = await fetchSegment(currentIdea, null, 0);
-        document.querySelectorAll('.tab-btn')[0].textContent = seg1Data.segment.name;
-      } catch (err) {
-        document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Something went wrong. Please try again.</div></div>';
-        document.getElementById('actionsRow').style.display = 'flex';
-      }
-    }
-
-    function enterEditMode() {
-      const bar = document.getElementById('ideaBar');
-      const display = document.getElementById('ideaDisplay');
-      const editBtn = document.getElementById('ideaEditBtn');
-      const actions = document.getElementById('ideaBarActions');
-      bar.classList.add('edit-mode');
-      display.contentEditable = 'true';
-      display.focus();
-      editBtn.style.display = 'none';
-      actions.style.display = 'flex';
-    }
-
-    function onIdeaBlur(e) {
-      const actions = document.getElementById('ideaBarActions');
-      const related = e.relatedTarget;
-      if (related && actions.contains(related)) return;
-      exitEditMode();
-    }
-
-    function exitEditMode() {
-      const bar = document.getElementById('ideaBar');
-      const display = document.getElementById('ideaDisplay');
-      const editBtn = document.getElementById('ideaEditBtn');
-      const actions = document.getElementById('ideaBarActions');
-      bar.classList.remove('edit-mode');
-      display.contentEditable = 'false';
-      editBtn.style.display = 'flex';
-      actions.style.display = 'none';
-    }
-
-    async function rerunAnalysis() {
-      const idea = document.getElementById('ideaDisplay').innerText.trim();
-      if (!idea) return;
-      currentIdea = idea;
-      exitEditMode();
-      document.getElementById('ideaBar').classList.add('idea-bar-locked');
-
-      resetResultsToShimmers();
-      document.getElementById('actionsRow').style.display = 'none';
-      document.getElementById('canvasSection').classList.remove('visible');
-      window.scrollTo({ top: 0 });
-
-      try {
-        const response = await fetch('/api/analyse', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea })
-        });
-        const data = await response.json();
-        if (data.insufficientContext) {
-          document.getElementById('contextMsg').textContent = data.insufficientContextMessage || 'Please provide additional details.';
-          document.getElementById('contextMsg').style.display = 'block';
-          document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-          return;
-        }
-        renderAnalysisResults(data);
-        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-        document.getElementById('navDownloadBtn').classList.add('visible');
-        document.getElementById('actionsRow').style.display = 'flex';
-      } catch (err) {
-        console.error('Re-analysis failed:', err);
-        document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-      }
-    }
-
-    function resetResultsToShimmers() {
-      document.getElementById('hypProblem').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:80%;"></div>';
-      document.getElementById('hypStatement').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div>';
-      document.getElementById('hypMetric').style.display = 'none';
-      document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div>';
-      document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:12px;width:130px;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:100px;"></div>';
-      document.getElementById('scoreBreakdown').innerHTML = '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="skel" style="height:13px;width:50px;margin-bottom:4px;"></div><div class="skel" style="height:8px;width:90%;margin-bottom:3px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="skel" style="height:13px;width:40px;margin-bottom:4px;"></div><div class="skel" style="height:8px;width:90%;margin-bottom:3px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="skel" style="height:13px;width:40px;margin-bottom:4px;"></div><div class="skel" style="height:8px;width:90%;margin-bottom:3px;"></div></div>';
-      document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:4px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>').join('');
-      const existing = document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn');
-      existing.forEach(el => el.remove());
-    }
-
-    function scoreFromCanvas(data) {
-      const seg = data.segment;
-      const rev = data.revenueStreams.streams;
-      const comp = data.competitiveLandscape;
-      const res = data.keyResources.resources;
-      const act = data.keyActivities.activities;
-      const painText = seg.painPoints.join(' ').toLowerCase();
-      const gainText = seg.gains.join(' ').toLowerCase();
-      const jobText = seg.jobsToBeDone.join(' ').toLowerCase();
-      const compText = comp.competitors.map(c => c.description).join(' ').toLowerCase();
-      const advText = (comp.advantage || '').toLowerCase();
-      const resText = res.map(r => r.type).join(' ').toLowerCase();
-      const revTypes = rev.map(r => (r.type || '').toLowerCase());
-      const urgencyWords = ['urgent','critical','expensive','costly','career','promotion','revenue','growth','risk','fail'];
-      const urgencyScore = Math.min(5, 2 + urgencyWords.filter(w => (painText + jobText).includes(w)).length);
-      const hasSubscription = revTypes.some(t => t.includes('subscription'));
-      const revScore = Math.min(5, (hasSubscription ? 2 : 1) + Math.min(2, revTypes.length));
-      const weakCompetitor = compText.includes('no') || compText.includes('weak') || compText.includes('lack') || compText.includes('generic');
-      const strongAdv = advText.length > 40;
-      const defScore = Math.min(5, 1 + (weakCompetitor ? 2 : 1) + (strongAdv ? 1 : 0) + (advText.includes('only') ? 1 : 0));
-      const isLightweight = resText.includes('intellectual') || resText.includes('human');
-      const isHeavy = resText.includes('physical') || resText.includes('financial');
-      const execScore = Math.min(5, Math.max(1, 3 + (isLightweight ? 1 : 0) - (isHeavy ? 1 : 0) - (act.length > 3 ? 1 : 0)));
-      const specificWords = ['specific','measurable','documented','proven','known','evidence','data'];
-      const demandScore = Math.min(5, 2 + specificWords.filter(w => (painText + gainText + jobText).includes(w)).length);
-      const final = Math.round((urgencyScore * 25 + revScore * 20 + defScore * 20 + execScore * 20 + demandScore * 15) / 5);
-      const verdict = final >= 65 ? 'sv-strong' : final >= 45 ? 'sv-moderate' : 'sv-weak';
-      const verdictLabel = final >= 65 ? 'Strong segment' : final >= 45 ? 'Moderate \u2014 proceed with caution' : 'Weak \u2014 significant barriers';
-      const color = final >= 65 ? '#1D9E75' : final >= 45 ? '#E8C547' : '#E24B4A';
-      const dotColor = final >= 65 ? '#1D9E75' : final >= 45 ? '#BA7517' : '#E24B4A';
-      const circumference = 2 * Math.PI * 23;
-      const arc = ((final / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
-      const pillars = [
-        { name: 'Market access', weight: '25%', score: urgencyScore, reason: urgencyScore >= 4 ? 'Strong, frequent, high-urgency needs.' : urgencyScore >= 3 ? 'Moderate urgency \u2014 some friction to activate.' : 'Low urgency \u2014 consider segment motivation.' },
-        { name: 'Revenue model', weight: '20%', score: revScore, reason: revScore >= 4 ? 'Multiple streams including recurring model.' : revScore >= 3 ? 'Viable but limited stream types.' : 'Weak monetization \u2014 unclear pricing.' },
-        { name: 'Defensibility', weight: '20%', score: defScore, reason: defScore >= 4 ? 'Competitors have named weaknesses; advantage specific.' : defScore >= 3 ? 'Some differentiation but replicable.' : 'Vague advantage or strong competitors.' },
-        { name: 'Execution', weight: '20%', score: execScore, reason: execScore >= 4 ? 'Lean resource profile \u2014 intellectual/human assets.' : execScore >= 3 ? 'Moderate complexity, manageable.' : 'High execution risk \u2014 heavy resources.' },
-        { name: 'Demand evidence', weight: '15%', score: demandScore, reason: demandScore >= 4 ? 'Jobs and pains are specific and measurable.' : demandScore >= 3 ? 'Demand signals present but unspecific.' : 'Vague jobs/pains \u2014 needs strengthening.' }
-      ];
-      const warnings = [];
-      if (compText.includes('free') || compText.includes('youtube') || compText.includes('app')) warnings.push('Free alternatives exist \u2014 a clear "why pay?" case must be made.');
-      if (!hasSubscription) warnings.push('No recurring revenue detected \u2014 consider how to build predictable income.');
-      if (isHeavy) warnings.push('Physical/financial assets detected \u2014 validate capital requirements first.');
-      return { final, verdict, verdictLabel, color, dotColor, arc, circumference, pillars, warnings };
-    }
-
-    function renderSegmentViability(data) {
-      const sv = scoreFromCanvas(data);
-      const pillarsHtml = sv.pillars.map(p => '<div class="sv-pillar"><div class="sv-pil-name">' + p.name + '</div><div class="sv-pil-weight">' + p.weight + '</div><div class="sv-pil-score">' + p.score + '/5</div><div class="sv-bar-track"><div class="sv-bar-fill" style="width:' + (p.score * 20) + '%;background:' + (p.score >= 4 ? '#1D9E75' : p.score >= 3 ? '#E8C547' : '#FF6B4A') + ';"></div></div><div class="sv-pil-reason">' + p.reason + '</div></div>').join('');
-      const warningsHtml = sv.warnings.length > 0 ? '<div class="sv-warnings"><div class="sv-warn-label">Watch out for</div>' + sv.warnings.map(w => '<div class="sv-warn-row"><div class="sv-warn-icon">!</div><span>' + w + '</span></div>').join('') + '</div>' : '';
-      return '<div class="sv-card"><div class="sv-header"><div class="sv-dial-wrap"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + sv.color + '" stroke-width="4.5" stroke-dasharray="' + sv.arc + '" stroke-dashoffset="' + (sv.circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg><div class="sv-dial-num"><span class="sv-dial-big" style="color:' + sv.color + ';">' + sv.final + '</span><span class="sv-dial-sub">/100</span></div></div><div class="sv-meta"><div class="sv-eyebrow">Segment viability</div><div class="sv-badge ' + sv.verdict + '"><div class="sv-badge-dot" style="background:' + sv.dotColor + ';"></div>' + sv.verdictLabel + '</div><div class="sv-summary">' + data.competitiveLandscape.advantage + '</div></div></div><div class="sv-pillars">' + pillarsHtml + '</div>' + warningsHtml + '</div>';
-    }
-
-    function renderCanvas(data, panelIndex) {
-      const seg = data.segment;
-      const offerings = data.valueProposition.offerings;
-      const p = panelIndex;
-      const html = '<div class="animate"><div class="section"><div class="section-label">Customer Segment</div><div class="seg-profile">' + seg.profile + '</div><div class="seg-tags">' + seg.tags.map(t => '<span class="seg-tag">' + t + '</span>').join('') + '</div><div class="seg-grid"><div class="seg-col"><div class="seg-col-label">Jobs to be done</div>' + seg.jobsToBeDone.map(j => '<div class="seg-item"><div class="seg-dot"></div><span>' + j + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Top pain points</div>' + seg.painPoints.map(pt => '<div class="seg-item"><div class="seg-dot"></div><span>' + pt + '</span></div>').join('') + '</div><div class="seg-col"><div class="seg-col-label">Gains</div>' + seg.gains.map(g => '<div class="seg-item"><div class="seg-dot"></div><span>' + g + '</span></div>').join('') + '</div></div></div>' +
-        renderSegmentViability(data) +
-        '<div class="section"><div class="section-label">Value Proposition</div><div class="section-summary">' + data.valueProposition.summary + '</div><div class="cards-grid">' + offerings.map((o, i) => '<div class="card"><div class="card-type" style="color:#1A1A2E;">Offering ' + String(i+1).padStart(2,'0') + '</div><div class="card-name">' + o.name + '</div><div class="card-desc">' + o.description + '</div><span class="card-badge">&#x2736; ' + o.advantage + '</span></div>').join('') + '</div></div>' +
-        '<div class="expand-collapse-row"><div class="expand-collapse-label">Business model</div><button class="expand-collapse-btn" id="ec-btn-' + p + '" onclick="toggleAllSections(' + p + ')"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF6B4A" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Expand all</button></div>' +
-        collapsibleSection('cr-'+p, 'Customer Relationships', '<div class="section-summary">' + data.customerRelationships.summary + '</div><div class="cards-grid">' + data.customerRelationships.strategies.map(s => '<div class="card"><div class="card-type ' + typeClass(s.type) + '">' + s.type + '</div><div class="card-name">' + s.name + '</div><div class="card-desc">' + s.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('ch-'+p, 'Channels', '<div class="section-summary">' + data.channels.summary + '</div><div class="ch-cards">' + data.channels.touchpoints.map(t => '<div class="ch-card"><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div class="ch-name">' + t.name + '</div><div class="ch-desc">' + t.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('kp-'+p, 'Key Partners', '<div class="section-summary">' + data.keyPartners.summary + '</div><div class="cards-grid">' + data.keyPartners.partners.map(pt => '<div class="card"><div class="card-type ' + typeClass(pt.type) + '">' + pt.type + '</div><div class="card-name">' + pt.name + '</div><div class="card-desc">' + pt.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('ka-'+p, 'Key Activities', '<div class="section-summary">' + data.keyActivities.summary + '</div><div class="cards-grid">' + data.keyActivities.activities.map(a => '<div class="card"><div class="card-type ' + typeClass(a.category) + '">' + a.category + '</div><div class="card-name">' + a.name + '</div><div class="card-desc">' + a.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('kr-'+p, 'Key Resources', '<div class="section-summary">' + data.keyResources.summary + '</div><div class="cards-grid">' + data.keyResources.resources.map(r => '<div class="card"><div class="card-type ' + typeClass(r.type) + '">' + r.type + '</div><div class="card-name">' + r.name + '</div><div class="card-desc">' + r.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('cost-'+p, 'Cost Structure', '<div class="section-summary">' + data.costStructure.summary + '</div><div class="cards-grid">' + data.costStructure.costs.map(c => '<div class="card"><div class="card-type ' + typeClass(c.type) + '">' + c.type + '</div><div class="card-name">' + c.name + '</div><div class="card-desc">' + c.description + '</div></div>').join('') + '</div>') +
-        collapsibleSection('rev-'+p, 'Revenue Streams', '<div class="section-summary">' + data.revenueStreams.summary + '</div><div class="cards-grid">' + data.revenueStreams.streams.map(s => '<div class="card"><div class="card-type" style="color:#27AE60;">' + s.type + '</div><div class="card-name">' + s.name + '</div><div class="card-desc">' + s.description + '</div><span class="card-badge">' + s.pricing + ' pricing</span></div>').join('') + '</div>') +
-        collapsibleSection('cl-'+p, 'Competitive Landscape', '<div class="section-summary">' + data.competitiveLandscape.summary + '</div><div class="cards-grid">' + data.competitiveLandscape.competitors.map(c => '<div class="card"><div class="card-type ' + typeClass(c.type) + '">' + c.type + '</div><div class="card-name">' + c.name + '</div><div class="card-desc">' + c.description + '</div></div>').join('') + '</div><div class="advantage-block"><div class="advantage-label">Our Competitive Advantage</div>' + data.competitiveLandscape.advantage + '</div>') +
-        '</div>';
-      document.getElementById('panel-' + panelIndex).innerHTML = html;
-      document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
-    }
-
-    async function fetchSegment(idea, segmentContext, panelIndex) {
-      const response = await fetch('/api/generate', {
+  async function runRefine() {
+    if (!currentAnalysisData) return;
+    const btn = document.getElementById('btnRefine');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Analyzing improvement opportunities…';
+    const panel = document.getElementById('refinePanel');
+    panel.style.display = 'block';
+    panel.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:13px;color:#888;font-weight:300;margin-bottom:16px;">Identifying your highest-impact improvements…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    try {
+      const response = await fetch('/api/refine', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idea, segmentContext })
+        body: JSON.stringify({
+          idea: currentIdea,
+          scores: currentAnalysisData.scores,
+          finalScore: currentAnalysisData.finalScore,
+          baseScore: currentAnalysisData.baseScore,
+          averageEvidenceScore: currentAnalysisData.averageEvidenceScore,
+          evidenceMultiplier: currentAnalysisData.evidenceMultiplier
+        })
       });
       const data = await response.json();
-      renderCanvas(data, panelIndex);
-      return data;
+      renderRefinePanel(data);
+      document.getElementById('refineTriggerRow').style.display = 'none';
+    } catch (err) {
+      panel.innerHTML = '<div style="padding:20px;font-size:13px;color:#A32D2D;">Something went wrong. Please try again.</div>';
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine my idea to increase likelihood of success';
     }
-  </script>
+  }
+
+  function renderRefinePanel(data) {
+    const levers = data.levers || [];
+    const projectedScore = Math.round(data.projectedFinalScore || 0);
+    const currentScore = Math.round(currentAnalysisData.finalScore || 0);
+    const projectedInterp = data.projectedInterpretation || '';
+    const leversHtml = levers.map(lever => {
+      const recsHtml = (lever.recommendations || []).map((rec, i) =>
+        '<div class="lever-rec"><div class="rec-num">' + (i+1) + '</div><div class="rec-content"><div class="rec-text">' + rec.text + '</div><div class="rec-impact">' + (rec.pointsGained || '') + '</div></div></div>'
+      ).join('');
+      return '<div class="lever">' +
+        '<div class="lever-hdr"><div class="lever-left">' +
+        '<div class="lever-pillar">' + (lever.pillarLabel || lever.pillar) + '</div>' +
+        '<span class="lever-before">Q ' + lever.currentQuality + '/5</span>' +
+        '<span class="lever-arrow-sep">→</span>' +
+        '<span class="lever-after"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Q ' + lever.projectedQuality + '/5</span>' +
+        '</div><span class="lever-impact-tag">' + (lever.impact || '') + '</span></div>' +
+        '<div class="lever-body"><div class="lever-issue">' + (lever.issue || '') + '</div>' +
+        '<div class="lever-recs">' + recsHtml + '</div></div></div>';
+    }).join('');
+    document.getElementById('refinePanel').innerHTML =
+      '<div class="refine-panel-hdr">' +
+        '<div><div class="refine-panel-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Idea refinement analysis</div>' +
+        '<div class="refine-panel-sub">' + levers.length + ' pillar' + (levers.length !== 1 ? 's' : '') + ' with room to improve &mdash; here\'s how</div></div>' +
+        '<div class="refine-score-badge"><div class="refine-score-lbl">Potential score</div>' +
+        '<div class="refine-score-val">' + currentScore + ' <span class="refine-score-arrow">&rarr; ' + projectedScore + '</span></div></div>' +
+      '</div>' +
+      '<div class="refine-body">' + leversHtml +
+        '<div class="refine-summary-block"><div class="refine-summary-label">Projected outcome</div>' +
+        '<div class="refine-summary-text">Applying these refinements to your idea description should move your score from ' + currentScore + ' to approximately ' + projectedScore + ', reaching &ldquo;' + projectedInterp + '.&rdquo;</div>' +
+        '<div class="refine-summary-score">' + currentScore + ' &rarr; ~' + projectedScore + ' &middot; ' + projectedInterp + '</div></div>' +
+      '</div>' +
+      '<div class="refine-actions">' +
+        '<button class="btn-apply" onclick="applyRefinements()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Apply refinements and re-analyze</button>' +
+        '<button class="btn-keep" onclick="dismissRefine()">Keep my idea as-is</button>' +
+      '</div>';
+    window.__refinedIdea = data.refinedIdeaSuggestion || '';
+  }
+
+  function applyRefinements() {
+    if (!window.__refinedIdea) return;
+    currentIdea = window.__refinedIdea;
+    document.getElementById('ideaDisplay').innerText = window.__refinedIdea;
+    document.getElementById('refinePanel').style.display = 'none';
+    rerunAnalysis();
+  }
+
+  function dismissRefine() {
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('refineTriggerRow').style.display = 'block';
+  }
+
+  async function designModel() {
+    document.getElementById('canvasSection').classList.add('visible');
+    document.getElementById('canvasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
+    document.getElementById('actionsRow').style.display = 'none';
+    try {
+      const seg1Data = await fetchSegment(currentIdea, null, 0);
+      renderCompetitiveLandscape(seg1Data);
+      document.getElementById('compCard').style.display = 'block';
+    } catch (err) {
+      document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Something went wrong. Please try again.</div></div>';
+      document.getElementById('actionsRow').style.display = 'flex';
+    }
+  }
+
+  function renderCompetitiveLandscape(data) {
+    const cl = data.competitiveLandscape;
+    if (!cl) return;
+    const competitorsHtml = (cl.competitors || []).map(c =>
+      '<div class="comp-card"><div class="comp-type">' + c.type + '</div><div class="comp-name">' + c.name + '</div><div class="comp-desc">' + c.description + '</div></div>'
+    ).join('');
+    document.getElementById('compBody').innerHTML =
+      '<div class="comp-summary">' + (cl.summary || '') + '</div>' +
+      '<div class="comp-grid">' + competitorsHtml + '</div>' +
+      '<div class="adv-block"><div class="adv-label">Our competitive advantage</div><div class="adv-text">' + (cl.advantage || '') + '</div></div>';
+  }
+
+  async function fetchSegment(idea, segmentContext, panelIndex) {
+    const response = await fetch('/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea, segmentContext }) });
+    const data = await response.json();
+    renderCanvas(data, panelIndex);
+    return data;
+  }
+
+  function renderCanvas(data, panelIndex) {
+    const seg = data.segment;
+    const vp = data.valueProposition;
+    const cr = data.customerRelationships;
+    const ch = data.channels;
+    const kp = data.keyPartners;
+    const ka = data.keyActivities;
+    const kr = data.keyResources;
+    const cost = data.costStructure;
+    const rev = data.revenueStreams;
+    const bItem = (text) => '<div class="bmc-item"><div class="bmc-dot"></div><span>' + text + '</span></div>';
+    const offeringsHtml = (vp.offerings || []).map(o =>
+      '<div class="vp-offering"><div class="vp-name">' + o.name + '</div><div class="vp-desc">' + o.description + '</div><span class="vp-badge">&#x2736; ' + o.advantage + '</span></div>'
+    ).join('');
+    const channelItems = (ch.touchpoints || []).map(t =>
+      '<div><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div style="font-size:10.5px;color:#555;padding-left:0;margin-bottom:5px;line-height:1.5;">' + t.name + ' &mdash; ' + t.description + '</div></div>'
+    ).join('');
+    const html =
+      '<div class="bmc-seg-header"><div class="seg-profile">' + seg.profile + '</div>' +
+      '<div class="seg-tags">' + (seg.tags || []).map(t => '<span class="seg-tag">' + t + '</span>').join('') + '</div></div>' +
+      '<div class="bmc-grid">' +
+        '<div class="bmc-col">' +
+          '<div class="bmc-cell"><div class="bmc-cell-label">Key partners</div>' + (kp.partners || []).map(p => bItem('<strong style="font-weight:500;">' + p.name + '</strong> &mdash; ' + p.description)).join('') + '</div>' +
+          '<div class="bmc-cell"><div class="bmc-cell-label">Key resources</div>' + (kr.resources || []).map(r => bItem(r.name + ' <span class="bmc-tag">' + r.type + '</span>')).join('') + '</div>' +
+        '</div>' +
+        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Key activities</div>' + (ka.activities || []).map(a => bItem(a.name + ' &mdash; ' + a.description)).join('') + '</div></div>' +
+        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Value proposition</div><div class="vp-summary">' + vp.summary + '</div>' + offeringsHtml + '</div></div>' +
+        '<div class="bmc-col">' +
+          '<div class="bmc-cell"><div class="bmc-cell-label">Customer relationships</div>' + (cr.strategies || []).map(s => '<div class="bmc-sublabel">' + s.type + '</div>' + bItem(s.name + ' &mdash; ' + s.description)).join('') + '</div>' +
+          '<div class="bmc-cell"><div class="bmc-cell-label">Channels</div>' + channelItems + '</div>' +
+        '</div>' +
+        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Customer segments</div>' +
+          '<div class="bmc-sublabel">Jobs to be done</div>' + (seg.jobsToBeDone || []).map(j => bItem(j)).join('') +
+          '<div class="bmc-sublabel">Pain points</div>' + (seg.painPoints || []).map(p => bItem(p)).join('') +
+          '<div class="bmc-sublabel">Gains</div>' + (seg.gains || []).map(g => bItem(g)).join('') +
+        '</div></div>' +
+      '</div>' +
+      '<div class="bmc-bottom">' +
+        '<div class="bmc-bottom-cell"><div class="bmc-cell-label">Cost structure</div>' + (cost.costs || []).map(c => '<div class="cost-row"><span class="cost-tag">' + c.type + '</span><span>' + c.name + ' &mdash; ' + c.description + '</span></div>').join('') + '</div>' +
+        '<div class="bmc-bottom-cell"><div class="bmc-cell-label">Revenue streams</div>' + (rev.streams || []).map(s => '<div class="rev-stream"><span class="rev-tag" style="background:#E1F5EE;color:#085041;">' + s.type + '</span><span class="rev-name">' + s.name + '</span></div><div class="rev-desc">' + s.description + '</div>').join('') + '</div>' +
+      '</div>';
+    document.getElementById('panel-' + panelIndex).innerHTML = html;
+    document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
+  }
+
+  function resetResultsToShimmers() {
+    document.getElementById('hypProblem').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:80%;"></div>';
+    document.getElementById('hypStatement').innerHTML = '<div class="skel" style="height:10px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:10px;width:85%;"></div>';
+    document.getElementById('hypMetric').style.display = 'none';
+    document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/></svg><div class="sc-num-wrap"><div class="skel" style="width:34px;height:20px;border-radius:4px;"></div></div>';
+    document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:12px;width:130px;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:100px;"></div>';
+    document.getElementById('scoreBreakdown').innerHTML = '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="skel" style="height:13px;width:50px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="skel" style="height:13px;width:40px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="skel" style="height:13px;width:40px;"></div></div>';
+    document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>').join('');
+    document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn').forEach(el => el.remove());
+  }
+</script>
 </body>
 </html>
