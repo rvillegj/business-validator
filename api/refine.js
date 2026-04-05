@@ -11,6 +11,34 @@ module.exports = async function handler(req, res) {
 
   if (!idea || !scores) return res.status(400).json({ error: "idea and scores are required" });
 
+  const systemPrompt = `You are an expert startup coach and business strategist. Your task is to identify 2-3 pillars with improvement potential and provide actionable refinements.
+
+CRITICAL RULES:
+- NEVER invent statistics, percentages, or numerical claims the user did not mention.
+- NEVER fabricate benchmarks or data points.
+- Recommendations must be structural: framing, targeting, problem clarity, differentiation only.
+- refinedIdeaSuggestion: add geography/segment context if missing, sharper problem, clearer differentiator. No invented metrics.
+- Only surface pillars where qualityScore < 4 OR evidenceScore < 4.
+- projectedInterpretation MUST be exactly one of these four strings: "Very Strong Opportunity" | "Promising but Needs Validation" | "Unclear / Moderate Risk" | "Weak / High Risk"
+
+Return ONLY valid JSON, no markdown:
+{"levers":[{"pillar":"valueProposition","pillarLabel":"Value proposition","currentQuality":2,"currentEvidence":3,"projectedQuality":4,"projectedEvidence":4,"impact":"Highest impact","issue":"One sentence.","recommendations":[{"text":"One concrete structural sentence.","pointsGained":"+4 pts on Value Proposition quality"}]}],"projectedFinalScore":81,"projectedInterpretation":"Very Strong Opportunity","refinedIdeaSuggestion":"2-3 sentences."}`;
+
+  const userPrompt = `Analyze and identify top 2-3 improvement levers. No invented stats.
+
+Business idea: "${idea}"
+
+Scores:
+- Problem: Q${scores.problem?.qualityScore||0} E${scores.problem?.evidenceScore||0}
+- Market: Q${scores.market?.qualityScore||0} E${scores.market?.evidenceScore||0}
+- Value Proposition: Q${scores.valueProposition?.qualityScore||0} E${scores.valueProposition?.evidenceScore||0}
+- Business Model: Q${scores.businessModel?.qualityScore||0} E${scores.businessModel?.evidenceScore||0}
+- Execution: Q${scores.execution?.qualityScore||0} E${scores.execution?.evidenceScore||0}
+
+Final score: ${finalScore}/100, Base: ${baseScore}/100, Avg evidence: ${averageEvidenceScore}/5, Multiplier: ${evidenceMultiplier}
+
+projectedInterpretation must be exactly one of: "Very Strong Opportunity", "Promising but Needs Validation", "Unclear / Moderate Risk", "Weak / High Risk"`;
+
   const response = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -21,68 +49,12 @@ module.exports = async function handler(req, res) {
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1500,
-      system: `You are an expert startup coach and business strategist. A founder has evaluated their business idea and received a scored assessment. Your task is to identify the 2-3 pillars with the most improvement potential and provide specific, actionable refinements to help them strengthen their idea.
-
-CRITICAL RULES — MUST FOLLOW:
-- NEVER invent statistics, percentages, or specific numerical claims that the user did not already mention. If you do not know a real market figure, do not include one.
-- NEVER fabricate benchmarks, studies, or data points. Only reference real, widely-known market facts you are confident are true.
-- Recommendations must be structural or strategic — about how the idea is framed, who it targets, what problem it solves, or what differentiates it — NOT about adding made-up performance claims.
-- The refinedIdeaSuggestion must enrich the idea by: (a) adding specific geographic or segment context if missing, (b) sharpening the problem statement, (c) clarifying the differentiation — all grounded in what is actually known about this market. Do NOT add invented metrics.
-- Only surface pillars where qualityScore is below 4 OR evidenceScore is below 4.
-- Prioritize by impact: which improvements would move the final score the most?
-- Keep issue and recommendation text concise — one punchy sentence each.
-- Estimate score improvements conservatively and realistically.
-- Calculate projectedFinalScore using: Base Score = weighted avg of projected quality scores (Problem 25%, Market 20%, VP 20%, BM 20%, Execution 15%) / 5, multiplied by projected evidence multiplier.
-
-Return ONLY valid JSON, no markdown fences, no explanation:
-{
-  "levers": [
-    {
-      "pillar": "valueProposition",
-      "pillarLabel": "Value proposition",
-      "currentQuality": 2,
-      "currentEvidence": 3,
-      "projectedQuality": 4,
-      "projectedEvidence": 4,
-      "impact": "Highest impact",
-      "issue": "One sentence: what is structurally weak and why it matters for the score.",
-      "recommendations": [
-        {
-          "text": "One concrete sentence: a structural or strategic change to the idea — no invented numbers.",
-          "pointsGained": "+4 pts on Value Proposition quality"
-        }
-      ]
-    }
-  ],
-  "projectedFinalScore": 81,
-  "projectedInterpretation": "Very Strong Opportunity",
-  "refinedIdeaSuggestion": "2-3 sentences. Rewrite the idea incorporating: (1) specific geography or target segment if not already stated, (2) a sharper problem framing, (3) a clearer differentiator — all grounded in real market knowledge. Do NOT add any invented statistics or performance claims."
-}`,
-      messages: [{
-        role: "user",
-        content: `Analyze this business idea evaluation and identify the top 2-3 improvement levers. Do not invent any statistics or performance claims.
-
-Business idea: "${idea}"
-
-Current scores:
-- Problem Strength: quality=${scores.problem?.qualityScore || 0}/5, evidence=${scores.problem?.evidenceScore || 0}/5
-- Market Attractiveness: quality=${scores.market?.qualityScore || 0}/5, evidence=${scores.market?.evidenceScore || 0}/5
-- Value Proposition: quality=${scores.valueProposition?.qualityScore || 0}/5, evidence=${scores.valueProposition?.evidenceScore || 0}/5
-- Business Model: quality=${scores.businessModel?.qualityScore || 0}/5, evidence=${scores.businessModel?.evidenceScore || 0}/5
-- Execution Feasibility: quality=${scores.execution?.qualityScore || 0}/5, evidence=${scores.execution?.evidenceScore || 0}/5
-
-Current final score: ${finalScore}/100
-Base score: ${baseScore}/100
-Average evidence score: ${averageEvidenceScore}/5
-Evidence multiplier: ${evidenceMultiplier}
-
-Return the refinement plan as JSON. Every recommendation must be structural — no invented metrics or fabricated benchmarks.`
-      }]
+      system: systemPrompt,
+      messages: [{ role: "user", content: userPrompt }]
     })
   });
 
   const data = await response.json();
-
   if (!response.ok || !data.content) {
     return res.status(500).json({ error: "Refine API error", detail: data });
   }
@@ -91,7 +63,13 @@ Return the refinement plan as JSON. Every recommendation must be structural — 
   const clean = text.replace(/```json|```/g, "").trim();
 
   try {
-    res.status(200).json(JSON.parse(clean));
+    const parsed = JSON.parse(clean);
+    const valid = ["Very Strong Opportunity","Promising but Needs Validation","Unclear / Moderate Risk","Weak / High Risk"];
+    const s = parsed.projectedFinalScore || 0;
+    if (!valid.includes(parsed.projectedInterpretation)) {
+      parsed.projectedInterpretation = s >= 80 ? "Very Strong Opportunity" : s >= 65 ? "Promising but Needs Validation" : s >= 50 ? "Unclear / Moderate Risk" : "Weak / High Risk";
+    }
+    res.status(200).json(parsed);
   } catch (e) {
     res.status(500).json({ error: "JSON parse error", raw: clean });
   }

@@ -12,8 +12,7 @@
     .hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 20px; text-align: center; }
     .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #FF6B4A; font-weight: 500; margin-bottom: 14px; }
     .h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 52px); font-weight: 900; line-height: 1.05; color: #1A1A2E; }
-    .tagline { font-size: 15px; color: #666; font-weight: 300; margin: 16px auto 10px; max-width: 400px; line-height: 1.65; }
-    .tagline-sub { font-size: 13px; color: #888; font-weight: 300; max-width: 520px; margin: 0 auto 32px; line-height: 1.8; }
+    .tagline-sub { font-size: 13px; color: #888; font-weight: 300; max-width: 520px; margin: 16px auto 32px; line-height: 1.8; }
     .input-outer { max-width: 860px; margin: 0 auto 20px; background: white; border: 1.5px solid #E2D9CE; border-radius: 14px; padding: 16px 18px 14px; text-align: left; }
     #inputText:empty:before { content: 'Describe your business idea or problem...'; color: #C5BDB2; pointer-events: none; }
     .input-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -30,8 +29,6 @@
     .fc-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
     .fc-title { font-size: 12px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; line-height: 1.3; }
     .fc-text { font-size: 11px; color: #888; line-height: 1.55; }
-
-    /* results */
     .results { display: none; max-width: 1100px; margin: 0 auto; padding: 0 24px 56px; }
     .results-nav { display: flex; align-items: center; gap: 10px; padding: 20px 0 16px; }
     .back-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; background: none; border: none; cursor: pointer; padding: 0; font-family: 'DM Sans', sans-serif; }
@@ -41,8 +38,6 @@
     .nav-download-btn { margin-left: auto; display: none; align-items: center; gap: 6px; font-size: 12px; color: #666; background: white; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; }
     .nav-download-btn:hover { background: #F8F4EE; }
     .nav-download-btn.visible { display: flex; }
-
-    /* idea bar */
     .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 12px 16px; margin-bottom: 14px; transition: border 0.15s; }
     .idea-bar.edit-mode { border: 2px solid #FF6B4A; }
     .idea-bar-locked { opacity: 0.45; pointer-events: none; }
@@ -54,8 +49,6 @@
     .idea-edit-btn:hover { background: #EDE8DF; }
     .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; }
     .idea-analyse-btn:hover { background: #E55A3A; }
-
-    /* hypothesis */
     .hyp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .hyp-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
     .hyp-header-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -66,8 +59,6 @@
     .hyp-text { font-size: 13px; color: #444; line-height: 1.6; }
     .hyp-metric { font-size: 13px; color: #555; line-height: 1.6; margin-top: 8px; }
     .hyp-metric-prefix { color: #1D9E75; font-weight: 500; }
-
-    /* score card */
     .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .sc-top { padding: 16px 20px 14px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: flex-start; gap: 16px; }
     .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
@@ -111,8 +102,6 @@
     .sc-warn-lbl { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
     .sc-warn-row { display: flex; align-items: flex-start; gap: 7px; font-size: 11px; color: #A32D2D; line-height: 1.5; }
     .sc-warn-dot { width: 4px; height: 4px; border-radius: 50%; background: #E24B4A; flex-shrink: 0; margin-top: 5px; }
-
-    /* ── THREE-BUTTON ACTION ROW ── */
     .actions-row { display: flex; gap: 10px; margin-bottom: 14px; }
     .btn-refine { padding: 13px 18px; background: #1A1A2E; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
     .btn-refine:hover { background: #2D2D4A; }
@@ -121,8 +110,6 @@
     .btn-design:hover { background: #E55A3A; }
     .btn-edit { padding: 13px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
     .btn-edit:hover { background: #F8F4EE; }
-
-    /* refine panel */
     .refine-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .refine-panel-hdr { padding: 14px 20px; background: #1A1A2E; display: flex; align-items: center; justify-content: space-between; }
     .refine-panel-title { font-size: 13px; font-weight: 500; color: white; display: flex; align-items: center; gap: 8px; }
@@ -155,10 +142,8 @@
     .refine-actions { padding: 14px 20px; border-top: 1px solid #F0EBE3; background: #FAFAF8; display: flex; gap: 10px; }
     .btn-apply { flex: 1; padding: 12px; background: #FF6B4A; color: white; border: none; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
     .btn-apply:hover { background: #E55A3A; }
-    .btn-keep { padding: 12px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+    .btn-keep { padding: 12px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; }
     .btn-keep:hover { background: #F8F4EE; }
-
-    /* canvas */
     .canvas-section { display: none; }
     .canvas-section.visible { display: block; }
     .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 20px; }
@@ -179,8 +164,6 @@
     .dot:nth-child(1) { background: #FF6B4A; }
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
-
-    /* ── BMC GRID — tighter, no fixed heights ── */
     .bmc-seg-header { padding: 14px 16px 0; }
     .seg-profile { font-size: 12px; color: #444; line-height: 1.6; margin-bottom: 8px; }
     .seg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
@@ -188,7 +171,6 @@
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-
     .bmc-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr); border-top: 1.5px solid #E2D9CE; }
     .bmc-col { display: flex; flex-direction: column; border-right: 1px solid #E2D9CE; }
     .bmc-col:last-child { border-right: none; }
@@ -220,8 +202,6 @@
     .rev-desc { font-size: 9.5px; color: #888; margin-bottom: 8px; }
     .cost-row { font-size: 10px; color: #555; margin-bottom: 3px; display: flex; gap: 5px; align-items: flex-start; }
     .cost-tag { font-size: 8px; padding: 1px 5px; border-radius: 3px; background: #F5F1EB; color: #888; flex-shrink: 0; margin-top: 1px; }
-
-    /* competitive landscape */
     .section-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-top: 14px; animation: fadeIn 0.4s ease both; }
     .section-card-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
     .section-card-header:hover { background: #FAFAF8; }
@@ -239,13 +219,10 @@
     .adv-block { margin: 0 20px 20px; padding: 12px 16px; background: rgba(26,26,46,0.04); border-left: 3px solid #1A1A2E; border-radius: 0; }
     .adv-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 5px; }
     .adv-text { font-size: 13px; color: #444; line-height: 1.6; }
-
-    /* skeletons */
     .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
     @keyframes bounce { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
     @media print {
       @page { margin: 18mm 16mm; size: A4; }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -262,7 +239,7 @@
   <div class="hero">
     <div class="eyebrow">From idea to validated opportunity</div>
     <div class="h1">Business Model Evaluator</div>
-    <div class="tagline" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</div>
+    <p class="tagline-sub" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</p>
     <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
     <div class="input-outer">
       <div class="input-row">
@@ -359,10 +336,10 @@
     </div>
   </div>
 
-  <!-- refine panel (hidden until triggered) -->
+  <!-- Refine panel — shown above actions row when triggered -->
   <div class="refine-panel" id="refinePanel" style="display:none;"></div>
 
-  <!-- THREE-BUTTON ROW -->
+  <!-- THREE-BUTTON ROW — hidden while refine panel is open -->
   <div class="actions-row" id="actionsRow" style="display:none;">
     <button class="btn-refine" id="btnRefine" onclick="runRefine()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
@@ -395,7 +372,6 @@
     <div class="tab-panel seg3" id="panel-2">
       <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
     </div>
-
     <div class="section-card" id="compCard" style="display:none;">
       <div class="section-card-header" onclick="toggleCompetitive()">
         <div class="section-card-title">Competitive landscape</div>
@@ -412,111 +388,47 @@
   let refineUsed = false;
 
   function onInputChange() {
-    const text = document.getElementById('inputText').innerText.trim();
-    document.getElementById('landingAnalyseBtn').disabled = !text;
+    document.getElementById('landingAnalyseBtn').disabled = !document.getElementById('inputText').innerText.trim();
     document.getElementById('contextMsg').style.display = 'none';
   }
-
   function usePill(el) {
     document.getElementById('inputText').innerText = el.textContent.replace('e.g. ', '');
     onInputChange();
   }
-
   function switchTab(i) {
-    document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', i === j));
-    document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', i === j));
+    document.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', i===j));
+    document.querySelectorAll('.tab-panel').forEach((p,j) => p.classList.toggle('active', i===j));
   }
-
   function toggleCompetitive() {
     document.getElementById('compBody').classList.toggle('open');
     document.getElementById('compChev').classList.toggle('open');
   }
-
   function goBack() {
     document.getElementById('landing').style.display = 'block';
     document.getElementById('results').style.display = 'none';
     document.getElementById('canvasSection').classList.remove('visible');
     document.getElementById('navDownloadBtn').classList.remove('visible');
     document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('actionsRow').style.display = 'none';
     refineUsed = false;
     window.scrollTo({ top: 0 });
   }
-
   function enterEditMode() {
     document.getElementById('ideaBar').classList.add('edit-mode');
-    const display = document.getElementById('ideaDisplay');
-    display.contentEditable = 'true';
-    display.focus();
+    const d = document.getElementById('ideaDisplay');
+    d.contentEditable = 'true'; d.focus();
     document.getElementById('ideaEditBtn').style.display = 'none';
     document.getElementById('ideaBarActions').style.display = 'flex';
   }
-
   function onIdeaBlur(e) {
-    const actions = document.getElementById('ideaBarActions');
-    if (e.relatedTarget && actions.contains(e.relatedTarget)) return;
+    if (e.relatedTarget && document.getElementById('ideaBarActions').contains(e.relatedTarget)) return;
     exitEditMode();
   }
-
   function exitEditMode() {
     document.getElementById('ideaBar').classList.remove('edit-mode');
     document.getElementById('ideaDisplay').contentEditable = 'false';
     document.getElementById('ideaEditBtn').style.display = 'flex';
     document.getElementById('ideaBarActions').style.display = 'none';
-  }
-
-  async function runAnalysis() {
-    const idea = document.getElementById('inputText').innerText.trim();
-    if (!idea) return;
-    currentIdea = idea;
-    refineUsed = false;
-    document.getElementById('landing').style.display = 'none';
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('ideaDisplay').innerText = idea;
-    exitEditMode();
-    document.getElementById('ideaBar').classList.add('idea-bar-locked');
-    document.getElementById('actionsRow').style.display = 'none';
-    document.getElementById('refinePanel').style.display = 'none';
-    document.getElementById('canvasSection').classList.remove('visible');
-    window.scrollTo({ top: 0 });
-    try {
-      const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
-      const data = await response.json();
-      currentAnalysisData = data;
-      renderAnalysisResults(data);
-      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-      document.getElementById('navDownloadBtn').classList.add('visible');
-      showActionsRow();
-    } catch (err) {
-      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-      document.getElementById('landing').style.display = 'block';
-      document.getElementById('results').style.display = 'none';
-      document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
-      document.getElementById('contextMsg').style.display = 'block';
-    }
-  }
-
-  async function rerunAnalysis() {
-    const idea = document.getElementById('ideaDisplay').innerText.trim();
-    if (!idea) return;
-    currentIdea = idea;
-    exitEditMode();
-    document.getElementById('ideaBar').classList.add('idea-bar-locked');
-    document.getElementById('actionsRow').style.display = 'none';
-    document.getElementById('refinePanel').style.display = 'none';
-    document.getElementById('canvasSection').classList.remove('visible');
-    resetResultsToShimmers();
-    window.scrollTo({ top: 0 });
-    try {
-      const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
-      const data = await response.json();
-      currentAnalysisData = data;
-      renderAnalysisResults(data);
-      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-      document.getElementById('navDownloadBtn').classList.add('visible');
-      showActionsRow();
-    } catch (err) {
-      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
-    }
   }
 
   function showActionsRow() {
@@ -532,133 +444,120 @@
     }
   }
 
+  async function runAnalysis() {
+    const idea = document.getElementById('inputText').innerText.trim();
+    if (!idea) return;
+    currentIdea = idea; refineUsed = false;
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('ideaDisplay').innerText = idea;
+    exitEditMode();
+    document.getElementById('ideaBar').classList.add('idea-bar-locked');
+    document.getElementById('actionsRow').style.display = 'none';
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    window.scrollTo({ top: 0 });
+    try {
+      const r = await fetch('/api/analyse', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea }) });
+      const data = await r.json();
+      currentAnalysisData = data;
+      renderAnalysisResults(data);
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+      document.getElementById('navDownloadBtn').classList.add('visible');
+      showActionsRow();
+    } catch(err) {
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+      document.getElementById('landing').style.display = 'block';
+      document.getElementById('results').style.display = 'none';
+      document.getElementById('contextMsg').textContent = 'Something went wrong. Please try again.';
+      document.getElementById('contextMsg').style.display = 'block';
+    }
+  }
+
+  async function rerunAnalysis() {
+    const idea = document.getElementById('ideaDisplay').innerText.trim();
+    if (!idea) return;
+    currentIdea = idea; exitEditMode();
+    document.getElementById('ideaBar').classList.add('idea-bar-locked');
+    document.getElementById('actionsRow').style.display = 'none';
+    document.getElementById('refinePanel').style.display = 'none';
+    document.getElementById('canvasSection').classList.remove('visible');
+    resetResultsToShimmers(); window.scrollTo({ top: 0 });
+    try {
+      const r = await fetch('/api/analyse', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea }) });
+      const data = await r.json();
+      currentAnalysisData = data;
+      renderAnalysisResults(data);
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+      document.getElementById('navDownloadBtn').classList.add('visible');
+      showActionsRow();
+    } catch(err) {
+      document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+    }
+  }
+
   function renderAnalysisResults(data) {
-    const alignment = data.alignment || {};
-    const insights = data.insights || {};
-    document.getElementById('hypProblem').textContent = alignment.problem || insights.topStrength || '';
-    document.getElementById('hypStatement').textContent = alignment.hypothesis || '';
-    const metric = alignment.metric || '';
-    if (metric) { document.getElementById('hypMetricText').textContent = metric; document.getElementById('hypMetric').style.display = 'block'; }
+    const a = data.alignment || {}; const ins = data.insights || {};
+    document.getElementById('hypProblem').textContent = a.problem || ins.topStrength || '';
+    document.getElementById('hypStatement').textContent = a.hypothesis || '';
+    if (a.metric) { document.getElementById('hypMetricText').textContent = a.metric; document.getElementById('hypMetric').style.display = 'block'; }
     renderScoreCard(data);
   }
 
   function renderScoreCard(data) {
     const interp = data.interpretation || '';
-    const interpKey = interp.toLowerCase().includes('very strong') ? 'very-strong' : interp.toLowerCase().includes('promising') ? 'promising' : interp.toLowerCase().includes('unclear') ? 'moderate' : 'weak';
-    const barColor = { 'very-strong': '#1D9E75', 'promising': '#1D9E75', 'moderate': '#FF6B4A', 'weak': '#E53E3E' }[interpKey];
-    const finalScore = Math.round(data.finalScore || 0);
-    const baseScore = Math.round(data.baseScore || 0);
-    const evidenceMultiplier = data.evidenceMultiplier || 1;
-    const avgEvidence = (data.averageEvidenceScore || 0).toFixed(1);
-    const circumference = 2 * Math.PI * 23;
-    const arc = ((finalScore / 100) * circumference).toFixed(1) + ' ' + circumference.toFixed(1);
-    const s = data.scores || {};
-    const pillars = [
-      { key: 'problem', label: 'Problem strength' },
-      { key: 'market', label: 'Market attractiveness' },
-      { key: 'valueProposition', label: 'Value proposition' },
-      { key: 'businessModel', label: 'Business model' },
-      { key: 'execution', label: 'Execution feasibility' }
-    ];
-    document.getElementById('scoreDial').innerHTML =
-      '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="' + barColor + '" stroke-width="4.5" stroke-dasharray="' + arc + '" stroke-dashoffset="' + (circumference * 0.25).toFixed(1) + '" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg>' +
-      '<div class="sc-num-wrap"><span class="sc-big" style="color:' + barColor + ';">' + finalScore + '</span><span class="sc-sub">/100</span></div>';
-    document.getElementById('scoreInterpWrap').innerHTML =
-      '<div class="sc-interp" style="color:' + barColor + ';">' + interp + '</div>' +
-      '<div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">' +
-      [1,2,3,4,5].map(n => '<span class="sc-pip' + (n <= (data.confidenceScore || 0) ? ' on' : '') + '"></span>').join('') + '</div></div>';
-    document.getElementById('scoreBreakdown').innerHTML =
-      '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="sc-bk-val">' + baseScore + '/100</div><div class="sc-bk-desc">Weighted average of all 5 pillars.</div></div>' +
-      '<div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="sc-bk-val">&times;' + evidenceMultiplier + '</div><div class="sc-bk-desc">Score discount when market data is limited.</div></div>' +
-      '<div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="sc-bk-val">' + avgEvidence + '/5</div><div class="sc-bk-desc">Published market research across all pillars.</div></div>';
-    const pillarsHtml = pillars.map(p => {
-      const pillar = s[p.key] || {};
-      const qs = pillar.qualityScore || pillar.score || 0;
-      const es = pillar.evidenceScore || 0;
-      const qColor = qs >= 4 ? '#1D9E75' : qs >= 3 ? '#EF9F27' : '#FF6B4A';
-      const qBadgeBg = qs >= 4 ? '#E1F5EE' : qs >= 3 ? '#FAEEDA' : '#FCEBEB';
-      const qBadgeColor = qs >= 4 ? '#085041' : qs >= 3 ? '#633806' : '#791F1F';
-      return '<div class="sc-pillar"><div class="sc-pname">' + p.label + '</div>' +
-        '<div class="sc-pil-scores"><span class="sc-qs" style="background:' + qBadgeBg + ';color:' + qBadgeColor + ';">Q ' + qs + '/5</span><span class="sc-es">E ' + es + '/5</span></div>' +
-        '<div class="sc-tracks"><div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((qs/5)*100) + '%;background:' + qColor + ';"></div></div></div>' +
-        '<div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:' + Math.round((es/5)*100) + '%;background:#B4B2A9;"></div></div></div></div>' +
-        '<div class="sc-preason">' + (pillar.reason || '') + '</div></div>';
+    const ik = interp.toLowerCase().includes('very strong') ? 'vs' : interp.toLowerCase().includes('promising') ? 'pr' : interp.toLowerCase().includes('unclear') ? 'mo' : 'wk';
+    const bc = { vs:'#1D9E75', pr:'#1D9E75', mo:'#FF6B4A', wk:'#E53E3E' }[ik];
+    const fs = Math.round(data.finalScore||0), bs = Math.round(data.baseScore||0);
+    const em = data.evidenceMultiplier||1, ae = (data.averageEvidenceScore||0).toFixed(1);
+    const C = 2*Math.PI*23, arc = ((fs/100)*C).toFixed(1)+' '+C.toFixed(1);
+    const s = data.scores||{};
+    const pillars = [{key:'problem',label:'Problem strength'},{key:'market',label:'Market attractiveness'},{key:'valueProposition',label:'Value proposition'},{key:'businessModel',label:'Business model'},{key:'execution',label:'Execution feasibility'}];
+    document.getElementById('scoreDial').innerHTML = '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="23" fill="none" stroke="#E2D9CE" stroke-width="4.5"/><circle cx="30" cy="30" r="23" fill="none" stroke="'+bc+'" stroke-width="4.5" stroke-dasharray="'+arc+'" stroke-dashoffset="'+(C*0.25).toFixed(1)+'" stroke-linecap="round" transform="rotate(-90 30 30)"/></svg><div class="sc-num-wrap"><span class="sc-big" style="color:'+bc+';">'+fs+'</span><span class="sc-sub">/100</span></div>';
+    document.getElementById('scoreInterpWrap').innerHTML = '<div class="sc-interp" style="color:'+bc+';">'+interp+'</div><div class="sc-conf"><span class="sc-conf-lbl">Confidence</span><div class="sc-pips">'+[1,2,3,4,5].map(n=>'<span class="sc-pip'+(n<=(data.confidenceScore||0)?' on':'')+'"></span>').join('')+'</div></div>';
+    document.getElementById('scoreBreakdown').innerHTML = '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="sc-bk-val">'+bs+'/100</div><div class="sc-bk-desc">Weighted average of all 5 pillars.</div></div><div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="sc-bk-val">&times;'+em+'</div><div class="sc-bk-desc">Score discount when market data is limited.</div></div><div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="sc-bk-val">'+ae+'/5</div><div class="sc-bk-desc">Published market research across all pillars.</div></div>';
+    document.getElementById('scorePillars').innerHTML = pillars.map(p => {
+      const pi = s[p.key]||{}, qs = pi.qualityScore||pi.score||0, es = pi.evidenceScore||0;
+      const qc = qs>=4?'#1D9E75':qs>=3?'#EF9F27':'#FF6B4A';
+      const qbg = qs>=4?'#E1F5EE':qs>=3?'#FAEEDA':'#FCEBEB';
+      const qtx = qs>=4?'#085041':qs>=3?'#633806':'#791F1F';
+      return '<div class="sc-pillar"><div class="sc-pname">'+p.label+'</div><div class="sc-pil-scores"><span class="sc-qs" style="background:'+qbg+';color:'+qtx+';">Q '+qs+'/5</span><span class="sc-es">E '+es+'/5</span></div><div class="sc-tracks"><div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((qs/5)*100)+'%;background:'+qc+';"></div></div></div><div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((es/5)*100)+'%;background:#B4B2A9;"></div></div></div></div><div class="sc-preason">'+(pi.reason||'')+'</div></div>';
     }).join('');
-    const warningsHtml = (data.warnings && data.warnings.length > 0)
-      ? '<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>' + data.warnings.map(w => '<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>' + w + '</span></div>').join('') + '</div>' : '';
-    const legendHtml = '<div class="sc-legend"><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality (1&ndash;5)</div><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence (1&ndash;5)</div></div>';
-    document.getElementById('scorePillars').innerHTML = pillarsHtml;
-    document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn').forEach(el => el.remove());
-    document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legendHtml + warningsHtml);
+    const warnHtml = (data.warnings&&data.warnings.length)?'<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>'+data.warnings.map(w=>'<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>'+w+'</span></div>').join('')+'</div>':'';
+    const legHtml = '<div class="sc-legend"><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality (1&ndash;5)</div><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence (1&ndash;5)</div></div>';
+    document.getElementById('scoreCard').querySelectorAll('.sc-legend,.sc-warn').forEach(el=>el.remove());
+    document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legHtml+warnHtml);
   }
 
   async function runRefine() {
     if (!currentAnalysisData) return;
-    const btn = document.getElementById('btnRefine');
-    btn.disabled = true;
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Analyzing…';
+    // Hide actions row while panel is open
+    document.getElementById('actionsRow').style.display = 'none';
     const panel = document.getElementById('refinePanel');
     panel.style.display = 'block';
     panel.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:13px;color:#888;font-weight:300;margin-bottom:16px;">Identifying your highest-impact improvements…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
     try {
-      const response = await fetch('/api/refine', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          idea: currentIdea,
-          scores: currentAnalysisData.scores,
-          finalScore: currentAnalysisData.finalScore,
-          baseScore: currentAnalysisData.baseScore,
-          averageEvidenceScore: currentAnalysisData.averageEvidenceScore,
-          evidenceMultiplier: currentAnalysisData.evidenceMultiplier
-        })
-      });
-      const data = await response.json();
+      const r = await fetch('/api/refine', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea:currentIdea, scores:currentAnalysisData.scores, finalScore:currentAnalysisData.finalScore, baseScore:currentAnalysisData.baseScore, averageEvidenceScore:currentAnalysisData.averageEvidenceScore, evidenceMultiplier:currentAnalysisData.evidenceMultiplier }) });
+      const data = await r.json();
       renderRefinePanel(data);
-    } catch (err) {
+    } catch(err) {
       panel.innerHTML = '<div style="padding:20px;font-size:13px;color:#A32D2D;">Something went wrong. Please try again.</div>';
-      btn.disabled = false;
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine idea';
+      showActionsRow();
     }
   }
 
   function renderRefinePanel(data) {
-    const levers = data.levers || [];
-    const projectedScore = Math.round(data.projectedFinalScore || 0);
-    const currentScore = Math.round(currentAnalysisData.finalScore || 0);
-    const projectedInterp = data.projectedInterpretation || '';
-    const leversHtml = levers.map(lever => {
-      const recsHtml = (lever.recommendations || []).map((rec, i) =>
-        '<div class="lever-rec"><div class="rec-num">' + (i+1) + '</div><div class="rec-content"><div class="rec-text">' + rec.text + '</div><div class="rec-impact">' + (rec.pointsGained || '') + '</div></div></div>'
-      ).join('');
-      return '<div class="lever">' +
-        '<div class="lever-hdr"><div class="lever-left">' +
-        '<div class="lever-pillar">' + (lever.pillarLabel || lever.pillar) + '</div>' +
-        '<span class="lever-before">Q ' + lever.currentQuality + '/5</span>' +
-        '<span class="lever-arrow-sep">&rarr;</span>' +
-        '<span class="lever-after"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Q ' + lever.projectedQuality + '/5</span>' +
-        '</div><span class="lever-impact-tag">' + (lever.impact || '') + '</span></div>' +
-        '<div class="lever-body"><div class="lever-issue">' + (lever.issue || '') + '</div>' +
-        '<div class="lever-recs">' + recsHtml + '</div></div></div>';
+    const levers = data.levers||[], ps = Math.round(data.projectedFinalScore||0), cs = Math.round(currentAnalysisData.finalScore||0), pi = data.projectedInterpretation||'';
+    const leversHtml = levers.map(lv => {
+      const recs = (lv.recommendations||[]).map((rec,i)=>'<div class="lever-rec"><div class="rec-num">'+(i+1)+'</div><div class="rec-content"><div class="rec-text">'+rec.text+'</div><div class="rec-impact">'+(rec.pointsGained||'')+'</div></div></div>').join('');
+      return '<div class="lever"><div class="lever-hdr"><div class="lever-left"><div class="lever-pillar">'+(lv.pillarLabel||lv.pillar)+'</div><span class="lever-before">Q '+lv.currentQuality+'/5</span><span class="lever-arrow-sep">&rarr;</span><span class="lever-after"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Q '+lv.projectedQuality+'/5</span></div><span class="lever-impact-tag">'+(lv.impact||'')+'</span></div><div class="lever-body"><div class="lever-issue">'+(lv.issue||'')+'</div><div class="lever-recs">'+recs+'</div></div></div>';
     }).join('');
     document.getElementById('refinePanel').innerHTML =
-      '<div class="refine-panel-hdr">' +
-        '<div><div class="refine-panel-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Idea refinement analysis</div>' +
-        '<div class="refine-panel-sub">' + levers.length + ' pillar' + (levers.length !== 1 ? 's' : '') + ' with room to improve &mdash; here\'s how</div></div>' +
-        '<div class="refine-score-badge"><div class="refine-score-lbl">Potential score</div>' +
-        '<div class="refine-score-val">' + currentScore + ' <span class="refine-score-arrow">&rarr; ' + projectedScore + '</span></div></div>' +
-      '</div>' +
-      '<div class="refine-body">' + leversHtml +
-        '<div class="refine-summary-block"><div class="refine-summary-label">Projected outcome</div>' +
-        '<div class="refine-summary-text">Applying these refinements should move your score from ' + currentScore + ' to approximately ' + projectedScore + ', reaching &ldquo;' + projectedInterp + '.&rdquo;</div>' +
-        '<div class="refine-summary-score">' + currentScore + ' &rarr; ~' + projectedScore + ' &middot; ' + projectedInterp + '</div></div>' +
-      '</div>' +
-      '<div class="refine-actions">' +
-        '<button class="btn-apply" onclick="applyRefinements()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Apply refinements and re-analyze</button>' +
-        '<button class="btn-keep" onclick="dismissRefine()">Keep my idea as-is</button>' +
-      '</div>';
-    window.__refinedIdea = data.refinedIdeaSuggestion || '';
+      '<div class="refine-panel-hdr"><div><div class="refine-panel-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Idea refinement analysis</div><div class="refine-panel-sub">'+levers.length+' pillar'+(levers.length!==1?'s':'')+' with room to improve &mdash; here\'s how</div></div><div class="refine-score-badge"><div class="refine-score-lbl">Potential score</div><div class="refine-score-val">'+cs+' <span class="refine-score-arrow">&rarr; '+ps+'</span></div></div></div>'+
+      '<div class="refine-body">'+leversHtml+'<div class="refine-summary-block"><div class="refine-summary-label">Projected outcome</div><div class="refine-summary-text">Applying these refinements should move your score from '+cs+' to approximately '+ps+', reaching &ldquo;'+pi+'.&rdquo;</div><div class="refine-summary-score">'+cs+' &rarr; ~'+ps+' &middot; '+pi+'</div></div></div>'+
+      '<div class="refine-actions"><button class="btn-apply" onclick="applyRefinements()"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Apply refinements and re-analyze</button><button class="btn-keep" onclick="dismissRefine()">Keep my idea as-is</button></div>';
+    window.__refinedIdea = data.refinedIdeaSuggestion||'';
   }
 
   function applyRefinements() {
@@ -672,83 +571,51 @@
 
   function dismissRefine() {
     document.getElementById('refinePanel').style.display = 'none';
+    showActionsRow();
   }
 
   async function designModel() {
     document.getElementById('canvasSection').classList.add('visible');
-    document.getElementById('canvasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('canvasSection').scrollIntoView({ behavior:'smooth', block:'start' });
     document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
     try {
-      const seg1Data = await fetchSegment(currentIdea, null, 0);
-      renderCompetitiveLandscape(seg1Data);
+      const seg1 = await fetchSegment(currentIdea, null, 0);
+      renderCompetitiveLandscape(seg1);
       document.getElementById('compCard').style.display = 'block';
-    } catch (err) {
+    } catch(err) {
       document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Something went wrong. Please try again.</div></div>';
     }
   }
 
   function renderCompetitiveLandscape(data) {
-    const cl = data.competitiveLandscape;
-    if (!cl) return;
-    const competitorsHtml = (cl.competitors || []).map(c =>
-      '<div class="comp-card"><div class="comp-type">' + c.type + '</div><div class="comp-name">' + c.name + '</div><div class="comp-desc">' + c.description + '</div></div>'
-    ).join('');
-    document.getElementById('compBody').innerHTML =
-      '<div class="comp-summary">' + (cl.summary || '') + '</div>' +
-      '<div class="comp-grid">' + competitorsHtml + '</div>' +
-      '<div class="adv-block"><div class="adv-label">Our competitive advantage</div><div class="adv-text">' + (cl.advantage || '') + '</div></div>';
+    const cl = data.competitiveLandscape; if (!cl) return;
+    document.getElementById('compBody').innerHTML = '<div class="comp-summary">'+(cl.summary||'')+'</div><div class="comp-grid">'+(cl.competitors||[]).map(c=>'<div class="comp-card"><div class="comp-type">'+c.type+'</div><div class="comp-name">'+c.name+'</div><div class="comp-desc">'+c.description+'</div></div>').join('')+'</div><div class="adv-block"><div class="adv-label">Our competitive advantage</div><div class="adv-text">'+(cl.advantage||'')+'</div></div>';
   }
 
   async function fetchSegment(idea, segmentContext, panelIndex) {
-    const response = await fetch('/api/generate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea, segmentContext }) });
-    const data = await response.json();
+    const r = await fetch('/api/generate', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ idea, segmentContext }) });
+    const data = await r.json();
     renderCanvas(data, panelIndex);
     return data;
   }
 
-  function renderCanvas(data, panelIndex) {
-    const seg = data.segment;
-    const vp = data.valueProposition;
-    const cr = data.customerRelationships;
-    const ch = data.channels;
-    const kp = data.keyPartners;
-    const ka = data.keyActivities;
-    const kr = data.keyResources;
-    const cost = data.costStructure;
-    const rev = data.revenueStreams;
-    const bItem = (text) => '<div class="bmc-item"><div class="bmc-dot"></div><span>' + text + '</span></div>';
-    const offeringsHtml = (vp.offerings || []).map(o =>
-      '<div class="vp-offering"><div class="vp-name">' + o.name + '</div><div class="vp-desc">' + o.description + '</div><span class="vp-badge">&#x2736; ' + o.advantage + '</span></div>'
-    ).join('');
-    const channelItems = (ch.touchpoints || []).map(t =>
-      '<div style="margin-bottom:6px;"><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div style="font-size:10px;color:#555;line-height:1.5;">' + t.name + ' &mdash; ' + t.description + '</div></div>'
-    ).join('');
+  function renderCanvas(data, pi) {
+    const seg=data.segment, vp=data.valueProposition, cr=data.customerRelationships, ch=data.channels, kp=data.keyPartners, ka=data.keyActivities, kr=data.keyResources, cost=data.costStructure, rev=data.revenueStreams;
+    const bItem = t => '<div class="bmc-item"><div class="bmc-dot"></div><span>'+t+'</span></div>';
+    const off = (vp.offerings||[]).map(o=>'<div class="vp-offering"><div class="vp-name">'+o.name+'</div><div class="vp-desc">'+o.description+'</div><span class="vp-badge">&#x2736; '+o.advantage+'</span></div>').join('');
+    const chs = (ch.touchpoints||[]).map(t=>'<div style="margin-bottom:6px;"><div class="ch-phase phase-'+t.phase.toLowerCase().replace(/[^a-z]/g,'')+'">'+t.phase+'</div><div style="font-size:10px;color:#555;line-height:1.5;">'+t.name+' &mdash; '+t.description+'</div></div>').join('');
     const html =
-      '<div class="bmc-seg-header"><div class="seg-profile">' + seg.profile + '</div>' +
-      '<div class="seg-tags">' + (seg.tags || []).map(t => '<span class="seg-tag">' + t + '</span>').join('') + '</div></div>' +
-      '<div class="bmc-grid">' +
-        '<div class="bmc-col">' +
-          '<div class="bmc-cell"><div class="bmc-cell-label">Key partners</div>' + (kp.partners || []).map(p => bItem('<strong style="font-weight:500;">' + p.name + '</strong> &mdash; ' + p.description)).join('') + '</div>' +
-          '<div class="bmc-cell"><div class="bmc-cell-label">Key resources</div>' + (kr.resources || []).map(r => bItem(r.name + ' <span class="bmc-tag">' + r.type + '</span>')).join('') + '</div>' +
-        '</div>' +
-        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key activities</div>' + (ka.activities || []).map(a => bItem(a.name + ' &mdash; ' + a.description)).join('') + '</div></div>' +
-        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Value proposition</div><div class="vp-summary">' + vp.summary + '</div>' + offeringsHtml + '</div></div>' +
-        '<div class="bmc-col">' +
-          '<div class="bmc-cell"><div class="bmc-cell-label">Customer relationships</div>' + (cr.strategies || []).map(s => '<div class="bmc-sublabel">' + s.type + '</div>' + bItem(s.name + ' &mdash; ' + s.description)).join('') + '</div>' +
-          '<div class="bmc-cell"><div class="bmc-cell-label">Channels</div>' + channelItems + '</div>' +
-        '</div>' +
-        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Customer segments</div>' +
-          '<div class="bmc-sublabel">Jobs to be done</div>' + (seg.jobsToBeDone || []).map(j => bItem(j)).join('') +
-          '<div class="bmc-sublabel">Pain points</div>' + (seg.painPoints || []).map(p => bItem(p)).join('') +
-          '<div class="bmc-sublabel">Gains</div>' + (seg.gains || []).map(g => bItem(g)).join('') +
-        '</div></div>' +
-      '</div>' +
-      '<div class="bmc-bottom">' +
-        '<div class="bmc-bottom-cell"><div class="bmc-cell-label">Cost structure</div>' + (cost.costs || []).map(c => '<div class="cost-row"><span class="cost-tag">' + c.type + '</span><span>' + c.name + ' &mdash; ' + c.description + '</span></div>').join('') + '</div>' +
-        '<div class="bmc-bottom-cell"><div class="bmc-cell-label">Revenue streams</div>' + (rev.streams || []).map(s => '<div class="rev-stream"><span class="rev-tag" style="background:#E1F5EE;color:#085041;">' + s.type + '</span><span class="rev-name">' + s.name + '</span></div><div class="rev-desc">' + s.description + '</div>').join('') + '</div>' +
-      '</div>';
-    document.getElementById('panel-' + panelIndex).innerHTML = html;
-    document.querySelectorAll('.tab-btn')[panelIndex].textContent = seg.name;
+      '<div class="bmc-seg-header"><div class="seg-profile">'+seg.profile+'</div><div class="seg-tags">'+(seg.tags||[]).map(t=>'<span class="seg-tag">'+t+'</span>').join('')+'</div></div>'+
+      '<div class="bmc-grid">'+
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key partners</div>'+(kp.partners||[]).map(p=>bItem('<strong style="font-weight:500;">'+p.name+'</strong> &mdash; '+p.description)).join('')+'</div><div class="bmc-cell"><div class="bmc-cell-label">Key resources</div>'+(kr.resources||[]).map(r=>bItem(r.name+' <span class="bmc-tag">'+r.type+'</span>')).join('')+'</div></div>'+
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key activities</div>'+(ka.activities||[]).map(a=>bItem(a.name+' &mdash; '+a.description)).join('')+'</div></div>'+
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Value proposition</div><div class="vp-summary">'+vp.summary+'</div>'+off+'</div></div>'+
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Customer relationships</div>'+(cr.strategies||[]).map(s=>'<div class="bmc-sublabel">'+s.type+'</div>'+bItem(s.name+' &mdash; '+s.description)).join('')+'</div><div class="bmc-cell"><div class="bmc-cell-label">Channels</div>'+chs+'</div></div>'+
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Customer segments</div><div class="bmc-sublabel">Jobs to be done</div>'+(seg.jobsToBeDone||[]).map(j=>bItem(j)).join('')+'<div class="bmc-sublabel">Pain points</div>'+(seg.painPoints||[]).map(p=>bItem(p)).join('')+'<div class="bmc-sublabel">Gains</div>'+(seg.gains||[]).map(g=>bItem(g)).join('')+'</div></div>'+
+      '</div>'+
+      '<div class="bmc-bottom"><div class="bmc-bottom-cell"><div class="bmc-cell-label">Cost structure</div>'+(cost.costs||[]).map(c=>'<div class="cost-row"><span class="cost-tag">'+c.type+'</span><span>'+c.name+' &mdash; '+c.description+'</span></div>').join('')+'</div><div class="bmc-bottom-cell"><div class="bmc-cell-label">Revenue streams</div>'+(rev.streams||[]).map(s=>'<div class="rev-stream"><span class="rev-tag" style="background:#E1F5EE;color:#085041;">'+s.type+'</span><span class="rev-name">'+s.name+'</span></div><div class="rev-desc">'+s.description+'</div>').join('')+'</div></div>';
+    document.getElementById('panel-'+pi).innerHTML = html;
+    document.querySelectorAll('.tab-btn')[pi].textContent = seg.name;
   }
 
   function resetResultsToShimmers() {
@@ -759,7 +626,7 @@
     document.getElementById('scoreInterpWrap').innerHTML = '<div class="skel" style="height:12px;width:130px;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:100px;"></div>';
     document.getElementById('scoreBreakdown').innerHTML = '<div class="sc-bk-item"><div class="sc-bk-label">Base score</div><div class="skel" style="height:13px;width:50px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Evidence multiplier</div><div class="skel" style="height:13px;width:40px;"></div></div><div class="sc-bk-item"><div class="sc-bk-label">Avg. evidence</div><div class="skel" style="height:13px;width:40px;"></div></div>';
     document.getElementById('scorePillars').innerHTML = Array(5).fill('<div class="sc-pillar"><div class="skel" style="height:9px;width:80%;margin-bottom:8px;"></div><div class="skel" style="height:3px;width:100%;margin-bottom:6px;"></div><div class="skel" style="height:8px;width:90%;"></div></div>').join('');
-    document.getElementById('scoreCard').querySelectorAll('.sc-legend, .sc-warn').forEach(el => el.remove());
+    document.getElementById('scoreCard').querySelectorAll('.sc-legend,.sc-warn').forEach(el=>el.remove());
   }
 </script>
 </body>
