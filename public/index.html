@@ -240,7 +240,7 @@
     <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
     <div class="input-outer">
       <div class="input-row">
-        <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()"></div>
+        <div id="inputText" style="flex:1;font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;" contenteditable="true" oninput="onInputChange()" onkeyup="onInputChange()" onpaste="setTimeout(onInputChange,0)"></div>
       </div>
       <div class="input-row" style="margin-top:10px;">
         <span class="input-pill" onclick="usePill(this)">e.g. English coaching for executives in Latin America</span>
