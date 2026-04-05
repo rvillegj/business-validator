@@ -30,7 +30,9 @@
     .fc-icon { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
     .fc-title { font-size: 12px; font-weight: 500; color: #1A1A2E; margin-bottom: 4px; line-height: 1.3; }
     .fc-text { font-size: 11px; color: #888; line-height: 1.55; }
-    .results { display: none; max-width: 960px; margin: 0 auto; padding: 0 24px 56px; }
+
+    /* results */
+    .results { display: none; max-width: 1100px; margin: 0 auto; padding: 0 24px 56px; }
     .results-nav { display: flex; align-items: center; gap: 10px; padding: 20px 0 16px; }
     .back-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #888; background: none; border: none; cursor: pointer; padding: 0; font-family: 'DM Sans', sans-serif; }
     .back-btn:hover { color: #555; }
@@ -39,6 +41,8 @@
     .nav-download-btn { margin-left: auto; display: none; align-items: center; gap: 6px; font-size: 12px; color: #666; background: white; border: 1.5px solid #E2D9CE; border-radius: 8px; padding: 7px 14px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; }
     .nav-download-btn:hover { background: #F8F4EE; }
     .nav-download-btn.visible { display: flex; }
+
+    /* idea bar */
     .idea-bar { background: white; border: 1.5px solid #E2D9CE; border-radius: 11px; padding: 12px 16px; margin-bottom: 14px; transition: border 0.15s; }
     .idea-bar.edit-mode { border: 2px solid #FF6B4A; }
     .idea-bar-locked { opacity: 0.45; pointer-events: none; }
@@ -50,6 +54,8 @@
     .idea-edit-btn:hover { background: #EDE8DF; }
     .idea-analyse-btn { background: #FF6B4A; color: white; border: none; border-radius: 9px; padding: 9px 18px; font-size: 12px; font-weight: 500; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; cursor: pointer; }
     .idea-analyse-btn:hover { background: #E55A3A; }
+
+    /* hypothesis */
     .hyp-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .hyp-header { padding: 12px 18px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: center; gap: 10px; background: #FAFAF8; }
     .hyp-header-icon { width: 24px; height: 24px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -60,6 +66,8 @@
     .hyp-text { font-size: 13px; color: #444; line-height: 1.6; }
     .hyp-metric { font-size: 13px; color: #555; line-height: 1.6; margin-top: 8px; }
     .hyp-metric-prefix { color: #1D9E75; font-weight: 500; }
+
+    /* score card */
     .score-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .sc-top { padding: 16px 20px 14px; border-bottom: 1px solid #F0EBE3; display: flex; align-items: flex-start; gap: 16px; }
     .sc-eyebrow { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 10px; }
@@ -103,10 +111,18 @@
     .sc-warn-lbl { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; font-weight: 500; margin-bottom: 2px; }
     .sc-warn-row { display: flex; align-items: flex-start; gap: 7px; font-size: 11px; color: #A32D2D; line-height: 1.5; }
     .sc-warn-dot { width: 4px; height: 4px; border-radius: 50%; background: #E24B4A; flex-shrink: 0; margin-top: 5px; }
-    .refine-trigger-row { margin-bottom: 14px; }
-    .btn-refine { width: 100%; padding: 13px 20px; background: #1A1A2E; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+
+    /* ── THREE-BUTTON ACTION ROW ── */
+    .actions-row { display: flex; gap: 10px; margin-bottom: 14px; }
+    .btn-refine { padding: 13px 18px; background: #1A1A2E; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
     .btn-refine:hover { background: #2D2D4A; }
     .btn-refine:disabled { background: #B5A99A; cursor: not-allowed; }
+    .btn-design { flex: 1; padding: 13px; background: #FF6B4A; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+    .btn-design:hover { background: #E55A3A; }
+    .btn-edit { padding: 13px 18px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; white-space: nowrap; }
+    .btn-edit:hover { background: #F8F4EE; }
+
+    /* refine panel */
     .refine-panel { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-bottom: 14px; animation: fadeIn 0.4s ease both; }
     .refine-panel-hdr { padding: 14px 20px; background: #1A1A2E; display: flex; align-items: center; justify-content: space-between; }
     .refine-panel-title { font-size: 13px; font-weight: 500; color: white; display: flex; align-items: center; gap: 8px; }
@@ -141,11 +157,8 @@
     .btn-apply:hover { background: #E55A3A; }
     .btn-keep { padding: 12px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
     .btn-keep:hover { background: #F8F4EE; }
-    .actions-row { display: flex; gap: 10px; margin-bottom: 14px; }
-    .btn-design { flex: 1; padding: 13px; background: #FF6B4A; color: white; border: none; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
-    .btn-design:hover { background: #E55A3A; }
-    .btn-edit { padding: 13px 20px; background: white; color: #666; border: 1.5px solid #E2D9CE; border-radius: 11px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: background 0.2s; }
-    .btn-edit:hover { background: #F8F4EE; }
+
+    /* canvas */
     .canvas-section { display: none; }
     .canvas-section.visible { display: block; }
     .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 20px; }
@@ -166,44 +179,49 @@
     .dot:nth-child(1) { background: #FF6B4A; }
     .dot:nth-child(2) { background: #3D6B4F; animation-delay: 0.2s; }
     .dot:nth-child(3) { background: #E8C547; animation-delay: 0.4s; }
-    .bmc-seg-header { padding: 16px 20px 0; }
-    .seg-profile { font-size: 13px; color: #444; line-height: 1.6; margin-bottom: 10px; }
-    .seg-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .seg-tag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; }
+
+    /* ── BMC GRID — tighter, no fixed heights ── */
+    .bmc-seg-header { padding: 14px 16px 0; }
+    .seg-profile { font-size: 12px; color: #444; line-height: 1.6; margin-bottom: 8px; }
+    .seg-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+    .seg-tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
     .tab-panel.seg1 .seg-tag { background: rgba(255,107,74,0.1); color: #FF6B4A; }
     .tab-panel.seg2 .seg-tag { background: rgba(61,107,79,0.1); color: #3D6B4F; }
     .tab-panel.seg3 .seg-tag { background: rgba(232,197,71,0.15); color: #A8851A; }
-    .bmc-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr 1fr 1fr; border-top: 1.5px solid #E2D9CE; border-bottom: 1.5px solid #E2D9CE; }
+
+    .bmc-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr); border-top: 1.5px solid #E2D9CE; }
     .bmc-col { display: flex; flex-direction: column; border-right: 1px solid #E2D9CE; }
     .bmc-col:last-child { border-right: none; }
-    .bmc-cell { padding: 12px 13px; flex: 1; border-bottom: 1px solid #E2D9CE; }
+    .bmc-cell { padding: 10px 11px; border-bottom: 1px solid #E2D9CE; }
     .bmc-cell:last-child { border-bottom: none; }
-    .bmc-cell-label { font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: #FF6B4A; margin-bottom: 7px; }
-    .bmc-item { display: flex; gap: 6px; font-size: 11px; color: #555; line-height: 1.5; margin-bottom: 4px; }
-    .bmc-dot { width: 4px; height: 4px; border-radius: 50%; background: #FF6B4A; margin-top: 5px; flex-shrink: 0; }
-    .bmc-sublabel { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; margin: 7px 0 3px; }
-    .bmc-tag { font-size: 9.5px; padding: 2px 7px; border-radius: 10px; background: #F5F1EB; color: #666; display: inline-block; margin-top: 4px; margin-right: 3px; }
-    .vp-summary { font-size: 11px; color: #555; line-height: 1.6; font-style: italic; border-left: 3px solid #E8C547; padding-left: 11px; margin-bottom: 10px; border-radius: 0; }
-    .vp-offering { background: #FDF6EC; border-radius: 8px; padding: 9px 11px; margin-bottom: 7px; }
+    .bmc-cell-label { font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; color: #FF6B4A; margin-bottom: 6px; }
+    .bmc-item { display: flex; gap: 5px; font-size: 10.5px; color: #555; line-height: 1.5; margin-bottom: 3px; }
+    .bmc-dot { width: 3px; height: 3px; border-radius: 50%; background: #FF6B4A; margin-top: 5px; flex-shrink: 0; }
+    .bmc-sublabel { font-size: 7.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #B5A99A; margin: 6px 0 3px; }
+    .bmc-tag { font-size: 9px; padding: 1px 6px; border-radius: 10px; background: #F5F1EB; color: #666; display: inline-block; margin-top: 3px; margin-right: 2px; }
+    .vp-summary { font-size: 10.5px; color: #555; line-height: 1.6; font-style: italic; border-left: 2px solid #E8C547; padding-left: 9px; margin-bottom: 8px; border-radius: 0; }
+    .vp-offering { background: #FDF6EC; border-radius: 6px; padding: 7px 9px; margin-bottom: 6px; }
     .vp-offering:last-child { margin-bottom: 0; }
-    .vp-name { font-size: 11px; font-weight: 500; color: #1A1A2E; margin-bottom: 3px; }
-    .vp-desc { font-size: 10px; color: #666; line-height: 1.5; }
-    .vp-badge { font-size: 9px; padding: 2px 7px; border-radius: 10px; background: rgba(26,26,46,0.07); color: #1A1A2E; display: inline-block; margin-top: 4px; }
-    .ch-phase { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+    .vp-name { font-size: 10.5px; font-weight: 500; color: #1A1A2E; margin-bottom: 2px; }
+    .vp-desc { font-size: 9.5px; color: #666; line-height: 1.5; }
+    .vp-badge { font-size: 8.5px; padding: 1px 6px; border-radius: 10px; background: rgba(26,26,46,0.07); color: #1A1A2E; display: inline-block; margin-top: 3px; }
+    .ch-phase { font-size: 7.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 1px; }
     .phase-awareness { color: #FF6B4A; }
     .phase-evaluation { color: #3D6B4F; }
     .phase-purchase { color: #A8851A; }
     .phase-delivery { color: #1A1A2E; }
     .phase-postpurchase { color: #7B5EA7; }
     .bmc-bottom { display: grid; grid-template-columns: 1fr 1fr; border-top: 1.5px solid #E2D9CE; }
-    .bmc-bottom-cell { padding: 12px 13px; }
+    .bmc-bottom-cell { padding: 10px 11px; }
     .bmc-bottom-cell:first-child { border-right: 1px solid #E2D9CE; }
-    .rev-stream { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
-    .rev-tag { font-size: 9px; padding: 2px 7px; border-radius: 10px; }
-    .rev-name { font-size: 11px; font-weight: 500; color: #1A1A2E; }
-    .rev-desc { font-size: 10px; color: #888; margin-bottom: 9px; }
-    .cost-row { font-size: 10.5px; color: #555; margin-bottom: 4px; display: flex; gap: 6px; align-items: flex-start; }
-    .cost-tag { font-size: 8.5px; padding: 1px 6px; border-radius: 3px; background: #F5F1EB; color: #888; flex-shrink: 0; margin-top: 1px; }
+    .rev-stream { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .rev-tag { font-size: 8.5px; padding: 1px 6px; border-radius: 10px; }
+    .rev-name { font-size: 10.5px; font-weight: 500; color: #1A1A2E; }
+    .rev-desc { font-size: 9.5px; color: #888; margin-bottom: 8px; }
+    .cost-row { font-size: 10px; color: #555; margin-bottom: 3px; display: flex; gap: 5px; align-items: flex-start; }
+    .cost-tag { font-size: 8px; padding: 1px 5px; border-radius: 3px; background: #F5F1EB; color: #888; flex-shrink: 0; margin-top: 1px; }
+
+    /* competitive landscape */
     .section-card { background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; margin-top: 14px; animation: fadeIn 0.4s ease both; }
     .section-card-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
     .section-card-header:hover { background: #FAFAF8; }
@@ -221,15 +239,18 @@
     .adv-block { margin: 0 20px 20px; padding: 12px 16px; background: rgba(26,26,46,0.04); border-left: 3px solid #1A1A2E; border-radius: 0; }
     .adv-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #B5A99A; margin-bottom: 5px; }
     .adv-text { font-size: 13px; color: #444; line-height: 1.6; }
+
+    /* skeletons */
     .skel { background: #E2D9CE; border-radius: 4px; animation: pulse 1.4s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
     @keyframes bounce { 0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
     @media print {
       @page { margin: 18mm 16mm; size: A4; }
       * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
       body { background: white !important; }
-      .landing, .results-nav, .actions-row, .refine-trigger-row, .refine-panel, .idea-edit-btn, .idea-bar-actions { display: none !important; }
+      .landing, .results-nav, .actions-row, .refine-panel, .idea-edit-btn, .idea-bar-actions { display: none !important; }
       .results { display: block !important; max-width: 100%; padding: 0; }
       .section-card-body { display: block !important; }
     }
@@ -338,23 +359,22 @@
     </div>
   </div>
 
-  <div class="refine-trigger-row" id="refineTriggerRow" style="display:none;">
-    <button class="btn-refine" id="btnRefine" onclick="runRefine()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      Refine my idea to increase likelihood of success
-    </button>
-  </div>
-
+  <!-- refine panel (hidden until triggered) -->
   <div class="refine-panel" id="refinePanel" style="display:none;"></div>
 
+  <!-- THREE-BUTTON ROW -->
   <div class="actions-row" id="actionsRow" style="display:none;">
+    <button class="btn-refine" id="btnRefine" onclick="runRefine()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Refine idea
+    </button>
     <button class="btn-design" onclick="designModel()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       Design my business model
     </button>
     <button class="btn-edit" onclick="enterEditMode()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      Edit my idea
+      Edit idea
     </button>
   </div>
 
@@ -367,7 +387,7 @@
       <button class="tab-btn seg3" onclick="switchTab(2)">Customer Segment 3</button>
     </div>
     <div class="tab-panel seg1 active" id="panel-0">
-      <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas for this customer segment…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
     </div>
     <div class="tab-panel seg2" id="panel-1">
       <div style="text-align:center;padding:60px 24px;"><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1A1A2E;margin-bottom:12px;">Thank you for testing!</div><div style="font-size:15px;color:#888;font-weight:300;max-width:420px;margin:0 auto;line-height:1.7;">Details for this customer segment will be available when this app goes live.</div></div>
@@ -388,8 +408,8 @@
 
 <script>
   let currentIdea = '';
-  let currentScores = null;
   let currentAnalysisData = null;
+  let refineUsed = false;
 
   function onInputChange() {
     const text = document.getElementById('inputText').innerText.trim();
@@ -398,8 +418,7 @@
   }
 
   function usePill(el) {
-    const text = el.textContent.replace('e.g. ', '');
-    document.getElementById('inputText').innerText = text;
+    document.getElementById('inputText').innerText = el.textContent.replace('e.g. ', '');
     onInputChange();
   }
 
@@ -419,7 +438,7 @@
     document.getElementById('canvasSection').classList.remove('visible');
     document.getElementById('navDownloadBtn').classList.remove('visible');
     document.getElementById('refinePanel').style.display = 'none';
-    document.getElementById('refineTriggerRow').style.display = 'none';
+    refineUsed = false;
     window.scrollTo({ top: 0 });
   }
 
@@ -449,13 +468,13 @@
     const idea = document.getElementById('inputText').innerText.trim();
     if (!idea) return;
     currentIdea = idea;
+    refineUsed = false;
     document.getElementById('landing').style.display = 'none';
     document.getElementById('results').style.display = 'block';
     document.getElementById('ideaDisplay').innerText = idea;
     exitEditMode();
     document.getElementById('ideaBar').classList.add('idea-bar-locked');
     document.getElementById('actionsRow').style.display = 'none';
-    document.getElementById('refineTriggerRow').style.display = 'none';
     document.getElementById('refinePanel').style.display = 'none';
     document.getElementById('canvasSection').classList.remove('visible');
     window.scrollTo({ top: 0 });
@@ -463,12 +482,10 @@
       const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
       const data = await response.json();
       currentAnalysisData = data;
-      currentScores = data.scores;
       renderAnalysisResults(data);
       document.getElementById('ideaBar').classList.remove('idea-bar-locked');
       document.getElementById('navDownloadBtn').classList.add('visible');
-      document.getElementById('actionsRow').style.display = 'flex';
-      document.getElementById('refineTriggerRow').style.display = 'block';
+      showActionsRow();
     } catch (err) {
       document.getElementById('ideaBar').classList.remove('idea-bar-locked');
       document.getElementById('landing').style.display = 'block';
@@ -485,7 +502,6 @@
     exitEditMode();
     document.getElementById('ideaBar').classList.add('idea-bar-locked');
     document.getElementById('actionsRow').style.display = 'none';
-    document.getElementById('refineTriggerRow').style.display = 'none';
     document.getElementById('refinePanel').style.display = 'none';
     document.getElementById('canvasSection').classList.remove('visible');
     resetResultsToShimmers();
@@ -494,14 +510,25 @@
       const response = await fetch('/api/analyse', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea }) });
       const data = await response.json();
       currentAnalysisData = data;
-      currentScores = data.scores;
       renderAnalysisResults(data);
       document.getElementById('ideaBar').classList.remove('idea-bar-locked');
       document.getElementById('navDownloadBtn').classList.add('visible');
-      document.getElementById('actionsRow').style.display = 'flex';
-      document.getElementById('refineTriggerRow').style.display = 'block';
+      showActionsRow();
     } catch (err) {
       document.getElementById('ideaBar').classList.remove('idea-bar-locked');
+    }
+  }
+
+  function showActionsRow() {
+    const row = document.getElementById('actionsRow');
+    row.style.display = 'flex';
+    const btn = document.getElementById('btnRefine');
+    if (refineUsed) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'flex';
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine idea';
     }
   }
 
@@ -569,7 +596,7 @@
     if (!currentAnalysisData) return;
     const btn = document.getElementById('btnRefine');
     btn.disabled = true;
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Analyzing improvement opportunities…';
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Analyzing…';
     const panel = document.getElementById('refinePanel');
     panel.style.display = 'block';
     panel.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:13px;color:#888;font-weight:300;margin-bottom:16px;">Identifying your highest-impact improvements…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
@@ -589,11 +616,10 @@
       });
       const data = await response.json();
       renderRefinePanel(data);
-      document.getElementById('refineTriggerRow').style.display = 'none';
     } catch (err) {
       panel.innerHTML = '<div style="padding:20px;font-size:13px;color:#A32D2D;">Something went wrong. Please try again.</div>';
       btn.disabled = false;
-      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine my idea to increase likelihood of success';
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> Refine idea';
     }
   }
 
@@ -610,7 +636,7 @@
         '<div class="lever-hdr"><div class="lever-left">' +
         '<div class="lever-pillar">' + (lever.pillarLabel || lever.pillar) + '</div>' +
         '<span class="lever-before">Q ' + lever.currentQuality + '/5</span>' +
-        '<span class="lever-arrow-sep">→</span>' +
+        '<span class="lever-arrow-sep">&rarr;</span>' +
         '<span class="lever-after"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#085041" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Q ' + lever.projectedQuality + '/5</span>' +
         '</div><span class="lever-impact-tag">' + (lever.impact || '') + '</span></div>' +
         '<div class="lever-body"><div class="lever-issue">' + (lever.issue || '') + '</div>' +
@@ -625,7 +651,7 @@
       '</div>' +
       '<div class="refine-body">' + leversHtml +
         '<div class="refine-summary-block"><div class="refine-summary-label">Projected outcome</div>' +
-        '<div class="refine-summary-text">Applying these refinements to your idea description should move your score from ' + currentScore + ' to approximately ' + projectedScore + ', reaching &ldquo;' + projectedInterp + '.&rdquo;</div>' +
+        '<div class="refine-summary-text">Applying these refinements should move your score from ' + currentScore + ' to approximately ' + projectedScore + ', reaching &ldquo;' + projectedInterp + '.&rdquo;</div>' +
         '<div class="refine-summary-score">' + currentScore + ' &rarr; ~' + projectedScore + ' &middot; ' + projectedInterp + '</div></div>' +
       '</div>' +
       '<div class="refine-actions">' +
@@ -637,6 +663,7 @@
 
   function applyRefinements() {
     if (!window.__refinedIdea) return;
+    refineUsed = true;
     currentIdea = window.__refinedIdea;
     document.getElementById('ideaDisplay').innerText = window.__refinedIdea;
     document.getElementById('refinePanel').style.display = 'none';
@@ -645,21 +672,18 @@
 
   function dismissRefine() {
     document.getElementById('refinePanel').style.display = 'none';
-    document.getElementById('refineTriggerRow').style.display = 'block';
   }
 
   async function designModel() {
     document.getElementById('canvasSection').classList.add('visible');
     document.getElementById('canvasSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Building the business model canvas…</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>';
-    document.getElementById('actionsRow').style.display = 'none';
     try {
       const seg1Data = await fetchSegment(currentIdea, null, 0);
       renderCompetitiveLandscape(seg1Data);
       document.getElementById('compCard').style.display = 'block';
     } catch (err) {
       document.getElementById('panel-0').innerHTML = '<div class="loading-tab"><div class="loading-tab-msg">Something went wrong. Please try again.</div></div>';
-      document.getElementById('actionsRow').style.display = 'flex';
     }
   }
 
@@ -697,7 +721,7 @@
       '<div class="vp-offering"><div class="vp-name">' + o.name + '</div><div class="vp-desc">' + o.description + '</div><span class="vp-badge">&#x2736; ' + o.advantage + '</span></div>'
     ).join('');
     const channelItems = (ch.touchpoints || []).map(t =>
-      '<div><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div style="font-size:10.5px;color:#555;padding-left:0;margin-bottom:5px;line-height:1.5;">' + t.name + ' &mdash; ' + t.description + '</div></div>'
+      '<div style="margin-bottom:6px;"><div class="ch-phase phase-' + t.phase.toLowerCase().replace(/[^a-z]/g,'') + '">' + t.phase + '</div><div style="font-size:10px;color:#555;line-height:1.5;">' + t.name + ' &mdash; ' + t.description + '</div></div>'
     ).join('');
     const html =
       '<div class="bmc-seg-header"><div class="seg-profile">' + seg.profile + '</div>' +
@@ -707,13 +731,13 @@
           '<div class="bmc-cell"><div class="bmc-cell-label">Key partners</div>' + (kp.partners || []).map(p => bItem('<strong style="font-weight:500;">' + p.name + '</strong> &mdash; ' + p.description)).join('') + '</div>' +
           '<div class="bmc-cell"><div class="bmc-cell-label">Key resources</div>' + (kr.resources || []).map(r => bItem(r.name + ' <span class="bmc-tag">' + r.type + '</span>')).join('') + '</div>' +
         '</div>' +
-        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Key activities</div>' + (ka.activities || []).map(a => bItem(a.name + ' &mdash; ' + a.description)).join('') + '</div></div>' +
-        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Value proposition</div><div class="vp-summary">' + vp.summary + '</div>' + offeringsHtml + '</div></div>' +
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Key activities</div>' + (ka.activities || []).map(a => bItem(a.name + ' &mdash; ' + a.description)).join('') + '</div></div>' +
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Value proposition</div><div class="vp-summary">' + vp.summary + '</div>' + offeringsHtml + '</div></div>' +
         '<div class="bmc-col">' +
           '<div class="bmc-cell"><div class="bmc-cell-label">Customer relationships</div>' + (cr.strategies || []).map(s => '<div class="bmc-sublabel">' + s.type + '</div>' + bItem(s.name + ' &mdash; ' + s.description)).join('') + '</div>' +
           '<div class="bmc-cell"><div class="bmc-cell-label">Channels</div>' + channelItems + '</div>' +
         '</div>' +
-        '<div class="bmc-col"><div class="bmc-cell" style="flex:1;"><div class="bmc-cell-label">Customer segments</div>' +
+        '<div class="bmc-col"><div class="bmc-cell"><div class="bmc-cell-label">Customer segments</div>' +
           '<div class="bmc-sublabel">Jobs to be done</div>' + (seg.jobsToBeDone || []).map(j => bItem(j)).join('') +
           '<div class="bmc-sublabel">Pain points</div>' + (seg.painPoints || []).map(p => bItem(p)).join('') +
           '<div class="bmc-sublabel">Gains</div>' + (seg.gains || []).map(g => bItem(g)).join('') +

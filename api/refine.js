@@ -21,16 +21,18 @@ module.exports = async function handler(req, res) {
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1500,
-      system: `You are an expert startup coach and business strategist. A founder has evaluated their business idea and received a scored assessment. Your task is to identify the 2-3 pillars with the most improvement potential and provide specific, actionable refinements they can make to their idea description to increase the likelihood of success score.
+      system: `You are an expert startup coach and business strategist. A founder has evaluated their business idea and received a scored assessment. Your task is to identify the 2-3 pillars with the most improvement potential and provide specific, actionable refinements to help them strengthen their idea.
 
-RULES:
-- Only surface pillars where qualityScore is below 4 OR evidenceScore is below 4
+CRITICAL RULES — MUST FOLLOW:
+- NEVER invent statistics, percentages, or specific numerical claims that the user did not already mention. If you do not know a real market figure, do not include one.
+- NEVER fabricate benchmarks, studies, or data points. Only reference real, widely-known market facts you are confident are true.
+- Recommendations must be structural or strategic — about how the idea is framed, who it targets, what problem it solves, or what differentiates it — NOT about adding made-up performance claims.
+- The refinedIdeaSuggestion must enrich the idea by: (a) adding specific geographic or segment context if missing, (b) sharpening the problem statement, (c) clarifying the differentiation — all grounded in what is actually known about this market. Do NOT add invented metrics.
+- Only surface pillars where qualityScore is below 4 OR evidenceScore is below 4.
 - Prioritize by impact: which improvements would move the final score the most?
-- Be specific and concrete — tell the user exactly what to add or change in their idea description
-- Each recommendation must be directly implementable as a change to the idea text
-- Estimate score improvements conservatively and realistically
-- The projected final score must be calculated using the same formula: Base Score = weighted average of quality scores (Problem 25%, Market 20%, VP 20%, BM 20%, Execution 15%) / 5, then multiplied by evidence multiplier
-- Keep reasons and recommendations concise — one punchy sentence each
+- Keep issue and recommendation text concise — one punchy sentence each.
+- Estimate score improvements conservatively and realistically.
+- Calculate projectedFinalScore using: Base Score = weighted avg of projected quality scores (Problem 25%, Market 20%, VP 20%, BM 20%, Execution 15%) / 5, multiplied by projected evidence multiplier.
 
 Return ONLY valid JSON, no markdown fences, no explanation:
 {
@@ -43,26 +45,22 @@ Return ONLY valid JSON, no markdown fences, no explanation:
       "projectedQuality": 4,
       "projectedEvidence": 4,
       "impact": "Highest impact",
-      "issue": "One sentence: what is weak and why it matters.",
+      "issue": "One sentence: what is structurally weak and why it matters for the score.",
       "recommendations": [
         {
-          "text": "One concrete sentence: exactly what to add or change in the idea description.",
+          "text": "One concrete sentence: a structural or strategic change to the idea — no invented numbers.",
           "pointsGained": "+4 pts on Value Proposition quality"
-        },
-        {
-          "text": "Second recommendation if needed.",
-          "pointsGained": "+2 pts on Value Proposition quality"
         }
       ]
     }
   ],
   "projectedFinalScore": 81,
   "projectedInterpretation": "Very Strong Opportunity",
-  "refinedIdeaSuggestion": "A revised version of the idea description (2-3 sentences) that incorporates all the recommended improvements. This is what gets pre-filled when the user clicks Apply."
+  "refinedIdeaSuggestion": "2-3 sentences. Rewrite the idea incorporating: (1) specific geography or target segment if not already stated, (2) a sharper problem framing, (3) a clearer differentiator — all grounded in real market knowledge. Do NOT add any invented statistics or performance claims."
 }`,
       messages: [{
         role: "user",
-        content: `Analyze this business idea evaluation and identify the top 2-3 improvement levers.
+        content: `Analyze this business idea evaluation and identify the top 2-3 improvement levers. Do not invent any statistics or performance claims.
 
 Business idea: "${idea}"
 
@@ -78,7 +76,7 @@ Base score: ${baseScore}/100
 Average evidence score: ${averageEvidenceScore}/5
 Evidence multiplier: ${evidenceMultiplier}
 
-Identify the 2-3 pillars with the most improvement potential and return the refinement plan as JSON.`
+Return the refinement plan as JSON. Every recommendation must be structural — no invented metrics or fabricated benchmarks.`
       }]
     })
   });
