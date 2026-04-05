@@ -239,7 +239,7 @@
     <p class="tagline-sub" style="color:#FF6B4A;font-weight:500;font-size:16px;margin-top:8px;margin-bottom:14px;">Start with clarity.</p>
     <p class="tagline-sub">Describe your idea — or the problem you're driven to solve.<br>We'll help you evaluate its potential using global market intelligence, uncover your addressable opportunity, and transform your thinking into a structured business model — designed for execution.</p>
     <div class="input-outer">
-      <div id="inputText" style="font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;max-height:160px;overflow-y:auto;outline:none;cursor:text;margin-bottom:10px;" contenteditable="true" oninput="onInputChange()" onkeyup="onInputChange()" onpaste="setTimeout(onInputChange,0)"></div>
+      <div id="inputText" style="font-size:14px;color:#1A1A2E;line-height:1.6;min-height:28px;outline:none;cursor:text;margin-bottom:10px;" contenteditable="true" oninput="onInputChange()" onkeyup="onInputChange()" onpaste="setTimeout(onInputChange,0)"></div>
       <div class="input-row">
         <span class="input-pill" onclick="usePill(this)">e.g. English coaching for executives in Latin America</span>
         <button class="analyse-btn" id="landingAnalyseBtn" onclick="runAnalysis()">
@@ -439,7 +439,8 @@
   }
 
   async function runAnalysis() {
-    const idea = document.getElementById('inputText').innerText.trim();
+    const el = document.getElementById('inputText');
+    const idea = (el.innerText || el.textContent || '').replace(/​/g, '').trim();
     if (!idea) return;
     currentIdea = idea; refineUsed = false;
     document.getElementById('landing').style.display = 'none';
