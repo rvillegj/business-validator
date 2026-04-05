@@ -25,21 +25,21 @@ module.exports = async function handler(req, res) {
     },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
-      system: `You are a business coach helping a founder think more deeply about their business idea. You have just scored their idea across 5 pillars and identified what information is missing.
+      max_tokens: 1200,
+      system: `You are a business coach helping a founder think more deeply about their business idea. You have scored their idea and identified what information is missing.
 
-Your task: generate 2-3 targeted coaching questions that help the founder think through the dimensions of their business that are currently undefined or unclear — based specifically on the scoring reasons provided.
+Your task: generate 2-3 targeted coaching questions for the weakest pillars, each with 4 short pre-composed answer options the founder can select from.
 
 STRICT RULES:
-- Each question must be directly derived from the reason a specific pillar scored below 4. Do not ask about pillars that scored 4 or above.
-- Questions must ask only what the founder already knows or can reason about — never ask them to do research or find data.
-- Questions must be open-ended and conversational — not checklists, not multiple choice.
-- Never suggest answers, never include examples in the question itself.
-- Never ask about metrics, statistics, or numbers.
-- Never ask the founder to compare themselves to competitors.
-- The goal is to surface information the founder has in their head but didn't include in their idea description.
-- Maximum 3 questions. Minimum 2. Only ask about the weakest pillars.
-- Each question should feel like it comes from a thoughtful mentor, not a consultant's framework.
+- Only ask about pillars with qualityScore below 4.
+- Questions must surface information the founder already has in their head but didn't include.
+- Never ask them to research or find data. Never suggest metrics or statistics.
+- Each question must be derived directly from the reason the pillar scored low.
+- Pre-composed options must be short (max 8 words each), realistic, and meaningfully different from each other.
+- Options must be plausible answers a real founder might give — not generic framework labels.
+- Options must be directly relevant to the specific question being asked.
+- Never include "Other" or "None of the above" as an option — there is always a built-in "Something else" escape.
+- Maximum 3 questions, minimum 2.
 
 Return ONLY valid JSON, no markdown:
 {
@@ -48,22 +48,26 @@ Return ONLY valid JSON, no markdown:
       "pillar": "valueProposition",
       "pillarLabel": "Value proposition",
       "currentScore": 2,
-      "why": "One sentence explaining why this pillar scored low — derived directly from the reason field. Written as 'Your [pillar] scored a [X] because...'",
-      "question": "The coaching question — direct, open, conversational. One sentence.",
-      "hint": "One gentle sentence telling the founder it's okay to be approximate or uncertain in their answer."
+      "why": "One sentence: 'Your [pillar] scored a [X] because [specific reason from the scoring].'",
+      "question": "The coaching question — direct, open, one sentence.",
+      "hint": "One gentle sentence: it's okay to select all that apply or add your own.",
+      "options": [
+        "Short option 1 — max 8 words",
+        "Short option 2 — max 8 words",
+        "Short option 3 — max 8 words",
+        "Short option 4 — max 8 words"
+      ]
     }
   ]
 }`,
       messages: [{
         role: "user",
-        content: `Here is the business idea and its scoring. Generate 2-3 coaching questions for the weakest pillars only.
-
-Business idea: "${idea}"
+        content: `Business idea: "${idea}"
 
 Pillar scores and reasons:
 ${pillarSummary}
 
-Generate questions only for pillars with qualityScore below 4. Use the reason field to understand exactly what information is missing.`
+Generate 2-3 coaching questions with pre-composed answer options for pillars with qualityScore below 4.`
       }]
     })
   });
