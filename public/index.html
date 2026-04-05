@@ -144,7 +144,7 @@
     .chip-selected:hover { background: #2D2D4A; color: white !important; border-color: #2D2D4A; }
     .delta-up { font-size: 9px; padding: 1px 5px; border-radius: 4px; background: #E1F5EE; color: #085041; font-weight: 500; margin-left: 4px; display: inline-block; }
     .delta-down { font-size: 9px; padding: 1px 5px; border-radius: 4px; background: #FCEBEB; color: #791F1F; font-weight: 500; margin-left: 4px; display: inline-block; }
-    .next-steps { margin-top: 14px; background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; animation: fadeIn 0.4s ease both; }
+    .next-steps { margin-top: 14px; margin-bottom: 14px; background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; animation: fadeIn 0.4s ease both; }
     .next-steps-hdr { padding: 11px 18px; border-bottom: 1px solid #F0EBE3; background: #FAFAF8; display: flex; align-items: center; gap: 8px; }
     .next-steps-title { font-size: 12px; font-weight: 500; color: #1A1A2E; }
     .next-steps-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
@@ -352,7 +352,11 @@
     </button>
     <button class="btn-design" onclick="designModel()">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      Design my business model
+      Discover potential customer segments
+    </button>
+    <button class="btn-edit" id="btnEdit" onclick="enterEditMode()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit idea
     </button>
   </div>
 
