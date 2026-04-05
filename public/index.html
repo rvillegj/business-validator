@@ -140,7 +140,17 @@
     .chips-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
     .chip { font-size: 12px; padding: 8px 14px; border-radius: 20px; border: 1.5px solid #E2D9CE; background: white; color: #555; cursor: pointer; transition: all 0.15s; line-height: 1.3; user-select: none; }
     .chip:hover { border-color: #1A1A2E; color: #1A1A2E; }
-    .chip-selected { background: #1A1A2E; color: white; border-color: #1A1A2E; }
+    .chip-selected { background: #1A1A2E; color: white !important; border-color: #1A1A2E; }
+    .chip-selected:hover { background: #2D2D4A; color: white !important; border-color: #2D2D4A; }
+    .delta-up { font-size: 9px; padding: 1px 5px; border-radius: 4px; background: #E1F5EE; color: #085041; font-weight: 500; margin-left: 4px; display: inline-block; }
+    .delta-down { font-size: 9px; padding: 1px 5px; border-radius: 4px; background: #FCEBEB; color: #791F1F; font-weight: 500; margin-left: 4px; display: inline-block; }
+    .next-steps { margin-top: 14px; background: white; border: 1.5px solid #E2D9CE; border-radius: 13px; overflow: hidden; animation: fadeIn 0.4s ease both; }
+    .next-steps-hdr { padding: 11px 18px; border-bottom: 1px solid #F0EBE3; background: #FAFAF8; display: flex; align-items: center; gap: 8px; }
+    .next-steps-title { font-size: 12px; font-weight: 500; color: #1A1A2E; }
+    .next-steps-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .next-step-row { display: flex; gap: 10px; align-items: flex-start; }
+    .next-step-num { width: 20px; height: 20px; border-radius: 50%; background: #1A1A2E; color: white; font-size: 10px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .next-step-text { font-size: 12px; color: #444; line-height: 1.6; }
     .canvas-section { display: none; }
     .canvas-section.visible { display: block; }
     .canvas-divider { height: 1px; background: #E2D9CE; margin: 32px 0 20px; }
@@ -376,7 +386,9 @@
 <script>
   let currentIdea = '';
   let currentAnalysisData = null;
+  let previousScores = null;
   let refineUsed = false;
+  let showingCoachResults = false;
 
   function onInputChange() {
     const el = document.getElementById('inputText');
@@ -515,12 +527,31 @@
       const qc = qs>=4?'#1D9E75':qs>=3?'#EF9F27':'#FF6B4A';
       const qbg = qs>=4?'#E1F5EE':qs>=3?'#FAEEDA':'#FCEBEB';
       const qtx = qs>=4?'#085041':qs>=3?'#633806':'#791F1F';
-      return '<div class="sc-pillar"><div class="sc-pname">'+p.label+'</div><div class="sc-pil-scores"><span class="sc-qs" style="background:'+qbg+';color:'+qtx+';">Q '+qs+'/5</span><span class="sc-es">E '+es+'/5</span></div><div class="sc-tracks"><div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((qs/5)*100)+'%;background:'+qc+';"></div></div></div><div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((es/5)*100)+'%;background:#B4B2A9;"></div></div></div></div><div class="sc-preason">'+(pi.reason||'')+'</div></div>';
+      let deltaHtml = '';
+      if (previousScores && previousScores[p.key]) {
+        const prevQs = previousScores[p.key].qualityScore || previousScores[p.key].score || 0;
+        const diff = qs - prevQs;
+        if (diff > 0) deltaHtml = '<span class="delta-up">+'+diff+'</span>';
+        else if (diff < 0) deltaHtml = '<span class="delta-down">'+diff+'</span>';
+      }
+      return '<div class="sc-pillar"><div class="sc-pname">'+p.label+'</div><div class="sc-pil-scores"><span class="sc-qs" style="background:'+qbg+';color:'+qtx+';">Q '+qs+'/5</span>'+deltaHtml+'<span class="sc-es">E '+es+'/5</span></div><div class="sc-tracks"><div class="sc-track-row"><span class="sc-track-lbl">Quality</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((qs/5)*100)+'%;background:'+qc+';"></div></div></div><div class="sc-track-row"><span class="sc-track-lbl">Evidence</span><div class="sc-track"><div class="sc-pfill" style="width:'+Math.round((es/5)*100)+'%;background:#B4B2A9;"></div></div></div></div><div class="sc-preason">'+(pi.reason||'')+'</div></div>';
     }).join('');
     const warnHtml = (data.warnings&&data.warnings.length)?'<div class="sc-warn"><div class="sc-warn-lbl">Watch out for</div>'+data.warnings.map(w=>'<div class="sc-warn-row"><div class="sc-warn-dot"></div><span>'+w+'</span></div>').join('')+'</div>':'';
     const legHtml = '<div class="sc-legend"><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#E1F5EE;color:#085041;">Q</span> Quality (1&ndash;5)</div><div class="sc-legend-item"><span class="sc-legend-badge" style="background:#F5F1EB;color:#888;">E</span> Evidence (1&ndash;5)</div></div>';
-    document.getElementById('scoreCard').querySelectorAll('.sc-legend,.sc-warn').forEach(el=>el.remove());
+    document.getElementById('scoreCard').querySelectorAll('.sc-legend,.sc-warn,.next-steps').forEach(el=>el.remove());
     document.getElementById('scoreCard').insertAdjacentHTML('beforeend', legHtml+warnHtml);
+    if (showingCoachResults) {
+      const weakPillars = pillars.filter(p => { const pi = s[p.key]||{}; return (pi.qualityScore||pi.score||0) < 4; });
+      const nextSteps = weakPillars.slice(0,3).map((p,i) => {
+        const pi = s[p.key]||{};
+        const reason = pi.reason || '';
+        return '<div class="next-step-row"><div class="next-step-num">'+(i+1)+'</div><div class="next-step-text"><strong style="font-weight:500;">'+p.label+':</strong> '+reason+'</div></div>';
+      }).join('');
+      if (nextSteps) {
+        const nextHtml = '<div class="next-steps"><div class="next-steps-hdr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><div class="next-steps-title">What to focus on next</div></div><div class="next-steps-body">'+nextSteps+'</div></div>';
+        document.getElementById('scoreCard').insertAdjacentHTML('afterend', nextHtml);
+      }
+    }
   }
 
   let coachQuestions = [];
@@ -669,6 +700,8 @@
 
     const enrichedIdea = currentIdea + ' [Founder context: ' + qaPairs + ']';
     refineUsed = true;
+    previousScores = currentAnalysisData ? JSON.parse(JSON.stringify(currentAnalysisData.scores)) : null;
+    showingCoachResults = true;
     document.getElementById('refinePanel').style.display = 'none';
     document.getElementById('ideaBar').classList.add('idea-bar-locked');
     resetResultsToShimmers();
